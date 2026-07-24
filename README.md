@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# resourceroomnc.com
 
-## Getting Started
+Marketing site for Resource Room, a learning center in Holly Springs, NC. Next.js 16 (App Router)
++ TypeScript + Tailwind CSS v4. Every route is statically generated.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy lives in `src/content/` — no need to touch components for routine changes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | What it controls |
+| --- | --- |
+| `site.ts` | Phone, email, address, navigation, footer columns, award badges, social links, blog URL |
+| `programs.ts` | Every program: name, summary, highlights, what's included, who it's for. Adding an entry creates its page at `/programs/<slug>` automatically |
+| `home.ts` | Hero copy, why-choose-us, founders, stats, final CTA |
+| `testimonials.ts` | Review quotes |
 
-## Learn More
+Program pages are generated from `programs.ts` via `generateStaticParams`, and both
+`sitemap.xml` and the nav dropdown read from the same list.
 
-To learn more about Next.js, take a look at the following resources:
+## Design tokens
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Colors, fonts and custom utilities are defined in `src/app/globals.css` under `@theme`.
+Changing `--color-navy-900` or `--color-gold-500` there updates the whole site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Assets still needed
 
-## Deploy on Vercel
+The site ships without photography. These are the swap-in points:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Logo** — `src/components/Logo.tsx` renders a type-and-mark lockup. Drop the real logo in
+  `public/` and replace the mark + wordmark with `next/image`; every usage flows through this file.
+- **Photos** — `src/components/ui/PhotoSlot.tsx` renders branded gradient panels wherever a photo
+  belongs (founders, program pages, program cards). Replace its body with a filled `next/image`.
+- **Award badges** — currently rendered as text pills in `src/components/home/Hero.tsx`.
+- **Favicon** — `src/app/icon.tsx` generates a placeholder mark at build time. Delete it and add
+  `src/app/favicon.ico` once the real icon exists.
+- **OG image** — add `src/app/opengraph-image.png` (1200×630) for social sharing previews.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Before launch
+
+- Confirm `blogUrl` in `src/content/site.ts` points at the right blog.
+- Add real Facebook/Instagram URLs in `socials` (same file).
+- The contact form composes an email via `mailto:` so it works on a static deploy. To route
+  submissions to a CRM or inbox instead, replace `handleSubmit` in
+  `src/components/ContactForm.tsx` with a Server Action or form-provider POST.
