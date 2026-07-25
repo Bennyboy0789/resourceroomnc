@@ -20,7 +20,7 @@ export function PopularPrograms() {
               href={offering.href}
               className="group flex h-full flex-col rounded-2xl border border-navy-900/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-navy-900/20 hover:shadow-lg hover:shadow-navy-900/5"
             >
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-gold-500 group-hover:text-navy-950">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-sun-500 group-hover:text-navy-950">
                 <Icon name={offering.icon} className="h-5 w-5" />
               </span>
               <p className="eyebrow mt-5 text-brand-600">{offering.category}</p>

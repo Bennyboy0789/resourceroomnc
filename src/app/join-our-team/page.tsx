@@ -107,7 +107,7 @@ export default function JoinOurTeamPage() {
               key={reason.title}
               className="rounded-2xl border border-navy-900/8 bg-white p-7 text-center"
             >
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-gold-50 text-gold-600">
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-400 text-navy-900">
                 <Icon name={reason.icon} className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-900">

@@ -12,7 +12,7 @@ export function Founders() {
               paints over it where the two overlap. */}
           <div
             aria-hidden="true"
-            className="absolute -bottom-4 -left-4 h-full w-full rounded-2xl border-2 border-gold-500/60"
+            className="absolute -bottom-4 -left-4 h-full w-full rounded-2xl border-2 border-sun-500/60"
           />
           <PhotoSlot icon="users" tone="navy" ratio="4/3" />
         </div>
@@ -28,7 +28,7 @@ export function Founders() {
             </p>
           ))}
 
-          <figure className="mt-8 rounded-2xl border-l-4 border-gold-500 bg-mist p-6">
+          <figure className="mt-8 rounded-2xl border-l-4 border-brand-500 bg-mist p-6">
             <blockquote className="text-base leading-relaxed text-navy-800">
               &ldquo;{founders.quote}&rdquo;
             </blockquote>

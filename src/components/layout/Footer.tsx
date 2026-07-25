@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, SocialIcon } from "@/components/icons";
+import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
 import { addressLine, footerColumns, site, socials } from "@/content/site";
 
@@ -9,8 +10,8 @@ export function Footer() {
       <Container className="py-14 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
-            <p className="text-xl font-bold tracking-tight text-white">Resource Room</p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed">
+            <Logo tone="light" />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed">
               A complete learning center in Holly Springs, NC — tutoring, camps, test prep and
               specialized programs for learners of all ages.
             </p>
@@ -20,7 +21,7 @@ export function Footer() {
                   href={site.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-white"
                 >
-                  <Icon name="phone" className="h-4 w-4 shrink-0 text-gold-500" />
+                  <Icon name="phone" className="h-4 w-4 shrink-0 text-sun-500" />
                   {site.phone}
                 </a>
               </li>
@@ -29,12 +30,12 @@ export function Footer() {
                   href={site.emailHref}
                   className="flex items-center gap-3 transition-colors hover:text-white"
                 >
-                  <Icon name="mail" className="h-4 w-4 shrink-0 text-gold-500" />
+                  <Icon name="mail" className="h-4 w-4 shrink-0 text-sun-500" />
                   {site.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+                <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-sun-500" />
                 <span>{addressLine}</span>
               </li>
             </ul>
@@ -46,7 +47,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-gold-500 hover:text-navy-950"
+                  className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-sun-500 hover:text-navy-950"
                 >
                   <SocialIcon name={social.icon} className="h-4 w-4" />
                 </a>
@@ -56,7 +57,7 @@ export function Footer() {
 
           {footerColumns.map((column) => (
             <div key={column.title}>
-              <p className="eyebrow text-gold-400">{column.title}</p>
+              <p className="eyebrow text-sun-400">{column.title}</p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {column.links.map((link) => (
                   <li key={link.label}>

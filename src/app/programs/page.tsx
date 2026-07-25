@@ -34,8 +34,8 @@ export default function ProgramsPage() {
                 <div className="flex items-start justify-between gap-4">
                   <span
                     className={
-                      program.accent === "gold"
-                        ? "grid h-12 w-12 place-items-center rounded-xl bg-gold-50 text-gold-600"
+                      program.accent === "sun"
+                        ? "grid h-12 w-12 place-items-center rounded-xl bg-sun-400 text-navy-900"
                         : "grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-600"
                     }
                   >

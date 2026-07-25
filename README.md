@@ -26,22 +26,35 @@ All copy lives in `src/content/` — no need to touch components for routine cha
 Program pages are generated from `programs.ts` via `generateStaticParams`, and both
 `sitemap.xml` and the nav dropdown read from the same list.
 
-## Design tokens
+## Brand colors
 
-Colors, fonts and custom utilities are defined in `src/app/globals.css` under `@theme`.
-Changing `--color-navy-900` or `--color-gold-500` there updates the whole site.
+Sampled from the live logo and site CSS, defined in `src/app/globals.css` under `@theme`:
 
-## Assets still needed
+| Token | Value | Source |
+| --- | --- | --- |
+| `brand-500` | `#3d60a9` | logo blue |
+| `brand-700` | `#064ea4` | site link blue |
+| `sun-500` | `#fff100` | logo yellow |
+| `navy-900` | `#102449` | dark sections, derived from the logo blue |
 
-The site ships without photography. These are the swap-in points:
+One rule follows from this palette: **the brand yellow is a fill, not ink.** On navy it works as
+text and icons; on white it needs dark ink on top of it (`bg-sun-400 text-navy-900`), and blue
+takes over as the accent — `SectionHeading` switches accent color by `tone` for exactly this
+reason. `sun-600` is a deepened yellow used only where small marks (rating stars) sit on white.
 
-- **Logo** — `src/components/Logo.tsx` renders a type-and-mark lockup. Drop the real logo in
-  `public/` and replace the mark + wordmark with `next/image`; every usage flows through this file.
+## Assets
+
+Real logos are in `public/`, pulled from the live site:
+`logo-circle.png` (blue circle mark, for light backgrounds) and `logo-white.png` (white knockout
+lockup, for navy). Both are used through `src/components/Logo.tsx`.
+
+Still to supply:
+
 - **Photos** — `src/components/ui/PhotoSlot.tsx` renders branded gradient panels wherever a photo
   belongs (founders, program pages, program cards). Replace its body with a filled `next/image`.
 - **Award badges** — currently rendered as text pills in `src/components/home/Hero.tsx`.
-- **Favicon** — `src/app/icon.tsx` generates a placeholder mark at build time. Delete it and add
-  `src/app/favicon.ico` once the real icon exists.
+- **Favicon** — `src/app/icon.tsx` generates a brand-colored mark at build time. Delete it and add
+  `src/app/favicon.ico` once a real icon file exists.
 - **OG image** — add `src/app/opengraph-image.png` (1200×630) for social sharing previews.
 
 ## Before launch

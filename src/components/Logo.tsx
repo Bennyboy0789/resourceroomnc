@@ -1,12 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import circleLogo from "../../public/logo-circle.png";
+import whiteLogo from "../../public/logo-white.png";
 
 /**
- * Text-and-mark logo lockup.
+ * Logo lockup, using the real brand assets from resourceroomnc.com.
  *
- * This is a stand-in built from type and an SVG mark. To use the real logo,
- * drop the file in /public and replace the mark + wordmark below with a
- * <Image> — every usage across the site goes through this component.
+ * - `dark` (default): the blue circle mark plus a typeset wordmark, for the
+ *   white header.
+ * - `light`: the white knockout lockup, for navy surfaces like the footer.
  */
 export function Logo({
   tone = "dark",
@@ -15,38 +18,40 @@ export function Logo({
   tone?: "dark" | "light";
   className?: string;
 }) {
+  if (tone === "light") {
+    return (
+      <Link href="/" aria-label="Resource Room — home" className={cn("inline-block", className)}>
+        <Image
+          src={whiteLogo}
+          alt="The Resource Room"
+          priority
+          className="h-14 w-auto"
+          sizes="245px"
+        />
+      </Link>
+    );
+  }
+
   return (
     <Link
       href="/"
       aria-label="Resource Room — home"
       className={cn("group inline-flex items-center gap-3", className)}
     >
-      <span
-        className={cn(
-          "grid h-10 w-10 shrink-0 place-items-center rounded-lg transition-colors",
-          tone === "dark" ? "bg-navy-900 group-hover:bg-navy-800" : "bg-white/10 group-hover:bg-white/20",
-        )}
-      >
-        <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
-          <path d="M4 6.2A1.2 1.2 0 0 1 5.2 5h5.6A1.2 1.2 0 0 1 12 6.2V19a1 1 0 0 0-1-1H5.2A1.2 1.2 0 0 1 4 16.8V6.2Z" fill="#c4a44a" />
-          <path d="M20 6.2A1.2 1.2 0 0 0 18.8 5h-5.6A1.2 1.2 0 0 0 12 6.2V19a1 1 0 0 1 1-1h5.8a1.2 1.2 0 0 0 1.2-1.2V6.2Z" fill="#5aa5d0" />
-        </svg>
-      </span>
+      <Image
+        src={circleLogo}
+        alt=""
+        priority
+        sizes="44px"
+        className="h-11 w-11 shrink-0"
+      />
       <span className="flex flex-col leading-none">
-        <span
-          className={cn(
-            "text-lg font-bold tracking-tight",
-            tone === "dark" ? "text-navy-900" : "text-white",
-          )}
-        >
+        {/* The circle mark already reads "The", so the wordmark stays short —
+            it has to sit on one line next to a six-item nav. */}
+        <span className="whitespace-nowrap text-lg font-bold tracking-tight text-navy-900">
           Resource Room
         </span>
-        <span
-          className={cn(
-            "mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.18em]",
-            tone === "dark" ? "text-brand-600" : "text-gold-400",
-          )}
-        >
+        <span className="mt-1 whitespace-nowrap text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-brand-600">
           Holly Springs, NC
         </span>
       </span>

@@ -15,7 +15,7 @@ export function FinalCta({
     <section className="relative isolate overflow-hidden bg-navy-900 text-white">
       <div
         aria-hidden="true"
-        className="absolute -left-32 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-gold-500/15 blur-3xl"
+        className="absolute -left-32 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-sun-500/15 blur-3xl"
       />
       <div
         aria-hidden="true"

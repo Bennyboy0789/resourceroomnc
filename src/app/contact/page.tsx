@@ -66,7 +66,7 @@ export default function ContactPage() {
                       : {})}
                     className="flex items-start gap-4 rounded-2xl border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-400">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900 text-sun-400">
                       <Icon name={method.icon} className="h-5 w-5" />
                     </span>
                     <span>

@@ -28,7 +28,7 @@ export function QuickLinks() {
                   href={`/programs/${slug}`}
                   className="group flex h-full items-center gap-3 rounded-xl px-4 py-4 transition-colors hover:bg-mist"
                 >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy-900/5 text-brand-600 transition-colors group-hover:bg-gold-500 group-hover:text-navy-950">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy-900/5 text-brand-600 transition-colors group-hover:bg-sun-500 group-hover:text-navy-950">
                     <Icon name={program.icon} className="h-5 w-5" />
                   </span>
                   <span className="text-sm font-semibold leading-snug text-navy-900">{label}</span>

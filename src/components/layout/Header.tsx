@@ -64,7 +64,7 @@ export function Header() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:text-navy-900"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium text-navy-700 transition-colors hover:text-navy-900"
                 >
                   {item.label}
                   <Icon name="arrowUpRight" className="h-3.5 w-3.5 opacity-60" />
@@ -78,7 +78,7 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-navy-900",
+                    "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium transition-colors hover:text-navy-900",
                     isActive(item.href) ? "text-navy-900" : "text-navy-700",
                   )}
                 >
@@ -100,7 +100,7 @@ export function Header() {
                   aria-expanded={open}
                   onClick={() => setOpenMenu(open ? null : item.label)}
                   className={cn(
-                    "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-navy-900",
+                    "flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-medium transition-colors hover:text-navy-900",
                     isActive(item.href) ? "text-navy-900" : "text-navy-700",
                   )}
                 >

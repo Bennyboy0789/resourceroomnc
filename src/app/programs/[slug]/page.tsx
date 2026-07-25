@@ -78,8 +78,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                 <li key={highlight.title} className="flex gap-5">
                   <span
                     className={
-                      program.accent === "gold"
-                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gold-50 text-gold-600"
+                      program.accent === "sun"
+                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-400 text-navy-900"
                         : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600"
                     }
                   >
@@ -99,7 +99,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <PhotoSlot
               icon={program.icon}
-              tone={program.accent === "gold" ? "gold" : "brand"}
+              tone={program.accent === "sun" ? "sun" : "brand"}
               ratio="4/3"
             />
             <div className="mt-5 rounded-2xl border border-navy-900/10 bg-mist p-6">
@@ -107,7 +107,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
               <ul className="mt-4 space-y-3">
                 {program.audience.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-navy-700">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                     {item}
                   </li>
                 ))}
@@ -117,7 +117,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </div>
       </Section>
 
-      <Section tone="cream">
+      <Section tone="frost">
         <SectionHeading eyebrow="Details" title="What the program" accent="includes." />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {program.includes.map((item) => (
@@ -125,7 +125,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
               key={item}
               className="flex gap-4 rounded-xl border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
             >
-              <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+              <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
               {item}
             </li>
           ))}

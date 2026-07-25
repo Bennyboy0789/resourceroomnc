@@ -15,7 +15,7 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="absolute -bottom-56 left-1/4 h-[30rem] w-[30rem] rounded-full bg-gold-500/10 blur-3xl"
+        className="absolute -bottom-56 left-1/4 h-[30rem] w-[30rem] rounded-full bg-sun-500/10 blur-3xl"
       />
       <div
         aria-hidden="true"
@@ -30,14 +30,14 @@ export function Hero() {
       <Container className="relative py-16 sm:py-20 lg:py-28">
         <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="eyebrow flex items-center gap-2 text-gold-400">
-              <Stars className="text-gold-400" />
+            <p className="eyebrow flex items-center gap-2 text-sun-400">
+              <Stars className="text-sun-500" />
               100+ Five-Star Reviews
             </p>
 
             <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               {hero.headline.before}
-              <span className="text-gold-400">{hero.headline.accent}</span>
+              <span className="text-sun-500">{hero.headline.accent}</span>
               {hero.headline.after}
             </h1>
 
@@ -63,9 +63,9 @@ export function Hero() {
                 className="rounded-2xl border border-white/12 bg-white/[0.06] p-5 backdrop-blur-sm"
               >
                 {award.stars ? (
-                  <Stars className="mb-2 text-gold-400" />
+                  <Stars className="mb-2 text-sun-500" />
                 ) : (
-                  <Icon name="badge" className="mb-2 h-5 w-5 text-gold-400" />
+                  <Icon name="badge" className="mb-2 h-5 w-5 text-sun-400" />
                 )}
                 <p className="text-sm font-semibold leading-snug text-white">{award.label}</p>
                 <p className="mt-1 text-xs text-white/60">{award.detail}</p>

@@ -5,7 +5,7 @@ import { Container } from "./Container";
 const tones = {
   white: "bg-white text-navy-900",
   mist: "bg-mist text-navy-900",
-  cream: "bg-cream text-navy-900",
+  frost: "bg-frost text-navy-900",
   navy: "bg-navy-900 text-white",
 } as const;
 
@@ -53,7 +53,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className={cn("eyebrow mb-3", tone === "dark" ? "text-brand-600" : "text-gold-400")}>
+        <p className={cn("eyebrow mb-3", tone === "dark" ? "text-brand-600" : "text-sun-400")}>
           {eyebrow}
         </p>
       ) : null}
@@ -64,7 +64,11 @@ export function SectionHeading({
         )}
       >
         {title}
-        {accent ? <span className="text-gold-500"> {accent}</span> : null}
+        {/* Yellow is unreadable on white, so the accent word is blue on light
+            sections and the brand yellow on dark ones. */}
+        {accent ? (
+          <span className={tone === "dark" ? "text-brand-500" : "text-sun-500"}> {accent}</span>
+        ) : null}
       </h2>
       {description ? (
         <p

@@ -14,7 +14,7 @@ export type Program = {
   /** Opening paragraph on the program page. */
   intro: string;
   icon: IconName;
-  accent: "gold" | "blue";
+  accent: "sun" | "blue";
   /** Shown as the three-up feature row on the program page. */
   highlights: { title: string; body: string }[];
   /** "What's included" checklist. */
@@ -82,7 +82,7 @@ export const programs: Program[] = [
     intro:
       "When school is out, learning does not have to stop — and it definitely does not have to feel like school. Our camps pair hands-on STEAM projects with the structure of a curriculum-based program, so students stay engaged and families have coverage on track-out weeks, teacher workdays and all summer.",
     icon: "sun",
-    accent: "gold",
+    accent: "sun",
     featured: true,
     highlights: [
       {
@@ -122,7 +122,7 @@ export const programs: Program[] = [
     intro:
       "Score gains come from working on the right things. We start with a diagnostic to find which sections and question types are actually costing points, then build a prep plan around them — combining content review, timing strategy and repeated practice under real test conditions.",
     icon: "target",
-    accent: "gold",
+    accent: "sun",
     popular: true,
     featured: true,
     highlights: [
@@ -243,7 +243,7 @@ export const programs: Program[] = [
     intro:
       "Our ABA support runs inside an educational setting rather than a clinic. That means the skills a student is building — attention, transitions, communication, self-regulation — are practiced in the same environment where they need to hold up: a learning environment with instruction, peers and routine.",
     icon: "heart",
-    accent: "gold",
+    accent: "sun",
     popular: true,
     highlights: [
       {
@@ -282,7 +282,7 @@ export const programs: Program[] = [
     intro:
       "The college application is a long process with a lot of moving parts: testing, school lists, essays, the Common App, deadlines. We work with students through all of it, so the process stays organized and the final application actually sounds like the student who wrote it.",
     icon: "cap",
-    accent: "gold",
+    accent: "sun",
     featured: true,
     highlights: [
       {

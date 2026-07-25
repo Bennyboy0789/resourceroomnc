@@ -2,9 +2,10 @@ import { Icon, type IconName } from "@/components/icons";
 import { cn } from "@/lib/cn";
 
 const tones = {
-  navy: "from-navy-800 via-navy-900 to-navy-950 text-gold-400/70",
-  gold: "from-gold-400 via-gold-500 to-gold-600 text-white/70",
-  brand: "from-brand-500 via-brand-600 to-brand-700 text-white/70",
+  navy: "from-navy-800 via-navy-900 to-navy-950 text-sun-500/70",
+  /* Yellow panel carries a dark icon rather than a light one. */
+  sun: "from-sun-200 via-sun-400 to-sun-600 text-navy-900/50",
+  brand: "from-brand-400 via-brand-500 to-brand-600 text-white/70",
 } as const;
 
 /**

@@ -4,7 +4,7 @@ import { aboutHighlights, aboutIntro } from "@/content/home";
 
 export function AboutStrip() {
   return (
-    <Section tone="cream">
+    <Section tone="frost">
       <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <SectionHeading
           eyebrow="About Resource Room"
@@ -19,7 +19,7 @@ export function AboutStrip() {
               key={item.title}
               className="flex gap-5 rounded-2xl border border-navy-900/8 bg-white p-6"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900 text-gold-400">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900 text-sun-400">
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
               <div>

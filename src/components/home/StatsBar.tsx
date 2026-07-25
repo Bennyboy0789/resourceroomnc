@@ -12,8 +12,8 @@ export function StatsBar() {
               key={stat.label}
               className="sm:border-l sm:border-white/15 sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
             >
-              {stat.stars ? <Stars className="mb-2 justify-center text-gold-400 sm:justify-start" /> : null}
-              <dt className="text-4xl font-bold tracking-tight text-gold-400 sm:text-5xl">
+              {stat.stars ? <Stars className="mb-2 justify-center text-sun-500 sm:justify-start" /> : null}
+              <dt className="text-4xl font-bold tracking-tight text-sun-500 sm:text-5xl">
                 {stat.value}
               </dt>
               <dd className="mt-2 text-sm text-white/70">{stat.label}</dd>

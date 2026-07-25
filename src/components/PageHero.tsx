@@ -45,11 +45,11 @@ export function PageHero({
           </Link>
         ) : null}
 
-        {eyebrow ? <p className="eyebrow text-gold-400">{eyebrow}</p> : null}
+        {eyebrow ? <p className="eyebrow text-sun-400">{eyebrow}</p> : null}
 
         <h1 className="mt-3 max-w-3xl text-balance text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
           {title}
-          {accent ? <span className="text-gold-400"> {accent}</span> : null}
+          {accent ? <span className="text-sun-500"> {accent}</span> : null}
         </h1>
 
         {description ? (

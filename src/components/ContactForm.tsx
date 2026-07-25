@@ -132,7 +132,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex h-[3.25rem] w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-7 text-base font-semibold text-navy-950 shadow-sm transition-colors hover:bg-gold-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400 sm:w-auto"
+        className="inline-flex h-[3.25rem] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-7 text-base font-semibold text-navy-950 shadow-sm transition-colors hover:bg-sun-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun-400 sm:w-auto"
       >
         Send my request
         <Icon name="arrowRight" className="h-4 w-4" />
