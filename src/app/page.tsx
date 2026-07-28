@@ -8,12 +8,15 @@ import { QuickLinks } from "@/components/home/QuickLinks";
 import { StatsBar } from "@/components/home/StatsBar";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WhyChoose } from "@/components/home/WhyChoose";
+import { Marquee } from "@/components/ui/Marquee";
+import { credentials } from "@/content/home";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <QuickLinks />
+      <Marquee items={credentials} />
       <PopularPrograms />
       <WhyChoose />
       <Founders />

@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "./Container";
 
 const tones = {
   white: "bg-white text-navy-900",
   mist: "bg-mist text-navy-900",
   frost: "bg-frost text-navy-900",
-  navy: "bg-navy-900 text-white",
+  navy: "bg-navy-950 text-white",
 } as const;
 
 export function Section({
@@ -15,16 +16,19 @@ export function Section({
   className,
   id,
   size = "default",
+  /** Drops the container so children can run to the screen edge. */
+  bleed = false,
 }: {
   children: ReactNode;
   tone?: keyof typeof tones;
   className?: string;
   id?: string;
-  size?: "default" | "narrow";
+  size?: "narrow" | "default" | "wide";
+  bleed?: boolean;
 }) {
   return (
-    <section id={id} className={cn("py-16 sm:py-20 lg:py-24", tones[tone], className)}>
-      <Container size={size}>{children}</Container>
+    <section id={id} className={cn("py-20 sm:py-24 lg:py-28", tones[tone], className)}>
+      {bleed ? children : <Container size={size}>{children}</Container>}
     </section>
   );
 }
@@ -46,21 +50,16 @@ export function SectionHeading({
   tone?: "dark" | "light";
 }) {
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-      )}
-    >
+    <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
       {eyebrow ? (
-        <p className={cn("eyebrow mb-3", tone === "dark" ? "text-brand-600" : "text-sun-400")}>
+        <p className={cn("eyebrow mb-4", tone === "dark" ? "text-brand-600" : "text-sun-400")}>
           {eyebrow}
         </p>
       ) : null}
       <h2
         className={cn(
-          "text-balance text-3xl font-bold tracking-tight sm:text-4xl",
-          tone === "dark" ? "text-navy-900" : "text-white",
+          "display text-balance text-4xl sm:text-5xl lg:text-[3.5rem]",
+          tone === "dark" ? "text-navy-950" : "text-white",
         )}
       >
         {title}
@@ -73,13 +72,13 @@ export function SectionHeading({
       {description ? (
         <p
           className={cn(
-            "mt-4 text-lg leading-relaxed",
+            "mt-5 text-lg leading-relaxed",
             tone === "dark" ? "text-navy-600" : "text-white/70",
           )}
         >
           {description}
         </p>
       ) : null}
-    </div>
+    </Reveal>
   );
 }

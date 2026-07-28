@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Icon, type IconName } from "@/components/icons";
 import { cn } from "@/lib/cn";
 
@@ -9,29 +10,61 @@ const tones = {
 } as const;
 
 /**
- * Branded stand-in for a photograph.
+ * A photograph, or a branded gradient panel when no photo exists yet.
  *
- * The site ships without photography, so these render as designed gradient
- * panels rather than empty boxes. To use a real photo, replace the component
- * body with a <Image src={...} alt={...} fill className="object-cover" /> —
- * the aspect ratio and rounding stay the same.
+ * Pass `src`/`alt` to render the real image; without them the component falls
+ * back to the designed placeholder so a missing asset never leaves an empty box.
+ *
+ * `position` matters for the square product tiles: they carry their title in the
+ * top third, so cropping them into a wide slot has to keep the top edge.
  */
 export function PhotoSlot({
+  src,
+  alt,
   icon,
   tone = "navy",
   className,
   ratio = "4/3",
+  position = "center",
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+  priority,
 }: {
+  src?: string;
+  alt?: string;
   icon: IconName;
   tone?: keyof typeof tones;
   className?: string;
   ratio?: string;
+  position?: "top" | "center";
+  sizes?: string;
+  priority?: boolean;
 }) {
+  if (src) {
+    return (
+      <div
+        style={{ aspectRatio: ratio }}
+        className={cn(
+          "relative isolate w-full overflow-hidden bg-navy-900/5",
+          className,
+        )}
+      >
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className={cn("object-cover", position === "top" ? "object-top" : "object-center")}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       style={{ aspectRatio: ratio }}
       className={cn(
-        "relative isolate w-full overflow-hidden rounded-2xl bg-gradient-to-br",
+        "relative isolate w-full overflow-hidden bg-gradient-to-br",
         tones[tone],
         className,
       )}

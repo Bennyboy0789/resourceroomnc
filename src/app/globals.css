@@ -66,6 +66,95 @@ body {
   text-transform: uppercase;
 }
 
+/*
+ * Display heading: heavy, uppercase, negatively tracked.
+ *
+ * This is the voice of the restyle — section titles and hero copy set tight and
+ * loud so imagery can carry the rest of the page. Size stays with the utility
+ * that uses it; this only fixes weight, case and tracking.
+ */
+@utility display {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+/*
+ * Breaks an element out of its container to the full viewport width.
+ *
+ * Used for edge-to-edge imagery and rails. `100vw` rather than `100dvw` on
+ * purpose: dvw tracks the viewport as scrollbars appear and would shift the
+ * block horizontally mid-scroll. The calc offsets the element back to the left
+ * edge regardless of the container's own max-width and padding.
+ */
+@utility full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/*
+ * Infinite credential ticker.
+ *
+ * The track holds two identical copies of the list and slides exactly -50%, so
+ * the moment copy one leaves the frame copy two is in precisely its old
+ * position and the loop is seamless. Percentages are of the track, which is why
+ * the copies must match exactly.
+ *
+ * Paused on hover so anyone reading a credential can stop it, and stopped
+ * outright under reduced-motion.
+ */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 42s linear infinite;
+}
+
+@utility marquee-viewport {
+  overflow: hidden;
+  &:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/*
+ * Horizontal merchandising rail: snap-scrolls card to card, hides the bar.
+ *
+ * Padding is applied by the caller so the first card lines up with the page
+ * gutter while the rail itself still runs to the screen edge.
+ */
+@utility rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  > * {
+    scroll-snap-align: start;
+    flex: none;
+  }
+}
+
 /* Hides the scrollbar on the testimonial rail while keeping native scrolling. */
 @utility no-scrollbar {
   scrollbar-width: none;

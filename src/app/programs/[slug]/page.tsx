@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/Button";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
+import { ProgramCard } from "@/components/ui/ProgramCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { getProgram, programs } from "@/content/programs";
+import { getProgram, imagePosition, imageRatio, programs } from "@/content/programs";
 import { site } from "@/content/site";
 
 export function generateStaticParams() {
@@ -49,6 +49,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         title={program.name}
         description={program.tagline}
         breadcrumb={{ label: "All programs", href: "/programs" }}
+        image={program.image}
+        icon={program.icon}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="/contact" size="lg">
@@ -79,14 +81,14 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                   <span
                     className={
                       program.accent === "sun"
-                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-400 text-navy-900"
+                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-400 text-navy-950"
                         : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600"
                     }
                   >
                     <Icon name="check" className="h-4 w-4" />
                   </span>
                   <div>
-                    <h2 className="text-lg font-bold tracking-tight text-navy-900">
+                    <h2 className="text-lg font-bold tracking-tight text-navy-950">
                       {highlight.title}
                     </h2>
                     <p className="mt-1.5 leading-relaxed text-navy-600">{highlight.body}</p>
@@ -98,11 +100,16 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
 
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <PhotoSlot
+              src={program.image.src}
+              alt={program.image.alt}
+              position={imagePosition(program.image)}
               icon={program.icon}
               tone={program.accent === "sun" ? "sun" : "brand"}
-              ratio="4/3"
+              ratio={imageRatio(program.image)}
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              priority
             />
-            <div className="mt-5 rounded-2xl border border-navy-900/10 bg-mist p-6">
+            <div className="mt-5 rounded-none border border-navy-900/10 bg-mist p-6">
               <p className="eyebrow text-brand-600">Who it&rsquo;s for</p>
               <ul className="mt-4 space-y-3">
                 {program.audience.map((item) => (
@@ -123,7 +130,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           {program.includes.map((item) => (
             <li
               key={item}
-              className="flex gap-4 rounded-xl border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
+              className="flex gap-4 rounded-none border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
             >
               <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
               {item}
@@ -132,7 +139,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </ul>
 
         {program.externalUrl ? (
-          <div className="mt-10 rounded-2xl border border-navy-900/10 bg-navy-900 p-8 text-white sm:flex sm:items-center sm:justify-between sm:gap-8">
+          <div className="mt-10 rounded-none border border-navy-900/10 bg-navy-900 p-8 text-white sm:flex sm:items-center sm:justify-between sm:gap-8">
             <div>
               <h2 className="text-xl font-bold tracking-tight">
                 {program.shortName} has its own campus and site.
@@ -154,26 +161,21 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         ) : null}
       </Section>
 
-      <Section tone="white">
+      <Section tone="white" size="wide">
         <SectionHeading eyebrow="Keep exploring" title="Other Resource Room" accent="programs." />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-3">
+        <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-3">
           {others.map((other) => (
             <li key={other.slug}>
-              <Link
-                href={`/programs/${other.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-navy-900/10 p-6 transition-colors hover:border-navy-900/25 hover:bg-mist"
-              >
-                <Icon name={other.icon} className="h-6 w-6 text-brand-600" />
-                <h3 className="mt-4 font-bold tracking-tight text-navy-900">{other.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-600">{other.tagline}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy-900">
-                  Learn more
-                  <Icon
-                    name="arrowRight"
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  />
-                </span>
-              </Link>
+              <ProgramCard
+                href={other.externalUrl ?? `/programs/${other.slug}`}
+                image={other.image}
+                icon={other.icon}
+                category={other.category}
+                title={other.name}
+                body={other.tagline}
+                ratio="4/3"
+                external={Boolean(other.externalUrl)}
+              />
             </li>
           ))}
         </ul>

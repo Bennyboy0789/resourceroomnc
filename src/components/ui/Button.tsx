@@ -20,12 +20,14 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "h-11 px-5 text-sm",
-  lg: "h-[3.25rem] px-7 text-base",
+  md: "h-11 px-6 text-xs",
+  lg: "h-14 px-9 text-sm",
 };
 
+/* Squared off, uppercase and tracked out — the buttons read as part of the
+   typographic system rather than as pills sitting on top of it. */
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-sm font-bold uppercase tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2";
 
 export function Button({
   href,

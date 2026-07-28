@@ -46,7 +46,7 @@ export default function ContactPage() {
       <Section tone="white">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-navy-900">Send us a note</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-navy-950">Send us a note</h2>
             <p className="mt-2 text-navy-600">
               Fill this in and we will follow up to schedule your consultation.
             </p>
@@ -64,14 +64,14 @@ export default function ContactPage() {
                     {...(method.href.startsWith("http")
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="flex items-start gap-4 rounded-2xl border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
+                    className="flex items-start gap-4 rounded-none border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy-900 text-sun-400">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-navy-900 text-sun-400">
                       <Icon name={method.icon} className="h-5 w-5" />
                     </span>
                     <span>
                       <span className="eyebrow block text-brand-600">{method.label}</span>
-                      <span className="mt-1.5 block font-semibold text-navy-900">
+                      <span className="mt-1.5 block font-semibold text-navy-950">
                         {method.value}
                       </span>
                     </span>
@@ -80,7 +80,7 @@ export default function ContactPage() {
               ))}
             </ul>
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-navy-900/10">
+            <div className="mt-6 overflow-hidden rounded-none border border-navy-900/10">
               <iframe
                 title={`Map to Resource Room at ${addressLine}`}
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(

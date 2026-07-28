@@ -11,30 +11,38 @@ const quickLinks = [
   { slug: "pathways-academy", label: "Pathways Academy" },
 ];
 
+/**
+ * Flat strip of headline programs directly beneath the hero — the shortcut row
+ * for visitors who already know what they came for.
+ */
 export function QuickLinks() {
-  // `flow-root` keeps the card's negative margin from collapsing into this
-  // wrapper, so the card lifts over the hero instead of pushing white down.
   return (
-    <div className="relative z-10 flow-root bg-white">
-      <Container>
-        <ul className="-mt-10 grid gap-3 rounded-2xl border border-navy-900/10 bg-white p-3 shadow-xl shadow-navy-900/10 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="border-b border-navy-950/10 bg-white">
+      <Container size="wide">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
           {quickLinks.map(({ slug, label }) => {
             const program = getProgram(slug);
             if (!program) return null;
 
             return (
-              <li key={slug}>
+              <li
+                key={slug}
+                className="border-b border-navy-950/8 last:border-b-0 sm:border-b-0 sm:border-l sm:border-navy-950/8 sm:first:border-l-0 lg:[&:nth-child(3)]:border-l"
+              >
                 <Link
                   href={`/programs/${slug}`}
-                  className="group flex h-full items-center gap-3 rounded-xl px-4 py-4 transition-colors hover:bg-mist"
+                  className="group flex h-full items-center gap-3 px-1 py-5 transition-colors sm:px-6"
                 >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy-900/5 text-brand-600 transition-colors group-hover:bg-sun-500 group-hover:text-navy-950">
-                    <Icon name={program.icon} className="h-5 w-5" />
+                  <Icon
+                    name={program.icon}
+                    className="h-5 w-5 shrink-0 text-brand-500 transition-colors group-hover:text-navy-950"
+                  />
+                  <span className="text-xs font-bold uppercase leading-snug tracking-[0.06em] text-navy-950">
+                    {label}
                   </span>
-                  <span className="text-sm font-semibold leading-snug text-navy-900">{label}</span>
                   <Icon
                     name="arrowRight"
-                    className="ml-auto h-4 w-4 shrink-0 text-navy-600 transition-transform group-hover:translate-x-0.5"
+                    className="ml-auto h-4 w-4 shrink-0 text-navy-600 transition-transform group-hover:translate-x-1"
                   />
                 </Link>
               </li>

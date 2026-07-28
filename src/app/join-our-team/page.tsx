@@ -80,13 +80,13 @@ export default function JoinOurTeamPage() {
           {roles.map((role) => (
             <li
               key={role.title}
-              className="flex gap-5 rounded-2xl border border-navy-900/10 bg-white p-6"
+              className="flex gap-5 rounded-none border border-navy-900/10 bg-white p-6"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-brand-50 text-brand-600">
                 <Icon name={role.icon} className="h-5 w-5" />
               </span>
               <div>
-                <h3 className="text-lg font-bold tracking-tight text-navy-900">{role.title}</h3>
+                <h3 className="text-lg font-bold tracking-tight text-navy-950">{role.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy-600">{role.body}</p>
               </div>
             </li>
@@ -105,12 +105,12 @@ export default function JoinOurTeamPage() {
           {reasons.map((reason) => (
             <li
               key={reason.title}
-              className="rounded-2xl border border-navy-900/8 bg-white p-7 text-center"
+              className="rounded-none border border-navy-900/8 bg-white p-7 text-center"
             >
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-400 text-navy-900">
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-400 text-navy-950">
                 <Icon name={reason.icon} className="h-6 w-6" />
               </span>
-              <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-900">
+              <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">
                 {reason.title}
               </h3>
               <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{reason.body}</p>
@@ -120,7 +120,7 @@ export default function JoinOurTeamPage() {
       </Section>
 
       <Section tone="white" size="narrow">
-        <div className="rounded-2xl border border-navy-900/10 bg-navy-900 p-8 text-center text-white sm:p-12">
+        <div className="rounded-none border border-navy-900/10 bg-navy-900 p-8 text-center text-white sm:p-12">
           <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
             Ready to apply?
           </h2>

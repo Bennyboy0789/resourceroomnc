@@ -6,9 +6,9 @@ import { programs } from "@/content/programs";
 import { site } from "@/content/site";
 
 const fieldClasses =
-  "w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 placeholder:text-navy-600/60 focus:border-brand-500 focus:outline-2 focus:outline-offset-0 focus:outline-brand-500/30";
+  "w-full rounded-none border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-950 placeholder:text-navy-600/60 focus:border-brand-500 focus:outline-2 focus:outline-offset-0 focus:outline-brand-500/30";
 
-const labelClasses = "block text-sm font-semibold text-navy-900";
+const labelClasses = "block text-sm font-semibold text-navy-950";
 
 /**
  * The form composes an email to the learning center rather than posting to a
@@ -140,11 +140,11 @@ export function ContactForm() {
 
       <p className="text-xs leading-relaxed text-navy-600">
         Submitting opens your email app with the details filled in, addressed to{" "}
-        <a href={site.emailHref} className="font-semibold text-navy-900 hover:underline">
+        <a href={site.emailHref} className="font-semibold text-navy-950 hover:underline">
           {site.email}
         </a>
         . Prefer to talk? Call{" "}
-        <a href={site.phoneHref} className="font-semibold text-navy-900 hover:underline">
+        <a href={site.phoneHref} className="font-semibold text-navy-950 hover:underline">
           {site.phone}
         </a>
         .
@@ -153,7 +153,7 @@ export function ContactForm() {
       {submitted ? (
         <p
           role="status"
-          className="flex items-start gap-3 rounded-xl border border-brand-500/30 bg-brand-50 p-4 text-sm text-navy-800"
+          className="flex items-start gap-3 rounded-none border border-brand-500/30 bg-brand-50 p-4 text-sm text-navy-800"
         >
           <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
           Your email app should have opened with your message ready to send. If nothing happened,

@@ -61,36 +61,39 @@ export type NavLink = {
   label: string;
   href: string;
   external?: boolean;
+  /** Opens the full-width program menu instead of a plain dropdown. */
+  mega?: boolean;
   children?: { label: string; href: string; external?: boolean }[];
 };
 
 export const navigation: NavLink[] = [
+  { label: "Programs", href: "/programs", mega: true },
   {
     label: "About",
     href: "/about",
     children: [
       { label: "About Us", href: "/about" },
       { label: "Our Mission", href: "/about#mission" },
-    ],
-  },
-  {
-    label: "All Programs",
-    href: "/programs",
-    children: [
-      { label: "Tutoring", href: "/programs/tutoring" },
-      { label: "Camps", href: "/programs/camps" },
-      { label: "SAT / ACT Prep", href: "/programs/sat-act-prep" },
-      { label: "Pathways Academy", href: "/programs/pathways-academy" },
-      { label: "Homeschool Co-Op", href: "/programs/homeschool-co-op" },
-      { label: "ABA Services", href: "/programs/aba-services" },
-      { label: "College Prep", href: "/programs/college-prep" },
-      { label: "IEP & 504 Advocate", href: "/programs/iep-504-advocate" },
+      { label: "Join Our Team", href: "/join-our-team" },
     ],
   },
   { label: "IEP & 504 Advocate", href: "/programs/iep-504-advocate" },
-  { label: "Contact Us", href: "/contact" },
-  { label: "Join Our Team", href: "/join-our-team" },
+  { label: "Contact", href: "/contact" },
   { label: "Blog", href: site.blogUrl, external: true },
+];
+
+/**
+ * How the eight programs are grouped inside the mega menu.
+ *
+ * This is presentation only — every entry points at an existing
+ * `/programs/[slug]` page. Grouping the list into columns keeps the menu
+ * scannable without inventing browse categories that would need pages of their
+ * own to justify.
+ */
+export const programMenuGroups: { title: string; slugs: string[] }[] = [
+  { title: "Academics", slugs: ["tutoring", "sat-act-prep", "college-prep"] },
+  { title: "Daytime & Camps", slugs: ["camps", "homeschool-co-op"] },
+  { title: "Specialized Support", slugs: ["pathways-academy", "aba-services", "iep-504-advocate"] },
 ];
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [

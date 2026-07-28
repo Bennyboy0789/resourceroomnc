@@ -29,7 +29,7 @@ export default function AboutPage() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="eyebrow text-brand-600">Our founders</p>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
               {founders.heading}
             </h2>
             {founders.body.map((paragraph) => (
@@ -37,11 +37,11 @@ export default function AboutPage() {
                 {paragraph}
               </p>
             ))}
-            <figure className="mt-8 rounded-2xl border-l-4 border-brand-500 bg-mist p-6">
+            <figure className="mt-8 rounded-none border-l-4 border-brand-500 bg-mist p-6">
               <blockquote className="leading-relaxed text-navy-800">
                 &ldquo;{founders.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-4 text-sm font-semibold text-navy-900">
+              <figcaption className="mt-4 text-sm font-semibold text-navy-950">
                 — {founders.attribution}
               </figcaption>
             </figure>
@@ -50,9 +50,16 @@ export default function AboutPage() {
           <div className="relative order-first lg:order-last">
             <div
               aria-hidden="true"
-              className="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-sun-500/60"
+              className="absolute -bottom-4 -right-4 h-full w-full rounded-none border-2 border-sun-500/60"
             />
-            <PhotoSlot icon="users" tone="navy" ratio="4/3" />
+            <PhotoSlot
+              src={founders.image.src}
+              alt={founders.image.alt}
+              icon="users"
+              tone="navy"
+              ratio="4/3"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
           </div>
         </div>
       </Section>
@@ -68,11 +75,11 @@ export default function AboutPage() {
 
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {whyChooseUs.map((item) => (
-            <li key={item.title} className="rounded-2xl border border-navy-900/8 bg-white p-7">
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-navy-900 text-sun-400">
+            <li key={item.title} className="rounded-none border border-navy-900/8 bg-white p-7">
+              <span className="grid h-12 w-12 place-items-center rounded-none bg-navy-900 text-sun-400">
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
-              <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-900">{item.title}</h3>
+              <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">{item.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{item.body}</p>
             </li>
           ))}
@@ -95,7 +102,7 @@ export default function AboutPage() {
                 <li key={item.title} className="flex gap-4">
                   <Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-brand-600" />
                   <div>
-                    <h3 className="font-bold tracking-tight text-navy-900">{item.title}</h3>
+                    <h3 className="font-bold tracking-tight text-navy-950">{item.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-navy-600">{item.body}</p>
                   </div>
                 </li>
@@ -103,9 +110,9 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-navy-900/10 bg-mist p-8">
+          <div className="rounded-none border border-navy-900/10 bg-mist p-8">
             <p className="eyebrow text-brand-600">Our facility</p>
-            <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy-900">
+            <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy-950">
               Holly Springs, NC
             </h3>
             <p className="mt-3 leading-relaxed text-navy-600">
@@ -120,7 +127,7 @@ export default function AboutPage() {
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <a href={site.phoneHref} className="font-semibold text-navy-900 hover:underline">
+                <a href={site.phoneHref} className="font-semibold text-navy-950 hover:underline">
                   {site.phone}
                 </a>
               </li>

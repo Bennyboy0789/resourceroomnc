@@ -1,47 +1,29 @@
-import { Section } from "@/components/ui/Section";
-import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { Button } from "@/components/ui/Button";
+import { EditorialBlock } from "@/components/ui/EditorialBlock";
 import { founders } from "@/content/home";
 
 export function Founders() {
   return (
-    <Section tone="white">
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div className="relative">
-          {/* Gold frame, offset behind the photo. Rendered first so the photo
-              paints over it where the two overlap. */}
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-4 -left-4 h-full w-full rounded-2xl border-2 border-sun-500/60"
-          />
-          <PhotoSlot icon="users" tone="navy" ratio="4/3" />
-        </div>
+    <EditorialBlock image={founders.image.src} alt={founders.image.alt} align="left">
+      <p className="eyebrow text-sun-400">Our founders</p>
+      <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">{founders.heading}</h2>
 
-        <div>
-          <p className="eyebrow text-brand-600">Our founders</p>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
-            {founders.heading}
-          </h2>
-          {founders.body.map((paragraph) => (
-            <p key={paragraph} className="mt-4 text-lg leading-relaxed text-navy-600">
-              {paragraph}
-            </p>
-          ))}
+      {founders.body.map((paragraph) => (
+        <p key={paragraph} className="mt-5 text-base leading-relaxed text-white/75">
+          {paragraph}
+        </p>
+      ))}
 
-          <figure className="mt-8 rounded-2xl border-l-4 border-brand-500 bg-mist p-6">
-            <blockquote className="text-base leading-relaxed text-navy-800">
-              &ldquo;{founders.quote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-4 text-sm font-semibold text-navy-900">
-              — {founders.attribution}
-            </figcaption>
-          </figure>
+      <blockquote className="mt-7 border-l-2 border-sun-500 pl-5 text-base leading-relaxed text-white/85">
+        &ldquo;{founders.quote}&rdquo;
+        <footer className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-white">
+          — {founders.attribution}
+        </footer>
+      </blockquote>
 
-          <Button href="/about" variant="quiet" className="mt-8">
-            More about Resource Room
-          </Button>
-        </div>
-      </div>
-    </Section>
+      <Button href="/about" variant="outline" className="mt-9">
+        More about Resource Room
+      </Button>
+    </EditorialBlock>
   );
 }

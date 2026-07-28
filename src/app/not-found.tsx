@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <Container className="py-24 text-center sm:py-32">
       <p className="eyebrow text-brand-600">404</p>
-      <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-navy-900 sm:text-5xl">
+      <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-navy-950 sm:text-5xl">
         We couldn&rsquo;t find that page.
       </h1>
       <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-navy-600">

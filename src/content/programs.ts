@@ -1,5 +1,30 @@
 import type { IconName } from "@/components/icons";
 
+/**
+ * Imagery pulled from resourceroomnc.com, matched to the program each asset is
+ * used for on the live site.
+ *
+ * `kind` drives how the asset is cropped. "tile" assets are the square product
+ * tiles with the program name set into the artwork, so they render 1:1 where
+ * there is room and crop from the top edge where there is not. "photo" assets
+ * are ordinary photographs and crop from the center.
+ */
+export type ProgramImage = {
+  src: string;
+  alt: string;
+  kind: "photo" | "tile";
+};
+
+/** Natural aspect ratio for an asset given room to breathe. */
+export function imageRatio(image: ProgramImage): string {
+  return image.kind === "tile" ? "1/1" : "4/3";
+}
+
+/** Crop anchor when an asset has to fit a slot wider than its natural ratio. */
+export function imagePosition(image: ProgramImage): "top" | "center" {
+  return image.kind === "tile" ? "top" : "center";
+}
+
 export type Program = {
   slug: string;
   /** Full name, used as the page H1. */
@@ -15,6 +40,8 @@ export type Program = {
   intro: string;
   icon: IconName;
   accent: "sun" | "blue";
+  /** The program's image on the live site. */
+  image: ProgramImage;
   /** Shown as the three-up feature row on the program page. */
   highlights: { title: string; body: string }[];
   /** "What's included" checklist. */
@@ -42,6 +69,11 @@ export const programs: Program[] = [
       "Tutoring at Resource Room starts with the student, not the curriculum. We identify exactly where a learner is, where they need to be, and build a plan that closes the gap — whether that means shoring up foundational reading or working through AP Calculus problem sets.",
     icon: "pencil",
     accent: "blue",
+    image: {
+      src: "/images/program-tutoring.jpg",
+      alt: "A Resource Room tutor working one-to-one with a student on geometry at a table.",
+      kind: "photo",
+    },
     featured: true,
     highlights: [
       {
@@ -83,6 +115,11 @@ export const programs: Program[] = [
       "When school is out, learning does not have to stop — and it definitely does not have to feel like school. Our camps pair hands-on STEAM projects with the structure of a curriculum-based program, so students stay engaged and families have coverage on track-out weeks, teacher workdays and all summer.",
     icon: "sun",
     accent: "sun",
+    image: {
+      src: "/images/program-camps.jpg",
+      alt: "Campers stretching glow-in-the-dark slime during a hands-on STEAM camp activity.",
+      kind: "photo",
+    },
     featured: true,
     highlights: [
       {
@@ -123,6 +160,11 @@ export const programs: Program[] = [
       "Score gains come from working on the right things. We start with a diagnostic to find which sections and question types are actually costing points, then build a prep plan around them — combining content review, timing strategy and repeated practice under real test conditions.",
     icon: "target",
     accent: "sun",
+    image: {
+      src: "/images/tile-sat-prep.jpg",
+      alt: "Resource Room SAT Test Prep — digital SAT ready.",
+      kind: "tile",
+    },
     popular: true,
     featured: true,
     highlights: [
@@ -165,6 +207,11 @@ export const programs: Program[] = [
       "Pathways Academy is our private high school for neurodiverse learners with autism. It runs as its own program with dedicated staff, a tailored academic path and a focus on the life and executive functioning skills that carry students beyond graduation.",
     icon: "compass",
     accent: "blue",
+    image: {
+      src: "/images/program-pathways-academy.jpg",
+      alt: "A high school student working through notes at a desk with headphones around their neck.",
+      kind: "photo",
+    },
     featured: true,
     externalUrl: "https://pathways.resourceroom.com",
     highlights: [
@@ -205,6 +252,11 @@ export const programs: Program[] = [
       "Homeschooling gives families control over how their students learn. Our co-op adds what is hardest to build at home: a consistent daytime schedule, instruction from licensed educators, and a group of classmates to learn alongside.",
     icon: "home",
     accent: "blue",
+    image: {
+      src: "/images/tile-homeschool-coop.jpg",
+      alt: "Resource Room Homeschool Co-Op for middle and high school students.",
+      kind: "tile",
+    },
     popular: true,
     highlights: [
       {
@@ -244,6 +296,11 @@ export const programs: Program[] = [
       "Our ABA support runs inside an educational setting rather than a clinic. That means the skills a student is building — attention, transitions, communication, self-regulation — are practiced in the same environment where they need to hold up: a learning environment with instruction, peers and routine.",
     icon: "heart",
     accent: "sun",
+    image: {
+      src: "/images/tile-aba.png",
+      alt: "Resource Room and POPS ABA partnership — ABA support in an educational setting.",
+      kind: "tile",
+    },
     popular: true,
     highlights: [
       {
@@ -283,6 +340,11 @@ export const programs: Program[] = [
       "The college application is a long process with a lot of moving parts: testing, school lists, essays, the Common App, deadlines. We work with students through all of it, so the process stays organized and the final application actually sounds like the student who wrote it.",
     icon: "cap",
     accent: "sun",
+    image: {
+      src: "/images/program-college-prep.jpg",
+      alt: "A student filling in bubbles on a standardized test answer sheet with a pencil.",
+      kind: "photo",
+    },
     featured: true,
     highlights: [
       {
@@ -323,6 +385,11 @@ export const programs: Program[] = [
       "IEP and 504 meetings are easier when someone at the table has sat on the other side of it. Our advocates are career educators who know how these plans are written, what accommodations are realistic to request, and how to make sure the plan a family agrees to is the plan their student actually receives.",
     icon: "shield",
     accent: "blue",
+    image: {
+      src: "/images/tile-iep-advocacy.png",
+      alt: "Resource Room Learning Center IEP and 504 advocate services.",
+      kind: "tile",
+    },
     highlights: [
       {
         title: "Meeting preparation",
@@ -359,6 +426,7 @@ export const popularOfferings: {
   body: string;
   href: string;
   icon: IconName;
+  image: ProgramImage;
 }[] = [
   {
     title: "ABA Support in an Educational Setting",
@@ -366,6 +434,11 @@ export const popularOfferings: {
     body: "Behavioral support delivered inside a real learning environment, where the skills need to hold up.",
     href: "/programs/aba-services",
     icon: "heart",
+    image: {
+      src: "/images/tile-aba.png",
+      alt: "Resource Room and POPS ABA partnership — ABA support in an educational setting.",
+      kind: "tile",
+    },
   },
   {
     title: "Homeschool Co-Op in Holly Springs, NC",
@@ -373,6 +446,11 @@ export const popularOfferings: {
     body: "Structured daytime instruction, licensed educators and real classmates for homeschool families.",
     href: "/programs/homeschool-co-op",
     icon: "home",
+    image: {
+      src: "/images/tile-homeschool-coop.jpg",
+      alt: "Resource Room Homeschool Co-Op for middle and high school students.",
+      kind: "tile",
+    },
   },
   {
     title: "Executive Functioning Coaching and Support",
@@ -380,6 +458,11 @@ export const popularOfferings: {
     body: "Planning, organization, time management and follow-through — coached the same way we teach any other skill.",
     href: "/programs/tutoring",
     icon: "chart",
+    image: {
+      src: "/images/tile-executive-functioning.png",
+      alt: "Resource Room Executive Functioning coaching and support.",
+      kind: "tile",
+    },
   },
   {
     title: "STEM Themed Summer Camps",
@@ -387,6 +470,11 @@ export const popularOfferings: {
     body: "Hands-on, themed summer camps built on standards-aligned STEAM curriculum.",
     href: "/programs/camps",
     icon: "sun",
+    image: {
+      src: "/images/tile-stem-camps.png",
+      alt: "Resource Room track-out and summer camps — STEM themed fun.",
+      kind: "tile",
+    },
   },
   {
     title: "SAT Test Prep in Holly Springs, NC",
@@ -394,6 +482,11 @@ export const popularOfferings: {
     body: "Diagnostic-driven SAT preparation focused on the sections actually costing points.",
     href: "/programs/sat-act-prep",
     icon: "target",
+    image: {
+      src: "/images/tile-sat-prep.jpg",
+      alt: "Resource Room SAT Test Prep — digital SAT ready.",
+      kind: "tile",
+    },
   },
   {
     title: "Summer Bridge Tutoring Programs",
@@ -401,6 +494,11 @@ export const popularOfferings: {
     body: "Summer sessions that hold ground over the break and get students ready for the next grade level.",
     href: "/programs/tutoring",
     icon: "pencil",
+    image: {
+      src: "/images/tile-summer-bridge.png",
+      alt: "Resource Room Summer Bridge tutoring — prevent the summer slide.",
+      kind: "tile",
+    },
   },
 ];
 

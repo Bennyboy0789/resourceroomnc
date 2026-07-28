@@ -1,23 +1,29 @@
 import { Container } from "@/components/ui/Container";
+import { CountUp } from "@/components/ui/CountUp";
+import { Reveal } from "@/components/ui/Reveal";
+import { stagger } from "@/lib/stagger";
 import { Stars } from "@/components/ui/Stars";
 import { stats } from "@/content/home";
 
 export function StatsBar() {
   return (
-    <section className="bg-navy-900 text-white">
-      <Container className="py-12 sm:py-14">
-        <dl className="grid gap-8 text-center sm:grid-cols-3 sm:gap-6 sm:text-left">
-          {stats.map((stat) => (
-            <div
+    <section className="bg-sun-500 text-navy-950">
+      <Container size="wide" className="py-14 sm:py-16">
+        <dl className="grid gap-10 sm:grid-cols-3 sm:gap-6">
+          {stats.map((stat, index) => (
+            <Reveal
               key={stat.label}
-              className="sm:border-l sm:border-white/15 sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
+              className="sm:border-l sm:border-navy-950/15 sm:pl-8 sm:first:border-l-0 sm:first:pl-0"
+              delay={stagger(index, 0.1)}
             >
-              {stat.stars ? <Stars className="mb-2 justify-center text-sun-500 sm:justify-start" /> : null}
-              <dt className="text-4xl font-bold tracking-tight text-sun-500 sm:text-5xl">
-                {stat.value}
+              {stat.stars ? <Stars className="mb-3 text-navy-950" /> : null}
+              <dt className="display text-5xl sm:text-6xl">
+                <CountUp value={stat.value} />
               </dt>
-              <dd className="mt-2 text-sm text-white/70">{stat.label}</dd>
-            </div>
+              <dd className="mt-3 text-sm font-medium leading-relaxed text-navy-950/70">
+                {stat.label}
+              </dd>
+            </Reveal>
           ))}
         </dl>
       </Container>

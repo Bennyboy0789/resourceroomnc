@@ -1,32 +1,51 @@
 import { Icon } from "@/components/icons";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
+import { Reveal } from "@/components/ui/Reveal";
+import { stagger } from "@/lib/stagger";
+import { SectionHeading } from "@/components/ui/Section";
 import { whyChooseUs } from "@/content/home";
 
 export function WhyChoose() {
   return (
-    <Section tone="mist">
-      <SectionHeading
-        eyebrow="Why families choose us"
-        title="Three things that don't"
-        accent="change."
-        description="Whatever program a student is in, these hold true across all of them."
-        align="center"
-      />
+    <section className="bg-mist py-20 sm:py-24 lg:py-28">
+      <Container size="wide">
+        <SectionHeading
+          eyebrow="Why families choose us"
+          title="Three things that"
+          accent="don't change."
+          description="Whatever program a student is in, these hold true across all of them."
+        />
 
-      <ul className="mt-12 grid gap-5 md:grid-cols-3">
-        {whyChooseUs.map((item) => (
-          <li
-            key={item.title}
-            className="rounded-2xl border border-navy-900/8 bg-white p-7 text-center"
-          >
-            <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-400 text-navy-900">
-              <Icon name={item.icon} className="h-6 w-6" />
-            </span>
-            <h3 className="mt-5 text-xl font-bold tracking-tight text-navy-900">{item.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-navy-600">{item.body}</p>
-          </li>
-        ))}
-      </ul>
-    </Section>
+        {/* Edge-to-edge images with the copy underneath — no card chrome, so the
+            photography reads as one continuous band across the section. */}
+        <ul className="mt-14 grid gap-px overflow-hidden bg-navy-950/10 md:grid-cols-3">
+          {whyChooseUs.map((item, index) => (
+            <Reveal key={item.title} as="li" className="bg-mist" delay={stagger(index, 0.1)}>
+              <PhotoSlot
+                src={item.image.src}
+                alt={item.image.alt}
+                icon={item.icon}
+                ratio="4/3"
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="rounded-none"
+              />
+              <div className="px-1 py-7 sm:px-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold tabular-nums text-brand-500">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <Icon name={item.icon} className="h-5 w-5 text-navy-950" />
+                </div>
+                <h3 className="mt-4 text-2xl font-extrabold uppercase tracking-tight text-navy-950">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-navy-600">{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ul>
+      </Container>
+    </section>
   );
 }

@@ -1,5 +1,34 @@
 import type { IconName } from "@/components/icons";
 
+/**
+ * Background slideshow behind the hero, carried over from resourceroomnc.com.
+ *
+ * Purely decorative — the hero states its message in text, so these are hidden
+ * from assistive tech and carry no alt copy. Timings below match the live site:
+ * four seconds a slide with a half-second cross-fade and a slow zoom in.
+ */
+export const heroSlides = [
+  "/images/hero/hero-01.jpg",
+  "/images/hero/hero-02.jpg",
+  "/images/hero/hero-03.jpg",
+  "/images/hero/hero-04.jpg",
+  "/images/hero/hero-05.jpg",
+  "/images/hero/hero-06.jpg",
+  "/images/hero/hero-07.jpg",
+  "/images/hero/hero-08.jpg",
+  "/images/hero/hero-09.jpg",
+  "/images/hero/hero-10.jpg",
+];
+
+export const heroSlideshow = {
+  /** Time each slide holds, in ms. */
+  slideDuration: 4000,
+  /** Cross-fade length, in ms. */
+  fadeDuration: 500,
+  /** How far the Ken Burns effect zooms by the end of a slide. */
+  zoomScale: 1.12,
+};
+
 export const hero = {
   /** Words wrapped in the accent color inside the headline. */
   headline: {
@@ -12,26 +41,61 @@ export const hero = {
   primaryCta: { label: "Schedule a Free Consultation", href: "/contact" },
 };
 
-export const whyChooseUs: { title: string; body: string; icon: IconName }[] = [
+export const whyChooseUs: {
+  title: string;
+  body: string;
+  icon: IconName;
+  image: { src: string; alt: string };
+}[] = [
   {
     title: "Individualized",
     body: "A targeted approach for each student. We find the gap, build the plan, and adjust it as the student moves.",
     icon: "target",
+    image: {
+      src: "/images/why-individualized.jpg",
+      alt: "A tutor and student working through a problem together at a Resource Room table.",
+    },
   },
   {
     title: "Engaging",
     body: "Curriculum-based STEAM programs that are hands-on and standards aligned — learning students want to show up for.",
     icon: "sparkle",
+    image: {
+      src: "/images/why-engaging.jpg",
+      alt: "Students building and programming a LEGO robotics project.",
+    },
   },
   {
     title: "Professional",
     body: "Owned and operated by licensed educators with classroom experience and multiple graduate degrees.",
     icon: "badge",
+    image: {
+      src: "/images/why-professional.jpg",
+      alt: "The Resource Room learning center classroom space in Holly Springs.",
+    },
   },
+];
+
+/**
+ * Credential ticker under the hero. Every line is a claim made elsewhere on the
+ * site — this strip restates them, it does not invent new ones.
+ */
+export const credentials = [
+  "Licensed Career Educators",
+  "100+ Five-Star Reviews",
+  "Holly Springs Business of the Year 2022",
+  "Raleigh's Best 2025 — Bronze",
+  "K-12 Through AP Math & Science",
+  "95% Client Retention",
+  "Serving the Triangle Since 2015",
 ];
 
 export const founders = {
   heading: "Owned and operated by licensed career educators.",
+  image: {
+    src: "/images/founders.jpg",
+    alt: "Resource Room founders Joe and Sam with their son at the Holly Springs learning center.",
+  },
   body: [
     "Joe and Sam, husband and wife, each have over a decade of classroom experience, are duly licensed, and hold multiple graduate degrees.",
     "That background shapes everything here — from how programs are designed, to who is standing in front of your student, to how we talk with families about progress.",
