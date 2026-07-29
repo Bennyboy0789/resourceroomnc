@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { useCart } from "@/components/shop/CartProvider";
 
@@ -18,6 +18,7 @@ function money(amount: number, currency = "usd") {
 export function CartDrawer() {
   const cart = useCart();
   const reduce = useReducedMotion();
+  const panelRef = useRef<HTMLElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,6 +29,59 @@ export function CartDrawer() {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [cart]);
+
+  /**
+   * Modal focus behaviour.
+   *
+   * Without this the drawer is only visually modal: focus stays wherever it was
+   * in the page behind, so a keyboard or screen-reader user opens the cart and
+   * then tabs through the whole site underneath it, never reaching the checkout
+   * button. Focus moves in on open, cycles inside while open, and returns to
+   * whatever opened it on close.
+   *
+   * Focusables are re-queried on each Tab rather than captured once, because
+   * removing the last line item changes what is in the panel.
+   */
+  useEffect(() => {
+    if (!cart.isOpen) return;
+
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const focusable = () =>
+      Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => element.offsetParent !== null);
+
+    (focusable()[0] ?? panel).focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      previouslyFocused?.focus?.();
+    };
+  }, [cart.isOpen]);
 
   // Stop the page behind the drawer from scrolling while it is open.
   useEffect(() => {
@@ -68,9 +122,11 @@ export function CartDrawer() {
     <AnimatePresence>
       {cart.isOpen ? (
         <>
-          <motion.button
-            type="button"
-            aria-label="Close cart"
+          {/* Click-to-dismiss only. It was a full-screen <button>, which put a
+              giant "Close cart" control in the tab order ahead of the panel;
+              Escape and the close button already cover keyboard dismissal. */}
+          <motion.div
+            aria-hidden="true"
             className="fixed inset-0 z-[60] bg-navy-950/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -80,9 +136,12 @@ export function CartDrawer() {
           />
 
           <motion.aside
+            ref={panelRef}
             role="dialog"
+            aria-modal="true"
             aria-label="Cart"
-            className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-md flex-col bg-white shadow-2xl"
+            tabIndex={-1}
+            className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-md flex-col bg-white shadow-2xl outline-none"
             initial={reduce ? { opacity: 0 } : { x: "100%" }}
             animate={reduce ? { opacity: 1 } : { x: 0 }}
             exit={reduce ? { opacity: 0 } : { x: "100%" }}
