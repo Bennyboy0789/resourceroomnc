@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { Logo } from "@/components/Logo";
+import { CartButton } from "@/components/shop/CartDrawer";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
@@ -137,6 +138,7 @@ export function Header() {
           <Button href={site.consultationUrl} variant="navy" className="max-sm:hidden">
             Free Consultation
           </Button>
+          <CartButton />
           <button
             type="button"
             onClick={() => setMobileOpen((value) => !value)}

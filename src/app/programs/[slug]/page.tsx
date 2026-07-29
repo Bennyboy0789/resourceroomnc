@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
+import { EnrollmentSection } from "@/components/shop/EnrollmentSection";
 import { Button } from "@/components/ui/Button";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { ProgramCard } from "@/components/ui/ProgramCard";
@@ -13,6 +14,14 @@ import { site } from "@/content/site";
 export function generateStaticParams() {
   return programs.map((program) => ({ slug: program.slug }));
 }
+
+/**
+ * Prices live in Stripe, so these pages are rebuilt hourly rather than pinned
+ * at deploy time. A price edited in the Stripe dashboard reaches the site
+ * without a deploy, and checkout re-resolves the amount from Stripe anyway, so
+ * a stale page can never charge the wrong figure.
+ */
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
@@ -160,6 +169,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           </div>
         ) : null}
       </Section>
+
+      <EnrollmentSection programSlug={program.slug} />
 
       <Section tone="white" size="wide">
         <SectionHeading eyebrow="Keep exploring" title="Other Resource Room" accent="programs." />

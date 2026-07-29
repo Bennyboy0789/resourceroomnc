@@ -1,0 +1,992 @@
+{
+  "generatedAt": "2026-07-28T16:34:57.897Z",
+  "source": "https://resourceroomnc.com/wp-json/wc/store/v1",
+  "currency": "usd",
+  "products": [
+    {
+      "wooId": 8184,
+      "slug": "homeschool-co-op-holly-springs-nc",
+      "name": "Homeschool Co-Op in Holly Springs, NC",
+      "programSlug": "homeschool-co-op",
+      "attributes": [
+        {
+          "name": "Grade Level",
+          "options": [
+            "High School",
+            "Middle School"
+          ],
+          "informational": false
+        },
+        {
+          "name": "Enrollment Type",
+          "options": [
+            "1 Class",
+            "2 Classes",
+            "3 Classes",
+            "Full-Day Bundle",
+            "Academic + Lab Track"
+          ],
+          "informational": false
+        },
+        {
+          "name": "Semester",
+          "options": [
+            "Fall 2026",
+            "Spring 2026"
+          ],
+          "informational": true
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 8280,
+          "amount": 42500,
+          "options": {
+            "Grade Level": "High School",
+            "Enrollment Type": "1 Class"
+          }
+        },
+        {
+          "wooId": 8281,
+          "amount": 85000,
+          "options": {
+            "Grade Level": "High School",
+            "Enrollment Type": "2 Classes"
+          }
+        },
+        {
+          "wooId": 8282,
+          "amount": 125000,
+          "options": {
+            "Grade Level": "High School",
+            "Enrollment Type": "3 Classes"
+          }
+        },
+        {
+          "wooId": 8283,
+          "amount": 165000,
+          "options": {
+            "Grade Level": "High School",
+            "Enrollment Type": "Full-Day Bundle"
+          }
+        },
+        {
+          "wooId": 8284,
+          "amount": 245000,
+          "options": {
+            "Grade Level": "High School",
+            "Enrollment Type": "Academic + Lab Track"
+          }
+        },
+        {
+          "wooId": 8285,
+          "amount": 42500,
+          "options": {
+            "Grade Level": "Middle School",
+            "Enrollment Type": "1 Class"
+          }
+        },
+        {
+          "wooId": 8286,
+          "amount": 85000,
+          "options": {
+            "Grade Level": "Middle School",
+            "Enrollment Type": "2 Classes"
+          }
+        },
+        {
+          "wooId": 8287,
+          "amount": 125000,
+          "options": {
+            "Grade Level": "Middle School",
+            "Enrollment Type": "3 Classes"
+          }
+        },
+        {
+          "wooId": 8288,
+          "amount": 165000,
+          "options": {
+            "Grade Level": "Middle School",
+            "Enrollment Type": "Full-Day Bundle"
+          }
+        },
+        {
+          "wooId": 8289,
+          "amount": 245000,
+          "options": {
+            "Grade Level": "Middle School",
+            "Enrollment Type": "Academic + Lab Track"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 5984,
+      "slug": "executive-functioning-coaching-and-support",
+      "name": "Executive Functioning Coaching and Support",
+      "programSlug": "tutoring",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 5984,
+          "amount": 10000,
+          "options": {}
+        }
+      ]
+    },
+    {
+      "wooId": 5308,
+      "slug": "scratch-coding",
+      "name": "Scratch Coding",
+      "programSlug": "camps",
+      "attributes": [
+        {
+          "name": "Date",
+          "options": [
+            "November 11",
+            "November 18",
+            "December 2",
+            "December 16"
+          ],
+          "informational": false
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 5309,
+          "amount": 24900,
+          "options": {
+            "Date": "November 11"
+          }
+        },
+        {
+          "wooId": 5310,
+          "amount": 24900,
+          "options": {
+            "Date": "November 18"
+          }
+        },
+        {
+          "wooId": 5311,
+          "amount": 24900,
+          "options": {
+            "Date": "December 2"
+          }
+        },
+        {
+          "wooId": 5312,
+          "amount": 24900,
+          "options": {
+            "Date": "December 16"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 5180,
+      "slug": "teacher-workdays",
+      "name": "Teacher Workday Camps/ Single Day Camps",
+      "programSlug": "camps",
+      "attributes": [
+        {
+          "name": "Date",
+          "options": [
+            "Single Day Camp Summer2026",
+            "Extended Day Per Day",
+            "Aug 21,2026",
+            "Sept 21, 2026",
+            "October 12, 2026",
+            "Nov 3, 2026",
+            "Nov 11, 2026",
+            "December 21, 2026",
+            "December 22, 2026",
+            "December 23, 2026",
+            "December 28, 2026",
+            "December 29, 2026",
+            "December 30, 2026",
+            "January 18, 2027",
+            "January 19, 2027",
+            "February 15, 2027",
+            "March 10, 2027",
+            "March 26, 2027",
+            "April 5, 2027",
+            "May 17, 2027",
+            "June 10, 2027",
+            "June 11, 2027",
+            "June 30, 2027"
+          ],
+          "informational": false
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 7172,
+          "amount": 7500,
+          "options": {
+            "Date": "Single Day Camp Summer2026"
+          }
+        },
+        {
+          "wooId": 7174,
+          "amount": 1100,
+          "options": {
+            "Date": "Extended Day Per Day"
+          }
+        },
+        {
+          "wooId": 8824,
+          "amount": 7500,
+          "options": {
+            "Date": "Aug 21,2026"
+          }
+        },
+        {
+          "wooId": 8825,
+          "amount": 7500,
+          "options": {
+            "Date": "Sept 21, 2026"
+          }
+        },
+        {
+          "wooId": 8826,
+          "amount": 7500,
+          "options": {
+            "Date": "October 12, 2026"
+          }
+        },
+        {
+          "wooId": 8827,
+          "amount": 7500,
+          "options": {
+            "Date": "Nov 3, 2026"
+          }
+        },
+        {
+          "wooId": 8828,
+          "amount": 7500,
+          "options": {
+            "Date": "Nov 11, 2026"
+          }
+        },
+        {
+          "wooId": 8829,
+          "amount": 7500,
+          "options": {
+            "Date": "December 21, 2026"
+          }
+        },
+        {
+          "wooId": 8830,
+          "amount": 7500,
+          "options": {
+            "Date": "December 22, 2026"
+          }
+        },
+        {
+          "wooId": 8831,
+          "amount": 7500,
+          "options": {
+            "Date": "December 23, 2026"
+          }
+        },
+        {
+          "wooId": 8832,
+          "amount": 7500,
+          "options": {
+            "Date": "December 28, 2026"
+          }
+        },
+        {
+          "wooId": 8833,
+          "amount": 7500,
+          "options": {
+            "Date": "December 29, 2026"
+          }
+        },
+        {
+          "wooId": 8834,
+          "amount": 7500,
+          "options": {
+            "Date": "December 30, 2026"
+          }
+        },
+        {
+          "wooId": 8835,
+          "amount": 7500,
+          "options": {
+            "Date": "January 18, 2027"
+          }
+        },
+        {
+          "wooId": 8836,
+          "amount": 7500,
+          "options": {
+            "Date": "January 19, 2027"
+          }
+        },
+        {
+          "wooId": 8837,
+          "amount": 7500,
+          "options": {
+            "Date": "February 15, 2027"
+          }
+        },
+        {
+          "wooId": 8838,
+          "amount": 7500,
+          "options": {
+            "Date": "March 10, 2027"
+          }
+        },
+        {
+          "wooId": 8839,
+          "amount": 7500,
+          "options": {
+            "Date": "March 26, 2027"
+          }
+        },
+        {
+          "wooId": 8840,
+          "amount": 7500,
+          "options": {
+            "Date": "April 5, 2027"
+          }
+        },
+        {
+          "wooId": 8841,
+          "amount": 7500,
+          "options": {
+            "Date": "May 17, 2027"
+          }
+        },
+        {
+          "wooId": 8842,
+          "amount": 7500,
+          "options": {
+            "Date": "June 10, 2027"
+          }
+        },
+        {
+          "wooId": 8843,
+          "amount": 7500,
+          "options": {
+            "Date": "June 11, 2027"
+          }
+        },
+        {
+          "wooId": 8844,
+          "amount": 7500,
+          "options": {
+            "Date": "June 30, 2027"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 4639,
+      "slug": "stem",
+      "name": "STEM Themed Camps",
+      "programSlug": "camps",
+      "attributes": [
+        {
+          "name": "Choose Your Program",
+          "options": [
+            "Extended Day Per Day",
+            "Extended Day Per Week",
+            "Single Day Summer2026",
+            "Summer July 27-31",
+            "Summer August 3-7",
+            "Summer August 10-14",
+            "Summer August 17-21",
+            "Summer August 24-28",
+            "Aug 31- Sept 4",
+            "Sept 14-Sept 18",
+            "Sept 21- Sept 25",
+            "Sept 28-Oct 2",
+            "Oct12- Oct 16",
+            "Oct 19-Oct 23",
+            "Oct 26- Oct 30",
+            "Nov 2- Nov 6",
+            "Nov 9 – Nov 13",
+            "Nov 16- Nov 20",
+            "Nov 30-Dec 4",
+            "Dec 7- Dec 11",
+            "Dec 14- Dec 18",
+            "Jan 4-Jan 8",
+            "Jan 11-15",
+            "Jan 18- Jan 22",
+            "Jan 25-29",
+            "Feb 1- Feb 5",
+            "Feb 8- Feb 12",
+            "Feb 15- Feb 19",
+            "Feb 22- Feb 26",
+            "March 1- March 5",
+            "March 8- March 12",
+            "March 15- March 19",
+            "March 22- March 26",
+            "March 29- April 2",
+            "April 5- April 9",
+            "April 12- April 16",
+            "April 19- April 23",
+            "April 26 – April 30",
+            "May 3- May 7",
+            "May 10- May 14",
+            "May 17- May 21",
+            "May 24- May 28",
+            "June 7-June 11",
+            "June 14-June 18",
+            "June 21-June 25",
+            "June 28- July 2",
+            "July 5 – July 9",
+            "July 12-July 16",
+            "July 19-July 23",
+            "July 26- July 30",
+            "Aug 2-Aug 6",
+            "Aug 9- Aug 13",
+            "Aug 16- Aug 20",
+            "Aug 23- Aug 27",
+            "Aug 30- Sept 3"
+          ],
+          "informational": false
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 8727,
+          "amount": 1100,
+          "options": {
+            "Choose Your Program": "Extended Day Per Day"
+          }
+        },
+        {
+          "wooId": 7203,
+          "amount": 5500,
+          "options": {
+            "Choose Your Program": "Extended Day Per Week"
+          }
+        },
+        {
+          "wooId": 7193,
+          "amount": 7500,
+          "options": {
+            "Choose Your Program": "Single Day Summer2026"
+          }
+        },
+        {
+          "wooId": 7198,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Summer July 27-31"
+          }
+        },
+        {
+          "wooId": 7199,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Summer August 3-7"
+          }
+        },
+        {
+          "wooId": 7200,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Summer August 10-14"
+          }
+        },
+        {
+          "wooId": 7201,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Summer August 17-21"
+          }
+        },
+        {
+          "wooId": 7202,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Summer August 24-28"
+          }
+        },
+        {
+          "wooId": 8771,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 31- Sept 4"
+          }
+        },
+        {
+          "wooId": 8772,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Sept 14-Sept 18"
+          }
+        },
+        {
+          "wooId": 8773,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Sept 21- Sept 25"
+          }
+        },
+        {
+          "wooId": 8774,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Sept 28-Oct 2"
+          }
+        },
+        {
+          "wooId": 8775,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Oct12- Oct 16"
+          }
+        },
+        {
+          "wooId": 8776,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Oct 19-Oct 23"
+          }
+        },
+        {
+          "wooId": 8777,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Oct 26- Oct 30"
+          }
+        },
+        {
+          "wooId": 8778,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Nov 2- Nov 6"
+          }
+        },
+        {
+          "wooId": 8779,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Nov 9 – Nov 13"
+          }
+        },
+        {
+          "wooId": 8780,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Nov 16- Nov 20"
+          }
+        },
+        {
+          "wooId": 8781,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Nov 30-Dec 4"
+          }
+        },
+        {
+          "wooId": 8782,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Dec 7- Dec 11"
+          }
+        },
+        {
+          "wooId": 8783,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Dec 14- Dec 18"
+          }
+        },
+        {
+          "wooId": 8784,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Jan 4-Jan 8"
+          }
+        },
+        {
+          "wooId": 8785,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Jan 11-15"
+          }
+        },
+        {
+          "wooId": 8786,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Jan 18- Jan 22"
+          }
+        },
+        {
+          "wooId": 8787,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Jan 25-29"
+          }
+        },
+        {
+          "wooId": 8788,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Feb 1- Feb 5"
+          }
+        },
+        {
+          "wooId": 8789,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Feb 8- Feb 12"
+          }
+        },
+        {
+          "wooId": 8790,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Feb 15- Feb 19"
+          }
+        },
+        {
+          "wooId": 8791,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Feb 22- Feb 26"
+          }
+        },
+        {
+          "wooId": 8792,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "March 1- March 5"
+          }
+        },
+        {
+          "wooId": 8793,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "March 8- March 12"
+          }
+        },
+        {
+          "wooId": 8794,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "March 15- March 19"
+          }
+        },
+        {
+          "wooId": 8795,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "March 22- March 26"
+          }
+        },
+        {
+          "wooId": 8796,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "March 29- April 2"
+          }
+        },
+        {
+          "wooId": 8797,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "April 5- April 9"
+          }
+        },
+        {
+          "wooId": 8798,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "April 12- April 16"
+          }
+        },
+        {
+          "wooId": 8799,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "April 19- April 23"
+          }
+        },
+        {
+          "wooId": 8800,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "April 26 – April 30"
+          }
+        },
+        {
+          "wooId": 8801,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "May 3- May 7"
+          }
+        },
+        {
+          "wooId": 8802,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "May 10- May 14"
+          }
+        },
+        {
+          "wooId": 8803,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "May 17- May 21"
+          }
+        },
+        {
+          "wooId": 8804,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "May 24- May 28"
+          }
+        },
+        {
+          "wooId": 8805,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "June 7-June 11"
+          }
+        },
+        {
+          "wooId": 8806,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "June 14-June 18"
+          }
+        },
+        {
+          "wooId": 8807,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "June 21-June 25"
+          }
+        },
+        {
+          "wooId": 8808,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "June 28- July 2"
+          }
+        },
+        {
+          "wooId": 8809,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "July 5 – July 9"
+          }
+        },
+        {
+          "wooId": 8810,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "July 12-July 16"
+          }
+        },
+        {
+          "wooId": 8811,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "July 19-July 23"
+          }
+        },
+        {
+          "wooId": 8812,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "July 26- July 30"
+          }
+        },
+        {
+          "wooId": 8813,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 2-Aug 6"
+          }
+        },
+        {
+          "wooId": 8814,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 9- Aug 13"
+          }
+        },
+        {
+          "wooId": 8815,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 16- Aug 20"
+          }
+        },
+        {
+          "wooId": 8816,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 23- Aug 27"
+          }
+        },
+        {
+          "wooId": 8817,
+          "amount": 32900,
+          "options": {
+            "Choose Your Program": "Aug 30- Sept 3"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 3202,
+      "slug": "sat-prep-in-north-carolina",
+      "name": "SAT Test Prep in Holly Springs, NC",
+      "programSlug": "sat-act-prep",
+      "attributes": [
+        {
+          "name": "Section",
+          "options": [
+            "SAT Diagnostic Feb 22",
+            "SAT Diagnostic Feb 28",
+            "SAT Diagnostic March 1",
+            "2026 Private Only Package"
+          ],
+          "informational": false
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 7240,
+          "amount": 7500,
+          "options": {
+            "Section": "SAT Diagnostic Feb 22"
+          }
+        },
+        {
+          "wooId": 7745,
+          "amount": 7500,
+          "options": {
+            "Section": "SAT Diagnostic Feb 28"
+          }
+        },
+        {
+          "wooId": 7746,
+          "amount": 7500,
+          "options": {
+            "Section": "SAT Diagnostic March 1"
+          }
+        },
+        {
+          "wooId": 7022,
+          "amount": 209900,
+          "options": {
+            "Section": "2026 Private Only Package"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 3196,
+      "slug": "summer-bridge-programs-in-nc",
+      "name": "Summer Bridge Tutoring Programs",
+      "programSlug": "tutoring",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 3196,
+          "amount": 69900,
+          "options": {}
+        }
+      ]
+    },
+    {
+      "wooId": 3182,
+      "slug": "college-admissions",
+      "name": "College Admissions and Essays",
+      "programSlug": "college-prep",
+      "attributes": [
+        {
+          "name": "College Admission",
+          "options": [
+            "Common App Essay Only",
+            "Common App Essay, Common App, Up to 5 Supplements"
+          ],
+          "informational": false
+        }
+      ],
+      "variants": [
+        {
+          "wooId": 7223,
+          "amount": 54900,
+          "options": {
+            "College Admission": "Common App Essay Only"
+          }
+        },
+        {
+          "wooId": 7224,
+          "amount": 89900,
+          "options": {
+            "College Admission": "Common App Essay, Common App, Up to 5 Supplements"
+          }
+        }
+      ]
+    },
+    {
+      "wooId": 3156,
+      "slug": "ms-sams-new-2-numbers",
+      "name": "Ms. Sam’s New 2 Numbers",
+      "programSlug": "tutoring",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 3156,
+          "amount": 4500,
+          "options": {}
+        }
+      ]
+    },
+    {
+      "wooId": 3154,
+      "slug": "story-stations",
+      "name": "Story Stations +",
+      "programSlug": "tutoring",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 3154,
+          "amount": 4500,
+          "options": {}
+        }
+      ]
+    },
+    {
+      "wooId": 3152,
+      "slug": "crafty-learning",
+      "name": "Crafty Learning",
+      "programSlug": "tutoring",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 3152,
+          "amount": 7900,
+          "options": {}
+        }
+      ]
+    },
+    {
+      "wooId": 3148,
+      "slug": "act-prep-in-north-carolina",
+      "name": "ACT Test Prep in Holly Springs, NC",
+      "programSlug": "sat-act-prep",
+      "attributes": [],
+      "variants": [
+        {
+          "wooId": 3148,
+          "amount": 239900,
+          "options": {}
+        }
+      ]
+    }
+  ]
+}

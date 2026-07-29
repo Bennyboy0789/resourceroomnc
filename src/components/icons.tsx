@@ -124,6 +124,13 @@ const icons: Record<string, ReactNode> = {
   chevronDown: <path d="m6 9 6 6 6-6" />,
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
   close: <path d="M18 6 6 18M6 6l12 12" />,
+  cart: (
+    <>
+      <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.55L21 8H6" />
+      <circle cx="10" cy="20" r="1.4" />
+      <circle cx="18" cy="20" r="1.4" />
+    </>
+  ),
 };
 
 export type IconName = keyof typeof icons;
