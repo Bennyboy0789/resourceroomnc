@@ -124,6 +124,9 @@ const icons: Record<string, ReactNode> = {
   chevronDown: <path d="m6 9 6 6 6-6" />,
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
   close: <path d="M18 6 6 18M6 6l12 12" />,
+  pause: <path d="M9 5v14M15 5v14" />,
+  play: <path d="M7 4.5v15l13-7.5z" />,
+  arrowLeft: <path d="M19 12H5m7-7-7 7 7 7" />,
   cart: (
     <>
       <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.55L21 8H6" />

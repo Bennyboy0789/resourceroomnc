@@ -1,10 +1,25 @@
-export type Testimonial = {
+export type Review = {
   name: string;
   role: string;
   quote: string;
+  /** Where the review came from, e.g. "Google". Shown as attribution. */
+  source?: string;
+  /** Links back to the review on its original platform, when there is one. */
+  url?: string;
 };
 
-export const testimonials: Testimonial[] = [
+/** Kept for the existing import name. */
+export type Testimonial = Review;
+
+/**
+ * Reviews shown on the home page.
+ *
+ * These four are the ones carried over from resourceroomnc.com. Anything added
+ * here must be a real review a real person wrote — see docs/google-reviews.md
+ * for how to wire the Google Business Profile feed in rather than adding them
+ * by hand.
+ */
+export const testimonials: Review[] = [
   {
     name: "Jenny H",
     role: "Parent",
