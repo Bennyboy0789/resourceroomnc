@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { Container } from "@/components/ui/Container";
 import { getProgram } from "@/content/programs";
+import { homeSections } from "@/content/sections";
 
 /** The four programs surfaced directly under the hero, in order. */
 const quickLinks = [
@@ -19,6 +20,9 @@ export function QuickLinks() {
   return (
     <div className="border-b border-navy-950/10 bg-white">
       <Container size="wide">
+        <p className="eyebrow border-b border-navy-950/8 py-4 text-brand-600">
+          {homeSections.quickLinks.title}
+        </p>
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
           {quickLinks.map(({ slug, label }) => {
             const program = getProgram(slug);

@@ -63,8 +63,15 @@ export function Header() {
       className="sticky top-0 z-50 border-b border-navy-950/10 bg-white"
       onMouseLeave={() => setOpenMenu(null)}
     >
-      <Container size="wide" className="flex h-20 items-center justify-between gap-6">
-        <Logo />
+      {/* gap-3 on small screens: at a 320px viewport (the 400% zoom target for
+          WCAG 1.4.10) a 24px gap pushed the cart and menu buttons past the
+          right edge and put a horizontal scrollbar on every page. */}
+      <Container size="wide" className="flex h-20 items-center justify-between gap-3 sm:gap-6">
+        {/* Allowed to shrink so the logo — not the controls — gives way when a
+            visitor's text-spacing overrides widen everything (WCAG 1.4.12). */}
+        <div className="min-w-0 shrink">
+          <Logo />
+        </div>
 
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main">
           {navigation.map((item) => {
@@ -125,7 +132,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <a
             href={site.phoneHref}
             className="hidden items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-700 transition-colors hover:text-navy-950 xl:flex"

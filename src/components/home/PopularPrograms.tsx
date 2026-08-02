@@ -1,15 +1,13 @@
 import { ProgramCard } from "@/components/ui/ProgramCard";
 import { Rail, RailItem } from "@/components/ui/Rail";
 import { popularOfferings } from "@/content/programs";
+import { homeSections } from "@/content/sections";
 
 export function PopularPrograms() {
   return (
     <section className="bg-white py-20 sm:py-24 lg:py-28">
       <Rail
-        eyebrow="Most requested"
-        title="What families ask"
-        accent="about most."
-        description="From daytime structured learning to test prep, these are the programs Triangle families come to us for."
+        {...homeSections.popularPrograms}
         viewAll={{ label: "All programs", href: "/programs" }}
       >
         {popularOfferings.map((offering, index) => (

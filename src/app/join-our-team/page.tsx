@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { CareersForm } from "@/components/ContactForm";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { pageHeroes } from "@/content/sections";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -56,12 +58,7 @@ const reasons = [
 export default function JoinOurTeamPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Careers"
-        title="Come teach where teaching"
-        accent="still comes first."
-        description="Resource Room is always interested in hearing from licensed educators and experienced instructors who want to work with students one at a time."
-      >
+      <PageHero {...pageHeroes.joinOurTeam}>
         <Button href={`${site.emailHref}?subject=${encodeURIComponent("Application — Resource Room")}`} size="lg">
           Send us your resume
           <Icon name="arrowRight" className="h-4 w-4" />
@@ -119,28 +116,29 @@ export default function JoinOurTeamPage() {
         </ul>
       </Section>
 
-      <Section tone="white" size="narrow">
-        <div className="rounded-none border border-navy-900/10 bg-navy-900 p-8 text-center text-white sm:p-12">
-          <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
-            Ready to apply?
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg leading-relaxed text-white/75">
-            Send your resume and a short note about the ages and subjects you like teaching. We
-            read every one.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button
-              href={`${site.emailHref}?subject=${encodeURIComponent("Application — Resource Room")}`}
-              size="lg"
-            >
-              <Icon name="mail" className="h-4 w-4" />
-              {site.email}
-            </Button>
-            <Button href={site.phoneHref} variant="outline" size="lg">
-              <Icon name="phone" className="h-4 w-4" />
-              {site.phone}
-            </Button>
-          </div>
+      <Section tone="white" size="narrow" id="apply">
+        <SectionHeading
+          eyebrow="Apply"
+          title="Ready to"
+          accent="apply?"
+          description="Please submit the form, and email your resume for consideration. We read every one."
+        />
+        <div className="mt-10">
+          <CareersForm />
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-navy-900/10 pt-8 sm:flex-row">
+          <Button
+            href={`${site.emailHref}?subject=${encodeURIComponent("Application — Resource Room")}`}
+            variant="navy"
+          >
+            <Icon name="mail" className="h-4 w-4" />
+            {site.email}
+          </Button>
+          <Button href={site.phoneHref} variant="quiet">
+            <Icon name="phone" className="h-4 w-4" />
+            {site.phone}
+          </Button>
         </div>
       </Section>
     </>

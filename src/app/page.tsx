@@ -1,7 +1,11 @@
+import { Accolades } from "@/components/home/Accolades";
 import { AboutStrip } from "@/components/home/AboutStrip";
+import { BlogTeaser } from "@/components/home/BlogTeaser";
+import { Counters } from "@/components/home/Counters";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Founders } from "@/components/home/Founders";
 import { Hero } from "@/components/home/Hero";
+import { LearningCenterPitch } from "@/components/home/LearningCenterPitch";
 import { PopularPrograms } from "@/components/home/PopularPrograms";
 import { ProgramGrid } from "@/components/home/ProgramGrid";
 import { QuickLinks } from "@/components/home/QuickLinks";
@@ -18,12 +22,16 @@ export default function HomePage() {
       <QuickLinks />
       <Marquee items={credentials} />
       <PopularPrograms />
+      <Accolades />
       <WhyChoose />
       <Founders />
+      <LearningCenterPitch />
       <StatsBar />
       <AboutStrip />
       <ProgramGrid />
+      <Counters />
       <Testimonials />
+      <BlogTeaser />
       <FinalCta />
     </>
   );

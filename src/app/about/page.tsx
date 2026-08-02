@@ -5,25 +5,40 @@ import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { coreValues, foundingStory, philosophy } from "@/content/about";
+import { pageHeroes } from "@/content/sections";
 import { aboutHighlights, founders, whyChooseUs } from "@/content/home";
-import { addressLine, site } from "@/content/site";
+import { addressLine, nyAddressLine, site } from "@/content/site";
+import { stagger } from "@/lib/stagger";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Resource Room is owned and operated by Joe and Sam, licensed career educators with over a decade of classroom experience each, serving Holly Springs and the greater Raleigh area.",
+    "Resource Room is owned and operated by Joe and Sam, licensed career educators who met teaching in Manhattan, opened in Holly Springs in 2021, and now run one of the Triangle's most complete learning centers.",
   alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        eyebrow="About us"
-        title="Built by teachers, for"
-        accent="students."
-        description="Resource Room is a complete learning center in Holly Springs, NC — owned and operated by two career educators who still believe the fastest way to help a student is to start with that student."
-      />
+      <PageHero {...pageHeroes.about}>
+        <Button href="/contact" size="lg">
+          Send Us A Message
+        </Button>
+      </PageHero>
+
+      <Section tone="white" size="narrow">
+        <SectionHeading eyebrow="Our philosophy" title={philosophy.heading} />
+        <div className="mt-8 space-y-5">
+          {philosophy.body.map((paragraph) => (
+            <p key={paragraph} className="text-lg leading-relaxed text-navy-700">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </Section>
 
       <Section tone="white">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -64,6 +79,17 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <Section tone="frost" size="narrow">
+        <SectionHeading eyebrow="How we got here" title={foundingStory.heading} />
+        <div className="mt-8 space-y-5">
+          {foundingStory.body.map((paragraph) => (
+            <p key={paragraph} className="text-lg leading-relaxed text-navy-700">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </Section>
+
       <Section tone="mist" id="mission">
         <SectionHeading
           eyebrow="Our mission"
@@ -82,6 +108,25 @@ export default function AboutPage() {
               <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">{item.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{item.body}</p>
             </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section tone="white">
+        <SectionHeading eyebrow="What we stand for" title="Our core" accent="values." />
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2">
+          {coreValues.map((value, index) => (
+            <Reveal key={value.title} as="li" delay={stagger(index, 0.06)}>
+              <div className="h-full border border-navy-900/8 bg-white p-7">
+                <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-400">
+                  <Icon name={value.icon} className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">
+                  {value.title}
+                </h3>
+                <p className="mt-2.5 leading-relaxed text-navy-600">{value.body}</p>
+              </div>
+            </Reveal>
           ))}
         </ul>
       </Section>
@@ -123,7 +168,12 @@ export default function AboutPage() {
             <ul className="mt-6 space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <Icon name="pin" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <span className="text-navy-700">{addressLine}</span>
+                <span className="text-navy-700">
+                  {addressLine}
+                  <span className="mt-1 block text-navy-500">
+                    Where it started: {nyAddressLine}
+                  </span>
+                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />

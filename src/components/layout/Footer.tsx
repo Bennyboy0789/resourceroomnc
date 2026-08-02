@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icon, SocialIcon } from "@/components/icons";
 import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
-import { addressLine, footerColumns, site, socials } from "@/content/site";
+import { addressLine, footerColumns, nyAddressLine, site, socials } from "@/content/site";
 
 export function Footer() {
   return (
@@ -12,8 +12,10 @@ export function Footer() {
           <div>
             <Logo tone="light" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
-              A complete learning center in Holly Springs, NC — tutoring, camps, test prep and
-              specialized programs for learners of all ages.
+              Resource Room was established in 2015 by career educators. The husband and wife team
+              of Sam and Joe recognized the need for a comprehensive learning center, where students
+              can find academic support and programs from Pre-K through the end of their high school
+              career.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               <li>
@@ -36,7 +38,10 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-sun-500" />
-                <span>{addressLine}</span>
+                <span>
+                  {addressLine}
+                  <span className="mt-1 block text-white/50">{nyAddressLine}</span>
+                </span>
               </li>
             </ul>
             <div className="mt-6 flex items-center gap-3">
@@ -56,7 +61,10 @@ export function Footer() {
           </div>
 
           {footerColumns.map((column) => (
-            <div key={column.title}>
+            /* Each column is its own navigation landmark, named by its
+               heading, so a screen-reader user can jump straight to
+               "Programs" instead of walking a single 20-link list. */
+            <nav key={column.title} aria-label={column.title}>
               <p className="eyebrow text-sun-400">{column.title}</p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {column.links.map((link) => (
@@ -78,7 +86,7 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
@@ -86,7 +94,10 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
-          <p>Holly Springs Business of the Year 2022 · Raleigh&rsquo;s Best 2025 Bronze, Education</p>
+          <p>
+            Holly Springs Business of the Year 2022 · Raleigh&rsquo;s Best 2025 Bronze, Education ·
+            Parrish &ldquo;Ham&rdquo; Womble Distinguished Service Award
+          </p>
         </div>
       </Container>
     </footer>

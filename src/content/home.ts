@@ -49,7 +49,7 @@ export const whyChooseUs: {
 }[] = [
   {
     title: "Individualized",
-    body: "A targeted approach for each student. We find the gap, build the plan, and adjust it as the student moves.",
+    body: "A targeted approach for each student.",
     icon: "target",
     image: {
       src: "/images/why-individualized.jpg",
@@ -58,7 +58,7 @@ export const whyChooseUs: {
   },
   {
     title: "Engaging",
-    body: "Curriculum-based STEAM programs that are hands-on and standards aligned — learning students want to show up for.",
+    body: "Curriculum based STEAM Programs.",
     icon: "sparkle",
     image: {
       src: "/images/why-engaging.jpg",
@@ -67,7 +67,7 @@ export const whyChooseUs: {
   },
   {
     title: "Professional",
-    body: "Owned and operated by licensed educators with classroom experience and multiple graduate degrees.",
+    body: "Owned and Operated by licensed educators.",
     icon: "badge",
     image: {
       src: "/images/why-professional.jpg",
@@ -85,6 +85,7 @@ export const credentials = [
   "100+ Five-Star Reviews",
   "Holly Springs Business of the Year 2022",
   "Raleigh's Best 2025 — Bronze",
+  "Parrish “Ham” Womble Distinguished Service Award",
   "K-12 Through AP Math & Science",
   "95% Client Retention",
   "Serving the Triangle Since 2015",
@@ -97,8 +98,7 @@ export const founders = {
     alt: "Resource Room founders Joe and Sam with their son at the Holly Springs learning center.",
   },
   body: [
-    "Joe and Sam, husband and wife, each have over a decade of classroom experience, are duly licensed, and hold multiple graduate degrees.",
-    "That background shapes everything here — from how programs are designed, to who is standing in front of your student, to how we talk with families about progress.",
+    "Joe and Sam, a husband and wife team, each have over a decade of classroom experience, are duly licensed, and hold multiple graduate degrees.",
   ],
   quote:
     "As career educators, we built Resource Room with one goal in mind: to provide a top-tier educational experience for students of all ages and to create high-quality, personalized programs that help students and families reach their goals.",
@@ -110,6 +110,30 @@ export const stats: { value: string; label: string; stars?: boolean }[] = [
   { value: "15+", label: "Years of professional experience" },
   { value: "95%", label: "Client retention" },
 ];
+
+/**
+ * The counter row further down the live home page. Figures are the animated
+ * counter targets read out of the page markup, not estimates.
+ */
+export const counters: { value: number; suffix?: string; label: string; stars?: boolean }[] = [
+  { value: 5, label: "Star Google reviews", stars: true },
+  { value: 25, suffix: "+", label: "Total course offerings" },
+  { value: 5000, suffix: "+", label: "Clients served" },
+  { value: 15, suffix: "+ years", label: "Working alongside students" },
+];
+
+/**
+ * The mid-page band between the founders and the stats on the live site.
+ */
+export const learningCenterPitch = {
+  heading:
+    "Educational experiences for emerging learners, early childhood, elementary, middle, and high school.",
+  body: [
+    "We strive to be a complete Learning Center for our community, our students, and our parents. We believe FIRMLY in the indispensable value of in-person education and socialization.",
+    "We invite you to explore our courses, browse our site, and to just come by and say hello if you are in the area. You can always make a consultation request here.",
+  ],
+  cta: { label: "Explore Programs", href: "/programs" },
+};
 
 export const aboutHighlights: { title: string; body: string; icon: IconName }[] = [
   {
@@ -132,7 +156,12 @@ export const aboutHighlights: { title: string; body: string; icon: IconName }[] 
 export const aboutIntro =
   "With a wide offering of educational programs and support, Resource Room aims to provide services for learners of all ages.";
 
+/**
+ * The site-wide closing CTA. Wording follows the live program pages, which all
+ * close on the same two beats: schedule a consultation, and consultations are
+ * always free.
+ */
 export const finalCta = {
-  heading: "Every student learns differently. Let's talk about yours.",
-  body: "Tell us where your student is and where you want them to be. The first conversation is free, and it is with an educator — not a salesperson.",
+  heading: "Give your student the right kind of help.",
+  body: "Schedule a consultation and we'll pinpoint exactly where your student needs support, then build a plan that delivers real progress. Consultations are always free.",
 };

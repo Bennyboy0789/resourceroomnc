@@ -7,6 +7,7 @@ import { TopBar } from "@/components/layout/TopBar";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { CartProvider } from "@/components/shop/CartProvider";
 import { site } from "@/content/site";
+import { organizationSchema } from "@/lib/schema";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,26 +47,13 @@ export const metadata: Metadata = {
   },
 };
 
-/** LocalBusiness markup so the learning center can surface in local results. */
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: site.legalName,
-  alternateName: site.name,
-  description: site.description,
-  url: site.url,
-  telephone: site.phone,
-  email: site.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.zip,
-    addressCountry: "US",
-  },
-  areaServed: "Holly Springs, Apex, Fuquay-Varina and the greater Raleigh area",
-};
+/**
+ * Organization markup, emitted on every page so the local-pack and
+ * answer-engine signals do not depend on which page gets crawled first.
+ * Page-specific nodes (Service, FAQ, Course, BlogPosting) are added by the
+ * pages themselves.
+ */
+const structuredData = organizationSchema();
 
 export default function RootLayout({
   children,
@@ -79,10 +67,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        {/* First focusable element on the page — see `skip-link` in globals.css. */}
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
         <CartProvider>
           <TopBar />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main" tabIndex={-1} className="flex-1">
+            {children}
+          </main>
           <Footer />
           <CartDrawer />
         </CartProvider>

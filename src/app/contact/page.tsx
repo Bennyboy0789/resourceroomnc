@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
+import { pageHeroes } from "@/content/sections";
 import { addressLine, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -36,19 +37,25 @@ const contactMethods = [
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Contact us"
-        title="Schedule a free"
-        accent="consultation."
-        description="Tell us where your student is and where you want them to be. The first conversation is free, and it is with an educator — not a salesperson."
-      />
+      <PageHero {...pageHeroes.contact} />
 
       <Section tone="white">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-navy-950">Send us a note</h2>
+        {/* `min-w-0` on the form column: a grid item defaults to
+            min-width:auto, so the <select> — whose intrinsic width comes from
+            its longest option, "Track-Out, Summer & Teacher-Workday Camps" —
+            stretched the column past the viewport and scrolled the page
+            sideways on a phone. */}
+        {/* `grid-cols-1` is not cosmetic here. Without it the mobile layout is
+            a single implicit `auto` track, which sizes to the widest child's
+            min-content — the <select>, whose intrinsic width comes from its
+            longest option. `grid-cols-1` compiles to `minmax(0, 1fr)`, which
+            caps the track at the container width. */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="min-w-0">
+            <h2 className="text-2xl font-bold tracking-tight text-navy-950">Send us a message</h2>
             <p className="mt-2 text-navy-600">
-              Fill this in and we will follow up to schedule your consultation.
+              Tell us a little about your student and we will follow up to schedule your free
+              consultation.
             </p>
             <div className="mt-8">
               <ContactForm />
@@ -69,9 +76,13 @@ export default function ContactPage() {
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-navy-900 text-sun-400">
                       <Icon name={method.icon} className="h-5 w-5" />
                     </span>
-                    <span>
+                    {/* `min-w-0` + `break-words`: a flex item will not shrink
+                        below its longest unbreakable word, and
+                        "Learn@ResourceRoomNC.com" is one. Without this the card
+                        pushes the page sideways on a narrow screen. */}
+                    <span className="min-w-0">
                       <span className="eyebrow block text-brand-600">{method.label}</span>
-                      <span className="mt-1.5 block font-semibold text-navy-950">
+                      <span className="mt-1.5 block break-words font-semibold text-navy-950">
                         {method.value}
                       </span>
                     </span>
@@ -80,7 +91,17 @@ export default function ContactPage() {
               ))}
             </ul>
 
-            <div className="mt-6 overflow-hidden rounded-none border border-navy-900/10">
+            <div className="mt-4 rounded-none border border-navy-900/10 bg-mist p-6">
+              <p className="eyebrow text-brand-600">Hours</p>
+              <p className="mt-2 font-semibold text-navy-950">{site.hours.weekdays}</p>
+              <p className="mt-1 text-sm text-navy-600">{site.hours.weekend}</p>
+              <p className="mt-4 flex items-center gap-2 border-t border-navy-900/10 pt-4 text-sm font-semibold text-navy-800">
+                <Icon name="check" className="h-4 w-4 text-brand-600" />
+                Free consultations, always
+              </p>
+            </div>
+
+            <div className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
               <iframe
                 title={`Map to Resource Room at ${addressLine}`}
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(

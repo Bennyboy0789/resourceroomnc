@@ -1,0 +1,436 @@
+import { Icon, type IconName } from "@/components/icons";
+import { FilterableSchedule } from "@/components/program/FilterableSchedule";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { Section, SectionHeading } from "@/components/ui/Section";
+import type { PricingTier, ProgramBlock, ScheduleGroup } from "@/content/programs";
+import { cn } from "@/lib/cn";
+import { stagger } from "@/lib/stagger";
+
+/**
+ * Renders a program page's long-form sections.
+ *
+ * The live program pages each have a different anatomy — a tuition table here,
+ * a track-out calendar there, an FAQ on most — so the content files describe
+ * them as an ordered list of blocks and this walks it. Section tones alternate
+ * automatically so a page never has to hard-code its own rhythm.
+ */
+
+const TONES = ["white", "frost", "mist"] as const;
+
+export function ProgramBlocks({
+  blocks,
+  accent,
+}: {
+  blocks: ProgramBlock[];
+  accent: "sun" | "blue";
+}) {
+  return (
+    <>
+      {blocks.map((block, index) => (
+        <Section key={`${block.kind}-${block.title}`} tone={TONES[index % TONES.length]}>
+          <SectionHeading
+            eyebrow={block.eyebrow}
+            title={block.title}
+            accent={block.accent}
+            description={block.description}
+          />
+          <div className="mt-12">
+            <Block block={block} accent={accent} />
+          </div>
+        </Section>
+      ))}
+    </>
+  );
+}
+
+function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" }) {
+  switch (block.kind) {
+    case "prose":
+      return <Prose body={block.body} />;
+    case "cards":
+      return <Cards cards={block.cards} wide={block.wide} accent={accent} />;
+    case "steps":
+      return <Steps steps={block.steps} accent={accent} />;
+    case "pricing":
+      return <Pricing tiers={block.tiers} note={block.note} accent={accent} />;
+    case "person":
+      return <Person block={block} accent={accent} />;
+    case "schedule":
+      return <Schedule groups={block.groups} note={block.note} filters={block.filters} />;
+    case "checklist":
+      return <Checklist items={block.items} />;
+    case "dates":
+      return <Dates items={block.items} note={block.note} accent={accent} />;
+    case "faq":
+      return <Faq items={block.items} />;
+  }
+}
+
+/** Gold on sun-accented programs, blue on the rest. */
+function chipClass(accent: "sun" | "blue") {
+  return accent === "sun" ? "bg-sun-400 text-navy-950" : "bg-brand-50 text-brand-600";
+}
+
+function Prose({ body }: { body: string[] }) {
+  return (
+    <div className="max-w-3xl space-y-5">
+      {body.map((paragraph, index) => (
+        <Reveal key={paragraph} delay={stagger(index, 0.06)}>
+          <p className="text-lg leading-relaxed text-navy-700">{paragraph}</p>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function Cards({
+  cards,
+  wide,
+  accent,
+}: {
+  cards: { title: string; body: string; icon?: IconName }[];
+  wide?: boolean;
+  accent: "sun" | "blue";
+}) {
+  return (
+    <ul className={cn("grid gap-5", wide ? "md:grid-cols-2" : "md:grid-cols-3")}>
+      {cards.map((card, index) => (
+        <Reveal key={card.title} as="li" delay={stagger(index, 0.06)}>
+          <div className="h-full border border-navy-900/8 bg-white p-7">
+            {card.icon ? (
+              <span
+                className={cn("grid h-11 w-11 place-items-center rounded-lg", chipClass(accent))}
+              >
+                <Icon name={card.icon} className="h-5 w-5" />
+              </span>
+            ) : null}
+            <h3
+              className={cn(
+                "text-lg font-bold tracking-tight text-navy-950",
+                card.icon ? "mt-5" : "",
+              )}
+            >
+              {card.title}
+            </h3>
+            <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{card.body}</p>
+          </div>
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
+function Steps({
+  steps,
+  accent,
+}: {
+  steps: { title: string; body: string; note?: string }[];
+  accent: "sun" | "blue";
+}) {
+  return (
+    <ol className="space-y-4">
+      {steps.map((step, index) => (
+        <Reveal key={step.title} as="li" delay={stagger(index, 0.06)}>
+          <div className="flex gap-5 border border-navy-900/8 bg-white p-6 sm:gap-7 sm:p-7">
+            <span
+              className={cn(
+                "grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sm font-bold tabular-nums",
+                chipClass(accent),
+              )}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-lg font-bold tracking-tight text-navy-950">{step.title}</h3>
+              <p className="mt-2 leading-relaxed text-navy-600">{step.body}</p>
+              {step.note ? (
+                <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+                  {step.note}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </ol>
+  );
+}
+
+function Pricing({
+  tiers,
+  note,
+  accent,
+}: {
+  tiers: PricingTier[];
+  note?: string;
+  accent: "sun" | "blue";
+}) {
+  // Single-tier blocks would stretch a lone card across the full width, so they
+  // get a narrower column of their own.
+  const columns =
+    tiers.length === 1
+      ? "max-w-xl"
+      : tiers.length === 2
+        ? "grid gap-5 md:grid-cols-2"
+        : tiers.length >= 5
+          ? "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          : "grid gap-5 md:grid-cols-3";
+
+  return (
+    <>
+      <div className={columns}>
+        {tiers.map((tier, index) => (
+          <Reveal key={tier.name} delay={stagger(index, 0.06)}>
+            <div
+              className={cn(
+                "flex h-full flex-col border bg-white p-7",
+                tier.featured ? "border-navy-900 shadow-sm" : "border-navy-900/8",
+              )}
+            >
+              {tier.badge ? (
+                <p
+                  className={cn(
+                    "mb-4 inline-flex w-fit px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.08em]",
+                    chipClass(accent),
+                  )}
+                >
+                  {tier.badge}
+                </p>
+              ) : null}
+
+              <h3 className="text-base font-bold tracking-tight text-navy-950">{tier.name}</h3>
+
+              <p className="mt-4 flex flex-wrap items-baseline gap-x-2">
+                {tier.wasPrice ? (
+                  <span className="text-lg text-navy-500 line-through">{tier.wasPrice}</span>
+                ) : null}
+                <span className="display text-4xl text-navy-950">{tier.price}</span>
+                {tier.cadence ? (
+                  <span className="text-sm font-medium text-navy-500">{tier.cadence}</span>
+                ) : null}
+              </p>
+
+              {tier.meta ? (
+                <p className="mt-2 text-sm leading-relaxed text-navy-600">{tier.meta}</p>
+              ) : null}
+
+              <ul className="mt-6 space-y-3 border-t border-navy-900/8 pt-6">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex gap-3 text-sm leading-relaxed text-navy-700">
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              {tier.note ? (
+                <p className="mt-6 border-t border-navy-900/8 pt-5 text-xs leading-relaxed text-navy-500">
+                  {tier.note}
+                </p>
+              ) : null}
+
+              {/* Every tier carries its own action. Without one, a family
+                  reading a $2,099 package has to scroll to the bottom of the
+                  page to do anything about it — and the live site put a
+                  "Book a Free Consultation" button on each card. `mt-auto`
+                  keeps the buttons on a shared baseline across the row. */}
+              <div className="mt-auto pt-6">
+                <Button
+                  href="/contact"
+                  variant={tier.featured ? "navy" : "quiet"}
+                  className="w-full"
+                >
+                  Book a Free Consultation
+                </Button>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {note ? <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p> : null}
+    </>
+  );
+}
+
+function Person({
+  block,
+  accent,
+}: {
+  block: Extract<ProgramBlock, { kind: "person" }>;
+  accent: "sun" | "blue";
+}) {
+  return (
+    <div className="border border-navy-900/10 bg-white p-8 sm:p-10">
+      <p className="text-2xl font-bold tracking-tight text-navy-950">{block.name}</p>
+      <p className="mt-1.5 text-sm font-semibold text-brand-600">{block.credentials}</p>
+
+      <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="space-y-4">
+          {block.body.map((paragraph) => (
+            <p key={paragraph} className="leading-relaxed text-navy-700">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {block.bullets?.length ? (
+          <ul className="space-y-3 self-start border-l-4 border-navy-900/10 pl-6">
+            {block.bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-3 text-sm leading-relaxed text-navy-700">
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+
+      {block.summary ? (
+        <p
+          className={cn(
+            "mt-8 border-l-4 p-6 leading-relaxed text-navy-800",
+            accent === "sun" ? "border-sun-500 bg-sun-50/60" : "border-brand-500 bg-mist",
+          )}
+        >
+          {block.summary}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function Schedule({
+  groups,
+  note,
+  filters,
+}: {
+  groups: Extract<ProgramBlock, { kind: "schedule" }>["groups"];
+  note?: string;
+  filters?: Extract<ProgramBlock, { kind: "schedule" }>["filters"];
+}) {
+  const cards = groups.map((group, index) => (
+    <ScheduleCard key={group.title} group={group} index={index} />
+  ));
+
+  return (
+    <>
+      {filters ? (
+        <FilterableSchedule groups={groups} allLabel={filters.allLabel}>
+          {cards}
+        </FilterableSchedule>
+      ) : (
+        <div
+          className={cn(
+            "grid gap-5",
+            groups.length > 1 && "sm:grid-cols-2",
+            groups.length > 4 && "lg:grid-cols-3",
+          )}
+        >
+          {cards}
+        </div>
+      )}
+
+      {note ? <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p> : null}
+    </>
+  );
+}
+
+function ScheduleCard({ group, index }: { group: ScheduleGroup; index: number }) {
+  return (
+    <Reveal delay={stagger(index % 6, 0.04)}>
+      <div className="h-full border border-navy-900/8 bg-white p-6">
+        <h3 className="text-base font-bold tracking-tight text-navy-950">{group.title}</h3>
+        {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
+
+        <dl className="mt-5 space-y-3.5">
+          {group.rows.map((row) => (
+            <div
+              key={`${row.label}-${row.value}`}
+              className="border-t border-navy-900/8 pt-3.5 first:border-t-0 first:pt-0"
+            >
+              <dt className="text-xs font-bold uppercase tracking-[0.06em] text-navy-500">
+                {row.label}
+              </dt>
+              <dd className="mt-1 text-sm leading-relaxed text-navy-800">{row.value}</dd>
+              {row.note ? (
+                <dd className="mt-1 text-sm leading-relaxed text-navy-500">{row.note}</dd>
+              ) : null}
+            </div>
+          ))}
+        </dl>
+
+        {group.note ? (
+          <p className="mt-5 border-t border-navy-900/8 pt-4 text-xs leading-relaxed text-brand-600">
+            {group.note}
+          </p>
+        ) : null}
+      </div>
+    </Reveal>
+  );
+}
+
+function Checklist({ items }: { items: string[] }) {
+  return (
+    <ul className="grid gap-4 sm:grid-cols-2">
+      {items.map((item, index) => (
+        <Reveal key={item} as="li" delay={stagger(index, 0.04)}>
+          <div className="flex h-full gap-4 border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700">
+            <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+            {item}
+          </div>
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
+function Dates({
+  items,
+  note,
+  accent,
+}: {
+  items: { date: string; note: string }[];
+  note?: string;
+  accent: "sun" | "blue";
+}) {
+  return (
+    <>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item, index) => (
+          <Reveal key={item.date} as="li" delay={stagger(index, 0.04)}>
+            <div className="flex h-full flex-col border border-navy-900/8 bg-white p-6">
+              <span className={cn("grid h-9 w-9 place-items-center rounded-lg", chipClass(accent))}>
+                <Icon name="clock" className="h-4 w-4" />
+              </span>
+              <p className="mt-4 text-base font-bold tracking-tight text-navy-950">{item.date}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-navy-600">{item.note}</p>
+            </div>
+          </Reveal>
+        ))}
+      </ul>
+
+      {note ? <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p> : null}
+    </>
+  );
+}
+
+function Faq({ items }: { items: { q: string; a: string }[] }) {
+  return (
+    <div className="max-w-3xl divide-y divide-navy-900/10 border-y border-navy-900/10">
+      {items.map((item) => (
+        <details key={item.q} className="group">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left text-base font-bold tracking-tight text-navy-950 [&::-webkit-details-marker]:hidden">
+            {item.q}
+            <Icon
+              name="chevronDown"
+              className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"
+            />
+          </summary>
+          <p className="pb-6 leading-relaxed text-navy-600">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  );
+}

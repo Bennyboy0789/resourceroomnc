@@ -6,23 +6,33 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/lib/stagger";
 import { Section } from "@/components/ui/Section";
 import { programs } from "@/content/programs";
+import { pageHeroes } from "@/content/sections";
+import { breadcrumbSchema, jsonLd, programCatalogSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "All Programs",
   description:
-    "Tutoring, camps, SAT and ACT prep, college advisement, homeschool co-op, ABA support, IEP and 504 advocacy, and Pathways Academy — every Resource Room program in one place.",
+    "Tutoring, camps, SAT and ACT prep, college advisement, executive functioning coaching, summer bridge, homeschool co-op, ABA support, IEP and 504 advocacy, and Pathways Academy — every Resource Room program in one place.",
   alternates: { canonical: "/programs" },
 };
 
 export default function ProgramsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="All programs"
-        title="Every program, one"
-        accent="learning center."
-        description="Students often start in one program and move into another as their needs change. Here is everything we run."
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            programCatalogSchema(programs),
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Programs", path: "/programs" },
+            ]),
+          ),
+        }}
       />
+
+      <PageHero {...pageHeroes.programs} />
 
       <Section tone="white" size="wide">
         <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -37,6 +47,8 @@ export default function ProgramsPage() {
                 body={program.summary}
                 ratio="3/4"
                 external={Boolean(program.externalUrl)}
+                /* This grid follows the h1 with no section heading between. */
+                headingLevel={2}
               />
             </Reveal>
           ))}
@@ -44,8 +56,8 @@ export default function ProgramsPage() {
       </Section>
 
       <FinalCta
-        heading="Not sure which program fits?"
-        body="That is exactly what the free consultation is for. Tell us about your student and we will point you to the right program — even if it is not one of ours."
+        heading="Not sure what your child needs? That's what the consultation is for."
+        body="We talk through your child's previous school year, current skills, strengths, frustrations, and goals. Then we recommend a plan that fits. Consultations are always free, and we will never recommend a program that isn't the right fit."
       />
     </>
   );

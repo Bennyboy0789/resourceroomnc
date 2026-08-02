@@ -1,15 +1,13 @@
 import { ProgramCard } from "@/components/ui/ProgramCard";
 import { Rail, RailItem } from "@/components/ui/Rail";
 import { programs } from "@/content/programs";
+import { homeSections } from "@/content/sections";
 
 export function ProgramGrid() {
   return (
     <section className="bg-navy-950 py-20 text-white sm:py-24 lg:py-28">
       <Rail
-        eyebrow="Every program"
-        title="One learning center,"
-        accent="eight ways in."
-        description="Students often start in one program and move into another as their needs change."
+        {...homeSections.programGrid}
         viewAll={{ label: "Compare all", href: "/programs" }}
         tone="light"
       >

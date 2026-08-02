@@ -5,17 +5,13 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/lib/stagger";
 import { SectionHeading } from "@/components/ui/Section";
 import { whyChooseUs } from "@/content/home";
+import { homeSections } from "@/content/sections";
 
 export function WhyChoose() {
   return (
     <section className="bg-mist py-20 sm:py-24 lg:py-28">
       <Container size="wide">
-        <SectionHeading
-          eyebrow="Why families choose us"
-          title="Three things that"
-          accent="don't change."
-          description="Whatever program a student is in, these hold true across all of them."
-        />
+        <SectionHeading {...homeSections.whyChoose} />
 
         {/* Edge-to-edge images with the copy underneath — no card chrome, so the
             photography reads as one continuous band across the section. */}

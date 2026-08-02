@@ -16,8 +16,11 @@ export function StatsBar() {
               className="sm:border-l sm:border-navy-950/15 sm:pl-8 sm:first:border-l-0 sm:first:pl-0"
               delay={stagger(index, 0.1)}
             >
-              {stat.stars ? <Stars className="mb-3 text-navy-950" /> : null}
+              {/* Inside the <dt>, not beside it: a <dl> may only hold dt/dd
+                  pairs (optionally wrapped in a div), and a loose <span>
+                  breaks the list semantics for screen readers. */}
               <dt className="display text-5xl sm:text-6xl">
+                {stat.stars ? <Stars className="mb-3 block text-navy-950" /> : null}
                 <CountUp value={stat.value} />
               </dt>
               <dd className="mt-3 text-sm font-medium leading-relaxed text-navy-950/70">

@@ -4,18 +4,14 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stagger } from "@/lib/stagger";
 import { SectionHeading } from "@/components/ui/Section";
 import { aboutHighlights, aboutIntro } from "@/content/home";
+import { homeSections } from "@/content/sections";
 
 export function AboutStrip() {
   return (
     <section className="bg-white py-20 sm:py-24 lg:py-28">
       <Container size="wide">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <SectionHeading
-            eyebrow="About Resource Room"
-            title="Services for learners of"
-            accent="all ages."
-            description={aboutIntro}
-          />
+          <SectionHeading {...homeSections.aboutStrip} description={aboutIntro} />
 
           {/* Numbered rules rather than boxes — the list reads as an index. */}
           <ul className="border-t border-navy-950/12">

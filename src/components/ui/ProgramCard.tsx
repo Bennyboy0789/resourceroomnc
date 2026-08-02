@@ -23,6 +23,7 @@ export function ProgramCard({
   tone = "dark",
   external,
   className,
+  headingLevel = 3,
 }: {
   href: string;
   image: ProgramImage;
@@ -35,8 +36,16 @@ export function ProgramCard({
   tone?: "dark" | "light";
   external?: boolean;
   className?: string;
+  /**
+   * Heading level for the card title. Cards usually sit under a section
+   * heading and default to h3, but on pages where the grid follows the h1
+   * directly — /programs — the caller passes 2 so the outline never skips a
+   * level (WCAG 1.3.1).
+   */
+  headingLevel?: 2 | 3;
 }) {
   const light = tone === "light";
+  const Heading = headingLevel === 2 ? "h2" : "h3";
 
   const content = (
     <>
@@ -56,14 +65,14 @@ export function ProgramCard({
       </div>
 
       <div className="mt-5 flex flex-1 flex-col">
-        <h3
+        <Heading
           className={cn(
             "text-lg font-extrabold uppercase leading-tight tracking-tight",
             light ? "text-white" : "text-navy-950",
           )}
         >
           {title}
-        </h3>
+        </Heading>
         {body ? (
           <p
             className={cn(

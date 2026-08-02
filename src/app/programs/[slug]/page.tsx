@@ -3,13 +3,19 @@ import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
+import { ProgramBlocks } from "@/components/program/ProgramBlocks";
 import { EnrollmentSection } from "@/components/shop/EnrollmentSection";
 import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { ProgramCard } from "@/components/ui/ProgramCard";
+import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Stars } from "@/components/ui/Stars";
 import { getProgram, imagePosition, imageRatio, programs } from "@/content/programs";
 import { site } from "@/content/site";
+import { breadcrumbSchema, jsonLd, programSchema } from "@/lib/schema";
+import { stagger } from "@/lib/stagger";
 
 export function generateStaticParams() {
   return programs.map((program) => ({ slug: program.slug }));
@@ -50,9 +56,19 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
   if (!program) notFound();
 
   const others = programs.filter((item) => item.slug !== program.slug).slice(0, 3);
+  const { service, faq } = programSchema(program);
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Programs", path: "/programs" },
+    { name: program.name, path: `/programs/${program.slug}` },
+  ]);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(service, faq, breadcrumbs) }}
+      />
       <PageHero
         eyebrow={program.category}
         title={program.name}
@@ -78,6 +94,30 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           )}
         </div>
       </PageHero>
+
+      {program.stats?.length ? (
+        <section className="border-b border-navy-900/10 bg-sun-500 text-navy-950">
+          <Container size="wide" className="py-10 sm:py-12">
+            <dl className="grid gap-8 sm:grid-cols-3 sm:gap-6">
+              {program.stats.map((stat, index) => (
+                <Reveal
+                  key={stat.label}
+                  className="sm:border-l sm:border-navy-950/15 sm:pl-8 sm:first:border-l-0 sm:first:pl-0"
+                  delay={stagger(index, 0.1)}
+                >
+                  <dt className="display text-3xl sm:text-4xl">
+                    {stat.stars ? <Stars className="mb-2 block text-navy-950" /> : null}
+                    {stat.value}
+                  </dt>
+                  <dd className="mt-2 text-sm font-medium leading-relaxed text-navy-950/70">
+                    {stat.label}
+                  </dd>
+                </Reveal>
+              ))}
+            </dl>
+          </Container>
+        </section>
+      ) : null}
 
       <Section tone="white">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -170,7 +210,19 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         ) : null}
       </Section>
 
+      {program.blocks?.length ? (
+        <ProgramBlocks blocks={program.blocks} accent={program.accent} />
+      ) : null}
+
       <EnrollmentSection programSlug={program.slug} />
+
+      {program.disclaimer ? (
+        <Section tone="white" size="narrow" className="!pt-0">
+          <p className="border-t border-navy-900/10 pt-8 text-xs leading-relaxed text-navy-500">
+            {program.disclaimer}
+          </p>
+        </Section>
+      ) : null}
 
       <Section tone="white" size="wide">
         <SectionHeading eyebrow="Keep exploring" title="Other Resource Room" accent="programs." />
