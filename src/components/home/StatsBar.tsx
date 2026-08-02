@@ -20,7 +20,7 @@ export function StatsBar() {
                   pairs (optionally wrapped in a div), and a loose <span>
                   breaks the list semantics for screen readers. */}
               <dt className="display text-5xl sm:text-6xl">
-                {stat.stars ? <Stars className="mb-3 block text-navy-950" /> : null}
+                {stat.stars ? <Stars className="mb-3 flex text-navy-950" /> : null}
                 <CountUp value={stat.value} />
               </dt>
               <dd className="mt-3 text-sm font-medium leading-relaxed text-navy-950/70">

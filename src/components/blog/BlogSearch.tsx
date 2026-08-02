@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { ARCHIVE_GRID, SLOT_BROWSE, SLOT_MAIN, SLOT_SEARCH } from "@/components/blog/BlogArchive";
 import { Icon } from "@/components/icons";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { formatDate, searchPosts, tagSlug, type SearchEntry } from "@/lib/blog";
+import { cn } from "@/lib/cn";
 
 /**
  * Search over the blog, layered on top of the server-rendered archive.
@@ -18,7 +20,16 @@ import { formatDate, searchPosts, tagSlug, type SearchEntry } from "@/lib/blog";
  * The query is mirrored into `?q=` with `replaceState` so a result set can be
  * shared or reloaded without pushing an entry onto the back stack per keypress.
  */
-export function BlogSearch({ index, children }: { index: SearchEntry[]; children: ReactNode }) {
+export function BlogSearch({
+  index,
+  sidebar,
+  children,
+}: {
+  index: SearchEntry[];
+  /** Browse controls, rendered on the server and placed in the left rail. */
+  sidebar: ReactNode;
+  children: ReactNode;
+}) {
   /*
    * Seeded from ?q= so a shared search URL opens on its results. Read through
    * `useSearchParams` rather than an effect: this page is statically
@@ -52,81 +63,86 @@ export function BlogSearch({ index, children }: { index: SearchEntry[]; children
   const searching = query.trim().length > 0;
 
   return (
-    <>
-      <form
-        role="search"
-        onSubmit={(event) => event.preventDefault()}
-        className="relative max-w-xl"
-      >
-        <label htmlFor="blog-search" className="sr-only">
-          Search the blog
-        </label>
-        <Icon
-          name="target"
-          aria-hidden="true"
-          className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-500"
-        />
-        <input
-          id="blog-search"
-          ref={inputRef}
-          type="search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search posts — try “SAT”, “autism”, “homeschool”"
-          /* text-base on mobile: iOS zooms the viewport on any focused control
+    <div className={ARCHIVE_GRID}>
+      <div className={SLOT_SEARCH}>
+        <form role="search" onSubmit={(event) => event.preventDefault()} className="relative">
+          <label htmlFor="blog-search" className="sr-only">
+            Search the blog
+          </label>
+          <Icon
+            name="target"
+            aria-hidden="true"
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-500"
+          />
+          <input
+            id="blog-search"
+            ref={inputRef}
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            /* Short: the rail is 19rem, and a longer hint truncates mid-word. */
+            placeholder="Search posts…"
+            /* text-base on mobile: iOS zooms the viewport on any focused control
              under 16px and never zooms back out. */
-          className="w-full min-w-0 rounded-none border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-600 sm:text-sm"
-        />
+            className="w-full min-w-0 rounded-none border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-600 sm:text-sm"
+          />
+          {searching ? (
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                inputRef.current?.focus();
+              }}
+              className="absolute right-1 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center text-navy-500 hover:text-navy-950"
+            >
+              <Icon name="close" className="h-4 w-4" />
+              <span className="sr-only">Clear search</span>
+            </button>
+          ) : null}
+        </form>
+      </div>
+
+      <div className={SLOT_MAIN}>
+        <p aria-live="polite" className="sr-only">
+          {searching
+            ? `${results.length} ${results.length === 1 ? "post" : "posts"} matching ${query}.`
+            : ""}
+        </p>
+
         {searching ? (
-          <button
-            type="button"
-            onClick={() => {
-              setQuery("");
-              inputRef.current?.focus();
-            }}
-            className="absolute right-1 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center text-navy-500 hover:text-navy-950"
-          >
-            <Icon name="close" className="h-4 w-4" />
-            <span className="sr-only">Clear search</span>
-          </button>
-        ) : null}
-      </form>
+          <section aria-label="Search results">
+            <p className="text-sm font-bold uppercase tracking-[0.08em] text-brand-600">
+              {results.length} {results.length === 1 ? "result" : "results"} for “{query}”
+            </p>
 
-      <p aria-live="polite" className="sr-only">
-        {searching
-          ? `${results.length} ${results.length === 1 ? "post" : "posts"} matching ${query}.`
-          : ""}
-      </p>
+            {results.length ? (
+              <ul className="mt-8 grid gap-x-6 gap-y-14 sm:grid-cols-2">
+                {results.map((post) => (
+                  <li key={post.slug}>
+                    <ResultCard post={post} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="mt-8 border border-navy-900/10 bg-mist p-8">
+                <p className="text-lg font-bold text-navy-950">Nothing matched “{query}”.</p>
+                <p className="mt-2 leading-relaxed text-navy-600">
+                  Try a broader word, or browse by topic in the sidebar. If you are looking for
+                  something specific about your student, calling us is faster than searching —
+                  consultations are always free.
+                </p>
+              </div>
+            )}
+          </section>
+        ) : (
+          children
+        )}
+      </div>
 
-      {searching ? (
-        <section aria-label="Search results" className="mt-10">
-          <p className="text-sm font-bold uppercase tracking-[0.08em] text-brand-600">
-            {results.length} {results.length === 1 ? "result" : "results"} for “{query}”
-          </p>
-
-          {results.length ? (
-            <ul className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-              {results.map((post) => (
-                <li key={post.slug}>
-                  <ResultCard post={post} />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="mt-8 border border-navy-900/10 bg-mist p-8">
-              <p className="text-lg font-bold text-navy-950">Nothing matched “{query}”.</p>
-              <p className="mt-2 leading-relaxed text-navy-600">
-                Try a broader word, or browse by topic below. If you are looking for something
-                specific about your student, calling us is faster than searching — consultations are
-                always free.
-              </p>
-            </div>
-          )}
-        </section>
-      ) : (
-        children
-      )}
-    </>
+      <aside className={cn(SLOT_BROWSE, "border-t border-navy-900/10 pt-10 lg:border-t-0 lg:pt-0")}>
+        {sidebar}
+      </aside>
+    </div>
   );
 }
 

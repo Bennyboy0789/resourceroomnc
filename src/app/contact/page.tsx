@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
-import { pageHeroes } from "@/content/sections";
+import { heroImages, pageHeroes } from "@/content/sections";
 import { addressLine, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ const contactMethods = [
 export default function ContactPage() {
   return (
     <>
-      <PageHero {...pageHeroes.contact} />
+      <PageHero {...pageHeroes.contact} image={heroImages.contact} icon="mail" />
 
       <Section tone="white">
         {/* `min-w-0` on the form column: a grid item defaults to

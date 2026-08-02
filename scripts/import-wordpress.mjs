@@ -57,19 +57,105 @@ const CATEGORY_MAP = {
  * Near-duplicate WordPress tags folded into one canonical tag.
  *
  * Tags were added post by post over five years, so the same idea accumulated
- * several spellings. Three of them — "tutor", "tutoring" and "private
- * tutoring" — were applied to almost the same set of posts, which put three
- * near-identical archives at the top of the tag cloud and made the cloud read
- * as noise rather than navigation.
+ * several spellings — "tutor", "tutoring" and "private tutoring" sat on almost
+ * the same posts, and half the tag list was one-post dead ends that could not
+ * lead a reader anywhere.
  *
- * Merging here rather than in WordPress keeps Joe's tags untouched at the
- * source and keeps this reversible: delete an entry and the next import splits
+ * The line drawn here is synonyms and spelling variants only. Distinct topics
+ * that merely happen to be rare — ADHD, Drones, Robots, Pathways Academy,
+ * Reading Mastery, anxiety in children, Global Careers — keep their own tag
+ * even at one post each. Collapsing those would lose real meaning rather than
+ * remove duplication.
+ *
+ * Merging here rather than in WordPress leaves Joe's tags untouched at the
+ * source and keeps it reversible: delete an entry and the next import splits
  * the tag back out. Keys are matched case-insensitively.
  */
 const TAG_ALIASES = {
+  // Tutoring
   tutor: "Tutoring",
   tutoring: "Tutoring",
   "private tutoring": "Tutoring",
+
+  // Testing. SAT and ACT stay distinct from each other and from the general
+  // testing tag — they are the terms families actually search for.
+  sat: "SAT",
+  "sat test prep": "SAT",
+  act: "ACT",
+  "act test prep": "ACT",
+  "test prep": "Test Prep",
+  "standardized testing": "Test Prep",
+  "standardized tests": "Test Prep",
+  "test-optional": "Test Prep",
+
+  // STEAM. Resource Room brands its own programs STEAM, so that wins over STEM.
+  steam: "STEAM",
+  stem: "STEAM",
+
+  // Autism kept separate from neurodiversity: one is a diagnosis families
+  // search by name, the other is the broader umbrella.
+  autism: "Autism",
+  "autism support": "Autism",
+  "autism resources": "Autism",
+  "autism parenting": "Autism",
+  "neurodiverse learners": "Neurodiversity",
+  "neurodiverse students": "Neurodiversity",
+  neurodiversity: "Neurodiversity",
+
+  // ABA
+  "aba services": "ABA",
+  "aba therapy": "ABA",
+  "applied behavior analysis": "ABA",
+  "behavior therapy": "ABA",
+  "choosing an aba provider": "ABA",
+
+  // Special education
+  "special education": "Special Education",
+  "iep support": "Special Education",
+  "disability support": "Special Education",
+  "inclusive learning": "Special Education",
+
+  // College
+  college: "College Prep",
+  "college prep": "College Prep",
+  "college admissions": "College Prep",
+  "college planning": "College Prep",
+  "admissions strategy": "College Prep",
+  "north carolina colleges": "North Carolina Colleges",
+  "unc chapel hill": "North Carolina Colleges",
+  "unc system": "North Carolina Colleges",
+  "financial aid": "Financial Aid & Scholarships",
+  scholarships: "Financial Aid & Scholarships",
+  "merit scholarships": "Financial Aid & Scholarships",
+  "affordable college education": "Financial Aid & Scholarships",
+  "high school juniors": "High School",
+  "high school seniors": "High School",
+
+  // Language
+  "second language": "Second Language",
+  "language clubs": "Second Language",
+  "language courses": "Second Language",
+  multilingualism: "Second Language",
+  "study abroad": "Study Abroad",
+  "study abroad programs": "Study Abroad",
+
+  // Thinking skills
+  "critical thinking skills": "Critical Thinking",
+  "analytical skills": "Critical Thinking",
+  "problem-solving skills": "Critical Thinking",
+  "informed decision making": "Critical Thinking",
+
+  // Audience and place. "North Carolina" is the safe canonical: a post about
+  // Holly Springs is also about NC, but not the reverse.
+  "parent resources": "Parent Resources",
+  "parent support": "Parent Resources",
+  "holly springs nc": "North Carolina",
+  "north carolina": "North Carolina",
+
+  // Casing only — no merge. Every tag the map touches comes out title-cased,
+  // so these two would otherwise be the only lowercase entries in the cloud.
+  "remote learning": "Remote Learning",
+  "anxiety in children": "Anxiety in Children",
 };
 
 function canonicalTag(name) {

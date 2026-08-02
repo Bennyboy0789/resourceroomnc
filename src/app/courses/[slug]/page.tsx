@@ -10,6 +10,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { courses, coursesInGroup, getCourse } from "@/content/courses";
 import { getProgram } from "@/content/programs";
+import { heroImages } from "@/content/sections";
 import { site } from "@/content/site";
 import { formatPrice, groupIcon, programForGroup } from "@/lib/courses";
 import { stagger } from "@/lib/stagger";
@@ -86,11 +87,20 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
 
+      {/* Each course backs its own masthead with its own artwork. Courses
+          imported without an image fall through to the catalog photo rather
+          than a flat navy panel, so no course page opens on nothing. */}
       <PageHero
         eyebrow={course.group}
         title={course.name}
         description={course.summary || undefined}
         breadcrumb={{ label: "Course catalog", href: "/courses" }}
+        image={
+          course.image
+            ? { src: course.image, alt: course.imageAlt, kind: "tile" }
+            : heroImages.courses
+        }
+        icon={groupIcon(course.group)}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="/contact" size="lg">

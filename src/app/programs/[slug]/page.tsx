@@ -106,7 +106,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                   delay={stagger(index, 0.1)}
                 >
                   <dt className="display text-3xl sm:text-4xl">
-                    {stat.stars ? <Stars className="mb-2 block text-navy-950" /> : null}
+                    {stat.stars ? <Stars className="mb-2 flex text-navy-950" /> : null}
                     {stat.value}
                   </dt>
                   <dd className="mt-2 text-sm font-medium leading-relaxed text-navy-950/70">

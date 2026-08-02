@@ -3,7 +3,14 @@ import { FilterableSchedule } from "@/components/program/FilterableSchedule";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import type { PricingTier, ProgramBlock, ScheduleGroup } from "@/content/programs";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
+import {
+  imagePosition,
+  type PricingTier,
+  type ProgramBlock,
+  type ProgramImage,
+  type ScheduleGroup,
+} from "@/content/programs";
 import { cn } from "@/lib/cn";
 import { stagger } from "@/lib/stagger";
 
@@ -47,7 +54,7 @@ export function ProgramBlocks({
 function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" }) {
   switch (block.kind) {
     case "prose":
-      return <Prose body={block.body} />;
+      return <Prose body={block.body} image={block.image} wide={block.wide} />;
     case "cards":
       return <Cards cards={block.cards} wide={block.wide} accent={accent} />;
     case "steps":
@@ -72,14 +79,34 @@ function chipClass(accent: "sun" | "blue") {
   return accent === "sun" ? "bg-sun-400 text-navy-950" : "bg-brand-50 text-brand-600";
 }
 
-function Prose({ body }: { body: string[] }) {
-  return (
-    <div className="max-w-3xl space-y-5">
+function Prose({ body, image, wide }: { body: string[]; image?: ProgramImage; wide?: boolean }) {
+  const copy = (
+    <div
+      className={cn("space-y-5", !image && !wide && "max-w-3xl", wide && "sm:columns-2 sm:gap-10")}
+    >
       {body.map((paragraph, index) => (
         <Reveal key={paragraph} delay={stagger(index, 0.06)}>
           <p className="text-lg leading-relaxed text-navy-700">{paragraph}</p>
         </Reveal>
       ))}
+    </div>
+  );
+
+  if (!image) return copy;
+
+  return (
+    <div className="grid items-start gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+      {copy}
+      <div className="order-first lg:order-last lg:sticky lg:top-28">
+        <PhotoSlot
+          src={image.src}
+          alt={image.alt}
+          position={imagePosition(image)}
+          icon="users"
+          ratio="4/5"
+          sizes="(min-width: 1024px) 30vw, 100vw"
+        />
+      </div>
     </div>
   );
 }
@@ -263,28 +290,48 @@ function Person({
 }) {
   return (
     <div className="border border-navy-900/10 bg-white p-8 sm:p-10">
-      <p className="text-2xl font-bold tracking-tight text-navy-950">{block.name}</p>
-      <p className="mt-1.5 text-sm font-semibold text-brand-600">{block.credentials}</p>
-
-      <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="space-y-4">
-          {block.body.map((paragraph) => (
-            <p key={paragraph} className="leading-relaxed text-navy-700">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-
-        {block.bullets?.length ? (
-          <ul className="space-y-3 self-start border-l-4 border-navy-900/10 pl-6">
-            {block.bullets.map((bullet) => (
-              <li key={bullet} className="flex gap-3 text-sm leading-relaxed text-navy-700">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                {bullet}
-              </li>
-            ))}
-          </ul>
+      {/* With a portrait the block runs as photo-beside-text; without one the
+          copy takes the full width rather than leaving a gap. */}
+      <div className={cn("grid gap-8", block.image && "lg:grid-cols-[0.9fr_1.6fr] lg:gap-12")}>
+        {block.image ? (
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <PhotoSlot
+              src={block.image.src}
+              alt={block.image.alt}
+              position={imagePosition(block.image)}
+              icon="users"
+              tone={accent === "sun" ? "sun" : "brand"}
+              ratio="4/5"
+              sizes="(min-width: 1024px) 30vw, 100vw"
+            />
+          </div>
         ) : null}
+
+        <div className="min-w-0">
+          <p className="text-2xl font-bold tracking-tight text-navy-950">{block.name}</p>
+          <p className="mt-1.5 text-sm font-semibold text-brand-600">{block.credentials}</p>
+
+          <div className={cn("mt-6 grid gap-8", !block.image && "lg:grid-cols-[1.2fr_0.8fr]")}>
+            <div className="space-y-4">
+              {block.body.map((paragraph) => (
+                <p key={paragraph} className="leading-relaxed text-navy-700">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {block.bullets?.length ? (
+              <ul className="space-y-3 self-start border-l-4 border-navy-900/10 pl-6">
+                {block.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-3 text-sm leading-relaxed text-navy-700">
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       {block.summary ? (
@@ -416,21 +463,42 @@ function Dates({
   );
 }
 
+/**
+ * FAQ accordion, running the full section width in two columns from `lg`.
+ *
+ * These lists get long — the advocacy page carries six questions and the SAT
+ * page seven — and a single narrow column left most of the section empty while
+ * pushing the last question far down the page. Splitting the items in half
+ * rather than using CSS columns keeps each `<details>` intact: a column break
+ * through an open answer would separate it from its question.
+ */
 function Faq({ items }: { items: { q: string; a: string }[] }) {
+  const half = Math.ceil(items.length / 2);
+  const columns = [items.slice(0, half), items.slice(half)];
+
   return (
-    <div className="max-w-3xl divide-y divide-navy-900/10 border-y border-navy-900/10">
-      {items.map((item) => (
-        <details key={item.q} className="group">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left text-base font-bold tracking-tight text-navy-950 [&::-webkit-details-marker]:hidden">
-            {item.q}
-            <Icon
-              name="chevronDown"
-              className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"
-            />
-          </summary>
-          <p className="pb-6 leading-relaxed text-navy-600">{item.a}</p>
-        </details>
-      ))}
+    <div className="grid gap-x-12 lg:grid-cols-2">
+      {columns.map((column, index) =>
+        column.length ? (
+          <div
+            key={index}
+            className="divide-y divide-navy-900/10 border-t border-navy-900/10 last:border-b lg:border-b"
+          >
+            {column.map((item) => (
+              <details key={item.q} className="group">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left text-base font-bold tracking-tight text-navy-950 [&::-webkit-details-marker]:hidden">
+                  {item.q}
+                  <Icon
+                    name="chevronDown"
+                    className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"
+                  />
+                </summary>
+                <p className="pb-6 leading-relaxed text-navy-600">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        ) : null,
+      )}
     </div>
   );
 }

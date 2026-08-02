@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogArchiveSection } from "@/components/blog/BlogArchive";
+import { BlogArchive, BlogArchiveLayout } from "@/components/blog/BlogArchive";
 import { FinalCta } from "@/components/home/FinalCta";
 import { PageHero } from "@/components/PageHero";
 import { blogTags, posts } from "@/content/blog";
@@ -54,12 +54,13 @@ export default async function BlogTagPage({ params }: PageProps<"/blog/tag/[tag]
         breadcrumb={{ label: "All posts", href: "/blog" }}
       />
 
-      <BlogArchiveSection
-        page={page}
-        href={() => `/blog/tag/${tag}`}
-        activeTag={name}
-        emptyMessage="Nothing is tagged this way yet."
-      />
+      <BlogArchiveLayout activeTag={name}>
+        <BlogArchive
+          page={page}
+          href={() => `/blog/tag/${tag}`}
+          emptyMessage="Nothing is tagged this way yet."
+        />
+      </BlogArchiveLayout>
 
       <FinalCta />
     </>

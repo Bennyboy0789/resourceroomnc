@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogArchiveSection } from "@/components/blog/BlogArchive";
+import { BlogArchive, BlogArchiveLayout } from "@/components/blog/BlogArchive";
 import { FinalCta } from "@/components/home/FinalCta";
 import { PageHero } from "@/components/PageHero";
 import { posts } from "@/content/blog";
@@ -47,7 +47,9 @@ export default async function BlogPagedPage({ params }: PageProps<"/blog/page/[p
         breadcrumb={{ label: "Latest posts", href: "/blog" }}
       />
 
-      <BlogArchiveSection page={paged} href={(p) => (p === 1 ? "/blog" : `/blog/page/${p}`)} />
+      <BlogArchiveLayout>
+        <BlogArchive page={paged} href={(p) => (p === 1 ? "/blog" : `/blog/page/${p}`)} />
+      </BlogArchiveLayout>
 
       <FinalCta />
     </>

@@ -20,6 +20,17 @@ export type SectionCopy = {
   description?: string;
 };
 
+/**
+ * Background photograph for a page masthead.
+ *
+ * `kind` matches `ProgramImage` so PageHero can crop both the same way.
+ */
+export type HeroImage = {
+  src: string;
+  alt: string;
+  kind: "photo" | "tile";
+};
+
 export const homeSections = {
   quickLinks: { title: "Explore Our Programs" },
 
@@ -47,8 +58,7 @@ export const homeSections = {
     eyebrow: "Every program",
     title: "A program for every",
     accent: "student.",
-    description:
-      "Students often start in one program and move into another as their needs change.",
+    description: "Students often start in one program and move into another as their needs change.",
   },
 
   testimonials: {
@@ -63,6 +73,32 @@ export const homeSections = {
     accent: "programs.",
   },
 } satisfies Record<string, SectionCopy>;
+
+/**
+ * Masthead photography, keyed to the hero it backs.
+ *
+ * Every image here is a real Resource Room photograph pulled from the live
+ * site's media library, not stock. There is no exterior/storefront shot in
+ * that library — worth asking Joe for one, since it is the obvious image for
+ * the About page.
+ */
+export const heroImages = {
+  about: {
+    src: "/images/learning-center-classroom.jpg",
+    alt: "Students working at tables in a Resource Room classroom, with a whiteboard and floor-to-ceiling windows behind them.",
+    kind: "photo",
+  },
+  courses: {
+    src: "/images/program-camps.jpg",
+    alt: "Students stretching glow-in-the-dark slime during a hands-on STEAM session.",
+    kind: "photo",
+  },
+  contact: {
+    src: "/images/consultation.jpg",
+    alt: "A Resource Room educator talking a parent through options across a desk.",
+    kind: "photo",
+  },
+} satisfies Record<string, HeroImage>;
 
 export const pageHeroes = {
   about: {

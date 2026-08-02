@@ -6,7 +6,7 @@ import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { courseGroups, courses, coursesInGroup } from "@/content/courses";
-import { pageHeroes } from "@/content/sections";
+import { heroImages, pageHeroes } from "@/content/sections";
 import { formatPrice, groupIcon } from "@/lib/courses";
 import { stagger } from "@/lib/stagger";
 
@@ -20,7 +20,12 @@ export const metadata: Metadata = {
 export default function CoursesPage() {
   return (
     <>
-      <PageHero {...pageHeroes.courses} breadcrumb={{ label: "All programs", href: "/programs" }} />
+      <PageHero
+        {...pageHeroes.courses}
+        image={heroImages.courses}
+        icon="sparkle"
+        breadcrumb={{ label: "All programs", href: "/programs" }}
+      />
 
       <Section tone="white" size="wide">
         <nav aria-label="Course groups" className="flex flex-wrap gap-2">

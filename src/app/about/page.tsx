@@ -8,7 +8,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { coreValues, foundingStory, philosophy } from "@/content/about";
-import { pageHeroes } from "@/content/sections";
+import { heroImages, pageHeroes } from "@/content/sections";
 import { aboutHighlights, founders, whyChooseUs } from "@/content/home";
 import { addressLine, nyAddressLine, site } from "@/content/site";
 import { stagger } from "@/lib/stagger";
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHero {...pageHeroes.about}>
+      <PageHero {...pageHeroes.about} image={heroImages.about} icon="users">
         <Button href="/contact" size="lg">
           Send Us A Message
         </Button>

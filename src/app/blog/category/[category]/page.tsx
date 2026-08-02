@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogArchiveSection } from "@/components/blog/BlogArchive";
+import { BlogArchive, BlogArchiveLayout } from "@/components/blog/BlogArchive";
 import { FinalCta } from "@/components/home/FinalCta";
 import { PageHero } from "@/components/PageHero";
 import { blogCategories, posts } from "@/content/blog";
@@ -45,12 +45,13 @@ export default async function BlogCategoryPage({ params }: PageProps<"/blog/cate
         breadcrumb={{ label: "All posts", href: "/blog" }}
       />
 
-      <BlogArchiveSection
-        page={page}
-        href={() => `/blog/category/${category}`}
-        activeCategory={name}
-        emptyMessage="No posts in this category yet."
-      />
+      <BlogArchiveLayout activeCategory={name}>
+        <BlogArchive
+          page={page}
+          href={() => `/blog/category/${category}`}
+          emptyMessage="No posts in this category yet."
+        />
+      </BlogArchiveLayout>
 
       <FinalCta />
     </>

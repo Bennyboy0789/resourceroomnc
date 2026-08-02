@@ -92,7 +92,14 @@ type BlockHeading = {
  * these blocks — the page renderer walks the list and alternates section tones.
  */
 export type ProgramBlock =
-  | (BlockHeading & { kind: "prose"; body: string[] })
+  | (BlockHeading & {
+      kind: "prose";
+      body: string[];
+      /** Sets the copy beside a photograph instead of in a single column. */
+      image?: ProgramImage;
+      /** Drops the reading-measure cap and runs the copy in two columns. */
+      wide?: boolean;
+    })
   | (BlockHeading & {
       kind: "cards";
       cards: { title: string; body: string; icon?: IconName }[];
@@ -112,6 +119,8 @@ export type ProgramBlock =
       bullets?: string[];
       /** Pull quote closing the block. */
       summary?: string;
+      /** Portrait. Falls back to an initial-style panel when absent. */
+      image?: ProgramImage;
     })
   | (BlockHeading & {
       kind: "schedule";
@@ -1745,6 +1754,17 @@ export const programs: Program[] = [
         accent: "Cuccurullo.",
         name: "Joe Cuccurullo",
         credentials: "Co-founder, Resource Room Learning Center",
+        /*
+         * The founders photograph — the only picture of Joe we hold. A solo
+         * headshot would serve this page better: it is where he presents his
+         * licensure and classroom record to a parent deciding whether to bring
+         * him into an IEP meeting.
+         */
+        image: {
+          src: "/images/founders.jpg",
+          alt: "Joe Cuccurullo, co-founder of Resource Room, with Sam and their son at the Holly Springs learning center.",
+          kind: "photo",
+        },
         body: [
           "I have built my entire career around one belief: every child can learn when the right supports are in place. I started as a classroom teacher, and in 2015 my wife Sam and I founded Resource Room to do education the way we always believed it should be done, one student at a time. Today our family of programs reaches well beyond tutoring.",
           "Through Pathways Academy and our ABA support work, we serve neurodiverse students every single day. That means I am not learning the special education world from a textbook. I live in it. I am a licensed special education teacher who has taught in both the New York City and Wake County (WCPSS) public school systems, and I served as a Behavior Support Teacher working directly with the students who needed the most help. Advocacy is simply me bringing that experience to your side of the table.",
@@ -1830,6 +1850,13 @@ export const programs: Program[] = [
         eyebrow: "The most overlooked tool",
         title: "Why Prior Written Notice",
         accent: "matters.",
+        /* Paired with a photograph: this sits between two dense card grids and
+           was the one section on the page that read as a wall of text. */
+        image: {
+          src: "/images/consultation.jpg",
+          alt: "A Resource Room educator talking a parent through paperwork across a desk.",
+          kind: "photo",
+        },
         body: [
           "Prior Written Notice, or PWN, is one of the most powerful and most overlooked parts of the entire process. Any time the school proposes or refuses to change your child's identification, evaluation, placement, or services, they are required to put it in writing: what they decided, why, what options they considered, and what they ruled out.",
           "A well-done PWN creates a clear record, holds everyone accountable to what was actually agreed, and protects your child if a disagreement ever comes up later. I make sure these decisions are documented the right way, every time.",

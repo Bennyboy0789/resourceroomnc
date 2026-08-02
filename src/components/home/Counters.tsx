@@ -17,7 +17,7 @@ export function Counters() {
           {counters.map((counter, index) => (
             <Reveal key={counter.label} delay={stagger(index, 0.08)}>
               <dt className="display text-5xl text-sun-400 sm:text-6xl">
-                {counter.stars ? <Stars className="mb-3 block text-sun-400" /> : null}
+                {counter.stars ? <Stars className="mb-3 flex text-sun-400" /> : null}
                 <CountUp value={`${counter.value}${counter.suffix ?? ""}`} />
               </dt>
               <dd className="mt-3 text-sm font-medium leading-relaxed text-white/70">
