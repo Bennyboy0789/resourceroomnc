@@ -6,9 +6,11 @@ type Variant = "primary" | "outline" | "navy" | "quiet";
 type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  /** Gold fill — the main call to action anywhere on the site. */
+  /** Gold fill — the main call to action anywhere on the site. Hover deepens to
+      sun-600, which exists purely as the pressed state: the brand gold is the
+      rest state, so the hover has to move away from it to register at all. */
   primary:
-    "bg-sun-500 text-navy-950 hover:bg-sun-400 focus-visible:outline-sun-400 shadow-sm",
+    "bg-sun-500 text-navy-950 hover:bg-sun-600 focus-visible:outline-navy-900 shadow-sm",
   /** Outlined — pairs with `primary` on dark sections. */
   outline:
     "border border-white/35 text-white hover:bg-white/10 hover:border-white/60 focus-visible:outline-white",

@@ -42,9 +42,9 @@ export function TagCloud({
               /* py-1.5 keeps the hit area comfortable even on the smallest
                  step, where the text alone would be a ~20px target. */
               className={cn(
-                "inline-flex items-baseline gap-1.5 py-1.5 font-bold tracking-tight transition-colors hover:text-brand-700",
+                "inline-flex items-baseline gap-1.5 py-1.5 font-bold tracking-tight transition-colors hover:text-brand-500",
                 step.className,
-                active && "text-brand-700 underline underline-offset-4",
+                active && "text-brand-500 underline underline-offset-4",
               )}
             >
               {tag.name}

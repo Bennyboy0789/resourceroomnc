@@ -69,7 +69,7 @@ export function Footer() {
                heading, so a screen-reader user can jump straight to
                "Programs" instead of walking a single 20-link list. */
             <nav key={column.title} aria-label={column.title}>
-              <p className="eyebrow text-sun-400">{column.title}</p>
+              <p className="eyebrow text-sun-500">{column.title}</p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {column.links.map((link) => (
                   <li key={link.label}>

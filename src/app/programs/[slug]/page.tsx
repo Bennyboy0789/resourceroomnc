@@ -138,8 +138,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                   <span
                     className={
                       program.accent === "sun"
-                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-400 text-navy-950"
-                        : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600"
+                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-500 text-navy-950"
+                        : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-500"
                     }
                   >
                     <Icon name="check" className="h-4 w-4" />
@@ -167,11 +167,11 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
               priority
             />
             <div className="mt-5 rounded-none border border-navy-900/10 bg-mist p-6">
-              <p className="eyebrow text-brand-600">Who it&rsquo;s for</p>
+              <p className="eyebrow text-brand-500">Who it&rsquo;s for</p>
               <ul className="mt-4 space-y-3">
                 {program.audience.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-navy-700">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                     {item}
                   </li>
                 ))}
@@ -189,7 +189,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
               key={item}
               className="flex gap-4 rounded-none border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
             >
-              <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+              <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
               {item}
             </li>
           ))}
@@ -259,14 +259,14 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                       className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </Link>
-                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
                     {course.grades ? <span>{course.grades}</span> : null}
                     {course.price ? (
                       <span className="text-navy-950">{formatPrice(course.price)}</span>
                     ) : null}
                   </p>
                   <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
-                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-700">
+                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-500">
                       {course.name}
                     </Link>
                   </h3>

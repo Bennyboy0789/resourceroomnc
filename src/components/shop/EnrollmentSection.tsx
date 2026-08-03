@@ -34,7 +34,7 @@ export async function EnrollmentSection({ programSlug }: { programSlug: string }
       </div>
 
       <p className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-navy-600">
-        <Icon name="phone" className="h-4 w-4 shrink-0 text-brand-600" />
+        <Icon name="phone" className="h-4 w-4 shrink-0 text-brand-500" />
         Not sure which option fits? Call {site.phone} and we will walk you through it.
         <Button href={site.consultationUrl} variant="quiet">
           Free consultation

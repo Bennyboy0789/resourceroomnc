@@ -128,7 +128,7 @@ export function CartPageContents() {
 
       <aside className="lg:sticky lg:top-28 lg:self-start">
         <div className="border border-navy-950/12 bg-mist p-7">
-          <h2 className="eyebrow text-brand-600">Summary</h2>
+          <h2 className="eyebrow text-brand-500">Summary</h2>
           <div className="mt-5 flex items-baseline justify-between">
             <span className="text-sm text-navy-600">Subtotal</span>
             <span className="text-2xl font-extrabold text-navy-950">
@@ -149,7 +149,7 @@ export function CartPageContents() {
             type="button"
             onClick={checkout}
             disabled={busy}
-            className="mt-6 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-400 disabled:opacity-60"
+            className="mt-6 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-500 disabled:opacity-60"
           >
             {busy ? "Redirecting…" : "Checkout"}
             {busy ? null : <Icon name="arrowRight" className="h-4 w-4" />}

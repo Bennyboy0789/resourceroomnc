@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
               All posts
             </Link>
 
-            <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+            <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
               {post.categories.map((category) => (
                 <Link
                   key={category}
@@ -186,7 +186,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           before deciding whether to trust a post about their child's IEP. */}
       <Container size="default" className="pb-14">
         <div className="max-w-2xl border-t border-navy-900/10 pt-8">
-          <p className="eyebrow text-brand-600">Written by</p>
+          <p className="eyebrow text-brand-500">Written by</p>
           <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:gap-6">
             {post.author.image ? (
               <Image
@@ -201,14 +201,14 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
             <div className="min-w-0">
               <p className="text-lg font-bold tracking-tight text-navy-950">{post.author.name}</p>
               {post.author.jobTitle ? (
-                <p className="mt-1 text-sm font-semibold text-brand-600">{post.author.jobTitle}</p>
+                <p className="mt-1 text-sm font-semibold text-brand-500">{post.author.jobTitle}</p>
               ) : null}
               {post.author.description ? (
                 <p className="mt-3 leading-relaxed text-navy-600">{post.author.description}</p>
               ) : null}
               <Link
                 href={post.author.url ?? "/about"}
-                className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950 hover:text-brand-700"
+                className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950 hover:text-brand-500"
               >
                 More about Resource Room
                 <Icon name="arrowRight" className="h-4 w-4" />
@@ -221,7 +221,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
       {post.tags.length ? (
         <Container size="default" className="pb-14">
           <div className="max-w-2xl border-t border-navy-900/10 pt-8">
-            <h2 className="eyebrow text-brand-600">Tagged</h2>
+            <h2 className="eyebrow text-brand-500">Tagged</h2>
             <ul className="mt-4 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <li key={tag}>

@@ -66,15 +66,15 @@ export default async function ConfirmedPage({
             </h2>
             <ul className="mt-5 space-y-4 text-sm leading-relaxed text-navy-700">
               <li className="flex gap-3">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />A receipt is
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />A receipt is
                 on its way{email ? ` to ${email}` : ""}.
               </li>
               <li className="flex gap-3">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />A member of
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />A member of
                 our team will reach out within one business day to confirm scheduling.
               </li>
               <li className="flex gap-3">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                 Questions before then? Call {site.phone} or email {site.email}.
               </li>
             </ul>

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 export default function NotFound() {
   return (
     <Container className="py-24 text-center sm:py-32">
-      <p className="eyebrow text-brand-600">404</p>
+      <p className="eyebrow text-brand-500">404</p>
       <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-navy-950 sm:text-5xl">
         We couldn&rsquo;t find that page.
       </h1>

@@ -55,7 +55,7 @@ export function PageHero({
       ) : (
         <div
           aria-hidden="true"
-          className="absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-brand-600/25 blur-3xl"
+          className="absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-brand-500/25 blur-3xl"
         />
       )}
 
@@ -70,7 +70,7 @@ export function PageHero({
           </Link>
         ) : null}
 
-        {eyebrow ? <p className="eyebrow text-sun-400">{eyebrow}</p> : null}
+        {eyebrow ? <p className="eyebrow text-sun-500">{eyebrow}</p> : null}
 
         <h1 className="display mt-5 max-w-4xl text-balance text-5xl sm:text-6xl lg:text-7xl">
           {title}

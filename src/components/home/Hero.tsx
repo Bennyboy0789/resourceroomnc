@@ -26,7 +26,7 @@ export function Hero() {
       <Container size="wide" className="relative flex flex-1 items-end pb-14 pt-32 sm:pb-16">
         <div className="max-w-4xl">
           <RevealOnLoad>
-            <p className="eyebrow flex items-center gap-2.5 text-sun-400">
+            <p className="eyebrow flex items-center gap-2.5 text-sun-500">
               <Stars className="text-sun-500" />
               100+ Five-Star Reviews
             </p>
@@ -79,7 +79,7 @@ export function Hero() {
                 {award.stars ? (
                   <Stars className="shrink-0 text-sun-500" />
                 ) : (
-                  <Icon name="badge" className="h-5 w-5 shrink-0 text-sun-400" />
+                  <Icon name="badge" className="h-5 w-5 shrink-0 text-sun-500" />
                 )}
                 <div className="min-w-0">
                   <p className="text-xs font-bold uppercase leading-tight tracking-[0.06em] text-white">

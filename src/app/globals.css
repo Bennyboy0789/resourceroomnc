@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
 /*
- * Resource Room design tokens, sampled from the live brand assets:
- *   logo blue   #3d60a9   logo yellow #fff100   site link blue #064ea4
+ * Resource Room design tokens. The brand is exactly two colors:
  *
- * Usage rule that follows from the palette: the brand yellow is a FILL, not
+ *   BLUE  #3d60a9  (brand-500)     GOLD  #fff100  (sun-500)
+ *
+ * Those two are the anchors and they are what the site actually shows —
+ * every eyebrow, icon, accent word and fill resolves to one of them. The
+ * neighbouring steps are not alternative brand colors; each exists for one
+ * mechanical reason and is labelled below. Do not reach for a -600 because it
+ * "looks better" in a spot: that is how the palette drifted off-brand before.
+ *
+ * Usage rule that follows from the palette: the brand gold is a FILL, not
  * ink. On dark surfaces it works as text/icons; on white it must carry dark
- * ink on top of it (bg-sun-400 + text-navy-900), and blue takes over as the
+ * ink on top of it (bg-sun-500 + text-navy-950), and blue takes over as the
  * accent color. Each --color-* key becomes a utility (bg-navy-900, text-sun-500, ...).
  */
 @theme {
@@ -21,24 +28,30 @@
      fails on mist, which is where most of the muted text actually sits. */
   --color-navy-500: #5a6c92;
 
-  /* Royal blue — the logo blue and its neighbours. */
+  /* Brand blue. 500 IS the logo blue and carries every blue accent on the
+     site: 6.10:1 on white, 5.63:1 on mist, 5.37:1 on frost — AA everywhere it
+     is used as text. 50/100/400 are tints for fills and gradients; 600 is the
+     one darker step, reserved for hover and the end of a blue gradient. */
   --color-brand-50: #eef3fc;
   --color-brand-100: #dbe5f7;
   --color-brand-400: #6f8fcd;
   --color-brand-500: #3d60a9;
-  --color-brand-600: #2f4f92;
-  --color-brand-700: #064ea4;
+  --color-brand-600: #324f8b;
 
-  /* Brand yellow. 500 is the logo value; 600 is deepened so rating stars and
-     other small marks stay legible against white. */
+  /* Brand gold. 500 IS the logo gold and carries every gold accent: 15.4:1 on
+     navy-950, so it is the strongest mark on any dark surface. */
   --color-sun-50: #fffce6;
   --color-sun-200: #fff59a;
-  --color-sun-400: #f4d84a;
   --color-sun-500: #fff100;
-  /* Gold ink for rating stars on light surfaces. The old #c8a600 measured
-     2.36:1 on white and failed WCAG 1.4.11's 3:1 floor for graphical objects;
-     this clears it at 3.88:1 on white and 3.59:1 on mist. */
-  --color-sun-600: #9a7f00;
+  /* Deepened gold — the pressed/hover state under a sun-500 fill. The brand
+     gold is the rest state, so a hover has to move off it to register at all,
+     and this still carries navy ink at 12.3:1. */
+  --color-sun-600: #e6d900;
+  /* Gold ink for rating stars on light surfaces. The brand gold is invisible
+     as ink on white (1.18:1); the old #c8a600 measured 2.36:1 and still failed
+     WCAG 1.4.11's 3:1 floor for graphical objects. This clears it at 3.88:1 on
+     white and 3.59:1 on mist. Ink only — never a fill. */
+  --color-sun-700: #9a7f00;
 
   /* Error state. The brand has no red, and signalling a failed form with the
      same gold used for awards reads as decoration rather than a problem.
@@ -78,7 +91,7 @@ body {
  * survives on both light and dark surfaces.
  */
 :focus-visible {
-  outline: 3px solid var(--color-brand-700);
+  outline: 3px solid var(--color-brand-500);
   outline-offset: 2px;
   border-radius: 2px;
   box-shadow: 0 0 0 5px #ffffff;
@@ -284,7 +297,7 @@ body {
   }
 
   a {
-    color: var(--color-brand-700);
+    color: var(--color-brand-500);
     text-decoration: underline;
     text-underline-offset: 3px;
 

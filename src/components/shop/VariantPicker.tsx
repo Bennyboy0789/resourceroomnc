@@ -126,7 +126,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
 
         return (
           <fieldset key={attribute.name} className="mt-7">
-            <legend className="eyebrow mb-3 text-brand-600">{attribute.name}</legend>
+            <legend className="eyebrow mb-3 text-brand-500">{attribute.name}</legend>
             <div className="flex flex-wrap gap-2">
               {attribute.options.map((option) => {
                 const available = reachable.some(
@@ -161,7 +161,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
 
       {informational.map((attribute) => (
         <fieldset key={attribute.name} className="mt-7">
-          <legend className="eyebrow mb-3 text-brand-600">{attribute.name}</legend>
+          <legend className="eyebrow mb-3 text-brand-500">{attribute.name}</legend>
           <div className="flex flex-wrap gap-2">
             {attribute.options.map((option) => {
               const active = notes[attribute.name] === option;

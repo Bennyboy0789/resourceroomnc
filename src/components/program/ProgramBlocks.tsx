@@ -76,7 +76,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
 
 /** Gold on sun-accented programs, blue on the rest. */
 function chipClass(accent: "sun" | "blue") {
-  return accent === "sun" ? "bg-sun-400 text-navy-950" : "bg-brand-50 text-brand-600";
+  return accent === "sun" ? "bg-sun-500 text-navy-950" : "bg-brand-50 text-brand-500";
 }
 
 function Prose({ body, image, wide }: { body: string[]; image?: ProgramImage; wide?: boolean }) {
@@ -172,7 +172,7 @@ function Steps({
               <h3 className="text-lg font-bold tracking-tight text-navy-950">{step.title}</h3>
               <p className="mt-2 leading-relaxed text-navy-600">{step.body}</p>
               {step.note ? (
-                <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+                <p className="mt-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
                   {step.note}
                 </p>
               ) : null}
@@ -245,7 +245,7 @@ function Pricing({
               <ul className="mt-6 space-y-3 border-t border-navy-900/8 pt-6">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex gap-3 text-sm leading-relaxed text-navy-700">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                     {feature}
                   </li>
                 ))}
@@ -309,7 +309,7 @@ function Person({
 
         <div className="min-w-0">
           <p className="text-2xl font-bold tracking-tight text-navy-950">{block.name}</p>
-          <p className="mt-1.5 text-sm font-semibold text-brand-600">{block.credentials}</p>
+          <p className="mt-1.5 text-sm font-semibold text-brand-500">{block.credentials}</p>
 
           <div className={cn("mt-6 grid gap-8", !block.image && "lg:grid-cols-[1.2fr_0.8fr]")}>
             <div className="space-y-4">
@@ -324,7 +324,7 @@ function Person({
               <ul className="space-y-3 self-start border-l-4 border-navy-900/10 pl-6">
                 {block.bullets.map((bullet) => (
                   <li key={bullet} className="flex gap-3 text-sm leading-relaxed text-navy-700">
-                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                     {bullet}
                   </li>
                 ))}
@@ -409,7 +409,7 @@ function ScheduleCard({ group, index }: { group: ScheduleGroup; index: number })
         </dl>
 
         {group.note ? (
-          <p className="mt-5 border-t border-navy-900/8 pt-4 text-xs leading-relaxed text-brand-600">
+          <p className="mt-5 border-t border-navy-900/8 pt-4 text-xs leading-relaxed text-brand-500">
             {group.note}
           </p>
         ) : null}
@@ -424,7 +424,7 @@ function Checklist({ items }: { items: string[] }) {
       {items.map((item, index) => (
         <Reveal key={item} as="li" delay={stagger(index, 0.04)}>
           <div className="flex h-full gap-4 border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700">
-            <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+            <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
             {item}
           </div>
         </Reveal>
@@ -497,7 +497,7 @@ function Faq({ items }: { items: { q: string; a: string }[] }) {
                   <h3 className="text-base font-bold tracking-tight text-navy-950">{item.q}</h3>
                   <Icon
                     name="chevronDown"
-                    className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"
+                    className="mt-1 h-4 w-4 shrink-0 text-brand-500 transition-transform group-open:rotate-180"
                   />
                 </summary>
                 <p className="pb-6 leading-relaxed text-navy-600">{item.a}</p>

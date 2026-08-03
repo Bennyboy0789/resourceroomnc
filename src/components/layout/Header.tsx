@@ -206,7 +206,7 @@ function ProgramMega() {
       <div className="grid gap-8 sm:grid-cols-3">
         {programMenuGroups.map((group) => (
           <div key={group.title}>
-            <p className="eyebrow border-b border-navy-950/10 pb-3 text-brand-600">
+            <p className="eyebrow border-b border-navy-950/10 pb-3 text-brand-500">
               {group.title}
             </p>
             <ul className="mt-4 space-y-1">
@@ -232,7 +232,7 @@ function ProgramMega() {
                         />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-sm font-bold leading-tight text-navy-950 group-hover:text-brand-600">
+                        <span className="block text-sm font-bold leading-tight text-navy-950 group-hover:text-brand-500">
                           {program.shortName}
                         </span>
                         <span className="mt-0.5 block truncate text-xs text-navy-600">
@@ -261,7 +261,7 @@ function ProgramMega() {
           />
           <span aria-hidden="true" className="absolute inset-0 bg-navy-950/45" />
           <span className="absolute inset-0 flex flex-col justify-end p-5">
-            <span className="eyebrow text-sun-400">Not sure which fits?</span>
+            <span className="eyebrow text-sun-500">Not sure which fits?</span>
             <span className="mt-2 text-lg font-extrabold uppercase leading-tight tracking-tight text-white">
               Talk to an educator, free
             </span>

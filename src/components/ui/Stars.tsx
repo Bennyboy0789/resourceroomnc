@@ -12,7 +12,7 @@ export function Stars({ className, label }: { className?: string; label?: string
      * to the right of the viewport, escaping the rail's clipping and giving
      * every page a horizontal scrollbar at narrow widths (WCAG 1.4.10).
      */
-    <span className={cn("relative inline-flex items-center gap-0.5 text-sun-600", className)}>
+    <span className={cn("relative inline-flex items-center gap-0.5 text-sun-700", className)}>
       {Array.from({ length: 5 }, (_, i) => (
         <StarIcon key={i} className="h-4 w-4" />
       ))}

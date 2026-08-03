@@ -92,7 +92,7 @@ export default function JoinOurTeamPage() {
               key={role.title}
               className="flex gap-5 rounded-none border border-navy-900/10 bg-white p-6"
             >
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-brand-50 text-brand-600">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-brand-50 text-brand-500">
                 <Icon name={role.icon} className="h-5 w-5" />
               </span>
               <div>
@@ -117,7 +117,7 @@ export default function JoinOurTeamPage() {
               key={reason.title}
               className="rounded-none border border-navy-900/8 bg-white p-7 text-center"
             >
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-400 text-navy-950">
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sun-500 text-navy-950">
                 <Icon name={reason.icon} className="h-6 w-6" />
               </span>
               <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">

@@ -25,7 +25,7 @@ export function BlogTeaser() {
           <SectionHeading {...homeSections.blogTeaser} />
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950 hover:text-brand-700"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950 hover:text-brand-500"
           >
             All posts
             <Icon name="arrowRight" className="h-4 w-4" />

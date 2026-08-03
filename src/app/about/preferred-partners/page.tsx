@@ -32,7 +32,7 @@ export default function PreferredPartnersPage() {
             <Reveal key={partner.name} as="li" delay={stagger(index, 0.08)}>
               <article className="border border-navy-900/10 bg-white p-8 sm:p-10">
                 <h2 className="text-2xl font-bold tracking-tight text-navy-950">{partner.name}</h2>
-                <p className="mt-1.5 text-sm font-semibold text-brand-600">{partner.credentials}</p>
+                <p className="mt-1.5 text-sm font-semibold text-brand-500">{partner.credentials}</p>
 
                 <div className="mt-6 max-w-3xl space-y-4">
                   {partner.body.map((paragraph) => (
@@ -54,7 +54,7 @@ export default function PreferredPartnersPage() {
                             : {})}
                         >
                           {link.label}
-                          <Icon name="arrowUpRight" className="h-3.5 w-3.5 text-brand-600" />
+                          <Icon name="arrowUpRight" className="h-3.5 w-3.5 text-brand-500" />
                         </a>
                       </li>
                     ))}
@@ -72,7 +72,7 @@ export default function PreferredPartnersPage() {
           {coreValues.map((value, index) => (
             <Reveal key={value.title} as="li" delay={stagger(index, 0.06)}>
               <div className="h-full border border-navy-900/8 bg-white p-7">
-                <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-400">
+                <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-500">
                   <Icon name={value.icon} className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">

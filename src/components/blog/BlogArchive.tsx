@@ -59,7 +59,7 @@ export function BlogSidebar({
   return (
     <>
       <nav aria-label="Blog categories">
-        <p className="eyebrow text-brand-600">Topics</p>
+        <p className="eyebrow text-brand-500">Topics</p>
         <ul className="mt-4 flex flex-wrap gap-2">
           <li>
             <Link
@@ -88,7 +88,7 @@ export function BlogSidebar({
       </nav>
 
       <div className="mt-10 border-t border-navy-900/10 pt-8">
-        <p className="eyebrow text-brand-600">Tags</p>
+        <p className="eyebrow text-brand-500">Tags</p>
         <div className="mt-4">
           <TagCloud activeTag={activeTag} />
         </div>

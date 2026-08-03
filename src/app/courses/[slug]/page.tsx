@@ -213,7 +213,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
                 className="mt-4 flex items-center justify-between gap-4 border border-navy-900/10 bg-white p-5 transition-colors hover:border-navy-900/30"
               >
                 <span>
-                  <span className="eyebrow block text-brand-600">Part of</span>
+                  <span className="eyebrow block text-brand-500">Part of</span>
                   <span className="mt-1 block font-bold text-navy-950">{program.name}</span>
                 </span>
                 <Icon name="arrowRight" className="h-5 w-5 shrink-0 text-navy-600" />
@@ -232,7 +232,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
                 <h2 className="text-base font-bold tracking-tight text-navy-950">{item.q}</h2>
                 <Icon
                   name="chevronDown"
-                  className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"
+                  className="mt-1 h-4 w-4 shrink-0 text-brand-500 transition-transform group-open:rotate-180"
                 />
               </summary>
               <p className="pb-6 leading-relaxed text-navy-600">{item.a}</p>
@@ -267,7 +267,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
                     />
                   </Link>
                   <h3 className="mt-4 text-base font-bold leading-snug tracking-tight text-navy-950">
-                    <Link href={`/courses/${other.slug}`} className="hover:text-brand-700">
+                    <Link href={`/courses/${other.slug}`} className="hover:text-brand-500">
                       {other.name}
                     </Link>
                   </h3>

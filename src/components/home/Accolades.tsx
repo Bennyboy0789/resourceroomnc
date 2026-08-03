@@ -30,7 +30,7 @@ export function Accolades() {
                     className="h-16 w-auto shrink-0"
                   />
                 ) : (
-                  <span className="grid h-12 w-12 shrink-0 place-items-center bg-navy-900 text-sun-400">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center bg-navy-900 text-sun-500">
                     <Icon name="badge" className="h-6 w-6" />
                   </span>
                 )}

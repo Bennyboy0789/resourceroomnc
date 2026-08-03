@@ -20,7 +20,7 @@ export function QuickLinks() {
   return (
     <div className="border-b border-navy-950/10 bg-white">
       <Container size="wide">
-        <p className="eyebrow border-b border-navy-950/8 py-4 text-brand-600">
+        <p className="eyebrow border-b border-navy-950/8 py-4 text-brand-500">
           {homeSections.quickLinks.title}
         </p>
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4">

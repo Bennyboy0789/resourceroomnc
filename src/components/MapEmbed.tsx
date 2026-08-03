@@ -44,7 +44,7 @@ export function MapEmbed({ query, addressLine }: { query: string; addressLine: s
       />
 
       <div className="relative flex h-full flex-col items-center justify-center gap-4 px-6 text-center">
-        <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-400">
+        <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-500">
           <Icon name="pin" className="h-6 w-6" />
         </span>
         <p className="font-semibold text-navy-950">{addressLine}</p>

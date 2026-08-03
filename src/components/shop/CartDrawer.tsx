@@ -249,7 +249,7 @@ export function CartDrawer() {
                   type="button"
                   onClick={checkout}
                   disabled={busy}
-                  className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-400 disabled:opacity-60"
+                  className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-500 disabled:opacity-60"
                 >
                   {busy ? "Redirecting…" : "Checkout"}
                 </button>
@@ -278,7 +278,7 @@ export function CartButton() {
       type="button"
       onClick={cart.open}
       aria-label={`Open cart, ${cart.count} item${cart.count === 1 ? "" : "s"}`}
-      className="relative grid h-11 w-11 place-items-center text-navy-950 transition-colors hover:text-brand-600"
+      className="relative grid h-11 w-11 place-items-center text-navy-950 transition-colors hover:text-brand-500"
     >
       <Icon name="cart" className="h-5 w-5" />
       {cart.ready && cart.count > 0 ? (

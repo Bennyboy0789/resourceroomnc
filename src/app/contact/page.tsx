@@ -77,7 +77,7 @@ export default function ContactPage() {
                       : {})}
                     className="flex items-start gap-4 rounded-none border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-navy-900 text-sun-400">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-navy-900 text-sun-500">
                       <Icon name={method.icon} className="h-5 w-5" />
                     </span>
                     {/* `min-w-0` + `break-words`: a flex item will not shrink
@@ -85,7 +85,7 @@ export default function ContactPage() {
                         "Learn@ResourceRoomNC.com" is one. Without this the card
                         pushes the page sideways on a narrow screen. */}
                     <span className="min-w-0">
-                      <span className="eyebrow block text-brand-600">{method.label}</span>
+                      <span className="eyebrow block text-brand-500">{method.label}</span>
                       <span className="mt-1.5 block break-words font-semibold text-navy-950">
                         {method.value}
                       </span>
@@ -96,11 +96,11 @@ export default function ContactPage() {
             </ul>
 
             <div className="mt-4 rounded-none border border-navy-900/10 bg-mist p-6">
-              <p className="eyebrow text-brand-600">Hours</p>
+              <p className="eyebrow text-brand-500">Hours</p>
               <p className="mt-2 font-semibold text-navy-950">{site.hours.weekdays}</p>
               <p className="mt-1 text-sm text-navy-600">{site.hours.weekend}</p>
               <p className="mt-4 flex items-center gap-2 border-t border-navy-900/10 pt-4 text-sm font-semibold text-navy-800">
-                <Icon name="check" className="h-4 w-4 text-brand-600" />
+                <Icon name="check" className="h-4 w-4 text-brand-500" />
                 Free consultations, always
               </p>
             </div>

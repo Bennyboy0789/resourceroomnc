@@ -5,7 +5,7 @@ import { founders } from "@/content/home";
 export function Founders() {
   return (
     <EditorialBlock image={founders.image.src} alt={founders.image.alt} align="left">
-      <p className="eyebrow text-sun-400">Our founders</p>
+      <p className="eyebrow text-sun-500">Our founders</p>
       <h2 className="display mt-5 text-balance text-4xl sm:text-5xl">{founders.heading}</h2>
 
       {founders.body.map((paragraph) => (

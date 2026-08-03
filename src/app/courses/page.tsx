@@ -86,14 +86,14 @@ export default function CoursesPage() {
                       className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </Link>
-                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
                     {course.grades ? <span>{course.grades}</span> : null}
                     {course.price ? (
                       <span className="text-navy-950">{formatPrice(course.price)}</span>
                     ) : null}
                   </p>
                   <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
-                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-700">
+                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-500">
                       {course.name}
                     </Link>
                   </h3>

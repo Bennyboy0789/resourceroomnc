@@ -45,7 +45,7 @@ export default function AboutPage() {
       <Section tone="white">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="eyebrow text-brand-600">Our founders</p>
+            <p className="eyebrow text-brand-500">Our founders</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
               {founders.heading}
             </h2>
@@ -104,7 +104,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {whyChooseUs.map((item) => (
             <li key={item.title} className="rounded-none border border-navy-900/8 bg-white p-7">
-              <span className="grid h-12 w-12 place-items-center rounded-none bg-navy-900 text-sun-400">
+              <span className="grid h-12 w-12 place-items-center rounded-none bg-navy-900 text-sun-500">
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">{item.title}</h3>
@@ -120,7 +120,7 @@ export default function AboutPage() {
           {coreValues.map((value, index) => (
             <Reveal key={value.title} as="li" delay={stagger(index, 0.06)}>
               <div className="h-full border border-navy-900/8 bg-white p-7">
-                <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-400">
+                <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-500">
                   <Icon name={value.icon} className="h-5 w-5" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">
@@ -147,7 +147,7 @@ export default function AboutPage() {
             <ul className="mt-8 space-y-4">
               {aboutHighlights.map((item) => (
                 <li key={item.title} className="flex gap-4">
-                  <Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-brand-600" />
+                  <Icon name="check" className="mt-1 h-5 w-5 shrink-0 text-brand-500" />
                   <div>
                     <h3 className="font-bold tracking-tight text-navy-950">{item.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-navy-600">{item.body}</p>
@@ -158,7 +158,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-none border border-navy-900/10 bg-mist p-8">
-            <p className="eyebrow text-brand-600">Our facility</p>
+            <p className="eyebrow text-brand-500">Our facility</p>
             <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy-950">
               Holly Springs, NC
             </h3>
@@ -169,20 +169,20 @@ export default function AboutPage() {
             </p>
             <ul className="mt-6 space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <Icon name="pin" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <Icon name="pin" className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" />
                 {/* Holly Springs only. The Staten Island origin is told as
                     history in the founding story above; printed here beside
                     the operating address it reads as a second branch. */}
                 <span className="text-navy-700">{addressLine}</span>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" />
                 <a href={site.phoneHref} className="font-semibold text-navy-950 hover:underline">
                   {site.phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+                <Icon name="mail" className="mt-0.5 h-5 w-5 shrink-0 text-brand-500" />
                 <a href={site.emailHref} className="text-navy-700 hover:underline">
                   {site.email}
                 </a>

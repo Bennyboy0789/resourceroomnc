@@ -29,7 +29,7 @@ export function TopBar() {
           </a>
           <a
             href={site.phoneHref}
-            className="flex items-center gap-2 font-semibold text-white transition-colors hover:text-sun-400"
+            className="flex items-center gap-2 font-semibold text-white transition-colors hover:text-sun-500"
           >
             <Icon name="phone" className="h-4 w-4 text-sun-500" />
             {site.phone}

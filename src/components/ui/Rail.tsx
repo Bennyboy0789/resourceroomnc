@@ -45,7 +45,7 @@ export function Rail({
               <p
                 className={cn(
                   "eyebrow mb-3",
-                  tone === "dark" ? "text-brand-600" : "text-sun-400",
+                  tone === "dark" ? "text-brand-500" : "text-sun-500",
                 )}
               >
                 {eyebrow}

@@ -84,7 +84,7 @@ export function BlogSearch({
             placeholder="Search posts…"
             /* text-base on mobile: iOS zooms the viewport on any focused control
              under 16px and never zooms back out. */
-            className="w-full min-w-0 rounded-none border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-600 sm:text-sm"
+            className="w-full min-w-0 rounded-none border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm"
           />
           {searching ? (
             <button
@@ -111,7 +111,7 @@ export function BlogSearch({
 
         {searching ? (
           <section aria-label="Search results">
-            <p className="text-sm font-bold uppercase tracking-[0.08em] text-brand-600">
+            <p className="text-sm font-bold uppercase tracking-[0.08em] text-brand-500">
               {results.length} {results.length === 1 ? "result" : "results"} for “{query}”
             </p>
 
@@ -166,14 +166,14 @@ function ResultCard({ post }: { post: SearchEntry }) {
         />
       </Link>
 
-      <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+      <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
         {post.categories[0] ? <span>{post.categories[0]}</span> : null}
         <span className="text-navy-500">{formatDate(post.date)}</span>
         <span className="text-navy-500">{post.readingMinutes} min read</span>
       </p>
 
       <h3 className="mt-3 text-xl font-bold tracking-tight text-balance text-navy-950">
-        <Link href={`/blog/${post.slug}`} className="hover:text-brand-700">
+        <Link href={`/blog/${post.slug}`} className="hover:text-brand-500">
           {post.title}
         </Link>
       </h3>

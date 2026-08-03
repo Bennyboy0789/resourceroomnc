@@ -25,7 +25,7 @@ import { site } from "@/content/site";
  * browser applies that behaviour.
  */
 const fieldClasses =
-  "w-full min-w-0 rounded-none border border-navy-900/40 bg-white px-4 py-3 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-600 sm:text-sm";
+  "w-full min-w-0 rounded-none border border-navy-900/40 bg-white px-4 py-3 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm";
 
 const labelClasses = "block text-sm font-semibold text-navy-950";
 
@@ -48,7 +48,7 @@ export function ContactForm() {
         role="status"
         className="border border-brand-500/30 bg-brand-50 p-6 text-navy-800"
       >
-        <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-600 text-white">
+        <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-500 text-white">
           <Icon name="check" className="h-5 w-5" />
         </span>
         <p className="mt-4 text-lg font-bold text-navy-950">Thanks — that reached us.</p>
@@ -181,7 +181,7 @@ export function CareersForm() {
   if (state.status === "sent") {
     return (
       <div role="status" className="border border-brand-500/30 bg-brand-50 p-6 text-navy-800">
-        <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-600 text-white">
+        <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-500 text-white">
           <Icon name="check" className="h-5 w-5" />
         </span>
         <p className="mt-4 text-lg font-bold text-navy-950">Thanks — we have your details.</p>
@@ -301,7 +301,7 @@ function SubmitButton({ label }: { label: string }) {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex h-[3.25rem] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-7 text-base font-semibold text-navy-950 shadow-sm transition-colors hover:bg-sun-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun-400 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+      className="inline-flex h-[3.25rem] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-7 text-base font-semibold text-navy-950 shadow-sm transition-colors hover:bg-sun-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun-500 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
     >
       {pending ? "Sending…" : label}
       {pending ? null : <Icon name="arrowRight" className="h-4 w-4" />}

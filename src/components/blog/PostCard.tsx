@@ -24,7 +24,7 @@ export function PostCard({
   priority?: boolean;
 }) {
   const meta = (
-    <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+    <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
       {post.categories[0] ? <span>{post.categories[0]}</span> : null}
       <span className="text-navy-500">{formatDate(post.date)}</span>
       <span className="text-navy-500">{post.readingMinutes} min read</span>
@@ -62,7 +62,7 @@ export function PostCard({
             featured ? "text-3xl sm:text-4xl" : "text-xl",
           )}
         >
-          <Link href={`/blog/${post.slug}`} className="hover:text-brand-700">
+          <Link href={`/blog/${post.slug}`} className="hover:text-brand-500">
             {post.title}
           </Link>
         </h2>

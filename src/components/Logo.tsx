@@ -51,7 +51,7 @@ export function Logo({
         <span className="whitespace-nowrap text-lg font-bold tracking-tight text-navy-900">
           Resource Room
         </span>
-        <span className="mt-1 whitespace-nowrap text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-brand-600">
+        <span className="mt-1 whitespace-nowrap text-[0.625rem] font-semibold uppercase tracking-[0.18em] text-brand-500">
           Holly Springs, NC
         </span>
       </span>
