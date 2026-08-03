@@ -84,8 +84,8 @@ export const homeSections = {
  */
 export const heroImages = {
   about: {
-    src: "/images/learning-center-classroom.jpg",
-    alt: "Students working at tables in a Resource Room classroom, with a whiteboard and floor-to-ceiling windows behind them.",
+    src: "/images/learning-center-storefront.jpg",
+    alt: "The Resource Room Learning Center building at 2100 Crossway Lane in Holly Springs — red brick with a green awning and the Resource Room sign above the entrance.",
     kind: "photo",
   },
   courses: {

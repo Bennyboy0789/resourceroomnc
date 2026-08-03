@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { Icon } from "@/components/icons";
+import { MapEmbed } from "@/components/MapEmbed";
 import { PageHero } from "@/components/PageHero";
+import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { Section } from "@/components/ui/Section";
 import { heroImages, pageHeroes } from "@/content/sections";
 import { addressLine, site } from "@/content/site";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
+  title: seoTitle("Contact Us", "Holly Springs, NC"),
+  description: seoDescription(
     "Schedule a free consultation with Resource Room in Holly Springs, NC. Call 984-777-1244 or send us a note about your student.",
+  ),
   alternates: { canonical: "/contact" },
 };
 
@@ -101,16 +105,29 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
-              <iframe
-                title={`Map to Resource Room at ${addressLine}`}
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                  site.mapEmbedQuery,
-                )}&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-80 w-full border-0"
+            {/* The building, above the map. A pin tells someone the address;
+                this tells them what to look for when they get there, which is
+                the part people actually struggle with in a business park. */}
+            <figure className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
+              <PhotoSlot
+                src={heroImages.about.src}
+                alt={heroImages.about.alt}
+                icon="pin"
+                ratio="3/2"
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                className="rounded-none"
               />
+              {/* No address here. It already appears directly above in "Visit
+                  the center" and again on the map below; a third copy in the
+                  same column is noise. The caption earns its place by saying
+                  the one thing neither of those can. */}
+              <figcaption className="border-t border-navy-900/10 bg-mist px-5 py-3 text-sm text-navy-600">
+                The entrance is under the green awning.
+              </figcaption>
+            </figure>
+
+            <div className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
+              <MapEmbed query={site.mapEmbedQuery} addressLine={addressLine} />
             </div>
           </div>
         </div>

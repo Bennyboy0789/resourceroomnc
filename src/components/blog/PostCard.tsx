@@ -9,7 +9,20 @@ import { cn } from "@/lib/cn";
  * Blog teaser. `featured` lays the lead post out side-by-side; every other
  * card stacks image over copy inside the grid.
  */
-export function PostCard({ post, featured = false }: { post: BlogPost; featured?: boolean }) {
+export function PostCard({
+  post,
+  featured = false,
+  priority = featured,
+}: {
+  post: BlogPost;
+  featured?: boolean;
+  /**
+   * Preloads the thumbnail. Defaults to the featured lead, but archives
+   * without a lead need the first grid card to opt in — otherwise nothing on
+   * the page preloads and that card is the LCP, lazily.
+   */
+  priority?: boolean;
+}) {
   const meta = (
     <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
       {post.categories[0] ? <span>{post.categories[0]}</span> : null}
@@ -37,7 +50,7 @@ export function PostCard({ post, featured = false }: { post: BlogPost; featured?
           ratio={featured ? "16/9" : "4/3"}
           sizes={featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 640px) 33vw, 100vw"}
           className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
-          priority={featured}
+          priority={priority}
         />
       </Link>
 

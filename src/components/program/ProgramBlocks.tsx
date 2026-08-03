@@ -471,6 +471,13 @@ function Dates({
  * pushing the last question far down the page. Splitting the items in half
  * rather than using CSS columns keeps each `<details>` intact: a column break
  * through an open answer would separate it from its question.
+ *
+ * Each question is an `<h3>` inside the `<summary>`, not bare text. The
+ * FAQPage schema already declared these as questions, but nothing in the
+ * document structure agreed: passage extraction and AI answer engines lean on
+ * heading hierarchy, and a question sitting in a `<summary>` is invisible to
+ * that. A heading is valid inside `<summary>`, and it also gives screen-reader
+ * users the questions in their heading list.
  */
 function Faq({ items }: { items: { q: string; a: string }[] }) {
   const half = Math.ceil(items.length / 2);
@@ -486,8 +493,8 @@ function Faq({ items }: { items: { q: string; a: string }[] }) {
           >
             {column.map((item) => (
               <details key={item.q} className="group">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left text-base font-bold tracking-tight text-navy-950 [&::-webkit-details-marker]:hidden">
-                  {item.q}
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
+                  <h3 className="text-base font-bold tracking-tight text-navy-950">{item.q}</h3>
                   <Icon
                     name="chevronDown"
                     className="mt-1 h-4 w-4 shrink-0 text-brand-600 transition-transform group-open:rotate-180"

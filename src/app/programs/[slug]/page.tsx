@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Icon } from "@/components/icons";
@@ -14,8 +15,10 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Stars } from "@/components/ui/Stars";
 import { getProgram, imagePosition, imageRatio, programs } from "@/content/programs";
 import { site } from "@/content/site";
+import { coursesForProgram, formatPrice, groupIcon } from "@/lib/courses";
 import { breadcrumbSchema, jsonLd, programSchema } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return programs.map((program) => ({ slug: program.slug }));
@@ -38,13 +41,17 @@ export async function generateMetadata({
   if (!program) return {};
 
   return {
-    title: program.name,
-    description: program.summary,
+    title: seoTitle(program.name),
+    description: seoDescription(program.summary),
     alternates: { canonical: `/programs/${program.slug}` },
     openGraph: {
       title: `${program.name} | ${site.name}`,
-      description: program.summary,
+      description: seoDescription(program.summary),
       url: `/programs/${program.slug}`,
+      /* Declaring `openGraph` without `images` suppresses the generated
+         default from `opengraph-image.tsx` entirely, which left every program
+         page sharing as a bare link. Each one uses its own artwork instead. */
+      images: [{ url: program.image.src, alt: program.image.alt }],
     },
   };
 }
@@ -56,6 +63,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
   if (!program) notFound();
 
   const others = programs.filter((item) => item.slug !== program.slug).slice(0, 3);
+  const programCourses = coursesForProgram(program.slug);
   const { service, faq } = programSchema(program);
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", path: "/" },
@@ -197,12 +205,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                 Admissions, calendar and day-to-day details all live there.
               </p>
             </div>
-            <Button
-              href={program.externalUrl}
-              external
-              size="lg"
-              className="mt-6 shrink-0 sm:mt-0"
-            >
+            <Button href={program.externalUrl} external size="lg" className="mt-6 shrink-0 sm:mt-0">
               Visit {program.shortName}
               <Icon name="arrowUpRight" className="h-4 w-4" />
             </Button>
@@ -224,7 +227,57 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </Section>
       ) : null}
 
-      <Section tone="white" size="wide">
+      {/* The courses that actually run inside this program. Beyond being
+          useful, this is the internal-linking fix: course pages were reachable
+          only from the catalog, leaving sixteen of them on a single inbound
+          link. */}
+      {programCourses.length ? (
+        <Section tone="white" size="wide">
+          <SectionHeading
+            eyebrow={`${programCourses.length} courses`}
+            title="What runs inside this"
+            accent="program."
+            description="Individual classes and sessions within this program. Anything without a listed rate is quoted at your free consultation."
+          />
+          <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
+            {programCourses.map((course, index) => (
+              <Reveal key={course.slug} as="li" delay={stagger(index % 4, 0.06)}>
+                <article className="group h-full">
+                  <Link
+                    href={`/courses/${course.slug}`}
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="block overflow-hidden"
+                  >
+                    <PhotoSlot
+                      src={course.image ?? undefined}
+                      alt={course.imageAlt}
+                      icon={groupIcon(course.group)}
+                      ratio="1/1"
+                      position="top"
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </Link>
+                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-600">
+                    {course.grades ? <span>{course.grades}</span> : null}
+                    {course.price ? (
+                      <span className="text-navy-950">{formatPrice(course.price)}</span>
+                    ) : null}
+                  </p>
+                  <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
+                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-700">
+                      {course.name}
+                    </Link>
+                  </h3>
+                </article>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
+      <Section tone="mist" size="wide">
         <SectionHeading eyebrow="Keep exploring" title="Other Resource Room" accent="programs." />
         <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-3">
           {others.map((other) => (

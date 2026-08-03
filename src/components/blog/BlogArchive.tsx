@@ -134,11 +134,25 @@ export function BlogArchive({
       {/* Two columns, not three: the rail takes 19rem off the width, and a
           third column would squeeze each card below a readable measure. */}
       <ul className={cn("grid gap-x-6 gap-y-14 sm:grid-cols-2", showLead && "mt-14")}>
-        {grid.map((post, index) => (
-          <Reveal key={post.slug} as="li" delay={stagger(index % 2, 0.08)}>
-            <PostCard post={post} />
-          </Reveal>
-        ))}
+        {grid.map((post, index) => {
+          /*
+           * Category and tag archives, and pages 2+ of /blog, show no lead
+           * card — so the grid itself holds the LCP element. Both cards in the
+           * first row qualify: same size, either can win depending on the
+           * image. They need two things the rest of the grid does not.
+           *
+           * `priority` preloads the thumbnail instead of lazy-loading it.
+           * `noFade` is the larger win: Reveal's default `opacity: 0` withheld
+           * these cards until hydration ran, so LCP landed at ~850ms on an
+           * image that had been decoded since ~120ms.
+           */
+          const aboveFold = !showLead && index < 2;
+          return (
+            <Reveal key={post.slug} as="li" delay={stagger(index % 2, 0.08)} noFade={aboveFold}>
+              <PostCard post={post} priority={aboveFold} />
+            </Reveal>
+          );
+        })}
       </ul>
 
       <Pagination page={page.page} totalPages={page.totalPages} href={href} />

@@ -8,6 +8,7 @@ import { CartDrawer } from "@/components/shop/CartDrawer";
 import { CartProvider } from "@/components/shop/CartProvider";
 import { site } from "@/content/site";
 import { organizationSchema } from "@/lib/schema";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,11 +17,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} | ${site.tagline}`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
+  /*
+   * No `template`. The brand suffix is applied by `seoTitle()` instead, which
+   * drops it when the page title has no room — a template appends it
+   * unconditionally, and on 33 pages that pushed the title past the ~60
+   * characters Google shows, truncating the headline rather than the brand.
+   */
+  title: seoTitle(site.tagline),
+  description: seoDescription(site.description),
   keywords: [
     "tutoring Holly Springs NC",
     "SAT prep Holly Springs",

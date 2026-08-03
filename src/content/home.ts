@@ -7,17 +7,22 @@ import type { IconName } from "@/components/icons";
  * from assistive tech and carry no alt copy. Timings below match the live site:
  * four seconds a slide with a half-second cross-fade and a slow zoom in.
  */
+/*
+ * Five slides, not ten.
+ *
+ * All ten used to download while a visitor sat on the homepage — 709KB of
+ * imagery across 23 requests on desktop, 481KB on mobile, for a decorative
+ * background nobody watches to the end. At four seconds a slide, five is
+ * already twenty seconds of rotation. Halving the set halves the bytes.
+ * Slides 06-10 remain in `public/images/hero/` if the rotation is ever
+ * wanted back.
+ */
 export const heroSlides = [
   "/images/hero/hero-01.jpg",
   "/images/hero/hero-02.jpg",
   "/images/hero/hero-03.jpg",
   "/images/hero/hero-04.jpg",
   "/images/hero/hero-05.jpg",
-  "/images/hero/hero-06.jpg",
-  "/images/hero/hero-07.jpg",
-  "/images/hero/hero-08.jpg",
-  "/images/hero/hero-09.jpg",
-  "/images/hero/hero-10.jpg",
 ];
 
 export const heroSlideshow = {

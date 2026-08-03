@@ -9,11 +9,13 @@ import { courseGroups, courses, coursesInGroup } from "@/content/courses";
 import { heroImages, pageHeroes } from "@/content/sections";
 import { formatPrice, groupIcon } from "@/lib/courses";
 import { stagger } from "@/lib/stagger";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Course Catalog",
-  description:
+  title: seoTitle("Course Catalog", "Holly Springs, NC"),
+  description: seoDescription(
     "Every Resource Room course: STEAM and robotics, drones, 3D design, LEGO, Minecraft and Scratch, emerging-learner classes, workshops, and tutoring add-ons in Holly Springs, NC.",
+  ),
   alternates: { canonical: "/courses" },
 };
 

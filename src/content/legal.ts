@@ -2,23 +2,24 @@
  * Privacy policy, carried over verbatim from
  * resourceroomnc.com/privacy-policy/.
  *
- * This is a legal document, so the wording is transcribed rather than
- * rewritten. Two things in it are stale and need Joe's sign-off before launch:
- * it names the site as "ResourceRoom.com", and the contact block gives
- * Info@ResourceRoomSI.com with the Staten Island address rather than the
- * Holly Springs details used everywhere else. Both are flagged rather than
- * silently corrected — changing a published privacy policy is the owner's
- * call, not ours.
+ * The body is the original wording — it is a legal document, so it is copied
+ * rather than rewritten. Only the identifiers changed, on Joe's instruction:
+ * the site is named `resourceroom.com` and the contact block gives
+ * info@resourceroom.com with the Holly Springs address, replacing the Staten
+ * Island entity's details the original carried.
+ *
+ * Effective date moved to 3 August 2026 to match those changes, on Joe's
+ * instruction. Bump it again if the body itself is ever revised.
  */
 
 export const privacyPolicy = {
   title: "Privacy Policy",
-  effectiveDate: "July 2024",
+  effectiveDate: "August 3, 2026",
   sections: [
     {
       heading: "1. Introduction",
       body: [
-        "Welcome to ResourceRoom.com (“we”, “our”, or “us”). We are committed to protecting your privacy and ensuring a safe online experience. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website ResourceRoom.com (the “Site”). Please read this policy carefully.",
+        "Welcome to resourceroom.com (“we”, “our”, or “us”). We are committed to protecting your privacy and ensuring a safe online experience. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website resourceroom.com (the “Site”). Please read this policy carefully.",
       ],
     },
     {
@@ -108,8 +109,8 @@ export const privacyPolicy = {
       heading: "11. Contact Us",
       body: [
         "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:",
-        "Email: Info@ResourceRoomSI.com",
-        "Mailing Address: 534 Forest Avenue, Staten Island, NY, 10310",
+        "Email: info@resourceroom.com",
+        "Mailing Address: 2100 Crossway Ln, Holly Springs, NC 27540",
       ],
     },
   ],

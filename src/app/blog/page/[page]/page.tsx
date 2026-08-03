@@ -6,6 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { posts } from "@/content/blog";
 import { pageHeroes } from "@/content/sections";
 import { paginate, POSTS_PER_PAGE } from "@/lib/blog";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
 
@@ -23,8 +24,10 @@ export async function generateMetadata({
   const n = Number(page);
 
   return {
-    title: `Blog — page ${n}`,
-    description: `Page ${n} of guidance from the educators at Resource Room, written for Holly Springs and Triangle families.`,
+    title: seoTitle(`Blog — page ${n}`),
+    description: seoDescription(
+      `Page ${n} of guidance from the educators at Resource Room, written for Holly Springs and Triangle families.`,
+    ),
     alternates: { canonical: `/blog/page/${n}` },
     /* Deeper archive pages are thin and near-duplicate. Let crawlers follow
        through to the posts without indexing the pages themselves. */

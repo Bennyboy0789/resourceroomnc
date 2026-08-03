@@ -6,14 +6,24 @@ import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { pageHeroes } from "@/content/sections";
 import { site } from "@/content/site";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Join Our Team",
-  description:
+  /* Leads with the job, not the invitation. "Join Our Team" is the nav label;
+     nobody searches it. "Tutoring & Teaching Jobs — Holly Springs, NC" is
+     what a candidate actually types, and lands on 60 characters exactly. */
+  title: seoTitle("Tutoring & Teaching Jobs", "Holly Springs, NC"),
+  description: seoDescription(
     "Resource Room hires licensed educators, tutors, camp instructors and support staff in Holly Springs, NC. Send a resume to Learn@ResourceRoomNC.com.",
+  ),
   alternates: { canonical: "/join-our-team" },
 };
 
+/*
+ * Plain strings. These are visible card headings, not `<title>` tags —
+ * running them through `seoTitle()` appended the brand suffix to each one and
+ * the page rendered "Camp Instructors | Resource Room" on screen.
+ */
 const roles = [
   {
     icon: "pencil" as const,
@@ -59,7 +69,10 @@ export default function JoinOurTeamPage() {
   return (
     <>
       <PageHero {...pageHeroes.joinOurTeam}>
-        <Button href={`${site.emailHref}?subject=${encodeURIComponent("Application — Resource Room")}`} size="lg">
+        <Button
+          href={`${site.emailHref}?subject=${encodeURIComponent("Application — Resource Room")}`}
+          size="lg"
+        >
           Send us your resume
           <Icon name="arrowRight" className="h-4 w-4" />
         </Button>

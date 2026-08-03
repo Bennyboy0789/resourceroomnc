@@ -13,6 +13,10 @@ export type BlogPost = {
   title: string;
   /** ISO date, YYYY-MM-DD. */
   date: string;
+  /** Last edit, never earlier than publication. Feeds schema dateModified. */
+  modified: string;
+  /** Named author. The description carries credentials into Person schema. */
+  author: { name: string; jobTitle?: string; url?: string; image?: string; description?: string };
   categories: string[];
   tags: string[];
   excerpt: string;
@@ -35,6 +39,14 @@ export const posts: BlogPost[] = [
     slug: `were-not-going-to-say-no-were-going-to-say-how`,
     title: `We’re Not Going to Say No.We’re Going to Say How.`,
     date: `2026-06-09`,
+    modified: `2026-06-09`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`, `Tutoring`],
     tags: [`ABA`, `ADHD`, `Anxiety in Children`, `Autism`, `Special Education`, `North Carolina`, `Neurodiversity`, `Parent Resources`, `Resource Room`],
     excerpt: `Some families arrive at Resource Room already braced for disappointment. They filled out a registration form somewhere before and watched the tone change the moment they mentioned a diagnosis. They heard “we’re not really set up for that.” They felt a…`,
@@ -71,6 +83,14 @@ export const posts: BlogPost[] = [
     slug: `optional-sat-act-is-not-the-same-as-skip-it`,
     title: `“Optional SAT/ACT is not the Same as Skip it!”`,
     date: `2026-06-01`,
+    modified: `2026-06-01`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`],
     tags: [`ACT`, `College Prep`, `High School`, `Financial Aid & Scholarships`, `North Carolina Colleges`, `Resource Room`, `SAT`, `Test Prep`],
     excerpt: `“Optional” Is Not the Same as “Skip It.” What North Carolina Families Should Know About the SAT and ACT Right Now`,
@@ -109,6 +129,14 @@ export const posts: BlogPost[] = [
     slug: `the-help-is-real-so-is-the-noise-heres-how-to-tell-the-difference`,
     title: `The Help is Real. So is the Noise. Here’s How to Tell the Difference.`,
     date: `2026-05-31`,
+    modified: `2026-06-01`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`],
     tags: [`ABA`, `Autism`, `North Carolina`, `Neurodiversity`, `Parent Resources`, `Pathways Academy`, `Resource Room`, `Special Education`],
     excerpt: `The numbers don’t lie. According to the CDC’s April 2025 report, 1 in 31 children in the United States is now diagnosed with autism spectrum disorder by age eight. That’s up from 1 in 36 just two years earlier, 1 in 54 in 2016, and 1 in 150 back in 2000.`,
@@ -160,6 +188,14 @@ export const posts: BlogPost[] = [
     slug: `pops-aba-partnership`,
     title: `Resource Room Learning Center Announces New Partnership with POPS ABA`,
     date: `2026-05-22`,
+    modified: `2026-05-22`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`],
     tags: [],
     excerpt: `Expanded academic, behavioral, executive functioning, and independence support for students across Resource Room Learning Center and Pathways Academy`,
@@ -239,6 +275,14 @@ export const posts: BlogPost[] = [
     slug: `why-many-juniors-take-the-sat-and-act-at-the-wrong-time-of-year`,
     title: `Why Many Juniors Take the SAT and ACT at the Wrong Time of Year`,
     date: `2026-04-22`,
+    modified: `2026-04-22`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [],
     tags: [],
     excerpt: `When families start thinking seriously about SAT and ACT prep, they often assume spring of junior year is the obvious time to begin. On paper, that sounds reasonable. In practice, it often creates a much harder road than necessary.`,
@@ -301,6 +345,14 @@ export const posts: BlogPost[] = [
     slug: `homeschool-co-op-in-holly-springs-nc-a-better-option-for-middle-and-high-school-students`,
     title: `Homeschool Co-Op in Holly Springs NC: A Better Option for Middle and High School Students`,
     date: `2026-04-17`,
+    modified: `2026-04-17`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`, `Homeschool Co-Op`],
     tags: [],
     excerpt: `Families in Holly Springs and across Wake County are running into the same problem.`,
@@ -315,7 +367,7 @@ export const posts: BlogPost[] = [
 <p>So what is the middle ground</p>
 <p>For many families, it is a homeschool co-op.</p>
 <hr>
-<h3>What Is a Homeschool Co-Op</h3>
+<h2>What Is a Homeschool Co-Op</h2>
 <p>A homeschool co-op is a structured learning environment where students attend classes in a small group setting while remaining homeschooled.</p>
 <p>Students receive:</p>
 <ul>
@@ -328,7 +380,7 @@ export const posts: BlogPost[] = [
 <p>Not all co-ops are the same. Some are informal and parent led. Others, like our program at Resource Room in Holly Springs, are led by licensed educators with real classroom experience.</p>
 <p>That difference matters, especially for middle and high school students.</p>
 <hr>
-<h3>Why Families in Holly Springs Are Choosing a Homeschool Co-Op</h3>
+<h2>Why Families in Holly Springs Are Choosing a Homeschool Co-Op</h2>
 <p>We work with families throughout Holly Springs, Apex, Fuquay Varina, and Cary, and we hear the same concerns again and again.</p>
 <p>Students need:</p>
 <ul>
@@ -342,7 +394,7 @@ export const posts: BlogPost[] = [
 <p>Too much independence can lead to gaps. Too much rigidity can lead to frustration.</p>
 <p>A well structured homeschool co-op provides balance.</p>
 <hr>
-<h3>When Homeschooling Alone Is Not Enough</h3>
+<h2>When Homeschooling Alone Is Not Enough</h2>
 <p>Homeschooling works extremely well for many families.</p>
 <p>But as students move into middle school and high school, the demands increase.</p>
 <p>Parents often find themselves needing:</p>
@@ -355,7 +407,7 @@ export const posts: BlogPost[] = [
 <p>This is where a homeschool co-op becomes a strong option.</p>
 <p>It adds structure without removing flexibility.</p>
 <hr>
-<h3>When Tutoring Is Not Enough</h3>
+<h2>When Tutoring Is Not Enough</h2>
 <p>Tutoring plays an important role in academic success. At Resource Room, it is a core part of what we do.</p>
 <p>But tutoring is designed to support existing instruction.</p>
 <p>If a student does not have:</p>
@@ -368,7 +420,7 @@ export const posts: BlogPost[] = [
 <p>A homeschool co-op provides that missing structure and turns support into forward progress.</p>
 <p>You can learn more about our tutoring options here:<br><a href="https://resourceroomnc.com/tutoring-packages-policies/">https://resourceroomnc.com/tutoring-packages-policies/</a></p>
 <hr>
-<h3>Who a Homeschool Co-Op Is a Good Fit For</h3>
+<h2>Who a Homeschool Co-Op Is a Good Fit For</h2>
 <p>A homeschool co-op in Holly Springs may be a good fit for:</p>
 <ul>
 <li>middle and high school students who are currently homeschooling</li>
@@ -380,7 +432,7 @@ export const posts: BlogPost[] = [
 <p>For some students, this model works long term.</p>
 <p>For others, it becomes a stepping stone into a more structured program like Pathways Academy, our private high school.</p>
 <hr>
-<h3>What Makes Resource Room Different</h3>
+<h2>What Makes Resource Room Different</h2>
 <p>Our Homeschool Co-Op in Holly Springs is built differently from most programs.</p>
 <ul>
 <li>classes are led by licensed, experienced educators</li>
@@ -392,16 +444,16 @@ export const posts: BlogPost[] = [
 <p>We are not experimenting. We are applying decades of real classroom experience.</p>
 <p>That shows in how students grow.</p>
 <hr>
-<h3>Serving Families Across Wake County</h3>
+<h2>Serving Families Across Wake County</h2>
 <p>While our co-op is located in Holly Springs, we serve families throughout Wake County including Apex, Fuquay Varina, and Cary.</p>
 <p>Many families are looking for the same thing. A program that provides structure, support, and community without forcing students back into a system that did not work for them.</p>
 <hr>
-<h3>Is a Homeschool Co-Op the Right Next Step</h3>
+<h2>Is a Homeschool Co-Op the Right Next Step</h2>
 <p>If you are asking that question, you are not alone.</p>
 <p>The best next step is to learn more about how a structured homeschool co-op works and whether it aligns with your child’s needs.</p>
 <p>You can explore our program here:<br><a href="https://resourceroomnc.com/product/homeschool-co-op-holly-springs-nc/">https://resourceroomnc.com/product/homeschool-co-op-holly-springs-nc/</a></p>
 <hr>
-<h3>Frequently Asked Questions About Homeschool Co-Ops</h3>
+<h2>Frequently Asked Questions About Homeschool Co-Ops</h2>
 <p><strong>How often do homeschool co-ops meet</strong><br>Most structured homeschool co-ops meet one to two days per week depending on the program and grade level.</p>
 <p><strong>Are homeschool co-ops considered full time school</strong><br>No. Students remain homeschooled while attending part time classes for instruction and support.</p>
 <p><strong>Do homeschool co-ops help with socialization</strong><br>Yes. One of the biggest benefits is consistent peer interaction in a structured and supportive environment.</p>
@@ -412,6 +464,14 @@ export const posts: BlogPost[] = [
     slug: `pathways-academy-in-holly-springs-nc-a-different-approach-to-high-school-for-neurodiverse-teens`,
     title: `Pathways Academy in Holly Springs NC: A Different Approach to High School for Neurodiverse Teens`,
     date: `2026-04-17`,
+    modified: `2026-04-17`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`],
     tags: [],
     excerpt: `Pathways Academy in Holly Springs NC: A Different Approach to High School That Actually Works`,
@@ -594,6 +654,14 @@ export const posts: BlogPost[] = [
     slug: `why-we-started-the-resource-room-homeschool-co-op`,
     title: `Why We Started the Resource Room Homeschool Co-Op`,
     date: `2026-04-16`,
+    modified: `2026-04-17`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Alternative Education`, `Homeschool Co-Op`],
     tags: [],
     excerpt: `When we launched Pathways, we knew there was a real need for something different.`,
@@ -636,6 +704,14 @@ export const posts: BlogPost[] = [
     slug: `stem-activities`,
     title: `Exciting STEM Activities to Foster Kids’ Curiosity and Boost Learning`,
     date: `2024-03-18`,
+    modified: `2024-03-18`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [],
     tags: [`ACT`, `Tutoring`, `SAT`, `STEAM`],
     excerpt: `In today’s digital age, Science, Technology, Engineering, and Math (STEM) play a crucial role in almost every aspect of our lives. As parents and educators, it is our job to prepare our children for the future by fostering their curiosity and learning in…`,
@@ -693,6 +769,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `sat-math-and-reading-mastery`,
     title: `SAT Math and Reading Mastery: Expert Strategies and Practice Exercises`,
     date: `2024-03-16`,
+    modified: `2024-03-16`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `SAT Math`],
     tags: [`Reading Mastery`],
     excerpt: `In the highly competitive landscape of college admissions, scoring high on the SAT is often seen as a golden ticket to the best colleges and universities. The SAT Math and Reading sections are critical areas where students can accumulate high scores.…`,
@@ -727,6 +811,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `achieve-act-excellence`,
     title: `Achieve ACT Excellence with Resource Room Learning Center in Holly Springs, NC!`,
     date: `2024-03-11`,
+    modified: `2024-03-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`],
     tags: [`ACT`, `SAT`, `STEAM`, `Tutoring`],
     excerpt: `Achieving excellence in the ACT is a dream for many students. It opens the door to their preferred colleges and, ultimately, their dream careers. But ensuring adequate preparation for this vital exam can be a challenge. This is where the Resource Room…`,
@@ -879,6 +971,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `stem-education-unleashes-the-power-for-tomorrows-success`,
     title: `STEM Education Unleashes the Power for Tomorrow’s Success`,
     date: `2024-03-07`,
+    modified: `2024-03-07`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`STEAM Resources`, `STEM`],
     tags: [`STEAM`, `Tutoring`],
     excerpt: `There’s no denying the significance of STEM (Science, Technology, Engineering, [Arts,] and Mathematics) education in today’s learning landscape. This educational approach is shaping the minds of our young learners, setting them up to become competent…`,
@@ -951,6 +1051,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `global-perspectives-learning-a-second-language-in-college`,
     title: `Global Perspectives: Learning a Second Language in College`,
     date: `2024-01-30`,
+    modified: `2024-01-30`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `STEAM Resources`, `Tutoring Resources`],
     tags: [`ACT`, `College Prep`, `Global Careers`, `Second Language`, `Tutoring`, `Remote Learning`, `SAT`, `STEAM`, `Study Abroad`],
     excerpt: `In an increasingly interconnected world, the ability to communicate in more than one language is a valuable asset. College, with its diverse academic environment, provides an ideal setting for students to delve into the world of multilingualism. This…`,
@@ -993,6 +1101,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `cultivating-critical-thinking-skills-in-education`,
     title: `Cultivating Critical Thinking Skills in Education`,
     date: `2024-01-26`,
+    modified: `2024-01-26`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `STEAM Resources`, `Tutoring Resources`],
     tags: [`ACT`, `Critical Thinking`, `Tutoring`, `Remote Learning`, `SAT`, `STEAM`],
     excerpt: `Critical thinking is a vital skill that extends far beyond the classroom, shaping how individuals analyze information, solve problems, and make decisions. In the realm of education, fostering critical thinking is essential to prepare students for the…`,
@@ -1030,6 +1146,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `financial-aid-and-scholarships-your-path-to-affordable-college-education`,
     title: `Financial Aid and Scholarships: Your Path to Affordable College Education`,
     date: `2023-12-22`,
+    modified: `2023-12-22`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`ACT`, `Financial Aid & Scholarships`, `Tutoring`, `Remote Learning`, `SAT`],
     excerpt: `Pursuing higher education can be a rewarding journey, but it often comes with a hefty price tag. However, the good news is that there are numerous opportunities for financial aid and scholarships available to help make your college dreams a reality. In…`,
@@ -1089,6 +1213,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `preparing-for-standardized-tests-your-path-to-success`,
     title: `Preparing for Standardized Tests: Your Path to Success`,
     date: `2023-12-15`,
+    modified: `2023-12-15`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`, `Test Prep`],
     excerpt: `Standardized tests like the SAT, ACT, GRE, or GMAT are a critical part of the admissions process for many colleges and universities. They serve as a standardized measure of a student’s readiness for higher education. However, preparing for these tests can…`,
@@ -1169,6 +1301,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `the-role-of-technology-in-education-a-digital-transformation`,
     title: `The Role of Technology in Education: A Digital Transformation`,
     date: `2023-12-08`,
+    modified: `2023-12-08`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`, `Remote Learning`],
     excerpt: `Technology has significantly reshaped education in recent years, revolutionizing how students access information, interact with course materials, and collaborate with peers. From e-books to learning management systems (LMS) and beyond, this digital…`,
@@ -1239,6 +1379,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `studying-abroad-benefits-and-considerations`,
     title: `Studying Abroad: Benefits and Considerations`,
     date: `2023-11-24`,
+    modified: `2023-11-24`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [],
     tags: [`Study Abroad`],
     excerpt: `Studying abroad is an exciting opportunity that can transform your life, providing new perspectives, cultural experiences, and personal growth. In this guide, we’ll explore the numerous benefits of studying abroad, offer insights into the application…`,
@@ -1346,6 +1494,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `college-application-tips-for-high-school-juniors-your-roadmap-to-success`,
     title: `College Application Tips for High School Juniors: Your Roadmap to Success`,
     date: `2023-11-17`,
+    modified: `2023-11-17`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `Tutoring Resources`],
     tags: [`ACT`, `Tutoring`, `Remote Learning`, `SAT`],
     excerpt: `High school juniors, it’s time to embark on your journey toward college. While senior year typically steals the spotlight, junior year is equally vital in preparing for your college applications. We’ll guide you through the process step by step, helping…`,
@@ -1398,6 +1554,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `why-private-tutoring-at-resource-room-2`,
     title: `Why Private Tutoring at Resource Room?`,
     date: `2023-09-01`,
+    modified: `2023-09-01`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`, `Remote Learning`],
     excerpt: `When it comes to your child’s education, every student is unique. At Resource Room, we understand that individualized support is crucial for unlocking a student’s full potential. Here are the key reasons why private tutoring at Resource Room can make a…`,
@@ -1407,15 +1571,15 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     legacyPath: `/2023/09/01/why-private-tutoring-at-resource-room-2/`,
     plain: `When it comes to your child’s education, every student is unique. At Resource Room, we understand that individualized support is crucial for unlocking a student’s full potential. Here are the key reasons why private tutoring at Resource Room can make a significant difference in your child’s academic journey: Personalized Approach: Tailored to Your Child’s Needs We believe that one-size-fits-all education doesn’t work. Our experienced tutors take the time to understand each student’s learning style, strengths, and challenges. This personalized approach ensures that your child receives targeted support where they need it most. Whether it’s grasping complex math concepts, improving writing skills, or preparing for standardized tests, our tutors are here to help. One-on-One Attention: Building Confidence and Understanding In a classroom setting, students might hesitate to ask questions or voice their concerns. Private tutoring provides a comfortable and supportive environment where students can freely ask questions, seek clarification, and engage in meaningful discussions with their tutors. This one-on-one attention fosters a deeper understanding of the subjects and builds the student’s confidence to tackle even the toughest challenges. Customized Learning Plans: Maximizing Progress Our tutors develop individualized learning plans for each student. These plans are designed to focus on the student’s unique strengths and areas that require improvement. By tailoring the learning journey, we ensure that your child’s progress is maximized, and their confidence grows with every achievement. Flexible Scheduling: Learning that Fits Your Schedule We understand that students have busy lives with multiple commitments. That’s why Resource Room offers flexible scheduling options for tutoring sessions. Whether it’s after school, on weekends, or during holidays, we work around your child’s schedule to provide consistent and convenient support. Building Confidence and a Love for Learning Private tutoring goes beyond subject matter expertise. It’s about building a positive and encouraging learning relationship. Our tutors not only help students excel academically but also instill a love for learning. By breaking down complex concepts, celebrating successes, and offering constructive feedback, we nurture your child’s confidence and passion for knowledge. Discover how our personalized private tutoring at Resource Room can provide your child with the tools they need to succeed academically and beyond. Learn more .`,
     html: `<p>When it comes to your child&#8217;s education, every student is unique. At Resource Room, we understand that individualized support is crucial for unlocking a student&#8217;s full potential. Here are the key reasons why private tutoring at Resource Room can make a significant difference in your child&#8217;s academic journey:</p>
-<h3>Personalized Approach: Tailored to Your Child&#8217;s Needs</h3>
+<h2>Personalized Approach: Tailored to Your Child&#8217;s Needs</h2>
 <p>We believe that one-size-fits-all education doesn&#8217;t work. Our experienced tutors take the time to understand each student&#8217;s learning style, strengths, and challenges. This personalized approach ensures that your child receives targeted support where they need it most. Whether it&#8217;s grasping complex math concepts, improving writing skills, or preparing for standardized tests, our tutors are here to help.</p>
-<h3>One-on-One Attention: Building Confidence and Understanding</h3>
+<h2>One-on-One Attention: Building Confidence and Understanding</h2>
 <p>In a classroom setting, students might hesitate to ask questions or voice their concerns. Private tutoring provides a comfortable and supportive environment where students can freely ask questions, seek clarification, and engage in meaningful discussions with their tutors. This one-on-one attention fosters a deeper understanding of the subjects and builds the student&#8217;s confidence to tackle even the toughest challenges.</p>
-<h3>Customized Learning Plans: Maximizing Progress</h3>
+<h2>Customized Learning Plans: Maximizing Progress</h2>
 <p>Our tutors develop individualized learning plans for each student. These plans are designed to focus on the student&#8217;s unique strengths and areas that require improvement. By tailoring the learning journey, we ensure that your child&#8217;s progress is maximized, and their confidence grows with every achievement.</p>
-<h3>Flexible Scheduling: Learning that Fits Your Schedule</h3>
+<h2>Flexible Scheduling: Learning that Fits Your Schedule</h2>
 <p>We understand that students have busy lives with multiple commitments. That&#8217;s why Resource Room offers flexible scheduling options for tutoring sessions. Whether it&#8217;s after school, on weekends, or during holidays, we work around your child&#8217;s schedule to provide consistent and convenient support.</p>
-<h3>Building Confidence and a Love for Learning</h3>
+<h2>Building Confidence and a Love for Learning</h2>
 <p>Private tutoring goes beyond subject matter expertise. It&#8217;s about building a positive and encouraging learning relationship. Our tutors not only help students excel academically but also instill a love for learning. By breaking down complex concepts, celebrating successes, and offering constructive feedback, we nurture your child&#8217;s confidence and passion for knowledge.</p>
 <p>Discover how our personalized private tutoring at Resource Room can provide your child with the tools they need to succeed academically and beyond. <a href="https://resourceroomnc.com/2021/10/04/why-private-tutoring-at-resource-room/">Learn more</a>.</p>`,
   },
@@ -1423,6 +1587,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `why-resource-room-is-the-best-choice-for-sat-act-prep`,
     title: `Why Resource Room is the Best Choice for SAT/ACT Prep`,
     date: `2023-05-26`,
+    modified: `2023-05-26`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `Tutoring Resources`],
     tags: [`ACT`, `Tutoring`, `Remote Learning`, `SAT`],
     excerpt: `If you’re a high school student planning to take the SAT or ACT, you may be wondering how to prepare for these crucial exams. With so many options available, it can be difficult to choose the best prep program for your needs. At Resource Room, we believe…`,
@@ -1459,6 +1631,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `a-parents-guide-to-choosing-the-right-tutoring-program-at-resource-room`,
     title: `A Parent’s Guide to Choosing the Right Tutoring Program at Resource Room`,
     date: `2023-05-12`,
+    modified: `2023-05-12`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`ACT`, `Tutoring`, `Remote Learning`, `SAT`, `STEAM`],
     excerpt: `Choosing the right tutoring program for your child can be a difficult decision. With so many options available, it can be overwhelming to determine which program is the best fit for your child’s needs. Here at Resource Room, we offer a variety of tutoring…`,
@@ -1487,6 +1667,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `how-resource-room-helps-students-overcome-learning-challenges`,
     title: `How Resource Room Helps Students Overcome Learning Challenges`,
     date: `2023-05-05`,
+    modified: `2023-05-08`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`ACT`, `Tutoring`, `SAT`, `STEAM`],
     excerpt: `At Resource Room, we believe that every student deserves the opportunity to achieve academic success, regardless of their learning challenges. Our team of experienced educators and tutors work with students to identify their strengths and areas for…`,
@@ -1519,6 +1707,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `the-benefits-of-learning-a-second-language-in-school`,
     title: `The Benefits of Learning a Second Language in School`,
     date: `2023-04-21`,
+    modified: `2023-04-21`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`],
     excerpt: `In today’s globalized world, being bilingual or multilingual has become an increasingly valuable asset. Learning a second language can provide numerous benefits, both personal and professional. Here are some of the advantages of learning a second language…`,
@@ -1556,6 +1752,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `how-to-prepare-for-a-successful-college-interview`,
     title: `How to Prepare for a Successful College Interview`,
     date: `2023-04-07`,
+    modified: `2023-04-07`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`STEAM Resources`],
     tags: [`College Prep`],
     excerpt: `If you’re applying to college, you may be required to participate in a college interview. College interviews provide admissions officers with an opportunity to learn more about you as a person, beyond what’s on your application. Preparing for your college…`,
@@ -1588,6 +1792,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `how-to-overcome-math-anxiety`,
     title: `<strong>How To Overcome Math Anxiety</strong>`,
     date: `2023-03-21`,
+    modified: `2023-03-21`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`, `Remote Learning`],
     excerpt: `Math anxiety is a very real issue that affects many people, from students to professionals. It can manifest in a number of ways, from a fear of numbers to a sense of dread whenever faced with math-related tasks. Fortunately, there are steps you can take to…`,
@@ -1627,6 +1839,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `sat-test-what-to-expect`,
     title: `SAT Test – What To Expect`,
     date: `2022-11-30`,
+    modified: `2026-02-19`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`],
     tags: [`SAT`],
     excerpt: `The SAT Test is a standardized test that is widely used for college admissions in the United States. The SAT Test consists of three sections: Reading, Writing and Language, and Math. The SAT Test is designed to assess a student’s readiness for college. The…`,
@@ -1652,6 +1872,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `grand-opening-early-october-2021-in-holly-springs-nc`,
     title: `Grand Opening — Early October 2021 in Holly Springs, NC`,
     date: `2021-10-06`,
+    modified: `2021-11-24`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Events`],
     tags: [`Tutoring`, `STEAM`],
     excerpt: `We are proud to announce our Holly Springs, NC location, opening in October 2021! Join us for our Ribbon Cutting Ceremony on October 15th, 2021 at 12:00 p.m.`,
@@ -1660,7 +1888,7 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     imageAlt: `Grand Opening — Early October 2021 in Holly Springs, NC`,
     legacyPath: `/2021/10/06/grand-opening-early-october-2021-in-holly-springs-nc/`,
     plain: `We are proud to announce our Holly Springs, NC location, opening in October 2021! Join us for our Ribbon Cutting Ceremony on October 15th, 2021 at 12:00 p.m. RSVP for attendance with the Holly Springs Chamber. http://chambermaster.hollyspringschamber.org/events/details/ribbon-cutting-celebration-for-the-resource-room-learning-center-2244 Location: 2100 Crossway Ln, Holly Springs, NC 27540 Phone: 984-777-1244 E-Mail: For General Inquiries: learn@resourceroomnc.com For Management Inquiries and Business to Business: joe@resourceroomnc.com Resource Room Learning Center is anticipated to open its doors in early October 2021. We will offer a full slate of IN-PERSON academic programs, and we will remain in person as long as we are not mandated otherwise. In-Person education is invaluable, indispensable, and irreplaceable. This is our educational philosophy, and we look forward to serving the community we are proud to call our home! Owned and Operated by licensed, career educators. We will be offering the following Programs: Private One-to-One Tutoring: All Subjects K-12 Professional Test Prep Courses and Tutoring, including ACT and SAT Cutting Edge Curriculum-Based STEAM Programs, including Robotics, Drones in Flight, 3-D Printing, Lego Exploration, and more!!! Daytime Educational Programs for Emerging learnings, including Story Stations+, KinderMusic, Craft Learning, and Educational Drop off Programs. College Essay Support, College Advisement, and Application Assistance. Our NC Website launches at the end of September, which will provide detailed program offerings, the ability to book courses, schedule one-to-one consultations for academic support, and so much more! You may follow us on Facebook and Instagram @resourceroomnc in the meantime, or check this page for updates.`,
-    html: `<h3>We are proud to announce our Holly Springs, NC location, opening in October 2021! Join us for our Ribbon Cutting Ceremony on October 15th, 2021 at 12:00 p.m.</h3>
+    html: `<h2>We are proud to announce our Holly Springs, NC location, opening in October 2021! Join us for our Ribbon Cutting Ceremony on October 15th, 2021 at 12:00 p.m.</h2>
 <p>RSVP for attendance with the Holly Springs Chamber.</p>
 <p><a href="http://chambermaster.hollyspringschamber.org/events/details/ribbon-cutting-celebration-for-the-resource-room-learning-center-2244">http://chambermaster.hollyspringschamber.org/events/details/ribbon-cutting-celebration-for-the-resource-room-learning-center-2244</a></p>
 <p><strong>Location:</strong> 2100 Crossway Ln, Holly Springs, NC 27540</p>
@@ -1677,6 +1905,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `why-private-tutoring-at-resource-room`,
     title: `Why private Tutoring at Resource Room`,
     date: `2021-10-04`,
+    modified: `2021-10-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`Tutoring Resources`],
     tags: [`Tutoring`],
     excerpt: `When Resource Room began in 2015, the owners – Joe and Sam – started tutoring their clients on a one-to-one basis. While many other tutoring centers would use small group instruction for grade-level support – Resource Room chose a different approach. The…`,
@@ -1694,6 +1930,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `sat-and-act-tutoring-why-resource-room`,
     title: `SAT and ACT Tutoring — Why Resource Room?`,
     date: `2021-10-03`,
+    modified: `2021-10-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`ACT/SAT Test Prep Resources`, `Tutoring Resources`],
     tags: [`ACT`, `SAT`, `Tutoring`],
     excerpt: `Many parents and students perseverate (SAT Word) over the many tutoring options offered for SAT and ACT exam prep. Many people know a neighbor or friend of a friend that does exam prep, but not all providers have the qualifications, experience, and…`,
@@ -1703,15 +1947,23 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     legacyPath: `/2021/10/03/sat-and-act-tutoring-why-resource-room/`,
     plain: `Many parents and students perseverate (SAT Word) over the many tutoring options offered for SAT and ACT exam prep. Many people know a neighbor or friend of a friend that does exam prep, but not all providers have the qualifications, experience, and reputation of Resource Room. We have a track record of proven success, with hundreds of 5 Star Reviews from our two locations. We consistently raise student scores by an average of 225 points from their initial diagnostic assessment on the SAT Exam. Our classes are focused, intense, and effective. Taught by the owners, Joe and Sam, SAT and ACT instruction has become a core aspect of our business. With hundreds of students taking to Google to report the effectiveness of our program, we pride ourselves on that connection with our students and we look forward to working with them each year. When should I take the SAT? Many students are told that they must take the SAT in March or May of their Junior year of High School. While there are good reasons behind this advice, it may not be the right course of action for all students. With the introduction of the August SAT, many students are adjusting their schedule and front-load their SAT and ACT to the beginning of Junior, while others wait to start the process after Junior year is over. With SAT and ACT exams offered many times throughout the year, there are many options as to when to sit for the exam. Many schools will now offer “in-school” SAT and ACT Exams. While this is an excellent service that provides a fantastic opportunity to both gain experience and save money on the registration fee, the timing may not always be perfect. That is why many students will sit for the SAT and ACT on regularly scheduled weekend administrations of the exams. What are Resource Room’s stats? Results-Driven SAT Prep. Okay, we are going to get a little bit complicated here. The average score increase (based on over 125 students in March of 2019), which is the last large group we were able to teach before the impact of the pandemic – was 225 points. The standard deviation from the mean was 68.5. A smaller standard deviation means that most students scored close to the mean of a 225-point increase with the lowest increase 155 points and a high end increase of 293 points. Every year we have students that increase their score over 300 points. This is possible with hard work, practice and repetition. Students whose scores are towards the lower end generally did not dedicate enough time to independent practice.`,
     html: `<p>Many parents and students perseverate (SAT Word) over the many tutoring options offered for&nbsp; SAT and ACT exam prep. Many people know a neighbor or friend of a friend that does exam prep, but not all providers have the qualifications, experience, and reputation of Resource Room. We have a track record of proven success, with hundreds of 5 Star Reviews from our two locations. We consistently raise student scores by an average of 225 points from their initial diagnostic assessment on the SAT Exam. Our classes are focused, intense, and effective. Taught by the owners, Joe and Sam, SAT and ACT instruction has become a core aspect of our business. With hundreds of students taking to Google to report the effectiveness of our program,&nbsp; we pride ourselves on that connection with our students and we look forward to working with them each year.&nbsp;</p>
-<h3><strong>When should I take the SAT?</strong></h3>
+<h2><strong>When should I take the SAT?</strong></h2>
 <p>Many students are told that they must take the SAT in March or May of their Junior year of High School. While there are good reasons behind this advice, it may not be the right course of action for all students. With the introduction of the August SAT, many students are adjusting their schedule and front-load their SAT and ACT to the beginning of Junior, while others wait to start the process after Junior year is over. With SAT and ACT exams offered many times throughout the year,&nbsp; there are many options as to when to sit for the exam. Many schools will now offer “in-school” SAT and ACT Exams. While this is an excellent service that provides a fantastic opportunity to both gain experience and save money on the registration fee, the timing may not always be perfect. That is why many students will sit for the SAT and ACT on regularly scheduled weekend administrations of the exams.&nbsp;&nbsp;</p>
-<h3><strong>What are Resource Room’s stats? Results-Driven SAT Prep.</strong></h3>
+<h2><strong>What are Resource Room’s stats? Results-Driven SAT Prep.</strong></h2>
 <p>Okay, we are going to get a little bit complicated here. The average score increase (based on over 125 students in March of 2019), which is the last large group we were able to teach before the impact of the pandemic&nbsp; &#8211; was 225 points. The standard deviation from the mean was 68.5. A smaller standard deviation means that most students scored close to the mean of a 225-point increase with the lowest increase 155 points and a high end increase of 293 points. Every year we have students that increase their score over 300 points. This is possible with hard work, practice and repetition. Students whose scores are towards the lower end generally did not dedicate enough time to independent practice.</p>`,
   },
   {
     slug: `what-makes-a-strong-steam-program`,
     title: `What Makes a Strong STEAM Program?`,
     date: `2021-10-02`,
+    modified: `2021-10-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`STEAM Resources`],
     tags: [`Drones`, `Robots`, `STEAM`],
     excerpt: `STEAM programs aim to engage students through educational, hands-on learning experiences that center around the foundations of science and technology.`,
@@ -1732,6 +1984,14 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     slug: `steam-programs-at-resource-room`,
     title: `STEAM Programs at Resource Room`,
     date: `2021-09-29`,
+    modified: `2021-10-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
     categories: [`STEAM Resources`],
     tags: [`STEAM`],
     excerpt: `Resource Room, in Holly Springs, NC offers a wide array of STEAM Programs for students from grades K-8.`,
@@ -1740,8 +2000,8 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
     imageAlt: `STEAM Programs at Resource Room`,
     legacyPath: `/2021/09/29/steam-programs-at-resource-room/`,
     plain: `Resource Room, in Holly Springs, NC offers a wide array of STEAM Programs for students from grades K-8. STEAM – Science, Technology, Engineering, Art, and Math Resource Room will provide standards and curriculum based STEAM Programs for all students grades K-8 in the areas of Robotics, Drones, and 3D- Printing. All of our STEAM Programs focus on aspects of scratch and loop programming and coding. We use design software for our 3D printing that allows students to not only design, but begin to understand the processes necessary for a successful slice and print. Students will engage in hands- on STEAM learning building robots, coding their drone, learning about the fundamentals of 3D design, and so much more. Each class contains a Level 1 and Level 2 course. Most clients choose to book both Level 1 and 2 at the same time, thus resulting in a 12 week comprehensive learning experience. Today, as technology advances, STEAM training is essential. This is especially true here in The Triangle with RTP hosting some of the most successful Technology companies in the world. We invite you to book a consultation to meet with us, discuss the goals you have for your child, and learn more about our offerings. We would be happy to show you our facility and answer any questions you may have. We are proud members of the Holly Springs community, and it is a privilege to work alongside our neighbors. As the year progresses we will continue to add to our STEAM offerings with programs on Solar Energy and Design, Entrepreneurial Foundations, and the foundations of Cryptography already in development. ‍`,
-    html: `<h3>Resource Room, in Holly Springs, NC offers a wide array of STEAM Programs for students from grades K-8.</h3>
-<h3>STEAM &#8211; Science, Technology, Engineering, Art, and Math</h3>
+    html: `<h2>Resource Room, in Holly Springs, NC offers a wide array of STEAM Programs for students from grades K-8.</h2>
+<h2>STEAM &#8211; Science, Technology, Engineering, Art, and Math</h2>
 <p>Resource Room will provide standards and curriculum based STEAM Programs for all students grades K-8 in the areas of Robotics, Drones, and 3D- Printing.</p>
 <p>All of our STEAM Programs focus on aspects of scratch and loop programming and coding. We use design software for our 3D printing that allows students to not only design, but begin to understand the processes necessary for a successful slice and print.</p>
 <p>Students will engage in hands- on STEAM learning building robots, coding their drone, learning about the fundamentals of 3D design, and so much more.</p>
@@ -1784,8 +2044,8 @@ export const legacyCategoryPaths: { from: string; category: string }[] = [
   { from: `/category/sat-math`, category: `SAT Math` },
   { from: `/category/steam-resources`, category: `STEAM Resources` },
   { from: `/category/stem`, category: `STEM` },
-  { from: `/category/tutoring`, category: `Tutoring` },
   { from: `/category/tutoring-2`, category: `Tutoring` },
+  { from: `/category/tutoring`, category: `Tutoring` },
   { from: `/category/tutoring-resources`, category: `Tutoring Resources` },
 ];
 

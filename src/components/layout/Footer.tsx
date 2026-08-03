@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icon, SocialIcon } from "@/components/icons";
 import { Logo } from "@/components/Logo";
 import { Container } from "@/components/ui/Container";
-import { addressLine, footerColumns, nyAddressLine, site, socials } from "@/content/site";
+import { addressLine, footerColumns, site, socials } from "@/content/site";
 
 export function Footer() {
   return (
@@ -36,12 +36,16 @@ export function Footer() {
                   {site.email}
                 </a>
               </li>
+              {/* One address only. The Staten Island location was sold in
+                  2026; listing its address here would advertise a location
+                  Resource Room no longer operates, and a second address in the
+                  footer is read as a second branch by both people and Google —
+                  inconsistent NAP is one of the few things that reliably
+                  damages local pack ranking. The Staten Island origin survives
+                  as history on the About page, where it belongs. */}
               <li className="flex items-start gap-3">
                 <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-sun-500" />
-                <span>
-                  {addressLine}
-                  <span className="mt-1 block text-white/50">{nyAddressLine}</span>
-                </span>
+                <span>{addressLine}</span>
               </li>
             </ul>
             <div className="mt-6 flex items-center gap-3">

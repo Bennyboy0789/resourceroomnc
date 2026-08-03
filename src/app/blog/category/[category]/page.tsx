@@ -5,6 +5,7 @@ import { FinalCta } from "@/components/home/FinalCta";
 import { PageHero } from "@/components/PageHero";
 import { blogCategories, posts } from "@/content/blog";
 import { categorySlug, paginate } from "@/lib/blog";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return blogCategories.map((category) => ({ category: categorySlug(category) }));
@@ -22,8 +23,10 @@ export async function generateMetadata({
   if (!name) return {};
 
   return {
-    title: `${name} — Blog`,
-    description: `Posts from the Resource Room educators on ${name.toLowerCase()}, written for Holly Springs and Triangle families.`,
+    title: seoTitle(`${name} — Blog`),
+    description: seoDescription(
+      `Posts from the Resource Room educators on ${name.toLowerCase()}, written for Holly Springs and Triangle families.`,
+    ),
     alternates: { canonical: `/blog/category/${category}` },
   };
 }

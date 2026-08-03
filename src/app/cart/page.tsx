@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { CartPageContents } from "@/components/shop/CartPageContents";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Your Enrollment",
-  description: "Review the Resource Room programs you have selected before checking out.",
+  title: seoTitle("Your Enrollment"),
+  description: seoDescription(
+    "Review the Resource Room programs you have selected before checking out.",
+  ),
   robots: { index: false, follow: false },
 };
 

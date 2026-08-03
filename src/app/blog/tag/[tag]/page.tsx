@@ -5,6 +5,7 @@ import { FinalCta } from "@/components/home/FinalCta";
 import { PageHero } from "@/components/PageHero";
 import { blogTags, posts } from "@/content/blog";
 import { paginate, tagSlug } from "@/lib/blog";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return blogTags.map((tag) => ({ tag: tagSlug(tag.name) }));
@@ -24,8 +25,13 @@ export async function generateMetadata({
   const count = posts.filter((post) => post.tags.includes(name)).length;
 
   return {
-    title: `${name} — Blog`,
-    description: `${count} ${count === 1 ? "post" : "posts"} tagged “${name}” from the educators at Resource Room Learning Center in Holly Springs, NC.`,
+    /* "Posts tagged X", not "X — Blog": the category archive of the same name
+       already uses the latter, and two pages sharing a title is a duplicate
+       signal even when one of them is noindex. */
+    title: seoTitle(`Posts tagged ${name}`),
+    description: seoDescription(
+      `${count} ${count === 1 ? "post" : "posts"} tagged “${name}” from the educators at Resource Room Learning Center in Holly Springs, NC.`,
+    ),
     alternates: { canonical: `/blog/tag/${tag}` },
     /*
      * Tag archives are a browse aid, not a destination. Several overlap almost

@@ -3,7 +3,7 @@ import { blogCategories, posts } from "@/content/blog";
 import { courses } from "@/content/courses";
 import { programs } from "@/content/programs";
 import { site } from "@/content/site";
-import { categorySlug, POSTS_PER_PAGE } from "@/lib/blog";
+import { categorySlug } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: {
@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.7, changeFrequency: "monthly" },
     { path: "/about/preferred-partners", priority: 0.5, changeFrequency: "monthly" },
     { path: "/join-our-team", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/privacy-policy", priority: 0.2, changeFrequency: "monthly" },
   ];
 
   return [
@@ -49,18 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
     })),
     /*
-     * Numbered archive pages are listed so posts past the ninth are reachable
-     * by crawl, even though the pages themselves are noindex/follow. Tag
-     * archives are deliberately left out: they are noindex browse aids and
-     * every post they contain is already in the sitemap above.
+     * Numbered archive pages and tag archives are deliberately absent. Both
+     * are noindex/follow, and listing a noindex URL in the sitemap sends a
+     * crawler two contradictory instructions — submit this for indexing, and
+     * do not index it. Every post they contain is already listed above, and
+     * the pagination links keep them reachable by crawl regardless.
      */
-    ...Array.from(
-      { length: Math.max(0, Math.ceil(posts.length / POSTS_PER_PAGE) - 1) },
-      (_, i) => ({
-        url: `${site.url}/blog/page/${i + 2}`,
-        changeFrequency: "weekly" as const,
-        priority: 0.3,
-      }),
-    ),
   ];
 }

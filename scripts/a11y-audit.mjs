@@ -56,7 +56,8 @@ for (const [viewportName, viewport] of VIEWPORTS) {
   const page = await context.newPage();
 
   for (const [label, path] of PAGES) {
-    await page.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
+    await page.goto(`${BASE}${path}`, { waitUntil: "load" });
+    await page.waitForTimeout(600);
     const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
     checks++;
 
@@ -82,9 +83,7 @@ for (const [viewportName, viewport] of VIEWPORTS) {
 await browser.close();
 
 const RANK = { critical: 0, serious: 1, moderate: 2, minor: 3 };
-const sorted = [...findings.values()].sort(
-  (a, b) => (RANK[a.impact] ?? 9) - (RANK[b.impact] ?? 9),
-);
+const sorted = [...findings.values()].sort((a, b) => (RANK[a.impact] ?? 9) - (RANK[b.impact] ?? 9));
 
 console.log(`\naxe-core — ${checks} page/viewport combinations checked\n`);
 

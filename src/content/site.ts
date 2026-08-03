@@ -20,24 +20,27 @@ export const site = {
     state: "NC",
     zip: "27540",
   },
-  /**
-   * Resource Room started in one room on Staten Island in 2015 and the NY
-   * address is still listed on the live site's contact blocks. Programs run out
-   * of Holly Springs — this is here so the footer and contact page can show
-   * both, the way resourceroomnc.com does.
+  /*
+   * There is deliberately no second address here. Resource Room began in one
+   * room on Staten Island in 2015 and the old WordPress site listed that
+   * address alongside Holly Springs — but the Staten Island business was sold
+   * in 2026, so publishing its address would advertise a location Resource
+   * Room no longer operates. The origin is told as history on the About page.
    */
-  nyAddress: {
-    street: "534 Forest Ave",
-    city: "Staten Island",
-    state: "NY",
-    zip: "10310",
-  },
   hours: {
     weekdays: "Mon–Fri: 9am–7pm",
     weekend: "Saturday by appointment",
   },
   /** Google Maps embed for the contact page (no API key required). */
   mapEmbedQuery: "2100 Crossway Ln, Holly Springs, NC 27540",
+  /**
+   * Coordinates for the Holly Springs center, supplied by Joe.
+   *
+   * Feeds `geo` on the LocalBusiness schema, which is one of the signals
+   * Google uses to place a business in the local pack. Kept here rather than
+   * inline in the schema because it is business data, not markup.
+   */
+  geo: { latitude: 35.663466, longitude: -78.835116 },
   /**
    * The blog now lives in this app at /blog. Posts are imported from
    * WordPress by `node scripts/import-wordpress.mjs` — re-run it after Joe
@@ -51,7 +54,6 @@ export const site = {
 
 export const addressLine = `${site.address.street}, ${site.address.city}, ${site.address.state}`;
 
-export const nyAddressLine = `${site.nyAddress.street}, ${site.nyAddress.city}, ${site.nyAddress.state} ${site.nyAddress.zip}`;
 
 export type Award = {
   label: string;

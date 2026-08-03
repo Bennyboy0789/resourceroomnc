@@ -7,11 +7,13 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { coreValues, partners, partnersIntro } from "@/content/about";
 import { pageHeroes } from "@/content/sections";
 import { stagger } from "@/lib/stagger";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Preferred Partners",
-  description:
+  title: seoTitle("Preferred Partners"),
+  description: seoDescription(
     "The clinicians and specialists Resource Room works alongside — psychoeducational evaluation, ABA, and speech-language therapy for families across Holly Springs and the Triangle.",
+  ),
   alternates: { canonical: "/about/preferred-partners" },
 };
 
@@ -30,9 +32,7 @@ export default function PreferredPartnersPage() {
             <Reveal key={partner.name} as="li" delay={stagger(index, 0.08)}>
               <article className="border border-navy-900/10 bg-white p-8 sm:p-10">
                 <h2 className="text-2xl font-bold tracking-tight text-navy-950">{partner.name}</h2>
-                <p className="mt-1.5 text-sm font-semibold text-brand-600">
-                  {partner.credentials}
-                </p>
+                <p className="mt-1.5 text-sm font-semibold text-brand-600">{partner.credentials}</p>
 
                 <div className="mt-6 max-w-3xl space-y-4">
                   {partner.body.map((paragraph) => (

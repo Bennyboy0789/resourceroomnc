@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { getStripe } from "@/lib/stripe";
 import { site } from "@/content/site";
+import { seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Enrollment Confirmed",
+  title: seoTitle("Enrollment Confirmed"),
   robots: { index: false, follow: false },
 };
 
@@ -65,12 +66,12 @@ export default async function ConfirmedPage({
             </h2>
             <ul className="mt-5 space-y-4 text-sm leading-relaxed text-navy-700">
               <li className="flex gap-3">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                A receipt is on its way{email ? ` to ${email}` : ""}.
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />A receipt is
+                on its way{email ? ` to ${email}` : ""}.
               </li>
               <li className="flex gap-3">
-                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                A member of our team will reach out within one business day to confirm scheduling.
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />A member of
+                our team will reach out within one business day to confirm scheduling.
               </li>
               <li className="flex gap-3">
                 <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
@@ -81,8 +82,8 @@ export default async function ConfirmedPage({
         ) : (
           <div className="border border-navy-950/12 bg-mist p-8">
             <p className="text-sm leading-relaxed text-navy-700">
-              We could not verify this checkout session. That usually means the page was
-              refreshed or the link was opened later. Your card may still have been charged.
+              We could not verify this checkout session. That usually means the page was refreshed
+              or the link was opened later. Your card may still have been charged.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href={site.phoneHref} variant="navy">

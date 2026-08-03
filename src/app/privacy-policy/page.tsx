@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/ui/Section";
 import { privacyPolicy } from "@/content/legal";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
+  title: seoTitle("Privacy Policy"),
+  description: seoDescription(
     "How Resource Room Learning Center collects, uses, shares and safeguards your information.",
+  ),
   alternates: { canonical: "/privacy-policy" },
   robots: { index: true, follow: true },
 };

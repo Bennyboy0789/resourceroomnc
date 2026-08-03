@@ -34,7 +34,7 @@ const focusInfo = () =>
   });
 
 // --- 2.4.1 Bypass Blocks ----------------------------------------------------
-await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/`, { waitUntil: "load" });
 await page.keyboard.press("Tab");
 await page.waitForTimeout(300); // let the reveal transition settle before measuring
 const first = await focusInfo();
@@ -58,7 +58,7 @@ const afterSkip = await page.evaluate(() => document.activeElement?.id ?? "");
 record("2.4.1 skip link moves focus to <main>", afterSkip === "main", `focus id: "${afterSkip}"`);
 
 // --- 2.1.1 Keyboard: program mega menu --------------------------------------
-await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/`, { waitUntil: "load" });
 const programsTrigger = page.locator('nav[aria-label="Main"] button', { hasText: /programs/i }).first();
 const hasTrigger = await programsTrigger.count();
 if (hasTrigger) {
@@ -110,7 +110,8 @@ if (await cartButton.count()) {
 const narrow = await browser.newContext({ viewport: { width: 320, height: 800 } });
 const narrowPage = await narrow.newPage();
 for (const path of ["/", "/programs/camps", "/courses", "/blog", "/contact"]) {
-  await narrowPage.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
+  await narrowPage.goto(`${BASE}${path}`, { waitUntil: "load" });
+  await narrowPage.waitForTimeout(600);
   const overflow = await narrowPage.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
   );
@@ -118,7 +119,7 @@ for (const path of ["/", "/programs/camps", "/courses", "/blog", "/contact"]) {
 }
 
 // --- 1.4.12 Text spacing ----------------------------------------------------
-await narrowPage.goto(`${BASE}/programs/camps`, { waitUntil: "networkidle" });
+await narrowPage.goto(`${BASE}/programs/camps`, { waitUntil: "load" });
 await narrowPage.addStyleTag({
   content: `* { line-height: 1.5 !important; letter-spacing: 0.12em !important;
              word-spacing: 0.16em !important; } p { margin-bottom: 2em !important; }`,

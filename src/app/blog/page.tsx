@@ -9,11 +9,13 @@ import { posts } from "@/content/blog";
 import { pageHeroes } from "@/content/sections";
 import { site } from "@/content/site";
 import { buildSearchIndex, paginate } from "@/lib/blog";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description:
+  title: seoTitle("Blog", "Tutoring & College Prep Advice"),
+  description: seoDescription(
     "Guidance from the educators at Resource Room on tutoring, SAT and ACT prep, college admissions, neurodiverse learning, homeschooling and STEAM — written for Holly Springs and Triangle families.",
+  ),
   alternates: { canonical: "/blog" },
 };
 

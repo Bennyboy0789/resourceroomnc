@@ -51,7 +51,32 @@ export function organizationSchema() {
         opens: "09:00",
         closes: "19:00",
       },
+      /* The contact page says "Saturday by appointment", so the schema should
+         not claim the centre is shut. No hours are published for it, hence the
+         `description` rather than an opens/closes pair. */
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday"],
+        description: "By appointment",
+      },
     ],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    /* A real photograph of the premises, not the generated brand card that
+       used to sit here. Google's LocalBusiness guidance asks for a picture of
+       the business, and an exterior shot is the one that does actual work: it
+       is what a parent matches against the building when they pull into the
+       lot. The brand card remains the og:image default for social previews. */
+    image: `${site.url}/images/learning-center-storefront.jpg`,
+    logo: `${site.url}/icon`,
+    hasMap: `https://maps.google.com/?q=${encodeURIComponent(site.mapEmbedQuery)}`,
+    /* Programs run from about $45 for a single emerging-learner class to
+       $24,000 a year for the private high school, so the band is wide. */
+    priceRange: "$$",
+    currenciesAccepted: "USD",
     areaServed: [
       "Holly Springs, NC",
       "Apex, NC",
@@ -200,9 +225,7 @@ export function partnersSchema() {
         "@type": "Person",
         name: partner.name,
         description: partner.credentials,
-        ...(partner.links?.[0]?.href.startsWith("http")
-          ? { url: partner.links[0].href }
-          : {}),
+        ...(partner.links?.[0]?.href.startsWith("http") ? { url: partner.links[0].href } : {}),
       },
     })),
   };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostCard } from "@/components/blog/PostCard";
@@ -10,6 +11,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { getPost, posts } from "@/content/blog";
 import { site } from "@/content/site";
 import { categorySlug, formatDate, tagSlug } from "@/lib/blog";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -21,8 +23,8 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   if (!post) return {};
 
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: seoTitle(post.title),
+    description: seoDescription(post.excerpt),
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
@@ -30,7 +32,11 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
       description: post.excerpt,
       url: `/blog/${post.slug}`,
       publishedTime: post.date,
-      images: post.image ? [{ url: post.image }] : undefined,
+      /* Falls back to the generated brand card explicitly. Declaring
+         `openGraph` at all suppresses the `opengraph-image.tsx` default, and
+         `images: undefined` does not bring it back — the one post without a
+         featured image was sharing as a bare link. */
+      images: [{ url: post.image ?? "/opengraph-image" }],
     },
   };
 }
@@ -62,17 +68,39 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: post.excerpt,
+    description: seoDescription(post.excerpt),
     datePublished: post.date,
+    /* Freshness. Several posts predate the rebuild by years, and without this
+       there is nothing telling a crawler — or an answer engine weighing
+       whether to quote a 2021 post about testing policy — how current it is. */
+    dateModified: post.modified,
     image: post.image ? `${site.url}${post.image}` : undefined,
-    author: { "@type": "Organization", name: site.legalName, url: site.url },
+    /*
+     * A named author outranks a logo for both E-E-A-T and AI citation, and
+     * `description` is the part that does the work — it puts the licensure and
+     * classroom record inside the Person node rather than leaving a bare name.
+     * Set in scripts/import-wordpress.mjs.
+     */
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+      ...(post.author.jobTitle ? { jobTitle: post.author.jobTitle } : {}),
+      ...(post.author.url ? { url: `${site.url}${post.author.url}` } : {}),
+      ...(post.author.image ? { image: `${site.url}${post.author.image}` } : {}),
+      ...(post.author.description ? { description: post.author.description } : {}),
+      worksFor: { "@type": "Organization", name: site.legalName, url: site.url },
+    },
     publisher: {
       "@type": "Organization",
       name: site.legalName,
       url: site.url,
+      logo: { "@type": "ImageObject", url: `${site.url}/icon` },
     },
     mainEntityOfPage: `${site.url}/blog/${post.slug}`,
     articleSection: post.categories[0],
+    keywords: post.tags.join(", "),
+    wordCount: post.plain.split(/\s+/).filter(Boolean).length,
+    inLanguage: "en-US",
   };
 
   return (
@@ -104,12 +132,30 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
                 </Link>
               ))}
               <span className="text-navy-500">{formatDate(post.date)}</span>
+              {/* Shown only when it differs, so the schema's dateModified is
+                  something a reader can see rather than a bare markup claim. */}
+              {post.modified !== post.date ? (
+                <span className="text-navy-500">Updated {formatDate(post.modified)}</span>
+              ) : null}
               <span className="text-navy-500">{post.readingMinutes} min read</span>
             </p>
 
             <h1 className="mt-4 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-navy-950 sm:text-5xl">
               {post.title}
             </h1>
+
+            {/* A visible byline, because schema should describe what is on the
+                page rather than assert something a reader cannot see. */}
+            <p className="mt-6 text-sm text-navy-600">
+              By{" "}
+              <Link
+                href={post.author.url ?? "/about"}
+                className="font-bold text-navy-950 underline-offset-4 hover:underline"
+              >
+                {post.author.name}
+              </Link>
+              {post.author.jobTitle ? ` · ${post.author.jobTitle}` : null}
+            </p>
           </Container>
         </header>
 
@@ -134,6 +180,43 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
           <div className="article max-w-2xl" dangerouslySetInnerHTML={{ __html: post.html }} />
         </Container>
       </article>
+
+      {/* Author box. The credentials in the Person schema should be readable
+          on the page too — this is the E-E-A-T signal a parent actually reads
+          before deciding whether to trust a post about their child's IEP. */}
+      <Container size="default" className="pb-14">
+        <div className="max-w-2xl border-t border-navy-900/10 pt-8">
+          <p className="eyebrow text-brand-600">Written by</p>
+          <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:gap-6">
+            {post.author.image ? (
+              <Image
+                src={post.author.image}
+                alt={`${post.author.name}, ${post.author.jobTitle ?? "Resource Room"}`}
+                width={112}
+                height={112}
+                sizes="112px"
+                className="h-28 w-28 shrink-0 rounded-full object-cover object-top"
+              />
+            ) : null}
+            <div className="min-w-0">
+              <p className="text-lg font-bold tracking-tight text-navy-950">{post.author.name}</p>
+              {post.author.jobTitle ? (
+                <p className="mt-1 text-sm font-semibold text-brand-600">{post.author.jobTitle}</p>
+              ) : null}
+              {post.author.description ? (
+                <p className="mt-3 leading-relaxed text-navy-600">{post.author.description}</p>
+              ) : null}
+              <Link
+                href={post.author.url ?? "/about"}
+                className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950 hover:text-brand-700"
+              >
+                More about Resource Room
+                <Icon name="arrowRight" className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Container>
 
       {post.tags.length ? (
         <Container size="default" className="pb-14">

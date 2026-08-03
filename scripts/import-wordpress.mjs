@@ -162,6 +162,47 @@ function canonicalTag(name) {
   return TAG_ALIASES[name.toLowerCase()] ?? name;
 }
 
+/**
+ * Blog authorship.
+ *
+ * Answer engines and Google both weight author identity heavily when deciding
+ * whether to cite a source, and "written by a logo" is the weakest possible
+ * signal — especially on a site whose whole argument is that real credentialed
+ * educators run the programs.
+ *
+ * The live WordPress site publishes no byline and its users endpoint is locked,
+ * so the ids cannot be resolved to names automatically. Joe is the stated
+ * author of the whole blog, so he is the default and every post gets him.
+ *
+ * `description` is the load-bearing field: it is what carries the credentials
+ * into the Person node, which is where the E-E-A-T value actually sits.
+ */
+const DEFAULT_AUTHOR = {
+  name: "Joe Cuccurullo",
+  jobTitle: "Co-founder, Resource Room Learning Center",
+  url: "/about",
+  image: "/images/joe-cuccurullo.jpg",
+  description:
+    "Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.",
+};
+
+/**
+ * Per-author overrides, keyed by WordPress author id.
+ *
+ * Deliberately empty. Two ids are in use in WordPress — 3 (24 posts) and 11
+ * (8 posts) — and the users endpoint is locked down, so the ids alone could
+ * not settle who wrote what. Joe confirmed on 2026-08-02 that all 32 are his;
+ * the two ids are the same person under two logins. Everything therefore falls
+ * back to DEFAULT_AUTHOR by design, not by omission.
+ *
+ * If a second writer joins, add an entry keyed by their WordPress id.
+ */
+const BLOG_AUTHORS = {};
+
+function authorFor(id) {
+  return BLOG_AUTHORS[id] ?? DEFAULT_AUTHOR;
+}
+
 async function getAll(endpoint) {
   const out = [];
   for (let page = 1; ; page++) {
@@ -282,7 +323,29 @@ function cleanPostHtml(html = "") {
   t = t.replace(/<p>\s*<\/p>/g, "");
   t = t.replace(/\s{2,}/g, " ");
   t = t.replace(/>\s+</g, ">\n<");
-  return t.trim();
+  t = t.trim();
+
+  /*
+   * Contiguous heading levels.
+   *
+   * Five 2021 posts open straight at h3 with no h2, so the page outline jumps
+   * h1 -> h3. Rather than rewrite them in WordPress, the levels are normalised
+   * on import: the shallowest heading present becomes h2 and the rest shift by
+   * the same amount, which preserves the author's relative structure while
+   * removing the skip. Capped at h4 so nothing lands below the styles.
+   */
+  const levels = [...t.matchAll(/<h([2-4])[^>]*>/g)].map((m) => Number(m[1]));
+  if (levels.length) {
+    const shift = Math.min(...levels) - 2;
+    if (shift > 0) {
+      t = t.replace(/<(\/?)h([2-4])>/g, (_m, slash, level) => {
+        const next = Math.min(4, Math.max(2, Number(level) - shift));
+        return `<${slash}h${next}>`;
+      });
+    }
+  }
+
+  return t;
 }
 
 function extFromUrl(url) {
@@ -399,6 +462,21 @@ async function main() {
       slug: post.slug,
       title: decode(post.title.rendered),
       date: post.date.slice(0, 10),
+      /*
+       * Freshness signal. Several posts were back-dated in WordPress, so
+       * `modified` can land *before* `date` — emitting that as dateModified
+       * would be nonsense schema. Clamped to never precede publication.
+       */
+      modified:
+        post.modified.slice(0, 10) > post.date.slice(0, 10)
+          ? post.modified.slice(0, 10)
+          : post.date.slice(0, 10),
+      /*
+       * WordPress author id. The users endpoint is locked (401) and no byline
+       * is rendered anywhere on the live site, so names are not derivable —
+       * see BLOG_AUTHORS above.
+       */
+      authorId: post.author ?? null,
       categories: post.categories
         .map((id) => catById.get(id)?.name)
         .filter((n) => n && n !== "Uncategorized")
@@ -468,6 +546,10 @@ export type BlogPost = {
   title: string;
   /** ISO date, YYYY-MM-DD. */
   date: string;
+  /** Last edit, never earlier than publication. Feeds schema dateModified. */
+  modified: string;
+  /** Named author. The description carries credentials into Person schema. */
+  author: { name: string; jobTitle?: string; url?: string; image?: string; description?: string };
   categories: string[];
   tags: string[];
   excerpt: string;
@@ -492,6 +574,14 @@ ${blogEntries
     slug: ${tsString(p.slug)},
     title: ${tsString(p.title)},
     date: ${tsString(p.date)},
+    modified: ${tsString(p.modified)},
+    author: {
+      name: ${tsString(authorFor(p.authorId).name)},
+      jobTitle: ${tsString(authorFor(p.authorId).jobTitle)},
+      url: ${tsString(authorFor(p.authorId).url)},
+      image: ${tsString(authorFor(p.authorId).image)},
+      description: ${tsString(authorFor(p.authorId).description)},
+    },
     categories: [${p.categories.map(tsString).join(", ")}],
     tags: [${p.tags.map(tsString).join(", ")}],
     excerpt: ${tsString(p.excerpt)},

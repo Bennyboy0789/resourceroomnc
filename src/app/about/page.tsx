@@ -10,13 +10,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { coreValues, foundingStory, philosophy } from "@/content/about";
 import { heroImages, pageHeroes } from "@/content/sections";
 import { aboutHighlights, founders, whyChooseUs } from "@/content/home";
-import { addressLine, nyAddressLine, site } from "@/content/site";
+import { addressLine, site } from "@/content/site";
 import { stagger } from "@/lib/stagger";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description:
+  title: seoTitle("About Us", "Holly Springs Learning Center"),
+  description: seoDescription(
     "Resource Room is owned and operated by Joe and Sam, licensed career educators who met teaching in Manhattan, opened in Holly Springs in 2021, and now run one of the Triangle's most complete learning centers.",
+  ),
   alternates: { canonical: "/about" },
 };
 
@@ -168,12 +170,10 @@ export default function AboutPage() {
             <ul className="mt-6 space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <Icon name="pin" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                <span className="text-navy-700">
-                  {addressLine}
-                  <span className="mt-1 block text-navy-500">
-                    Where it started: {nyAddressLine}
-                  </span>
-                </span>
+                {/* Holly Springs only. The Staten Island origin is told as
+                    history in the founding story above; printed here beside
+                    the operating address it reads as a second branch. */}
+                <span className="text-navy-700">{addressLine}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="phone" className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />

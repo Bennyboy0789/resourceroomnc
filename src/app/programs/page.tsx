@@ -8,11 +8,13 @@ import { Section } from "@/components/ui/Section";
 import { programs } from "@/content/programs";
 import { pageHeroes } from "@/content/sections";
 import { breadcrumbSchema, jsonLd, programCatalogSchema } from "@/lib/schema";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "All Programs",
-  description:
+  title: seoTitle("All Programs", "Holly Springs, NC"),
+  description: seoDescription(
     "Tutoring, camps, SAT and ACT prep, college advisement, executive functioning coaching, summer bridge, homeschool co-op, ABA support, IEP and 504 advocacy, and Pathways Academy — every Resource Room program in one place.",
+  ),
   alternates: { canonical: "/programs" },
 };
 

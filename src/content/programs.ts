@@ -1754,15 +1754,9 @@ export const programs: Program[] = [
         accent: "Cuccurullo.",
         name: "Joe Cuccurullo",
         credentials: "Co-founder, Resource Room Learning Center",
-        /*
-         * The founders photograph — the only picture of Joe we hold. A solo
-         * headshot would serve this page better: it is where he presents his
-         * licensure and classroom record to a parent deciding whether to bring
-         * him into an IEP meeting.
-         */
         image: {
-          src: "/images/founders.jpg",
-          alt: "Joe Cuccurullo, co-founder of Resource Room, with Sam and their son at the Holly Springs learning center.",
+          src: "/images/joe-cuccurullo.jpg",
+          alt: "Joe Cuccurullo, co-founder of Resource Room Learning Center.",
           kind: "photo",
         },
         body: [
