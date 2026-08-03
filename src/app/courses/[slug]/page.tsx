@@ -178,6 +178,10 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
               position="top"
               sizes="(min-width: 1024px) 40vw, 100vw"
               priority
+              /* Deliberately square-cornered, unlike the course tiles: this
+                 photo is the top of a stack that continues into the details
+                 panel and the "part of" link, and rounding only its top edge
+                 reads as a mistake rather than a choice. */
             />
 
             <dl className="mt-5 border border-navy-900/10 bg-mist p-6 text-sm">
@@ -244,17 +248,19 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
             {siblings.map((other, index) => (
               <Reveal key={other.slug} as="li" delay={stagger(index, 0.07)}>
                 <article className="group">
+                  {/* Matches the catalog grid on /courses — radius on the
+                      wrapper so the hover scale doesn't scale the corners. */}
                   <Link
                     href={`/courses/${other.slug}`}
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="block overflow-hidden"
+                    className="block overflow-hidden rounded-2xl"
                   >
                     <PhotoSlot
                       src={other.image ?? undefined}
                       alt={other.imageAlt}
                       icon={groupIcon(other.group)}
-                      ratio="1/1"
+                      ratio="4/3"
                       position="top"
                       sizes="(min-width: 1024px) 25vw, 50vw"
                       className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"

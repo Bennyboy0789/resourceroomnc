@@ -59,25 +59,28 @@ export default function CoursesPage() {
           <SectionHeading eyebrow={`${coursesInGroup(group).length} courses`} title={group} />
 
           {/* Two columns from the smallest screen up. A catalog is for
-              scanning, and one full-width square tile per course made 24
-              courses a twenty-screen scroll on a phone. */}
+              scanning, and one full-width tile per course made 24 courses a
+              twenty-screen scroll on a phone. */}
           <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
             {coursesInGroup(group).map((course, index) => (
               <Reveal key={course.slug} as="li" delay={stagger(index % 4, 0.07)}>
                 <article className="group h-full">
                   {/* Redundant with the heading link below; hidden from the
                       a11y tree so it is not a second, nameless link. */}
+                  {/* The radius lives on the wrapper, not on PhotoSlot: the
+                      hover scale is on the photo, and a radius that scales with
+                      it reads as a wobble on every card in a 24-tile grid. */}
                   <Link
                     href={`/courses/${course.slug}`}
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="block overflow-hidden"
+                    className="block overflow-hidden rounded-2xl"
                   >
                     <PhotoSlot
                       src={course.image ?? undefined}
                       alt={course.imageAlt}
                       icon={groupIcon(group)}
-                      ratio="1/1"
+                      ratio="4/3"
                       position="top"
                       sizes="(min-width: 1024px) 25vw, 50vw"
                       className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
