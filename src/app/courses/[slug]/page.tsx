@@ -50,7 +50,8 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
   const course = getCourse(slug);
   if (!course) notFound();
 
-  const program = getProgram(programForGroup(course.group));
+  const programSlug = programForGroup(course.group);
+  const program = programSlug ? getProgram(programSlug) : undefined;
   const price = formatPrice(course.price);
 
   /*
@@ -186,7 +187,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
                  reads as a mistake rather than a choice. */
             />
 
-            <dl className="mt-5 border border-navy-900/10 bg-mist p-6 text-sm">
+            <dl className="mt-5 rounded-card border border-navy-900/10 bg-mist p-6 text-sm">
               <div className="flex justify-between gap-4 border-b border-navy-900/10 pb-3">
                 <dt className="font-bold uppercase tracking-[0.06em] text-navy-500">Group</dt>
                 <dd className="text-right text-navy-800">{course.group}</dd>
@@ -212,7 +213,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
             {program ? (
               <Link
                 href={`/programs/${program.slug}`}
-                className="mt-4 flex items-center justify-between gap-4 border border-navy-900/10 bg-white p-5 transition-colors hover:border-navy-900/30"
+                className="mt-4 flex items-center justify-between gap-4 rounded-card border border-navy-900/10 bg-white p-5 transition-colors hover:border-navy-900/30"
               >
                 <span>
                   <span className="eyebrow block text-brand-500">Part of</span>

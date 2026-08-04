@@ -119,7 +119,7 @@ export default function AboutPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2">
           {coreValues.map((value, index) => (
             <Reveal key={value.title} as="li" delay={stagger(index, 0.06)}>
-              <div className="h-full border border-navy-900/8 bg-white p-7">
+              <div className="h-full rounded-card border border-navy-900/8 bg-white p-7">
                 <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-500">
                   <Icon name={value.icon} className="h-5 w-5" />
                 </span>

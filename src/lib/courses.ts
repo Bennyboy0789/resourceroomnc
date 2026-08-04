@@ -16,19 +16,33 @@ export function groupIcon(group: string): IconName {
   return GROUP_ICONS[group] ?? "sparkle";
 }
 
-/** Which program page a catalog group belongs under. */
+/**
+ * Which program page a catalog group belongs under.
+ *
+ * "Emerging Learners" is deliberately absent. On the Aug 3 2026 call Joe went
+ * through that group by name — Early Reading Instruction, Lego Exploration,
+ * Minecraft Education, Ms. Sam's New 2 Numbers — and said "we're not even
+ * running those programs now". They were surfacing on the Private Tutoring
+ * page, which is a large part of why it felt overwhelming. The pages still
+ * exist in the unlisted catalog; they just no longer advertise themselves on a
+ * program page. Put the group back here to re-list them.
+ */
 const GROUP_PROGRAM: Record<string, string> = {
   "STEAM Programs": "camps",
   "LEGO Robotics": "camps",
   "Gaming Education": "camps",
-  "Emerging Learners": "tutoring",
   Workshops: "tutoring",
   "Tutoring Programs": "tutoring",
   "Test Prep": "sat-act-prep",
 };
 
-export function programForGroup(group: string): string {
-  return GROUP_PROGRAM[group] ?? "camps";
+/**
+ * Returns undefined for a group that belongs to no program — previously this
+ * fell back to "camps", which would now label an Emerging Learners course as
+ * part of Camps. The caller renders the "Part of" link only when this resolves.
+ */
+export function programForGroup(group: string): string | undefined {
+  return GROUP_PROGRAM[group];
 }
 
 /**

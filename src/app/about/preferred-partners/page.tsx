@@ -30,7 +30,7 @@ export default function PreferredPartnersPage() {
         <ul className="space-y-6">
           {partners.map((partner, index) => (
             <Reveal key={partner.name} as="li" delay={stagger(index, 0.08)}>
-              <article className="border border-navy-900/10 bg-white p-8 sm:p-10">
+              <article className="rounded-card border border-navy-900/10 bg-white p-8 sm:p-10">
                 <h2 className="text-2xl font-bold tracking-tight text-navy-950">{partner.name}</h2>
                 <p className="mt-1.5 text-sm font-semibold text-brand-500">{partner.credentials}</p>
 
@@ -71,7 +71,7 @@ export default function PreferredPartnersPage() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2">
           {coreValues.map((value, index) => (
             <Reveal key={value.title} as="li" delay={stagger(index, 0.06)}>
-              <div className="h-full border border-navy-900/8 bg-white p-7">
+              <div className="h-full rounded-card border border-navy-900/8 bg-white p-7">
                 <span className="grid h-12 w-12 place-items-center bg-navy-900 text-sun-500">
                   <Icon name={value.icon} className="h-5 w-5" />
                 </span>

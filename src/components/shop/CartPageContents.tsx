@@ -90,7 +90,7 @@ export function CartPageContents() {
                 : null}
 
               <div className="mt-4 flex items-center gap-4">
-                <div className="flex items-center border border-navy-950/15">
+                <div className="flex items-center rounded-chip border border-navy-950/15">
                   <button
                     type="button"
                     aria-label={`Decrease quantity of ${item.productName}`}
@@ -127,7 +127,7 @@ export function CartPageContents() {
       </ul>
 
       <aside className="lg:sticky lg:top-28 lg:self-start">
-        <div className="border border-navy-950/12 bg-mist p-7">
+        <div className="rounded-card border border-navy-950/12 bg-mist p-7">
           <h2 className="eyebrow text-brand-500">Summary</h2>
           <div className="mt-5 flex items-baseline justify-between">
             <span className="text-sm text-navy-600">Subtotal</span>

@@ -124,7 +124,7 @@ function Cards({
     <ul className={cn("grid gap-5", wide ? "md:grid-cols-2" : "md:grid-cols-3")}>
       {cards.map((card, index) => (
         <Reveal key={card.title} as="li" delay={stagger(index, 0.06)}>
-          <div className="h-full border border-navy-900/8 bg-white p-7">
+          <div className="h-full rounded-card border border-navy-900/8 bg-white p-7">
             {card.icon ? (
               <span
                 className={cn("grid h-11 w-11 place-items-center rounded-chip", chipClass(accent))}
@@ -159,7 +159,7 @@ function Steps({
     <ol className="space-y-4">
       {steps.map((step, index) => (
         <Reveal key={step.title} as="li" delay={stagger(index, 0.06)}>
-          <div className="flex gap-5 border border-navy-900/8 bg-white p-6 sm:gap-7 sm:p-7">
+          <div className="flex gap-5 rounded-card border border-navy-900/8 bg-white p-6 sm:gap-7 sm:p-7">
             <span
               className={cn(
                 "grid h-11 w-11 shrink-0 place-items-center rounded-chip text-sm font-bold tabular-nums",
@@ -289,7 +289,7 @@ function Person({
   accent: "sun" | "blue";
 }) {
   return (
-    <div className="border border-navy-900/10 bg-white p-8 sm:p-10">
+    <div className="rounded-card border border-navy-900/10 bg-white p-8 sm:p-10">
       {/* With a portrait the block runs as photo-beside-text; without one the
           copy takes the full width rather than leaving a gap. */}
       <div className={cn("grid gap-8", block.image && "lg:grid-cols-[0.9fr_1.6fr] lg:gap-12")}>
@@ -387,7 +387,7 @@ function Schedule({
 function ScheduleCard({ group, index }: { group: ScheduleGroup; index: number }) {
   return (
     <Reveal delay={stagger(index % 6, 0.04)}>
-      <div className="h-full border border-navy-900/8 bg-white p-6">
+      <div className="h-full rounded-card border border-navy-900/8 bg-white p-6">
         <h3 className="text-base font-bold tracking-tight text-navy-950">{group.title}</h3>
         {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
 
@@ -423,7 +423,7 @@ function Checklist({ items }: { items: string[] }) {
     <ul className="grid gap-4 sm:grid-cols-2">
       {items.map((item, index) => (
         <Reveal key={item} as="li" delay={stagger(index, 0.04)}>
-          <div className="flex h-full gap-4 border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700">
+          <div className="flex h-full gap-4 rounded-card border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700">
             <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
             {item}
           </div>
@@ -447,7 +447,7 @@ function Dates({
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item, index) => (
           <Reveal key={item.date} as="li" delay={stagger(index, 0.04)}>
-            <div className="flex h-full flex-col border border-navy-900/8 bg-white p-6">
+            <div className="flex h-full flex-col rounded-card border border-navy-900/8 bg-white p-6">
               <span className={cn("grid h-9 w-9 place-items-center rounded-chip", chipClass(accent))}>
                 <Icon name="clock" className="h-4 w-4" />
               </span>

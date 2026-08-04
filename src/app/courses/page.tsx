@@ -46,7 +46,7 @@ export default function CoursesPage() {
             <a
               key={group}
               href={`#${groupAnchor(group)}`}
-              className="inline-flex min-h-11 items-center border border-navy-900/20 px-4 text-xs font-bold uppercase tracking-[0.08em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
+              className="inline-flex min-h-11 items-center rounded-full border border-navy-900/20 px-4 text-xs font-bold uppercase tracking-[0.08em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
             >
               {group}
               <span className="ml-2 text-navy-500">{coursesInGroup(group).length}</span>

@@ -227,7 +227,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
                 <li key={tag}>
                   <Link
                     href={`/blog/tag/${tagSlug(tag)}`}
-                    className="inline-flex min-h-11 items-center border border-navy-900/20 px-3 text-xs font-bold uppercase tracking-[0.06em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
+                    className="inline-flex min-h-11 items-center rounded-full border border-navy-900/20 px-3 text-xs font-bold uppercase tracking-[0.06em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
                   >
                     {tag}
                   </Link>

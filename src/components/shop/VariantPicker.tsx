@@ -101,7 +101,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
   }
 
   return (
-    <div className="border border-navy-950/12 bg-white p-6 sm:p-8">
+    <div className="rounded-card border border-navy-950/12 bg-white p-6 sm:p-8">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <h3 className="text-xl font-extrabold uppercase tracking-tight text-navy-950">
           {product.name}

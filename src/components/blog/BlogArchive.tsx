@@ -121,7 +121,7 @@ export function BlogArchive({
 
   if (page.items.length === 0) {
     return (
-      <p className="border border-navy-900/10 bg-mist p-8 leading-relaxed text-navy-600">
+      <p className="rounded-card border border-navy-900/10 bg-mist p-8 leading-relaxed text-navy-600">
         {emptyMessage ?? "No posts here yet."}
       </p>
     );

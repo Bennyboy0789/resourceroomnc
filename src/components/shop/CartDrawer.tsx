@@ -155,7 +155,7 @@ export function CartDrawer() {
                 type="button"
                 onClick={cart.close}
                 aria-label="Close cart"
-                className="grid h-9 w-9 place-items-center border border-navy-950/15 text-navy-950"
+                className="grid h-9 w-9 place-items-center rounded-chip border border-navy-950/15 text-navy-950"
               >
                 <Icon name="close" className="h-4 w-4" />
               </button>
@@ -190,7 +190,7 @@ export function CartDrawer() {
                       </div>
 
                       <div className="mt-3 flex items-center gap-3">
-                        <div className="flex items-center border border-navy-950/15">
+                        <div className="flex items-center rounded-chip border border-navy-950/15">
                           <button
                             type="button"
                             aria-label={`Decrease quantity of ${item.productName}`}

@@ -46,7 +46,7 @@ export function ContactForm() {
     return (
       <div
         role="status"
-        className="border border-brand-500/30 bg-brand-50 p-6 text-navy-800"
+        className="rounded-card border border-brand-500/30 bg-brand-50 p-6 text-navy-800"
       >
         <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-500 text-white">
           <Icon name="check" className="h-5 w-5" />
@@ -180,7 +180,7 @@ export function CareersForm() {
 
   if (state.status === "sent") {
     return (
-      <div role="status" className="border border-brand-500/30 bg-brand-50 p-6 text-navy-800">
+      <div role="status" className="rounded-card border border-brand-500/30 bg-brand-50 p-6 text-navy-800">
         <span className="grid h-11 w-11 place-items-center rounded-full bg-brand-500 text-white">
           <Icon name="check" className="h-5 w-5" />
         </span>

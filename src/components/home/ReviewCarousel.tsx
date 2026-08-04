@@ -133,7 +133,7 @@ export function ReviewCarousel({ reviews }: { reviews: Review[] }) {
           type="button"
           onClick={() => step(-1)}
           aria-label="Previous review"
-          className="grid h-11 w-11 place-items-center border border-navy-950/20 text-navy-950 transition-colors hover:border-navy-950"
+          className="grid h-11 w-11 place-items-center rounded-chip border border-navy-950/20 text-navy-950 transition-colors hover:border-navy-950"
         >
           <Icon name="arrowLeft" className="h-4 w-4" />
         </button>
@@ -141,7 +141,7 @@ export function ReviewCarousel({ reviews }: { reviews: Review[] }) {
           type="button"
           onClick={() => step(1)}
           aria-label="Next review"
-          className="grid h-11 w-11 place-items-center border border-navy-950/20 text-navy-950 transition-colors hover:border-navy-950"
+          className="grid h-11 w-11 place-items-center rounded-chip border border-navy-950/20 text-navy-950 transition-colors hover:border-navy-950"
         >
           <Icon name="arrowRight" className="h-4 w-4" />
         </button>

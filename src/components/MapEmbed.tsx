@@ -53,7 +53,7 @@ export function MapEmbed({ query, addressLine }: { query: string; addressLine: s
           <button
             type="button"
             onClick={() => setLoaded(true)}
-            className="inline-flex min-h-11 items-center border border-navy-900 bg-navy-900 px-5 text-xs font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-navy-800"
+            className="inline-flex min-h-11 items-center rounded-full border border-navy-900 bg-navy-900 px-5 text-xs font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-navy-800"
           >
             Load map
           </button>
@@ -61,7 +61,7 @@ export function MapEmbed({ query, addressLine }: { query: string; addressLine: s
             href={directions}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 border border-navy-900/20 px-5 text-xs font-bold uppercase tracking-[0.08em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-navy-900/20 px-5 text-xs font-bold uppercase tracking-[0.08em] text-navy-700 transition-colors hover:border-navy-900/50 hover:text-navy-950"
           >
             Get directions
             <Icon name="arrowUpRight" className="h-3.5 w-3.5" />

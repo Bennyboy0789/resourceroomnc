@@ -124,7 +124,7 @@ export function BlogSearch({
                 ))}
               </ul>
             ) : (
-              <div className="mt-8 border border-navy-900/10 bg-mist p-8">
+              <div className="mt-8 rounded-card border border-navy-900/10 bg-mist p-8">
                 <p className="text-lg font-bold text-navy-950">Nothing matched “{query}”.</p>
                 <p className="mt-2 leading-relaxed text-navy-600">
                   Try a broader word, or browse by topic in the sidebar. If you are looking for
@@ -186,7 +186,7 @@ function ResultCard({ post }: { post: SearchEntry }) {
             <li key={tag}>
               <Link
                 href={`/blog/tag/${tagSlug(tag)}`}
-                className="inline-flex border border-navy-900/15 px-2 py-1 text-[0.65rem] font-bold uppercase tracking-[0.06em] text-navy-600 hover:border-navy-900/40 hover:text-navy-950"
+                className="inline-flex rounded-full border border-navy-900/15 px-2 py-1 text-[0.65rem] font-bold uppercase tracking-[0.06em] text-navy-600 hover:border-navy-900/40 hover:text-navy-950"
               >
                 {tag}
               </Link>

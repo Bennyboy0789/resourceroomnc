@@ -60,7 +60,7 @@ export default async function ConfirmedPage({
 
       <Section tone="white" size="narrow">
         {paid ? (
-          <div className="border border-navy-950/12 bg-mist p-8">
+          <div className="rounded-card border border-navy-950/12 bg-mist p-8">
             <h2 className="text-xl font-extrabold uppercase tracking-tight text-navy-950">
               What happens next
             </h2>
@@ -80,7 +80,7 @@ export default async function ConfirmedPage({
             </ul>
           </div>
         ) : (
-          <div className="border border-navy-950/12 bg-mist p-8">
+          <div className="rounded-card border border-navy-950/12 bg-mist p-8">
             <p className="text-sm leading-relaxed text-navy-700">
               We could not verify this checkout session. That usually means the page was refreshed
               or the link was opened later. Your card may still have been charged.
