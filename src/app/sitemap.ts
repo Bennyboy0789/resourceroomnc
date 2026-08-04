@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { blogCategories, posts } from "@/content/blog";
-import { categories } from "@/content/categories";
 import { programs } from "@/content/programs";
 import { site } from "@/content/site";
 import { categorySlug } from "@/lib/blog";
@@ -13,13 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }[] = [
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/programs", priority: 0.9, changeFrequency: "monthly" },
-    /* The four category pages. Priority sits just under /programs: these are
-       the pages a search for "tutoring holly springs" should land on. */
-    ...categories.map((category) => ({
-      path: `/${category.slug}`,
-      priority: 0.85,
-      changeFrequency: "monthly" as const,
-    })),
     /* /courses and its 24 detail pages are deliberately absent: the catalog is
        unlisted (noindex) while it still advertises classes that are not
        running. See src/app/courses/page.tsx. */

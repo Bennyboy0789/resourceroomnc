@@ -141,12 +141,31 @@ export const navigation: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
-/*
- * The mega menu used to carry its own ad-hoc grouping (Academics / Daytime &
- * Camps / Specialized Support) that existed only in the menu and matched no
- * page. It now renders the four real categories from content/categories.ts, so
- * the menu, the category pages and the home page all agree on one taxonomy.
+/**
+ * How the ten programs are grouped inside the mega menu.
+ *
+ * Three groups, named by Joe on the Aug 3 2026 call: "tutoring programs, camps,
+ * specialized supports". The menu itself he liked as it was — "that programs
+ * drop-down header is really nice" — so only the grouping changed:
+ *
+ *   Academics       -> Tutoring Programs
+ *   Daytime & Camps -> STEM Camps   (he wanted "STEM" in front for SEO)
+ *   Homeschool Co-Op moved out of camps and into Specialized Support
+ *
+ * This is presentation only — every entry points at an existing
+ * `/programs/[slug]` page.
  */
+export const programMenuGroups: { title: string; slugs: string[] }[] = [
+  {
+    title: "Tutoring Programs",
+    slugs: ["tutoring", "sat-act-prep", "college-prep", "executive-functioning"],
+  },
+  { title: "STEM Camps", slugs: ["camps", "summer-bridge"] },
+  {
+    title: "Specialized Support",
+    slugs: ["pathways-academy", "homeschool-co-op", "aba-services", "iep-504-advocate"],
+  },
+];
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {

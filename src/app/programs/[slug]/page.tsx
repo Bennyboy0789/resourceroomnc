@@ -127,6 +127,59 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </section>
       ) : null}
 
+      {/* Products first, prose second — Joe asked on the Aug 3 2026 call for
+          people to land on what they can actually book, with the written
+          content kept underneath it for search.
+
+          Also the internal-linking fix: course pages were reachable only from
+          the catalog, leaving sixteen of them on a single inbound link. */}
+      {programCourses.length ? (
+        <Section tone="mist" size="wide">
+          <SectionHeading
+            eyebrow={`${programCourses.length} courses`}
+            title="What runs inside this"
+            accent="program."
+            description="Individual classes and sessions within this program. Anything without a listed rate is quoted at your free consultation."
+          />
+          <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
+            {programCourses.map((course, index) => (
+              <Reveal key={course.slug} as="li" delay={stagger(index % 4, 0.06)}>
+                <article className="group h-full">
+                  <Link
+                    href={`/courses/${course.slug}`}
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="block overflow-hidden rounded-card"
+                  >
+                    <PhotoSlot
+                      src={course.image ?? undefined}
+                      alt={course.imageAlt}
+                      icon={groupIcon(course.group)}
+                      ratio="1/1"
+                      position="top"
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </Link>
+                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
+                    {course.grades ? <span>{course.grades}</span> : null}
+                    {course.price ? (
+                      <span className="text-navy-950">{formatPrice(course.price)}</span>
+                    ) : null}
+                  </p>
+                  <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
+                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-500">
+                      {course.name}
+                    </Link>
+                  </h3>
+                </article>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
+
       <Section tone="white">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
@@ -227,55 +280,6 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </Section>
       ) : null}
 
-      {/* The courses that actually run inside this program. Beyond being
-          useful, this is the internal-linking fix: course pages were reachable
-          only from the catalog, leaving sixteen of them on a single inbound
-          link. */}
-      {programCourses.length ? (
-        <Section tone="white" size="wide">
-          <SectionHeading
-            eyebrow={`${programCourses.length} courses`}
-            title="What runs inside this"
-            accent="program."
-            description="Individual classes and sessions within this program. Anything without a listed rate is quoted at your free consultation."
-          />
-          <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
-            {programCourses.map((course, index) => (
-              <Reveal key={course.slug} as="li" delay={stagger(index % 4, 0.06)}>
-                <article className="group h-full">
-                  <Link
-                    href={`/courses/${course.slug}`}
-                    aria-hidden="true"
-                    tabIndex={-1}
-                    className="block overflow-hidden rounded-card"
-                  >
-                    <PhotoSlot
-                      src={course.image ?? undefined}
-                      alt={course.imageAlt}
-                      icon={groupIcon(course.group)}
-                      ratio="1/1"
-                      position="top"
-                      sizes="(min-width: 1024px) 25vw, 50vw"
-                      className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </Link>
-                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
-                    {course.grades ? <span>{course.grades}</span> : null}
-                    {course.price ? (
-                      <span className="text-navy-950">{formatPrice(course.price)}</span>
-                    ) : null}
-                  </p>
-                  <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
-                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-500">
-                      {course.name}
-                    </Link>
-                  </h3>
-                </article>
-              </Reveal>
-            ))}
-          </ul>
-        </Section>
-      ) : null}
 
       <Section tone="mist" size="wide">
         <SectionHeading eyebrow="Keep exploring" title="Other Resource Room" accent="programs." />
