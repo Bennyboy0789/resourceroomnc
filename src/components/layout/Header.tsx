@@ -10,8 +10,8 @@ import { CartButton } from "@/components/shop/CartDrawer";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
-import { getProgram, imagePosition, programs } from "@/content/programs";
-import { navigation, programMenuGroups, site } from "@/content/site";
+import { categories, resolveItems } from "@/content/categories";
+import { navigation, site } from "@/content/site";
 import { cn } from "@/lib/cn";
 
 const triggerClasses =
@@ -199,50 +199,43 @@ export function Header() {
   );
 }
 
-/** Full-width program menu: every program as a picture, grouped into columns. */
+/**
+ * Full-width program menu: one column per category, each headed by a link to
+ * the category page and listing the products inside it.
+ *
+ * The previous version rendered a 48px photograph beside all ten programs.
+ * Joe's note was that the site felt overwhelming, and a menu of ten pictures is
+ * a large part of that — so the thumbnails are gone and the menu is now a plain
+ * list under four headings. The heading itself is a link, which is what makes
+ * "home → category → product" reachable in the promised three clicks.
+ */
 function ProgramMega() {
   return (
     <Container size="wide" className="grid gap-10 py-10 lg:grid-cols-[1fr_18rem] lg:gap-14">
-      <div className="grid gap-8 sm:grid-cols-3">
-        {programMenuGroups.map((group) => (
-          <div key={group.title}>
-            <p className="eyebrow border-b border-navy-950/10 pb-3 text-brand-500">
-              {group.title}
-            </p>
-            <ul className="mt-4 space-y-1">
-              {group.slugs.map((slug) => {
-                const program = getProgram(slug);
-                if (!program) return null;
-
-                return (
-                  <li key={slug}>
-                    <Link
-                      href={`/programs/${slug}`}
-                      className="group flex items-center gap-3 py-2 transition-colors"
-                    >
-                      <span className="relative h-12 w-12 shrink-0 overflow-hidden bg-navy-950/5">
-                        <PhotoSlot
-                          src={program.image.src}
-                          alt=""
-                          position={imagePosition(program.image)}
-                          icon={program.icon}
-                          ratio="1/1"
-                          sizes="48px"
-                          className="rounded-none"
-                        />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block text-sm font-bold leading-tight text-navy-950 group-hover:text-brand-500">
-                          {program.shortName}
-                        </span>
-                        <span className="mt-0.5 block truncate text-xs text-navy-600">
-                          {program.category}
-                        </span>
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {categories.map((category) => (
+          <div key={category.slug}>
+            <Link
+              href={`/${category.slug}`}
+              className="eyebrow group flex items-center gap-1.5 border-b border-navy-950/10 pb-3 text-brand-500 hover:text-navy-950"
+            >
+              {category.label}
+              <Icon
+                name="arrowRight"
+                className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
+            <ul className="mt-4 space-y-0.5">
+              {resolveItems(category).map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="block py-1.5 text-sm font-semibold leading-snug text-navy-700 transition-colors hover:text-brand-500"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         ))}
@@ -250,7 +243,7 @@ function ProgramMega() {
 
       {/* Featured slot — the menu's one merchandised position. */}
       <Link href={site.consultationUrl} className="group flex flex-col">
-        <span className="relative block overflow-hidden bg-navy-950">
+        <span className="relative block overflow-hidden rounded-card bg-navy-950">
           <PhotoSlot
             src="/images/why-individualized.jpg"
             alt=""
@@ -340,10 +333,14 @@ function MobileMenu({
             }
 
             const expanded = section === item.label;
+            /* On a phone the Programs section lists the four categories, not
+               all ten programs — tapping a category is the second of the three
+               clicks, and a flat list of every product here would rebuild the
+               wall of links this restructure removed. */
             const links = item.mega
-              ? programs.map((program) => ({
-                  label: program.shortName,
-                  href: `/programs/${program.slug}`,
+              ? categories.map((category) => ({
+                  label: category.label,
+                  href: `/${category.slug}`,
                 }))
               : (item.children ?? []);
 

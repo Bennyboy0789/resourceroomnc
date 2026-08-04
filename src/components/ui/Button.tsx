@@ -29,7 +29,7 @@ const sizes: Record<Size, string> = {
 /* Squared off, uppercase and tracked out — the buttons read as part of the
    typographic system rather than as pills sitting on top of it. */
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm font-bold uppercase tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-full font-bold uppercase tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2";
 
 export function Button({
   href,

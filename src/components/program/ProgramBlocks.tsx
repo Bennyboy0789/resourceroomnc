@@ -127,7 +127,7 @@ function Cards({
           <div className="h-full border border-navy-900/8 bg-white p-7">
             {card.icon ? (
               <span
-                className={cn("grid h-11 w-11 place-items-center rounded-lg", chipClass(accent))}
+                className={cn("grid h-11 w-11 place-items-center rounded-chip", chipClass(accent))}
               >
                 <Icon name={card.icon} className="h-5 w-5" />
               </span>
@@ -162,7 +162,7 @@ function Steps({
           <div className="flex gap-5 border border-navy-900/8 bg-white p-6 sm:gap-7 sm:p-7">
             <span
               className={cn(
-                "grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sm font-bold tabular-nums",
+                "grid h-11 w-11 shrink-0 place-items-center rounded-chip text-sm font-bold tabular-nums",
                 chipClass(accent),
               )}
             >
@@ -448,7 +448,7 @@ function Dates({
         {items.map((item, index) => (
           <Reveal key={item.date} as="li" delay={stagger(index, 0.04)}>
             <div className="flex h-full flex-col border border-navy-900/8 bg-white p-6">
-              <span className={cn("grid h-9 w-9 place-items-center rounded-lg", chipClass(accent))}>
+              <span className={cn("grid h-9 w-9 place-items-center rounded-chip", chipClass(accent))}>
                 <Icon name="clock" className="h-4 w-4" />
               </span>
               <p className="mt-4 text-base font-bold tracking-tight text-navy-950">{item.date}</p>

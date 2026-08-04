@@ -196,7 +196,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
         onClick={addToCart}
         disabled={!canAdd}
         className={cn(
-          "mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm text-sm font-bold uppercase tracking-[0.08em] transition-colors",
+          "mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full text-sm font-bold uppercase tracking-[0.08em] transition-colors",
           canAdd
             ? "bg-navy-950 text-white hover:bg-navy-800"
             : "cursor-not-allowed bg-navy-950/15 text-navy-950/50",

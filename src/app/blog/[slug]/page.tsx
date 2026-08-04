@@ -167,7 +167,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
               icon="book"
               ratio="16/9"
               sizes="(min-width: 1024px) 60vw, 100vw"
-              className="rounded-none"
+              className="rounded-card"
               priority
             />
           </Container>

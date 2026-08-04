@@ -970,11 +970,11 @@ export const programs: Program[] = [
     name: "Pathways Academy",
     shortName: "Pathways Academy",
     category: "Private High School",
-    tagline: "A diploma-granting private high school for neurodiverse learners in grades 9–12",
+    tagline: "A meaningful path to graduation.",
     summary:
-      "A newly approved private high school in Holly Springs for neurodiverse learners with autism, built around structure, individualized pacing and daily executive functioning support.",
+      "A private diploma-granting high school for neurodiverse teens who thrive in smaller settings, with individualized support, real-world learning, and educators who genuinely understand how they learn.",
     intro:
-      "Pathways at Resource Room is a newly approved private high school located in Holly Springs, NC, created for neurodiverse learners with autism in grades 9–12. Our program is designed to meet the needs of students who thrive with personalized support, structure, and hands-on learning — offering a fresh start for those who may not have found success in traditional school settings.",
+      "Pathways Academy is a private diploma-granting high school for neurodiverse teens who thrive in smaller settings, with individualized support, real-world learning, and educators who genuinely understand how they learn.",
     icon: "compass",
     accent: "blue",
     image: {
@@ -983,119 +983,129 @@ export const programs: Program[] = [
       kind: "photo",
     },
     featured: true,
-    externalUrl: "https://pathways.resourceroom.com",
+    /*
+     * Deliberately no `externalUrl`.
+     *
+     * Pathways ran on its own subdomain, so every link out of this site sent a
+     * family to a different domain and left them to find their way back. Joe
+     * asked on the Aug 3 2026 call for it to live here instead.
+     *
+     * Everything below is transcribed from pathways.resourceroom.com as it
+     * stood on Aug 3 2026 — the wording is theirs, section for section, so the
+     * page reads identically to the site it replaces. The subdomain's own
+     * "Schedule a Visit" links pointed back at resourceroomnc.com, which is
+     * the round trip this merge removes: they are now ordinary on-site links.
+     */
     stats: [
       { value: "Grades 9–12", label: "Diploma-granting private high school" },
-      { value: "Rolling", label: "Enrollment until we reach capacity" },
-      { value: "ESA+", label: "And Opportunity Scholarships accepted" },
+      { value: "Holly Springs", label: "North Carolina" },
+      { value: "Small cohort", label: "Licensed educators" },
     ],
+    /* "What students experience at Pathways every day" — the six program
+       highlight cards, in the order the subdomain lists them. */
     highlights: [
       {
+        title: "Small group learning",
+        body: "Individualized attention, steady support, and a calmer learning environment where every student is known, not just a number in a roster.",
+      },
+      {
         title: "Personalized academic pathways",
-        body: "Coursework scaled to each student's readiness and ability. Small classes and individualized pacing allow students to build academic momentum with the support they need to succeed.",
+        body: "Core subjects (English, writing, math, science, history) delivered at each student's level and scaled to readiness, ability, and long-term goals.",
       },
       {
-        title: "Executive function development",
-        body: "Organization, task initiation, planning, and follow-through — explicitly taught and practiced daily through structured routines and guided support.",
+        title: "Executive function support",
+        body: "Daily help with organization, planning, task initiation, and follow-through: the foundational skills that make all other academic learning possible.",
       },
       {
-        title: "Social development and communication",
-        body: "Collaboration, conversation skills, and self-advocacy strengthened through daily structured interaction in a safe, supportive environment.",
+        title: "Social development",
+        body: "Structured interaction that builds communication, collaboration, and self-advocacy, woven into daily routines, not reserved for occasional pull-out sessions.",
       },
       {
-        title: "Project-based and hands-on learning",
-        body: "Meaningful projects that connect academic skills to real situations — developing creativity, teamwork, and problem-solving alongside genuine confidence.",
+        title: "Hands-on project learning",
+        body: "Meaningful projects that help students apply academic skills in real situations, building genuine confidence alongside genuine competence.",
       },
       {
-        title: "Career exploration and real-world experiences",
-        body: "Internships, trade exposure, and community-based experiences that help students explore interests and develop a vision for their future.",
+        title: "Real-world readiness",
+        body: "Career exploration, community experiences, independence skills, and future planning, because graduation is a beginning, not just an endpoint.",
       },
     ],
+    /* "What makes Pathways different." */
     includes: [
-      "A full private high school academic program leading to a diploma",
-      "Small classes with individualized pacing",
-      "Daily executive functioning instruction and structured routines",
-      "Social development, communication and self-advocacy practice",
-      "Project-based learning tied to real situations",
-      "Internships, trade exposure and community-based experiences",
-      "Help navigating ESA+ and Opportunity Scholarship funding",
+      "Small cohort model: intimate, calm, focused learning environment",
+      "Licensed educators with real special education classroom experience",
+      "Social-emotional learning built into the daily structure, not an add-on",
+      "Project-based learning connecting academics to the real world",
+      "Executive functioning coaching built into every school day",
+      "Direct access to the full Resource Room support ecosystem",
     ],
+    /* "Who Pathways is for." */
     audience: [
-      "Neurodiverse learners, including students with autism, ADHD, anxiety, or learning differences",
-      "Students who feel overwhelmed or disengaged in traditional school settings",
-      "Students who benefit from smaller learning environments and individualized pacing",
-      "Students who need structured routines and predictable daily schedules",
-      "Students who need support with organization, task initiation, and executive functioning",
-      "Students who learn best through hands-on, project-based, and real-world experiences",
-      "Students who may be academically behind grade level and need a path to catch up",
+      "Students with ADHD, autism, anxiety, or learning differences",
+      "Students who feel overwhelmed or disengaged in traditional settings",
+      "Students who need individualized pacing toward diploma completion",
+      "Students who benefit from smaller, structured learning environments",
+      "Students needing executive functioning and organizational support",
+      "Homeschool students ready for a more structured academic program",
     ],
     blocks: [
       {
         kind: "prose",
-        eyebrow: "Why Pathways exists",
-        title: "The problem traditional schools can't",
-        accent: "solve.",
+        eyebrow: "Who Pathways is for",
+        title: "Built for students who need a better",
+        accent: "environment.",
         body: [
-          "Many neurodiverse teens are bright, capable, and full of potential — yet struggle in traditional school settings. The challenge is rarely the student. It's the environment.",
-          "Traditional classrooms were not designed for how many neurodiverse learners process information, manage tasks, and engage with learning. IEP accommodations can offer helpful support, but they cannot fundamentally reshape the learning environment itself.",
-          "Instead of asking students to adapt to a system that wasn't built for them, we built a school around how neurodiverse teens actually learn — with structure, individualized pacing, daily executive functioning support, and educators who understand the difference.",
-          "Our mission: to help students build readiness for life, learning, and greater independence in an environment designed for how neurodiverse teens learn best.",
+          "Traditional high school wasn't designed for every learner. For neurodiverse students, large classrooms, rigid pacing, and limited support create frustration rather than growth. Pathways was built to solve that.",
+          "Students at Pathways Academy work toward earning a private high school diploma in an environment built around how they actually learn, not how they're expected to perform.",
+          "We don't separate academics from development. Every part of the school day builds both: simultaneously, intentionally, and without forcing students to choose between the two.",
         ],
       },
       {
-        kind: "pricing",
-        eyebrow: "Tuition and funding",
-        title: "Making Pathways",
-        accent: "accessible.",
+        kind: "cards",
+        eyebrow: "The Resource Room ecosystem",
+        title: "Pathways is the intensive option within a complete",
+        accent: "support system.",
         description:
-          "Pathways Academy's full tuition is $24,000 per year — but most families pay significantly less. North Carolina offers two grant programs that can cover most or all of tuition, and we help every family navigate both.",
-        tiers: [
+          "Most schools offer one program. Resource Room offers a complete ecosystem, coordinated support across academics, behavior, executive functioning, communication, and clinical services. Families don't have to piece it together alone.",
+        cards: [
           {
-            name: "Annual Tuition",
-            price: "$24,000",
-            cadence: "per year",
-            meta: "Full published rate before grants",
-            features: [
-              "Full diploma-granting high school program",
-              "Small classes and individualized pacing",
-              "Daily executive functioning and social development",
-              "Access to the full Resource Room ecosystem",
-            ],
+            title: "Pathways Academy",
+            body: "Private diploma-granting high school for neurodiverse learners. Small cohort, licensed educators, full-day structured support with SEL built into every day.",
+            icon: "compass",
           },
           {
-            name: "ESA+ Grant",
-            price: "$17,000",
-            cadence: "max",
-            badge: "Autism diagnosis",
-            meta: "North Carolina funding for qualifying disabilities",
-            featured: true,
-            features: [
-              "Students with an autism diagnosis may receive up to $17,000 annually",
-              "Applied directly toward private school tuition",
-              "We help with the application and paperwork",
-            ],
+            title: "Private tutoring",
+            body: "One-on-one K–12 tutoring across all subjects. Pathways students access individual academic support whenever it's needed, fully coordinated with their school program.",
+            icon: "pencil",
           },
           {
-            name: "Opportunity Scholarship",
-            price: "$7,000+",
-            cadence: "income-tiered",
-            meta: "Available to any family pursuing school choice",
-            features: [
-              "No waitlist, unlike ESA+",
-              "Combined with ESA+, many families can cover the full cost of tuition",
-              "We walk you through both programs",
-            ],
+            title: "Homeschool co-op",
+            body: "A structured middle ground for families not yet ready for full private school. Often the natural gateway into Pathways for students transitioning from homeschool.",
+            icon: "home",
+          },
+          {
+            title: "ABA services, POPS ABA",
+            body: "Applied Behavior Analysis delivered in coordination with Pathways, targeting communication, emotional regulation, task initiation, and independence where learning actually happens.",
+            icon: "heart",
+          },
+          {
+            title: "STEM programs",
+            body: "Camps, enrichment, and hands-on science and engineering programs that reinforce the problem-solving skills that transfer across every subject area.",
+            icon: "sparkle",
+          },
+          {
+            title: "College and test prep",
+            body: "SAT, ACT, AP prep, and college readiness support available when Pathways students are ready to take the next step toward higher education.",
+            icon: "cap",
           },
         ],
-        note: "We help you access every dollar available. Many families don't know these programs exist or don't know how to apply. We walk you through both, help with paperwork, and work with your family to make tuition work. A consultation is always free. We accept ESA+ Grants and Opportunity Scholarships for the 2026–2027 school year.",
       },
       {
         kind: "steps",
-        eyebrow: "Enrollment",
-        title: "How to get",
-        accent: "started.",
+        eyebrow: "Your family's journey",
+        title: "How families find their way to",
+        accent: "Pathways.",
         description:
-          "There is no single path to enrollment. What matters is that the right support is available when your student is ready.",
+          "There is no single path to enrollment. What matters is that the right support is available when your student is ready for it, and we guide you every step of the way.",
         steps: [
           {
             title: "Free consultation",
@@ -1103,30 +1113,102 @@ export const programs: Program[] = [
           },
           {
             title: "Student visit",
-            body: "Come see the environment. Meet the educators. Let your student experience the difference before any commitment.",
+            body: "Come see the environment. Meet the educators. Let your student experience the difference before any commitment is made.",
           },
           {
             title: "Funding navigation",
-            body: "We help you access ESA+ grants and Opportunity Scholarships that may significantly offset or fully cover tuition.",
+            body: "We help you access ESA+ grants and Opportunity Scholarships that may significantly offset or fully cover tuition costs.",
           },
           {
-            title: "Enrollment and onboarding",
-            body: "We build a personalized academic and developmental plan for your student before the first day begins.",
+            title: "Enrollment plan",
+            body: "We build a personalized academic and developmental plan for your student before the first day of school begins.",
           },
           {
             title: "Ongoing support",
-            body: "Regular progress updates and full access to the Resource Room ecosystem as your student grows and needs evolve.",
+            body: "Regular progress updates and full access to the Resource Room ecosystem as your student grows and their needs evolve.",
           },
         ],
       },
       {
+        kind: "pricing",
+        eyebrow: "Tuition and funding",
+        title: "Making Pathways accessible for your",
+        accent: "family.",
+        description:
+          "Pathways Academy's full tuition is $24,000 per year, but most families pay significantly less. North Carolina offers two grant programs that can cover most or all of tuition. We help every family navigate both.",
+        tiers: [
+          {
+            name: "Annual tuition",
+            price: "$24,000",
+            cadence: "per year",
+            meta: "Full published rate before grants",
+            features: [
+              "Full diploma-granting high school program",
+              "Small cohort and individualized pacing",
+              "Daily executive functioning and social development",
+              "Access to the full Resource Room ecosystem",
+            ],
+          },
+          {
+            name: "ESA+ grant",
+            price: "$17,000",
+            cadence: "max",
+            badge: "Autism diagnosis",
+            meta: "NC Opportunity for Students with Disabilities",
+            featured: true,
+            features: [
+              "North Carolina's ESA+ program provides funding for students with qualifying disabilities",
+              "Students with an autism spectrum diagnosis may receive up to $17,000 annually toward private school tuition",
+              "We guide families through the application and waitlist process",
+            ],
+          },
+          {
+            name: "Opportunity Scholarship",
+            price: "$7,000+",
+            cadence: "income-tiered",
+            meta: "NC School Choice Scholarship",
+            features: [
+              "Available to any family pursuing school choice, awarded on an income-tiered basis",
+              "Unlike ESA+, there is no waitlist",
+              "Combined with ESA+, many families can cover the full cost of Pathways tuition",
+            ],
+          },
+        ],
+        note: "We help you access every dollar available. Many families don't know these grants exist, or don't know how to apply. We walk you through both programs, help with paperwork, and work with your family to structure tuition in a way that works. A consultation is always free, and we will never place a student in a program that isn't the right fit.",
+      },
+      {
         kind: "prose",
-        eyebrow: "The ecosystem",
-        title: "Part of a complete learning",
-        accent: "center.",
+        eyebrow: "After graduation",
+        title: "About the Pathways",
+        accent: "diploma.",
         body: [
-          "Pathways Academy is the intensive option within a complete educational support system. Families don't have to piece together separate providers — everything is coordinated under one roof: private tutoring, SAT and ACT prep, STEM programs, the homeschool co-op, and ABA services.",
-          "Our coordinated network includes academic support, behavioral services, clinical evaluation, speech and communication therapy, and executive functioning coaching — all working together around your student's growth. Every service communicates. Every specialist aligns. Nothing falls through the cracks.",
+          "Pathways Academy awards a private high school diploma upon completion of the program. A private diploma does not preclude students from entering college. Graduates may apply to two-year and four-year institutions, and students who are academically ready have the opportunity to enroll in Wake Technical Community College courses during their senior year, earning college credit before graduation.",
+          "Every student's path after Pathways looks different. For some, that means a four-year university. For others, a community college, a trade program, or entering the workforce with real skills and genuine confidence. Our goal is to prepare students for what comes next, whatever that looks like for them, not to funnel every graduate into a single definition of success.",
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "Coordinated care",
+        title: "A complete support system, working together for your",
+        accent: "student.",
+        description:
+          "Most families of neurodiverse students spend years coordinating between disconnected providers. At Resource Room, every service communicates, collaborates, and aligns around one shared goal, your student's growth. Every service communicates. Every specialist aligns. Nothing falls through the cracks.",
+        cards: [
+          {
+            title: "Coordinated communication",
+            body: "Every provider in our network communicates directly with Pathways educators. No information gets lost between appointments, sessions, and school days.",
+            icon: "users",
+          },
+          {
+            title: "Unified goals",
+            body: "Academic, behavioral, and clinical support all align around the same objectives for your student, developed collaboratively, not in isolation.",
+            icon: "target",
+          },
+          {
+            title: "One point of contact",
+            body: "You don't coordinate between five separate providers. We do. One team, one phone call, one plan, so you can focus on your family.",
+            icon: "phone",
+          },
         ],
       },
     ],

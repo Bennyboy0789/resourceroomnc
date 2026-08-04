@@ -249,7 +249,7 @@ export function CartDrawer() {
                   type="button"
                   onClick={checkout}
                   disabled={busy}
-                  className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-sm bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-500 disabled:opacity-60"
+                  className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-sun-500 text-sm font-bold uppercase tracking-[0.08em] text-navy-950 transition-colors hover:bg-sun-500 disabled:opacity-60"
                 >
                   {busy ? "Redirecting…" : "Checkout"}
                 </button>

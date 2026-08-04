@@ -47,8 +47,14 @@ export const site = {
    * publishes.
    */
   blogUrl: "/blog",
-  /** Pathways Academy runs on its own site. */
-  pathwaysUrl: "https://pathways.resourceroom.com",
+  /**
+   * Pathways Academy now lives on this site at /programs/pathways-academy.
+   *
+   * It used to run on its own subdomain, which meant links bounced families
+   * onto another domain mid-journey. Kept as a named value so the one-domain
+   * decision is stated in one place rather than assumed at each call site.
+   */
+  pathwaysUrl: "/programs/pathways-academy",
   consultationUrl: "/contact",
 } as const;
 
@@ -109,6 +115,16 @@ export type NavLink = {
   children?: { label: string; href: string; external?: boolean }[];
 };
 
+/**
+ * Top navigation — four items, agreed with Joe on the Aug 3 2026 call.
+ *
+ * It was seven. "Courses" and "IEP & 504 Advocate" both came out: the course
+ * catalog is the single biggest source of the overwhelm Joe reported (it lists
+ * classes that are not currently running), and IEP advocacy is one program
+ * among ten, so it sits under Programs with the rest rather than competing with
+ * top-level sections. Neither page is deleted — /courses stays reachable and is
+ * kept out of search, and IEP & 504 keeps its program page.
+ */
 export const navigation: NavLink[] = [
   { label: "Programs", href: "/programs", mega: true },
   {
@@ -121,28 +137,16 @@ export const navigation: NavLink[] = [
       { label: "Join Our Team", href: "/join-our-team" },
     ],
   },
-  { label: "Courses", href: "/courses" },
-  { label: "IEP & 504 Advocate", href: "/programs/iep-504-advocate" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
-/**
- * How the eight programs are grouped inside the mega menu.
- *
- * This is presentation only — every entry points at an existing
- * `/programs/[slug]` page. Grouping the list into columns keeps the menu
- * scannable without inventing browse categories that would need pages of their
- * own to justify.
+/*
+ * The mega menu used to carry its own ad-hoc grouping (Academics / Daytime &
+ * Camps / Specialized Support) that existed only in the menu and matched no
+ * page. It now renders the four real categories from content/categories.ts, so
+ * the menu, the category pages and the home page all agree on one taxonomy.
  */
-export const programMenuGroups: { title: string; slugs: string[] }[] = [
-  {
-    title: "Academics",
-    slugs: ["tutoring", "sat-act-prep", "college-prep", "executive-functioning"],
-  },
-  { title: "Daytime & Camps", slugs: ["camps", "summer-bridge", "homeschool-co-op"] },
-  { title: "Specialized Support", slugs: ["pathways-academy", "aba-services", "iep-504-advocate"] },
-];
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {

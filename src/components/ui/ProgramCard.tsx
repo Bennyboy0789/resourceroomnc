@@ -49,7 +49,7 @@ export function ProgramCard({
 
   const content = (
     <>
-      <div className="relative overflow-hidden bg-navy-950/5">
+      <div className="relative overflow-hidden rounded-card bg-navy-950/5">
         <PhotoSlot
           src={image.src}
           alt={image.alt}

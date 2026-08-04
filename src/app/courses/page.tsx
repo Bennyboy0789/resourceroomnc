@@ -11,12 +11,23 @@ import { formatPrice, groupIcon } from "@/lib/courses";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
 
+/**
+ * Kept as an unlisted backup, per Joe on the Aug 3 2026 call.
+ *
+ * The catalog lists classes that are not currently running (LEGO Exploration,
+ * Minecraft, Ms. Sam's, Really Reading), which is why it read as overwhelming.
+ * Rather than delete two dozen pages and the inbound links pointing at them,
+ * the section stays reachable by direct link and drops out of the public
+ * navigation, the sitemap and the search index. Re-listing it is a matter of
+ * removing `robots` here and restoring the nav entry in content/site.ts.
+ */
 export const metadata: Metadata = {
   title: seoTitle("Course Catalog", "Holly Springs, NC"),
   description: seoDescription(
     "Every Resource Room course: STEAM and robotics, drones, 3D design, LEGO, Minecraft and Scratch, emerging-learner classes, workshops, and tutoring add-ons in Holly Springs, NC.",
   ),
   alternates: { canonical: "/courses" },
+  robots: { index: false, follow: true },
 };
 
 export default function CoursesPage() {
@@ -74,7 +85,7 @@ export default function CoursesPage() {
                     href={`/courses/${course.slug}`}
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="block overflow-hidden rounded-2xl"
+                    className="block overflow-hidden rounded-card"
                   >
                     <PhotoSlot
                       src={course.image ?? undefined}

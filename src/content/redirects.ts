@@ -26,9 +26,11 @@ const MANUAL: [source: string, destination: string][] = [
   ["/courses", "/courses"],
   ["/course-catalog", "/courses"],
   ["/request-a-consultation-form", "/contact"],
-  ["/tutoring", "/programs/tutoring"],
-  ["/test-prep", "/programs/sat-act-prep"],
-  ["/camps", "/programs/camps"],
+  /* /tutoring and /camps are real pages again — they are two of the four
+     category routes — so they must NOT be listed here. A redirect would win
+     over the route and the page would be unreachable. /test-prep is the one
+     live category URL whose name changed, at Joe's request. */
+  ["/test-prep", "/college-prep"],
   ["/stem", "/courses#steam-programs"],
   ["/lego-robotics", "/courses#lego-robotics"],
   ["/gaming-education", "/courses#gaming-education"],

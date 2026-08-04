@@ -41,7 +41,7 @@ export function PostCard({
         href={`/blog/${post.slug}`}
         aria-hidden="true"
         tabIndex={-1}
-        className="block overflow-hidden"
+        className="block overflow-hidden rounded-card"
       >
         <PhotoSlot
           src={post.image ?? undefined}

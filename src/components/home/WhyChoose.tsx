@@ -24,7 +24,7 @@ export function WhyChoose() {
                 icon={item.icon}
                 ratio="4/3"
                 sizes="(min-width: 768px) 33vw, 100vw"
-                className="rounded-none"
+                className="rounded-card"
               />
               <div className="px-1 py-7 sm:px-6">
                 <div className="flex items-center gap-3">

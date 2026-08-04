@@ -32,6 +32,8 @@ export async function generateMetadata({
     title: seoTitle(course.name, "Holly Springs, NC"),
     description: seoDescription(course.summary || course.body[0]),
     alternates: { canonical: `/courses/${course.slug}` },
+    /* Unlisted along with the catalog index — see the note in ../page.tsx. */
+    robots: { index: false, follow: true },
     openGraph: {
       title: `${course.name} | ${site.name}`,
       description: course.summary || course.body[0],
@@ -254,7 +256,7 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
                     href={`/courses/${other.slug}`}
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="block overflow-hidden rounded-2xl"
+                    className="block overflow-hidden rounded-card"
                   >
                     <PhotoSlot
                       src={other.image ?? undefined}

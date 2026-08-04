@@ -61,6 +61,21 @@
   --color-mist: #f4f6f9;
   --color-frost: #eaf1fb;
 
+  /*
+   * Corner radius. The restyle was originally squared off everywhere; Joe asked
+   * for a softer look, so the radius lives here as two semantic steps rather
+   * than as literals sprinkled through the components. Change these two values
+   * and the whole site moves together.
+   *
+   *   card  panels, cards, photographs, map and video frames
+   *   chip  small square things — icon tiles, inputs, number badges
+   *
+   * Buttons are deliberately not here: they use `rounded-full`, which stays a
+   * pill at every height rather than tracking a fixed radius.
+   */
+  --radius-card: 1rem;
+  --radius-chip: 0.625rem;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 

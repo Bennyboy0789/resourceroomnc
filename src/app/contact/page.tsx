@@ -75,9 +75,9 @@ export default function ContactPage() {
                     {...(method.href.startsWith("http")
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="flex items-start gap-4 rounded-none border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
+                    className="flex items-start gap-4 rounded-card border border-navy-900/10 bg-mist p-6 transition-colors hover:border-navy-900/25 hover:bg-white"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-none bg-navy-900 text-sun-500">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-chip bg-navy-900 text-sun-500">
                       <Icon name={method.icon} className="h-5 w-5" />
                     </span>
                     {/* `min-w-0` + `break-words`: a flex item will not shrink
@@ -95,7 +95,7 @@ export default function ContactPage() {
               ))}
             </ul>
 
-            <div className="mt-4 rounded-none border border-navy-900/10 bg-mist p-6">
+            <div className="mt-4 rounded-card border border-navy-900/10 bg-mist p-6">
               <p className="eyebrow text-brand-500">Hours</p>
               <p className="mt-2 font-semibold text-navy-950">{site.hours.weekdays}</p>
               <p className="mt-1 text-sm text-navy-600">{site.hours.weekend}</p>
@@ -108,14 +108,14 @@ export default function ContactPage() {
             {/* The building, above the map. A pin tells someone the address;
                 this tells them what to look for when they get there, which is
                 the part people actually struggle with in a business park. */}
-            <figure className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
+            <figure className="mt-4 overflow-hidden rounded-card border border-navy-900/10">
               <PhotoSlot
                 src={heroImages.about.src}
                 alt={heroImages.about.alt}
                 icon="pin"
                 ratio="3/2"
                 sizes="(min-width: 1024px) 33vw, 100vw"
-                className="rounded-none"
+                className="rounded-card"
               />
               {/* No address here. It already appears directly above in "Visit
                   the center" and again on the map below; a third copy in the
@@ -126,7 +126,7 @@ export default function ContactPage() {
               </figcaption>
             </figure>
 
-            <div className="mt-4 overflow-hidden rounded-none border border-navy-900/10">
+            <div className="mt-4 overflow-hidden rounded-card border border-navy-900/10">
               <MapEmbed query={site.mapEmbedQuery} addressLine={addressLine} />
             </div>
           </div>

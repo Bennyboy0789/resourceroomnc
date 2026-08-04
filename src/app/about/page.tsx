@@ -54,7 +54,7 @@ export default function AboutPage() {
                 {paragraph}
               </p>
             ))}
-            <figure className="mt-8 rounded-none border-l-4 border-brand-500 bg-mist p-6">
+            <figure className="mt-8 rounded-card border-l-4 border-brand-500 bg-mist p-6">
               <blockquote className="leading-relaxed text-navy-800">
                 &ldquo;{founders.quote}&rdquo;
               </blockquote>
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="relative order-first lg:order-last">
             <div
               aria-hidden="true"
-              className="absolute -bottom-4 -right-4 h-full w-full rounded-none border-2 border-sun-500/60"
+              className="absolute -bottom-4 -right-4 h-full w-full rounded-card border-2 border-sun-500/60"
             />
             <PhotoSlot
               src={founders.image.src}
@@ -103,8 +103,8 @@ export default function AboutPage() {
 
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {whyChooseUs.map((item) => (
-            <li key={item.title} className="rounded-none border border-navy-900/8 bg-white p-7">
-              <span className="grid h-12 w-12 place-items-center rounded-none bg-navy-900 text-sun-500">
+            <li key={item.title} className="rounded-card border border-navy-900/8 bg-white p-7">
+              <span className="grid h-12 w-12 place-items-center rounded-chip bg-navy-900 text-sun-500">
                 <Icon name={item.icon} className="h-5 w-5" />
               </span>
               <h3 className="mt-5 text-lg font-bold tracking-tight text-navy-950">{item.title}</h3>
@@ -157,7 +157,7 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="rounded-none border border-navy-900/10 bg-mist p-8">
+          <div className="rounded-card border border-navy-900/10 bg-mist p-8">
             <p className="eyebrow text-brand-500">Our facility</p>
             <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy-950">
               Holly Springs, NC

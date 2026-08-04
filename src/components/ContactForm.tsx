@@ -25,7 +25,7 @@ import { site } from "@/content/site";
  * browser applies that behaviour.
  */
 const fieldClasses =
-  "w-full min-w-0 rounded-none border border-navy-900/40 bg-white px-4 py-3 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm";
+  "w-full min-w-0 rounded-chip border border-navy-900/40 bg-white px-4 py-3 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm";
 
 const labelClasses = "block text-sm font-semibold text-navy-950";
 

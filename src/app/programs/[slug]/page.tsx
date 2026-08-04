@@ -138,8 +138,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                   <span
                     className={
                       program.accent === "sun"
-                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sun-500 text-navy-950"
-                        : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-500"
+                        ? "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-chip bg-sun-500 text-navy-950"
+                        : "mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-chip bg-brand-50 text-brand-500"
                     }
                   >
                     <Icon name="check" className="h-4 w-4" />
@@ -166,7 +166,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
               sizes="(min-width: 1024px) 40vw, 100vw"
               priority
             />
-            <div className="mt-5 rounded-none border border-navy-900/10 bg-mist p-6">
+            <div className="mt-5 rounded-card border border-navy-900/10 bg-mist p-6">
               <p className="eyebrow text-brand-500">Who it&rsquo;s for</p>
               <ul className="mt-4 space-y-3">
                 {program.audience.map((item) => (
@@ -187,7 +187,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           {program.includes.map((item) => (
             <li
               key={item}
-              className="flex gap-4 rounded-none border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
+              className="flex gap-4 rounded-card border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700"
             >
               <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
               {item}
@@ -196,7 +196,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </ul>
 
         {program.externalUrl ? (
-          <div className="mt-10 rounded-none border border-navy-900/10 bg-navy-900 p-8 text-white sm:flex sm:items-center sm:justify-between sm:gap-8">
+          <div className="mt-10 rounded-card border border-navy-900/10 bg-navy-900 p-8 text-white sm:flex sm:items-center sm:justify-between sm:gap-8">
             <div>
               <h2 className="text-xl font-bold tracking-tight">
                 {program.shortName} has its own campus and site.
@@ -247,7 +247,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
                     href={`/courses/${course.slug}`}
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="block overflow-hidden"
+                    className="block overflow-hidden rounded-card"
                   >
                     <PhotoSlot
                       src={course.image ?? undefined}

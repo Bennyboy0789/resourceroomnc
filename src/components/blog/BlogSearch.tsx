@@ -84,7 +84,7 @@ export function BlogSearch({
             placeholder="Search posts…"
             /* text-base on mobile: iOS zooms the viewport on any focused control
              under 16px and never zooms back out. */
-            className="w-full min-w-0 rounded-none border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm"
+            className="w-full min-w-0 rounded-chip border border-navy-900/40 bg-white py-3 pl-11 pr-11 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm"
           />
           {searching ? (
             <button
@@ -154,7 +154,7 @@ function ResultCard({ post }: { post: SearchEntry }) {
         href={`/blog/${post.slug}`}
         aria-hidden="true"
         tabIndex={-1}
-        className="block overflow-hidden"
+        className="block overflow-hidden rounded-card"
       >
         <PhotoSlot
           src={post.image ?? undefined}

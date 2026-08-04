@@ -179,7 +179,7 @@ export const posts: BlogPost[] = [
 <p>If you&#8217;re a parent in the middle of this, keep going. Ask for help. Accept the help. Your kid is worth it, and so are you.</p> Take the Next Step <h3>Ready to learn more?</h3>
 <p>Whether you&#8217;re exploring options or ready to start, we&#8217;re here to help your family find the right path.</p>
 <a href="https://resourceroomnc.com/aba">Our ABA Program</a>
-<a href="https://pathways.resourceroom.com">Explore Pathways Academy</a>
+<a href="/programs/pathways-academy">Explore Pathways Academy</a>
 <a href="https://resourceroomnc.com">Resource Room Home</a>
 <hr>
 <p>Resource Room &bull; Real Support. Real Growth.</p>`,
