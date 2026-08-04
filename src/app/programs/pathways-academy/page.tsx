@@ -82,7 +82,7 @@ export default function PathwaysAcademyPage() {
       />
 
       {/* ---------------------------------------------------------------- hero */}
-      <section className="relative isolate overflow-hidden bg-pw-navy">
+      <section className="relative isolate flex items-center overflow-hidden bg-pw-navy lg:min-h-[920px]">
         <Image
           src="/images/pathways/hero.jpg"
           alt=""
@@ -97,12 +97,12 @@ export default function PathwaysAcademyPage() {
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-r from-pw-navy/85 via-pw-navy/45 to-pw-navy/10"
         />
-        <div className="relative mx-auto w-full max-w-[76rem] px-5 py-24 sm:px-8 sm:py-28 lg:py-36">
+        <div className="relative mx-auto w-full max-w-[84rem] px-5 py-20 sm:px-8 lg:py-[90px]">
           <div className="max-w-xl">
             <p className="inline-flex bg-white/15 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
               {pathwaysHero.badge}
             </p>
-            <h1 className="mt-7 font-pw-display text-[2.6rem] font-normal leading-[1.12] text-white sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-7 font-pw-display text-[2.25rem] font-normal leading-[1.1] text-white sm:text-[2.875rem]">
               {pathwaysHero.titleLead}{" "}
               <em className="italic underline decoration-pw-gold decoration-[3px] underline-offset-[6px]">
                 {pathwaysHero.titleEmphasis}
@@ -114,19 +114,19 @@ export default function PathwaysAcademyPage() {
               ))}
             </h1>
             <p className="mt-5 font-pw-display text-xl text-white/90">{pathwaysHero.subtitle}</p>
-            <p className="mt-6 max-w-md text-[0.975rem] leading-relaxed text-white/80">
+            <p className="mt-6 max-w-md text-[0.9375rem] leading-[1.7] text-white/90">
               {pathwaysHero.body}
             </p>
             <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Link
                 href={pathwaysHero.primaryCta.href}
-                className="inline-flex min-h-12 items-center justify-center bg-pw-gold px-8 text-xs font-bold uppercase tracking-[0.12em] text-pw-navy transition-colors hover:bg-pw-gold-light"
+                className="inline-flex min-h-[54px] items-center justify-center bg-pw-gold px-8 text-[0.875rem] font-bold uppercase tracking-[0.08em] text-pw-navy transition-colors hover:bg-pw-gold-light"
               >
                 {pathwaysHero.primaryCta.label}
               </Link>
               <a
                 href={pathwaysHero.secondaryCta.href}
-                className="inline-flex min-h-12 items-center justify-center border border-white/60 px-8 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/10"
+                className="inline-flex min-h-[54px] items-center justify-center border border-white/60 px-8 text-[0.875rem] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-white/10"
               >
                 {pathwaysHero.secondaryCta.label}
               </a>
@@ -136,35 +136,41 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ------------------------------------------------- ecosystem strip */}
-      <section className="bg-pw-navy py-14 text-white">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-center sm:text-left">
+      {/* The strip's own container is narrower than the rest of the page —
+          1200px against 1280 — which is how the original has it. */}
+      <section className="bg-pw-navy py-12 text-white lg:py-[56px]">
+        <div className="mx-auto flex w-full max-w-[79rem] flex-col gap-10 px-5 sm:px-8">
+          <div className="flex flex-col items-center gap-7 text-center sm:flex-row sm:justify-center sm:text-left">
             <Image
               src="/images/pathways/the-resource-room.png"
               alt="The Resource Room"
-              width={96}
-              height={96}
-              className="h-20 w-20 shrink-0 rounded-full ring-2 ring-pw-gold/70"
+              width={320}
+              height={320}
+              className="h-40 w-40 shrink-0 rounded-full border-2 border-pw-gold"
             />
             <div>
-              <p className="font-pw-display text-2xl">{pathwaysEcosystemStrip.title}</p>
-              <p className="mt-1.5 text-sm text-white/70">{pathwaysEcosystemStrip.subtitle}</p>
+              <p className="text-[1.25rem] font-bold tracking-[0.02em] text-pw-gold-light">
+                {pathwaysEcosystemStrip.title}
+              </p>
+              <p className="mt-1.5 text-[0.9375rem] text-white/65">
+                {pathwaysEcosystemStrip.subtitle}
+              </p>
             </div>
             <Image
               src="/images/pathways/raleigh-s-best-2025-bronze-winner.png"
               alt="Raleigh's Best 2025 Bronze Winner — The News &amp; Observer"
-              width={110}
-              height={90}
-              className="h-auto w-24 shrink-0"
+              width={184}
+              height={150}
+              className="h-auto w-[92px] shrink-0"
             />
           </div>
 
-          <ul className="mt-10 flex flex-wrap justify-center gap-3">
+          <ul className="flex flex-wrap justify-center gap-[14px]">
             {pathwaysEcosystemStrip.links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex min-h-11 items-center border border-white/25 px-5 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-pw-gold hover:text-pw-gold"
+                  className="inline-flex items-center rounded-[4px] border border-pw-gold/45 px-6 py-[14px] text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-white/90 transition-colors hover:border-pw-gold hover:text-pw-gold"
                 >
                   {link.label}
                 </Link>
@@ -175,57 +181,58 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* --------------------------------------- who it's for / difference */}
-      <section id="about" className="scroll-mt-28 bg-pw-cream py-20 sm:py-24">
-        <div className="mx-auto grid w-full max-w-[76rem] gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+      <section id="about" className="scroll-mt-28 bg-pw-cream py-16 lg:py-[90px]">
+        <div className="mx-auto grid w-full max-w-[84rem] gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+            <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
               {pathwaysWhoFor.eyebrow}
             </p>
-            <h2 className="mt-5 font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.6rem]">
+            <h2 className="mt-5 font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem]">
               {pathwaysWhoFor.titleLead}{" "}
               <em className="italic">{pathwaysWhoFor.titleEmphasis}</em>
             </h2>
-            <p className="mt-6 leading-[1.85] text-pw-ink">{pathwaysWhoFor.body}</p>
+            <p className="mt-6 text-[1.0625rem] leading-[1.75] text-pw-ink">{pathwaysWhoFor.body}</p>
             <CheckList items={pathwaysWhoFor.items} />
+
+            {/* The callout belongs inside this column on the original — it is
+                610px wide and sits under the list, not full-bleed beneath both
+                columns. */}
+            <div className="mt-10 border-2 border-pw-gold bg-pw-navy p-8">
+              <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
+                {pathwaysWhoFor.callout.label}
+              </p>
+              <p className="mt-4 text-[0.9375rem] leading-[1.75] text-white/85">
+                {pathwaysWhoFor.callout.body}
+              </p>
+            </div>
           </div>
 
           <div>
-            <h2 className="font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.6rem] lg:mt-[3.4rem]">
+            <h2 className="font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem] lg:mt-[3.4rem]">
               {pathwaysDifference.titleLead}{" "}
               <em className="italic">{pathwaysDifference.titleEmphasis}</em>{" "}
               {pathwaysDifference.titleRest}
             </h2>
-            <p className="mt-6 leading-[1.85] text-pw-ink">{pathwaysDifference.body}</p>
+            <p className="mt-6 text-[1.0625rem] leading-[1.75] text-pw-ink">{pathwaysDifference.body}</p>
             <CheckList items={pathwaysDifference.items} />
-          </div>
-        </div>
-
-        <div className="mx-auto mt-14 w-full max-w-[76rem] px-5 sm:px-8">
-          <div className="border-2 border-pw-gold bg-pw-navy p-8 sm:p-10">
-            <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
-              {pathwaysWhoFor.callout.label}
-            </p>
-            <p className="mt-4 max-w-4xl leading-[1.85] text-white/85">
-              {pathwaysWhoFor.callout.body}
-            </p>
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------ program highlights */}
-      <section id="programs" className="scroll-mt-28 bg-white py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section id="programs" className="scroll-mt-28 bg-white py-16 lg:py-[90px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysHighlights.eyebrow}
           </p>
-          <h2 className="mt-5 max-w-3xl font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.7rem]">
+          <h2 className="mt-5 max-w-3xl font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem]">
             {pathwaysHighlights.title.split("\n").map((line, index) => (
               <span key={line} className={index ? "block" : undefined}>
                 {line}
               </span>
             ))}
           </h2>
-          <p className="mt-6 max-w-2xl leading-[1.85] text-pw-ink">{pathwaysHighlights.body}</p>
+          <p className="mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-pw-ink">{pathwaysHighlights.body}</p>
 
           {/* Hairline grid, as on the original: cells divided by rules rather
               than separated into floating cards. */}
@@ -235,10 +242,10 @@ export default function PathwaysAcademyPage() {
                 <span className="grid h-12 w-12 place-items-center bg-pw-navy text-pw-gold">
                   <Icon name={item.icon} className="h-5 w-5" />
                 </span>
-                <h3 className="mt-6 text-[0.8rem] font-bold uppercase tracking-[0.1em] text-pw-navy">
+                <h3 className="mt-6 text-[0.8125rem] font-bold uppercase leading-[1.6] tracking-[0.06em] text-pw-navy">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-[0.95rem] leading-[1.75] text-pw-ink">{item.body}</p>
+                <p className="mt-3 text-[0.9375rem] leading-[1.65] text-pw-ink">{item.body}</p>
               </li>
             ))}
           </ul>
@@ -246,12 +253,12 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ---------------------------------------------------- the ecosystem */}
-      <section className="bg-pw-navy py-20 text-white sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section className="bg-pw-navy py-16 text-white lg:py-[90px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysEcosystem.eyebrow}
           </p>
-          <h2 className="mt-5 max-w-4xl font-pw-display text-[2.1rem] font-normal leading-[1.16] sm:text-[2.7rem]">
+          <h2 className="mt-5 max-w-4xl font-pw-display text-[2rem] font-normal leading-[1.12] sm:text-[3rem]">
             {pathwaysEcosystem.titleLead.split("\n").map((line, index) => (
               <span key={line} className={index ? "block" : undefined}>
                 {line}
@@ -260,7 +267,7 @@ export default function PathwaysAcademyPage() {
             <em className="italic text-pw-gold">{pathwaysEcosystem.titleEmphasis}</em>{" "}
             {pathwaysEcosystem.titleRest}
           </h2>
-          <p className="mt-6 max-w-2xl leading-[1.85] text-white/70">{pathwaysEcosystem.body}</p>
+          <p className="mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-white/70">{pathwaysEcosystem.body}</p>
 
           <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {pathwaysEcosystem.cards.map((card) => {
@@ -274,13 +281,13 @@ export default function PathwaysAcademyPage() {
                     </span>
                   ) : null}
                   <h3
-                    className={`text-[0.8rem] font-bold uppercase tracking-[0.1em] text-pw-gold ${
+                    className={`text-[0.8125rem] font-bold uppercase leading-[1.6] tracking-[0.06em] text-pw-gold ${
                       card.here ? "mt-4" : ""
                     }`}
                   >
                     {card.title}
                   </h3>
-                  <p className="mt-3 text-[0.95rem] leading-[1.75] text-white/75">{card.body}</p>
+                  <p className="mt-3 text-[0.9375rem] leading-[1.65] text-white/75">{card.body}</p>
                 </>
               );
 
@@ -306,35 +313,35 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* --------------------------------------------------- family journey */}
-      <section className="bg-pw-cream py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section className="bg-pw-cream py-16 lg:py-[90px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysJourney.eyebrow}
           </p>
-          <h2 className="mt-5 max-w-4xl font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.7rem]">
+          <h2 className="mt-5 max-w-4xl font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem]">
             {pathwaysJourney.titleLead}{" "}
             <em className="italic">{pathwaysJourney.titleEmphasis}</em>{" "}
             {pathwaysJourney.titleRest}
           </h2>
-          <p className="mt-6 max-w-2xl leading-[1.85] text-pw-ink">{pathwaysJourney.body}</p>
+          <p className="mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-pw-ink">{pathwaysJourney.body}</p>
 
           {/* The connecting rule sits behind the numerals and is hidden on
               small screens, where the steps stack and a line between them
               would run through the copy. */}
-          <ol className="relative mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
+          <ol className="relative mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-[58px]">
             <span
               aria-hidden="true"
-              className="absolute left-[10%] right-[10%] top-9 hidden h-px bg-pw-gold/50 lg:block"
+              className="absolute left-[10%] right-[10%] top-[45px] hidden h-px bg-pw-gold/50 lg:block"
             />
             {pathwaysJourney.steps.map((step, index) => (
               <li key={step.title} className="relative text-center">
-                <span className="mx-auto grid h-[4.5rem] w-[4.5rem] place-items-center rounded-full border-2 border-pw-gold bg-pw-navy font-pw-display text-2xl text-pw-gold">
+                <span className="mx-auto grid h-[90px] w-[90px] place-items-center rounded-full border-2 border-pw-gold bg-pw-navy font-pw-display text-[36px] leading-none text-pw-gold">
                   {index + 1}
                 </span>
-                <h3 className="mt-6 text-[0.8rem] font-bold uppercase tracking-[0.1em] text-pw-navy">
+                <h3 className="mt-6 text-[0.8125rem] font-bold uppercase leading-[1.6] tracking-[0.06em] text-pw-navy">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-[0.925rem] leading-[1.75] text-pw-ink">{step.body}</p>
+                <p className="mt-3 text-[0.9375rem] leading-[1.65] text-pw-ink">{step.body}</p>
               </li>
             ))}
           </ol>
@@ -342,17 +349,17 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ------------------------------------------------ tuition & funding */}
-      <section id="funding" className="scroll-mt-28 bg-pw-sand py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section id="funding" className="scroll-mt-28 bg-pw-sand py-16 lg:py-[90px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysFunding.eyebrow}
           </p>
-          <h2 className="mt-5 max-w-3xl font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.7rem]">
+          <h2 className="mt-5 max-w-3xl font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem]">
             {pathwaysFunding.titleLead}{" "}
             <em className="italic">{pathwaysFunding.titleEmphasis}</em>{" "}
             {pathwaysFunding.titleRest}
           </h2>
-          <p className="mt-6 max-w-2xl leading-[1.85] text-pw-ink">{pathwaysFunding.body}</p>
+          <p className="mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-pw-ink">{pathwaysFunding.body}</p>
 
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
             {pathwaysFunding.grants.map((grant) => (
@@ -409,8 +416,8 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ------------------------------------------------------- diploma */}
-      <section className="bg-pw-sand pb-20 sm:pb-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
+      <section className="bg-pw-sand pb-16 lg:pb-[60px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
           <div className={GOLD_RULE} />
           <div className="mt-16 flex flex-col gap-7 sm:flex-row">
             <span aria-hidden="true" className="text-3xl leading-none">
@@ -431,17 +438,17 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ---------------------------------------------------- coordinated care */}
-      <section id="ecosystem" className="scroll-mt-28 bg-pw-cream py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 text-center sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section id="ecosystem" className="scroll-mt-28 bg-pw-cream py-16 lg:py-[100px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 text-center sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysCoordinated.eyebrow}
           </p>
-          <h2 className="mx-auto mt-5 max-w-4xl font-pw-display text-[2.1rem] font-normal leading-[1.16] text-pw-navy sm:text-[2.7rem]">
+          <h2 className="mx-auto mt-5 max-w-4xl font-pw-display text-[2rem] font-normal leading-[1.12] text-pw-navy sm:text-[3rem]">
             {pathwaysCoordinated.titleLead}{" "}
             <em className="italic">{pathwaysCoordinated.titleEmphasis}</em>{" "}
             {pathwaysCoordinated.titleRest}
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl leading-[1.85] text-pw-ink">
+          <p className="mx-auto mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-pw-ink">
             {pathwaysCoordinated.body}
           </p>
 
@@ -457,10 +464,10 @@ export default function PathwaysAcademyPage() {
                 <p className="font-pw-display text-2xl text-pw-gold">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-4 text-[0.8rem] font-bold uppercase tracking-[0.1em] text-pw-navy">
+                <h3 className="mt-4 text-[0.8125rem] font-bold uppercase leading-[1.6] tracking-[0.06em] text-pw-navy">
                   {point.title}
                 </h3>
-                <p className="mt-3 text-[0.95rem] leading-[1.75] text-pw-ink">{point.body}</p>
+                <p className="mt-3 text-[0.9375rem] leading-[1.65] text-pw-ink">{point.body}</p>
               </li>
             ))}
           </ul>
@@ -468,29 +475,29 @@ export default function PathwaysAcademyPage() {
       </section>
 
       {/* ------------------------------------------------------ closing CTA */}
-      <section className="bg-pw-navy py-20 text-center text-white sm:py-24">
-        <div className="mx-auto w-full max-w-[76rem] px-5 sm:px-8">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-pw-gold">
+      <section className="bg-pw-navy py-16 text-center text-white lg:py-[100px]">
+        <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
+          <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysCta.eyebrow}
           </p>
-          <h2 className="mx-auto mt-5 max-w-3xl font-pw-display text-[2.1rem] font-normal leading-[1.18] sm:text-[2.7rem]">
+          <h2 className="mx-auto mt-5 max-w-3xl font-pw-display text-[2.1rem] font-normal leading-[1.18] sm:text-[3rem]">
             {pathwaysCta.titleLead}
             <span className="mt-1 block italic text-pw-gold">{pathwaysCta.titleEmphasis}</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl leading-[1.85] text-white/75">
+          <p className="mx-auto mt-6 max-w-[650px] text-[1.0625rem] leading-[1.75] text-white/75">
             {pathwaysCta.body}
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/contact"
-              className="inline-flex min-h-12 w-full items-center justify-center bg-pw-gold px-9 text-xs font-bold uppercase tracking-[0.12em] text-pw-navy transition-colors hover:bg-pw-gold-light sm:w-auto"
+              className="inline-flex min-h-[54px] w-full items-center justify-center bg-pw-gold px-9 text-[0.875rem] font-bold uppercase tracking-[0.08em] text-pw-navy transition-colors hover:bg-pw-gold-light sm:w-auto"
             >
               Schedule a Consultation
             </Link>
             <a
               href={site.phoneHref}
-              className="inline-flex min-h-12 w-full items-center justify-center border border-white/60 px-9 text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/10 sm:w-auto"
+              className="inline-flex min-h-[54px] w-full items-center justify-center border border-white/60 px-9 text-[0.875rem] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-white/10 sm:w-auto"
             >
               Call {site.phone}
             </a>
@@ -518,7 +525,7 @@ function CheckList({ items }: { items: string[] }) {
           <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-pw-gold text-white">
             <Icon name="check" className="h-3 w-3" strokeWidth={3} />
           </span>
-          <span className="text-[0.975rem] leading-[1.6] text-pw-ink">{item}</span>
+          <span className="text-base leading-[1.6] text-pw-ink">{item}</span>
         </li>
       ))}
     </ul>
@@ -550,64 +557,99 @@ function Emphasised({ text }: { text: string }) {
  * absolutely positioned circles would overlap into an unreadable knot. The
  * connecting lines are one SVG behind the nodes so they scale with the box.
  */
-function CareDiagram() {
-  const [student, ...services] = pathwaysCoordinated.nodes;
-  /* Even sixths of the circle, starting at the top. */
-  const positions = [0, 60, 120, 180, 240, 300].map((deg) => {
-    const rad = ((deg - 90) * Math.PI) / 180;
-    return { x: 50 + 38 * Math.cos(rad), y: 50 + 38 * Math.sin(rad) };
-  });
+/* Node centres in the original's own 856×672 artboard, measured off the live
+   page. It is not an even ring — the web is stretched horizontally and the
+   lower three sit wider apart than the upper two — so the coordinates are
+   transcribed rather than generated from an angle. */
+const CARE_BOX = { w: 856, h: 672 };
+const CARE_CENTRE = { x: 427, y: 373 };
+const CARE_POINTS = [
+  { x: 427, y: 66 }, // Your Student
+  { x: 111, y: 288 }, // Academic Support
+  { x: 744, y: 288 }, // Behavioral Support
+  { x: 72, y: 576 }, // Clinical Evaluation
+  { x: 427, y: 605 }, // Executive Functioning
+  { x: 783, y: 576 }, // Speech & Communication
+];
+/* The outer ring, by index into CARE_POINTS: student→academic→clinical→
+   executive→speech→behavioral→student. */
+const CARE_RING = [
+  [0, 1],
+  [1, 3],
+  [3, 4],
+  [4, 5],
+  [5, 2],
+  [2, 0],
+];
 
+function CareDiagram() {
   return (
     <>
-      <div className="relative mx-auto mt-16 hidden aspect-square w-full max-w-2xl lg:block">
+      <div
+        className="relative mx-auto mt-16 hidden w-full max-w-[856px] lg:block"
+        style={{ aspectRatio: `${CARE_BOX.w} / ${CARE_BOX.h}` }}
+      >
         <svg
           aria-hidden="true"
-          viewBox="0 0 100 100"
+          viewBox={`0 0 ${CARE_BOX.w} ${CARE_BOX.h}`}
           className="absolute inset-0 h-full w-full"
           fill="none"
+          stroke="var(--color-pw-gold)"
+          strokeWidth="1.5"
+          opacity="0.5"
         >
-          {positions.map((p, i) => (
+          {/* spokes out from the mark */}
+          {CARE_POINTS.map((p, i) => (
+            <line key={`spoke-${i}`} x1={CARE_CENTRE.x} y1={CARE_CENTRE.y} x2={p.x} y2={p.y} />
+          ))}
+          {/* and the ring joining neighbours */}
+          {CARE_RING.map(([a, b]) => (
             <line
-              key={i}
-              x1="50"
-              y1="50"
-              x2={p.x}
-              y2={p.y}
-              stroke="var(--color-pw-gold)"
-              strokeWidth="0.3"
-              opacity="0.45"
+              key={`ring-${a}-${b}`}
+              x1={CARE_POINTS[a].x}
+              y1={CARE_POINTS[a].y}
+              x2={CARE_POINTS[b].x}
+              y2={CARE_POINTS[b].y}
             />
           ))}
         </svg>
 
-        <span className="absolute left-1/2 top-1/2 grid h-36 w-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy-soft p-6">
+        <span
+          style={{
+            left: `${(CARE_CENTRE.x / CARE_BOX.w) * 100}%`,
+            top: `${(CARE_CENTRE.y / CARE_BOX.h) * 100}%`,
+          }}
+          className="absolute grid h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy-soft p-7"
+        >
           <Image
             src="/images/pathways/the-resource-room.png"
             alt="The Resource Room"
-            width={112}
-            height={112}
+            width={188}
+            height={188}
             className="h-full w-full object-contain"
           />
         </span>
 
         {/* Keyed on title+strong, not `strong` alone: Academic Support and
             Behavioral Support share a second line. */}
-        {[student, ...services].map((node, index) => (
+        {pathwaysCoordinated.nodes.map((node, index) => (
           <span
             key={`${node.title} ${node.strong}`}
-            style={{ left: `${positions[index].x}%`, top: `${positions[index].y}%` }}
-            className="absolute grid h-32 w-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy px-3 text-center"
+            style={{
+              left: `${(CARE_POINTS[index].x / CARE_BOX.w) * 100}%`,
+              top: `${(CARE_POINTS[index].y / CARE_BOX.h) * 100}%`,
+            }}
+            className="absolute grid h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy px-3 text-center"
           >
             <span>
-              <span className="block text-[0.58rem] font-bold uppercase tracking-[0.08em] text-pw-gold">
+              <span className="block text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-pw-gold">
                 {node.title}
               </span>
-              <span className="block text-[0.66rem] font-bold uppercase leading-tight tracking-[0.01em] text-white">
+              <span className="block text-[0.8125rem] font-bold uppercase leading-tight tracking-[0.02em] text-white">
                 {node.strong}
               </span>
               {node.meta ? (
-                <span className="mt-1 block text-[0.53rem] leading-tight text-white/60">
+                <span className="mt-1 block text-[0.625rem] leading-tight text-white/60">
                   {node.meta}
                 </span>
               ) : null}
