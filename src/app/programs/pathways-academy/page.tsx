@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/icons";
+import type { PathwaysHighlight } from "@/content/pathways";
 import {
   pathwaysCoordinated,
   pathwaysCta,
@@ -45,6 +47,67 @@ export const metadata: Metadata = {
 };
 
 const GOLD_RULE = "h-px w-full bg-pw-gold/30";
+
+/**
+ * The six program-highlight icons, traced from the original page.
+ *
+ * Pathways uses Feather rather than the icon set the rest of this site draws
+ * from, and the shapes are visibly different — an open book, a ticked square, a
+ * globe, a briefcase. Rather than approximate them with the nearest Resource
+ * Room icon, the paths are copied verbatim so the row matches exactly.
+ */
+const PATHWAYS_ICONS: Record<PathwaysHighlight["icon"], ReactNode> = {
+  users: (
+    <>
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </>
+  ),
+  bookOpen: (
+    <>
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </>
+  ),
+  checkSquare: (
+    <>
+      <polyline points="9 11 12 14 22 4" />
+      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+    </>
+  ),
+  star: <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />,
+  briefcase: (
+    <>
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </>
+  ),
+};
+
+function PathwaysIcon({ name }: { name: PathwaysHighlight["icon"] }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="h-6 w-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {PATHWAYS_ICONS[name]}
+    </svg>
+  );
+}
 
 export default function PathwaysAcademyPage() {
   const program = getProgram("pathways-academy");
@@ -99,7 +162,7 @@ export default function PathwaysAcademyPage() {
         />
         <div className="relative mx-auto w-full max-w-[84rem] px-5 py-20 sm:px-8 lg:py-[90px]">
           <div className="max-w-xl">
-            <p className="inline-flex bg-white/15 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+            <p className="inline-flex rounded-[3px] border border-pw-gold-light/70 bg-pw-navy/70 px-5 py-[9px] text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
               {pathwaysHero.badge}
             </p>
             <h1 className="mt-7 font-pw-display text-[2.25rem] font-normal leading-[1.1] text-white sm:text-[2.875rem]">
@@ -117,16 +180,16 @@ export default function PathwaysAcademyPage() {
             <p className="mt-6 max-w-md text-[0.9375rem] leading-[1.7] text-white/90">
               {pathwaysHero.body}
             </p>
-            <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col items-start gap-4">
               <Link
                 href={pathwaysHero.primaryCta.href}
-                className="inline-flex min-h-[54px] items-center justify-center bg-pw-gold px-8 text-[0.875rem] font-bold uppercase tracking-[0.08em] text-pw-navy transition-colors hover:bg-pw-gold-light"
+                className="inline-flex min-h-[54px] items-center justify-center rounded-full bg-pw-gold px-[34px] text-[0.875rem] font-bold uppercase tracking-[0.08em] text-pw-navy transition-colors hover:bg-pw-gold-light"
               >
                 {pathwaysHero.primaryCta.label}
               </Link>
               <a
                 href={pathwaysHero.secondaryCta.href}
-                className="inline-flex min-h-[54px] items-center justify-center border border-white/60 px-8 text-[0.875rem] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-white/10"
+                className="inline-flex min-h-[54px] items-center justify-center rounded-full border border-white/50 px-[34px] text-[0.875rem] font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-white/10"
               >
                 {pathwaysHero.secondaryCta.label}
               </a>
@@ -170,7 +233,7 @@ export default function PathwaysAcademyPage() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex items-center rounded-[4px] border border-pw-gold/45 px-6 py-[14px] text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-white/90 transition-colors hover:border-pw-gold hover:text-pw-gold"
+                  className="inline-flex items-center rounded-[4px] border border-pw-gold/45 bg-white/[0.07] px-6 py-[14px] text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-white/90 transition-colors hover:border-pw-gold hover:text-pw-gold"
                 >
                   {link.label}
                 </Link>
@@ -239,8 +302,8 @@ export default function PathwaysAcademyPage() {
           <ul className="mt-14 grid border-l border-t border-pw-navy/10 sm:grid-cols-2 lg:grid-cols-3">
             {pathwaysHighlights.items.map((item) => (
               <li key={item.title} className="border-b border-r border-pw-navy/10 p-8">
-                <span className="grid h-12 w-12 place-items-center bg-pw-navy text-pw-gold">
-                  <Icon name={item.icon} className="h-5 w-5" />
+                <span className="grid h-12 w-12 place-items-center rounded-[10px] bg-pw-navy text-pw-gold">
+                  <PathwaysIcon name={item.icon} />
                 </span>
                 <h3 className="mt-6 text-[0.8125rem] font-bold uppercase leading-[1.6] tracking-[0.06em] text-pw-navy">
                   {item.title}
@@ -258,11 +321,15 @@ export default function PathwaysAcademyPage() {
           <p className="text-[0.6875rem] font-bold uppercase leading-[1.6] tracking-[0.2em] text-pw-gold">
             {pathwaysEcosystem.eyebrow}
           </p>
+          {/* A <br /> rather than a block span: a block element here would push
+              the emphasis and the words after it onto a third line, where the
+              original breaks only once. */}
           <h2 className="mt-5 max-w-4xl font-pw-display text-[2rem] font-normal leading-[1.12] sm:text-[3rem]">
             {pathwaysEcosystem.titleLead.split("\n").map((line, index) => (
-              <span key={line} className={index ? "block" : undefined}>
+              <Fragment key={line}>
+                {index > 0 ? <br /> : null}
                 {line}
-              </span>
+              </Fragment>
             ))}{" "}
             <em className="italic text-pw-gold">{pathwaysEcosystem.titleEmphasis}</em>{" "}
             {pathwaysEcosystem.titleRest}
@@ -276,7 +343,7 @@ export default function PathwaysAcademyPage() {
                   {/* `self-start` on the pill because the card is a flex
                       column, which would otherwise stretch it to full width. */}
                   {card.here ? (
-                    <span className="inline-flex self-start bg-pw-gold px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-pw-navy">
+                    <span className="inline-flex self-start rounded-[3px] bg-pw-gold px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-[0.14em] text-pw-navy">
                       You are here
                     </span>
                   ) : null}
@@ -296,12 +363,12 @@ export default function PathwaysAcademyPage() {
                   {card.href ? (
                     <Link
                       href={card.href}
-                      className="flex h-full flex-col border border-white/12 bg-white/[0.04] p-7 transition-colors hover:border-pw-gold/60 hover:bg-white/[0.07]"
+                      className="flex h-full flex-col rounded-[8px] border border-pw-gold/20 bg-white/[0.06] px-7 py-8 transition-colors hover:border-pw-gold/60 hover:bg-white/[0.1]"
                     >
                       {inner}
                     </Link>
                   ) : (
-                    <div className="flex h-full flex-col border-2 border-pw-gold bg-white/[0.06] p-7">
+                    <div className="flex h-full flex-col rounded-[8px] border border-pw-gold bg-pw-gold/12 px-7 py-8">
                       {inner}
                     </div>
                   )}

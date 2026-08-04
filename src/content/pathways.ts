@@ -71,8 +71,9 @@ export const pathwaysDifference = {
   ],
 };
 
+/* Icon keys match the Feather set the original page uses, one for one. */
 export type PathwaysHighlight = {
-  icon: "users" | "book" | "check" | "target" | "sparkle" | "cap";
+  icon: "users" | "bookOpen" | "checkSquare" | "globe" | "star" | "briefcase";
   title: string;
   body: string;
 };
@@ -88,27 +89,27 @@ export const pathwaysHighlights = {
       body: "Individualized attention, steady support, and a calmer learning environment where every student is known, not just a number in a roster.",
     },
     {
-      icon: "book",
+      icon: "bookOpen",
       title: "Personalized academic pathways",
       body: "Core subjects (English, writing, math, science, history) delivered at each student's level and scaled to readiness, ability, and long-term goals.",
     },
     {
-      icon: "check",
+      icon: "checkSquare",
       title: "Executive function support",
       body: "Daily help with organization, planning, task initiation, and follow-through: the foundational skills that make all other academic learning possible.",
     },
     {
-      icon: "target",
+      icon: "globe",
       title: "Social development",
       body: "Structured interaction that builds communication, collaboration, and self-advocacy, woven into daily routines, not reserved for occasional pull-out sessions.",
     },
     {
-      icon: "sparkle",
+      icon: "star",
       title: "Hands-on project learning",
       body: "Meaningful projects that help students apply academic skills in real situations, building genuine confidence alongside genuine competence.",
     },
     {
-      icon: "cap",
+      icon: "briefcase",
       title: "Real-world readiness",
       body: "Career exploration, community experiences, independence skills, and future planning, because graduation is a beginning, not just an endpoint.",
     },
