@@ -77,6 +77,27 @@
   --radius-chip: 0.625rem;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /*
+   * Pathways Academy — a separate brand, sampled from pathways.resourceroom.com.
+   *
+   * These are NOT Resource Room colors and must not be used elsewhere: the
+   * navy is softer than navy-950, the gold is a muted antique rather than the
+   * brand's #fff100, and the page sits on warm creams instead of white. They
+   * live here rather than inline so the one page that uses them stays
+   * consistent, and so it is obvious at a glance that `pw-` means Pathways.
+   */
+  --color-pw-navy: #1b2a4a;
+  --color-pw-navy-soft: #2a3f6e;
+  --color-pw-night: #111827;
+  --color-pw-ink: #4a5568;
+  --color-pw-gold: #c9a84c;
+  --color-pw-gold-light: #e8c96a;
+  --color-pw-cream: #f8f7f4;
+  --color-pw-sand: #f9f3e3;
+
+  --font-pw-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-pw-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {

@@ -20,8 +20,17 @@ import { breadcrumbSchema, jsonLd, programSchema } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
 
+/**
+ * Pathways Academy is excluded on purpose: it has its own route at
+ * ./pathways-academy/page.tsx, which reproduces the standalone Pathways site
+ * design rather than this shared program template. A static segment already
+ * wins over a dynamic one in Next's router, but generating the param here too
+ * would prerender two pages for one URL.
+ */
 export function generateStaticParams() {
-  return programs.map((program) => ({ slug: program.slug }));
+  return programs
+    .filter((program) => program.slug !== "pathways-academy")
+    .map((program) => ({ slug: program.slug }));
 }
 
 /**

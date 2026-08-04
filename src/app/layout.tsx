@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,6 +13,28 @@ import { seoDescription, seoTitle } from "@/lib/seo";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+/*
+ * Pathways Academy's own typefaces.
+ *
+ * Pathways ran as a separate site with a deliberately different look — a
+ * Playfair Display serif over DM Sans, where the rest of Resource Room is
+ * Inter set loud and uppercase. Joe asked for that page to look exactly as it
+ * did, so both families load here and are used only by
+ * /programs/pathways-academy. Nothing else on the site references them.
+ */
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -65,7 +87,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} ${dmSans.variable} h-full`}
+    >
       <body className="flex min-h-full flex-col font-sans">
         <script
           type="application/ld+json"
