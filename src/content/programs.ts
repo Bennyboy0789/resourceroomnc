@@ -289,6 +289,9 @@ export const programs: Program[] = [
         eyebrow: "More than a tutoring center",
         title: "One roof, every kind of",
         accent: "support.",
+        /* Runs the full container width in two columns rather than sitting in
+           a narrow single column — the copy was floating in a lot of space. */
+        wide: true,
         body: [
           "Because Resource Room is a full-service learning center, families can access far more than subject tutoring in one trusted place: SAT and ACT prep, STEM camps, our homeschool co-op, executive functioning coaching, ABA support, and Pathways Academy.",
           "As your child's needs change from one year to the next, the people supporting them do not have to.",
