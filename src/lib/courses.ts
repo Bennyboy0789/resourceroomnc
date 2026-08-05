@@ -19,19 +19,24 @@ export function groupIcon(group: string): IconName {
 /**
  * Which program page a catalog group belongs under.
  *
- * "Emerging Learners" is deliberately absent. On the Aug 3 2026 call Joe went
- * through that group by name — Early Reading Instruction, Lego Exploration,
- * Minecraft Education, Ms. Sam's New 2 Numbers — and said "we're not even
- * running those programs now". They were surfacing on the Private Tutoring
- * page, which is a large part of why it felt overwhelming. The pages still
- * exist in the unlisted catalog; they just no longer advertise themselves on a
- * program page. Put the group back here to re-list them.
+ * Two groups are deliberately absent, both so the Private Tutoring page shows
+ * only what the live site's "Tutoring Programs" tab shows:
+ *
+ *   Emerging Learners  Joe went through this group by name on the Aug 3 2026
+ *                      call — Early Reading Instruction, Lego Exploration,
+ *                      Minecraft Education, Ms. Sam's New 2 Numbers — and said
+ *                      "we're not even running those programs now".
+ *   Workshops          Its one course, Educational Workshops, is not on that
+ *                      tab either. Removed at Joe's request.
+ *
+ * Neither is deleted — both stay reachable in the unlisted catalog, they just
+ * no longer advertise themselves on a program page. Put a group back here to
+ * re-list it.
  */
 const GROUP_PROGRAM: Record<string, string> = {
   "STEAM Programs": "camps",
   "LEGO Robotics": "camps",
   "Gaming Education": "camps",
-  Workshops: "tutoring",
   "Tutoring Programs": "tutoring",
   "Test Prep": "sat-act-prep",
 };
