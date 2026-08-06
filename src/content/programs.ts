@@ -385,6 +385,7 @@ export const programs: Program[] = [
           {
             name: "Full Week",
             price: "$329",
+            cta: { label: "Book a camp week", href: "/programs/camps/summer-camp#buy" },
             cadence: "per week",
             badge: "Most booked",
             meta: "Monday to Friday, 8:00 a.m. to 3:30 p.m.",
@@ -399,6 +400,7 @@ export const programs: Program[] = [
           {
             name: "Single Day",
             price: "Available",
+            cta: { label: "Book a single day", href: "/programs/camps/track-out-teacher-workday#buy" },
             meta: "Teacher workdays, district holidays and break weeks",
             features: [
               "Full camp day, same schedule as a camp week",
@@ -409,6 +411,7 @@ export const programs: Program[] = [
           {
             name: "Late Pickup",
             price: "$55",
+            cta: { label: "Add late pickup", href: "/programs/camps/summer-camp#buy" },
             cadence: "per week",
             meta: "Add-on — extends the day to 4:30 p.m.",
             features: [
@@ -797,6 +800,7 @@ export const programs: Program[] = [
           {
             name: "20-Hour Private SAT Tutoring",
             price: "$2,099",
+            cta: { label: "Buy this package", href: "/programs/sat-act-prep/sat-prep#buy" },
             badge: "Most popular · Year-round",
             meta: "One-to-one · In-person or virtual · Start anytime",
             featured: true,
@@ -837,6 +841,7 @@ export const programs: Program[] = [
           {
             name: "ACT Test Prep",
             price: "$2,399",
+            cta: { label: "Buy this package", href: "/programs/sat-act-prep/act-prep#buy" },
             meta: "24 hours · In-person or virtual",
             features: [
               "24 hours of educator-led ACT instruction",
