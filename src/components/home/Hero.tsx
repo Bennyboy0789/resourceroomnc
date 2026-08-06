@@ -17,10 +17,10 @@ export function Hero() {
           contrast at every breakpoint, plus a gradient weighted to the bottom
           left where the headline sits. Together they stay light enough that the
           slideshow still reads as photography. */}
-      <div aria-hidden="true" className="absolute inset-0 bg-navy-950/50" />
+      <div aria-hidden="true" className="absolute inset-0 bg-brand-500/60" />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-tr from-navy-950/90 via-navy-950/45 to-navy-950/15"
+        className="absolute inset-0 bg-gradient-to-tr from-brand-500/95 via-brand-500/65 to-brand-500/30"
       />
 
       <Container size="wide" className="relative flex flex-1 items-end pb-14 pt-32 sm:pb-16">

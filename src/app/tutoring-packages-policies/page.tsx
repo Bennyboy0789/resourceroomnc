@@ -238,7 +238,7 @@ export default function TutoringPackagesPage() {
       </Section>
 
       {/* ------------------------------------------------------------ cta */}
-      <section className="bg-navy-950 text-white">
+      <section className="bg-brand-500 text-white">
         <div className="mx-auto w-full max-w-5xl px-5 py-16 text-center sm:px-8 sm:py-20">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-bold uppercase tracking-[0.08em] text-white/70">
             <span className="flex items-center gap-2">

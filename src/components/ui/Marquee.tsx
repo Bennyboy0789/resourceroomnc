@@ -19,7 +19,7 @@ export function Marquee({ items }: { items: string[] }) {
   const [paused, setPaused] = useState(false);
 
   return (
-    <div className="marquee-viewport relative border-y border-white/12 bg-navy-950 py-5 text-white">
+    <div className="marquee-viewport relative border-y border-white/12 bg-brand-500 py-5 text-white">
       <div
         className="marquee-track"
         style={paused ? { animationPlayState: "paused" } : undefined}
@@ -47,7 +47,7 @@ export function Marquee({ items }: { items: string[] }) {
           sits the button on solid navy on top of the fade. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-navy-950 via-navy-950/90 to-transparent"
+        className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-brand-500 via-navy-950/90 to-transparent"
       />
 
       {/* 44px target, meeting the AAA target size and comfortably clearing the

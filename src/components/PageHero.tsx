@@ -46,10 +46,10 @@ export function PageHero({
               priority
             />
           </div>
-          <div aria-hidden="true" className="absolute inset-0 bg-navy-950/60" />
+          <div aria-hidden="true" className="absolute inset-0 bg-brand-500/70" />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/55 to-navy-950/25"
+            className="absolute inset-0 bg-gradient-to-r from-brand-500/95 via-brand-500/70 to-brand-500/40"
           />
         </>
       ) : (

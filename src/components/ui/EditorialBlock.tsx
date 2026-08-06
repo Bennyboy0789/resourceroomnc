@@ -33,7 +33,7 @@ export function EditorialBlock({
       {/* Vertical scrim for the stacked mobile layout. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/60 to-navy-950/25 lg:hidden"
+        className="absolute inset-0 bg-gradient-to-t from-brand-500/95 via-brand-500/70 to-brand-550/25 lg:hidden"
       />
       {/* Horizontal scrim once the copy moves to one side. */}
       <div

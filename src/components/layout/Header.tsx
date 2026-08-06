@@ -222,7 +222,7 @@ function ProgramMega() {
                 const children = productPagesForProgram(slug);
 
                 return (
-                  <li key={slug}>
+                  <li key={slug} className="group/prog">
                     <Link
                       href={`/programs/${slug}`}
                       className="group flex items-center gap-3 py-2 transition-colors"
@@ -248,8 +248,20 @@ function ProgramMega() {
                       </span>
                     </Link>
 
+                    {/*
+                      Revealed on hover, and on `focus-within` so the keyboard
+                      reaches it too: tabbing onto the parent link opens the
+                      tier, and the next Tab lands on the first child. Without
+                      the focus rule these links would be `display:none` and
+                      simply unreachable without a mouse.
+
+                      Hovering onto the children keeps the parent hovered, since
+                      they are inside the same <li> — so the tier stays open
+                      while the pointer travels to it (WCAG 1.4.13), and Escape
+                      still closes the whole menu.
+                    */}
                     {children.length ? (
-                      <ul className="mb-2 ml-[3.75rem] space-y-0.5 border-l border-navy-950/10 pl-3">
+                      <ul className="mb-2 ml-[3.75rem] hidden space-y-0.5 border-l border-navy-950/10 pl-3 group-hover/prog:block group-focus-within/prog:block">
                         {children.map((child) => (
                           <li key={child.slug}>
                             <Link
@@ -281,7 +293,7 @@ function ProgramMega() {
             sizes="18rem"
             className="rounded-none transition-transform duration-500 group-hover:scale-105"
           />
-          <span aria-hidden="true" className="absolute inset-0 bg-navy-950/45" />
+          <span aria-hidden="true" className="absolute inset-0 bg-brand-500/60" />
           <span className="absolute inset-0 flex flex-col justify-end p-5">
             <span className="eyebrow text-sun-500">Not sure which fits?</span>
             <span className="mt-2 text-lg font-extrabold uppercase leading-tight tracking-tight text-white">

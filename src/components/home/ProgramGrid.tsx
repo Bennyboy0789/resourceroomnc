@@ -5,7 +5,7 @@ import { homeSections } from "@/content/sections";
 
 export function ProgramGrid() {
   return (
-    <section className="bg-navy-950 py-20 text-white sm:py-24 lg:py-28">
+    <section className="bg-brand-500 py-20 text-white sm:py-24 lg:py-28">
       <Rail
         {...homeSections.programGrid}
         viewAll={{ label: "Compare all", href: "/programs" }}

@@ -7,7 +7,7 @@ const tones = {
   white: "bg-white text-navy-900",
   mist: "bg-mist text-navy-900",
   frost: "bg-frost text-navy-900",
-  navy: "bg-navy-950 text-white",
+  navy: "bg-brand-500 text-white",
 } as const;
 
 export function Section({

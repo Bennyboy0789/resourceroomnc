@@ -11,7 +11,7 @@ import { stagger } from "@/lib/stagger";
  */
 export function Counters() {
   return (
-    <section className="bg-navy-950 text-white">
+    <section className="bg-brand-500 text-white">
       <Container size="wide" className="py-16 sm:py-20">
         <dl className="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
           {counters.map((counter, index) => (
