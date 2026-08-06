@@ -933,48 +933,6 @@
       ]
     },
     {
-      "wooId": 3156,
-      "slug": "ms-sams-new-2-numbers",
-      "name": "Ms. Sam’s New 2 Numbers",
-      "programSlug": "tutoring",
-      "attributes": [],
-      "variants": [
-        {
-          "wooId": 3156,
-          "amount": 4500,
-          "options": {}
-        }
-      ]
-    },
-    {
-      "wooId": 3154,
-      "slug": "story-stations",
-      "name": "Story Stations +",
-      "programSlug": "tutoring",
-      "attributes": [],
-      "variants": [
-        {
-          "wooId": 3154,
-          "amount": 4500,
-          "options": {}
-        }
-      ]
-    },
-    {
-      "wooId": 3152,
-      "slug": "crafty-learning",
-      "name": "Crafty Learning",
-      "programSlug": "tutoring",
-      "attributes": [],
-      "variants": [
-        {
-          "wooId": 3152,
-          "amount": 7900,
-          "options": {}
-        }
-      ]
-    },
-    {
       "wooId": 3148,
       "slug": "act-prep-in-north-carolina",
       "name": "ACT Test Prep in Holly Springs, NC",

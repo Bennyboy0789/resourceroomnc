@@ -64,14 +64,26 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
   if (!stripe) return [];
 
   try {
+    /*
+     * Paginated, not a single page.
+     *
+     * `limit: 100` is Stripe's maximum per request, and the seeded catalog is
+     * already over it — 102 prices across 9 products, with STEM alone holding
+     * 55 weekly sessions. A single page silently dropped the two oldest, which
+     * cost Homeschool Co-Op one of its ten enrolment options: no error, just a
+     * combination a family could not buy. `autoPagingToArray` needs an explicit
+     * ceiling, so both are set well above the present catalog with room to grow.
+     */
     const [products, prices] = await Promise.all([
-      stripe.products.list({ active: true, limit: 100 }),
-      stripe.prices.list({ active: true, limit: 100, expand: ["data.product"] }),
+      stripe.products.list({ active: true, limit: 100 }).autoPagingToArray({ limit: 500 }),
+      stripe.prices
+        .list({ active: true, limit: 100, expand: ["data.product"] })
+        .autoPagingToArray({ limit: 2000 }),
     ]);
 
     const byProduct = new Map<string, CatalogVariant[]>();
 
-    for (const price of prices.data) {
+    for (const price of prices) {
       if (price.unit_amount == null) continue;
 
       const productId =
@@ -97,7 +109,7 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
 
     const catalog: CatalogProduct[] = [];
 
-    for (const product of products.data) {
+    for (const product of products) {
       const programSlug = product.metadata?.program_slug;
       const variants = byProduct.get(product.id) ?? [];
       if (!programSlug || !variants.length) continue;
