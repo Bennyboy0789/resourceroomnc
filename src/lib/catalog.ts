@@ -39,6 +39,8 @@ export type CatalogVariant = {
 
 export type CatalogProduct = {
   id: string;
+  /** `metadata.woo_slug` — how a product page names the product it sells. */
+  slug: string;
   name: string;
   description: string | null;
   programSlug: string;
@@ -124,6 +126,7 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
 
       catalog.push({
         id: product.id,
+        slug: product.metadata?.woo_slug ?? "",
         name: product.name,
         description: product.description,
         programSlug,
@@ -145,6 +148,17 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
 export async function getProductsForProgram(programSlug: string) {
   const catalog = await getCatalog();
   return catalog.filter((product) => product.programSlug === programSlug);
+}
+
+/**
+ * A single product by its catalog slug, for the product pages that sell one
+ * thing. Returns null when Stripe has no such product — the page then shows its
+ * content and consultation CTA rather than a broken buy box.
+ */
+export async function getProduct(slug: string) {
+  if (!slug) return null;
+  const catalog = await getCatalog();
+  return catalog.find((product) => product.slug === slug) ?? null;
 }
 
 export function formatAmount(amount: number, currency = "usd") {

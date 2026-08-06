@@ -170,6 +170,11 @@ export type Program = {
   popular?: boolean;
   /** Programs featured in the 2x2 grid and the quick-link pill row. */
   featured?: boolean;
+  /**
+   * Sibling programs shown in this page's product grid, alongside its catalog
+   * courses — the live category tabs mix the two. Self-references are ignored.
+   */
+  alsoListed?: string[];
   /** Set when the program lives on its own site. */
   externalUrl?: string;
 };

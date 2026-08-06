@@ -9,7 +9,18 @@ export const site = {
   tagline: "A Complete Learning Center for Every Student",
   description:
     "From early reading to AP Calculus, summer camps to a private high school, every Resource Room program is built around one student at the center: yours.",
-  url: "https://resourceroomnc.com",
+  /*
+   * The domain this site is actually served from.
+   *
+   * It must match the host in the address bar, because it drives `metadataBase`
+   * — and therefore every canonical tag — plus sitemap.xml, robots.txt, llms.txt
+   * and every URL inside the JSON-LD. While this said "resourceroomnc.com" the
+   * live site at www.resourceroom.com was canonicalising all of its own pages to
+   * the old WordPress site, which tells Google the new site is the duplicate.
+   *
+   * `www` on purpose: the apex 308-redirects to www, so www is the real host.
+   */
+  url: "https://www.resourceroom.com",
   phone: "984-777-1244",
   phoneHref: "tel:+19847771244",
   email: "Learn@ResourceRoomNC.com",

@@ -1,5 +1,7 @@
 import type { IconName } from "@/components/icons";
 import { courses, type Course } from "@/content/courses";
+import { getProgram } from "@/content/programs";
+import { productPagesForProgram } from "@/content/products";
 
 /** Icon fallback per catalog group, used when a course has no image. */
 const GROUP_ICONS: Record<string, IconName> = {
@@ -77,4 +79,74 @@ export function formatPrice(price: Course["price"]): string | null {
   if (!price) return null;
   if (price.low === price.high) return money(price.low);
   return `${money(price.low)} – ${money(price.high)}`;
+}
+
+/**
+ * A program page's product grid, which is not only its catalog courses.
+ *
+ * The live site's category tabs mix the two: /tutoring/ lists four course
+ * pages alongside Summer Bridge, which is a program in its own right. Joe
+ * asked for those tabs to be mirrored, so a program can name sibling programs
+ * to show beside its courses.
+ *
+ * A program never lists itself. On the live site /tutoring/ was a category page
+ * separate from the Private Tutoring product page; here Joe asked for the two
+ * to be combined, so "Private Tutoring" IS /programs/tutoring and a card
+ * pointing at the page you are already reading would be a dead end.
+ */
+export type ProgramProduct = {
+  href: string;
+  name: string;
+  image: string | null;
+  imageAlt: string;
+  /** Grade band or price line above the title, where one exists. */
+  meta: string | null;
+  icon: IconName;
+};
+
+export function productsForProgram(programSlug: string): ProgramProduct[] {
+  const program = getProgram(programSlug);
+
+  /* Product pages come first — they are the buyable things Joe asked to lead
+     with. Camps is the exception: its two category pages are the whole grid,
+     because the 14 individual STEAM courses were the tile wall he asked us to
+     wipe, and they remain reachable from the unlisted catalog. */
+  const pages: ProgramProduct[] = productPagesForProgram(programSlug).map((product) => ({
+    href: `/programs/${product.programSlug}/${product.slug}`,
+    name: product.name,
+    image: product.image.src,
+    imageAlt: product.image.alt,
+    meta: product.priceLabel ?? null,
+    icon: program?.icon ?? "sparkle",
+  }));
+
+  if (programSlug === "camps") return pages;
+
+  const courses: ProgramProduct[] = coursesForProgram(programSlug).map((course) => ({
+    href: `/courses/${course.slug}`,
+    name: course.name,
+    image: course.image ?? null,
+    imageAlt: course.imageAlt,
+    meta: course.grades ?? null,
+    icon: groupIcon(course.group),
+  }));
+
+  const siblings: ProgramProduct[] = (program?.alsoListed ?? [])
+    .filter((slug) => slug !== programSlug)
+    .flatMap((slug) => {
+      const sibling = getProgram(slug);
+      if (!sibling) return [];
+      return [
+        {
+          href: `/programs/${sibling.slug}`,
+          name: sibling.name,
+          image: sibling.image.src,
+          imageAlt: sibling.image.alt,
+          meta: sibling.category,
+          icon: sibling.icon,
+        },
+      ];
+    });
+
+  return [...pages, ...courses, ...siblings];
 }

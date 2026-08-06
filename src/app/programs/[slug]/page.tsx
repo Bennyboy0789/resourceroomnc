@@ -15,7 +15,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Stars } from "@/components/ui/Stars";
 import { getProgram, imagePosition, imageRatio, programs } from "@/content/programs";
 import { site } from "@/content/site";
-import { coursesForProgram, formatPrice, groupIcon } from "@/lib/courses";
+import { productsForProgram } from "@/lib/courses";
 import { breadcrumbSchema, jsonLd, programSchema } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -72,7 +72,7 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
   if (!program) notFound();
 
   const others = programs.filter((item) => item.slug !== program.slug).slice(0, 3);
-  const programCourses = coursesForProgram(program.slug);
+  const programProducts = productsForProgram(program.slug);
   const { service, faq } = programSchema(program);
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", path: "/" },
@@ -142,43 +142,42 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
 
           Also the internal-linking fix: course pages were reachable only from
           the catalog, leaving sixteen of them on a single inbound link. */}
-      {programCourses.length ? (
+      {programProducts.length ? (
         <Section tone="mist" size="wide">
           <SectionHeading
-            eyebrow={`${programCourses.length} courses`}
+            eyebrow={`${programProducts.length} options`}
             title="What runs inside this"
             accent="program."
             description="Individual classes and sessions within this program. Anything without a listed rate is quoted at your free consultation."
           />
           <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
-            {programCourses.map((course, index) => (
-              <Reveal key={course.slug} as="li" delay={stagger(index % 4, 0.06)}>
+            {programProducts.map((product, index) => (
+              <Reveal key={product.href} as="li" delay={stagger(index % 4, 0.06)}>
                 <article className="group h-full">
                   <Link
-                    href={`/courses/${course.slug}`}
+                    href={product.href}
                     aria-hidden="true"
                     tabIndex={-1}
                     className="block overflow-hidden rounded-card"
                   >
                     <PhotoSlot
-                      src={course.image ?? undefined}
-                      alt={course.imageAlt}
-                      icon={groupIcon(course.group)}
+                      src={product.image ?? undefined}
+                      alt={product.imageAlt}
+                      icon={product.icon}
                       ratio="1/1"
                       position="top"
                       sizes="(min-width: 1024px) 25vw, 50vw"
                       className="rounded-none transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </Link>
-                  <p className="mt-4 flex flex-wrap items-center gap-x-3 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
-                    {course.grades ? <span>{course.grades}</span> : null}
-                    {course.price ? (
-                      <span className="text-navy-950">{formatPrice(course.price)}</span>
-                    ) : null}
-                  </p>
+                  {product.meta ? (
+                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
+                      {product.meta}
+                    </p>
+                  ) : null}
                   <h3 className="mt-2 text-base font-bold leading-snug tracking-tight text-navy-950">
-                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-500">
-                      {course.name}
+                    <Link href={product.href} className="hover:text-brand-500">
+                      {product.name}
                     </Link>
                   </h3>
                 </article>

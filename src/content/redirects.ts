@@ -33,7 +33,17 @@ const MANUAL: [source: string, destination: string][] = [
   ["/lego-robotics", "/courses#lego-robotics"],
   ["/gaming-education", "/courses#gaming-education"],
   ["/emerging-learners-courses", "/courses#emerging-learners"],
-  ["/tutoring-packages-policies", "/programs/tutoring"],
+  /* NOT redirected: /tutoring-packages-policies is a real page again — the
+     unlisted rate card. A redirect here would win over the route and make the
+     page unreachable, which is what happened to /tutoring and /camps. */
+  /* Both were linked from imported blog posts but had no entry here, so they
+     404'd once those links were made site-relative. */
+  ["/aba", "/programs/aba-services"],
+  ["/college-admissions", "/programs/college-prep"],
+  /* Two imported posts carry a "Related Reading" link to this 2021 post, which
+     the WordPress import did not bring across. Rather than leave a dead link in
+     published copy, it goes to the page that answers the same question. */
+  ["/2021/10/01/what-should-i-take-the-sat-the-act-or-both", "/programs/sat-act-prep"],
   ["/event-calendar", "/programs/camps"],
   ["/under-construction", "/"],
 
@@ -53,18 +63,18 @@ const MANUAL: [source: string, destination: string][] = [
   ["/order-failed-2", "/cart"],
 
   // --- products that became program pages ----------------------------------
-  ["/product/private-tutoring-for-all-subjects-in-nc", "/programs/tutoring"],
-  ["/product/teacher-workdays", "/programs/camps"],
-  ["/product/stem", "/programs/camps"],
-  ["/product/sat-prep-in-north-carolina", "/programs/sat-act-prep"],
-  ["/product/act-prep-in-north-carolina", "/programs/sat-act-prep"],
+  ["/product/private-tutoring-for-all-subjects-in-nc", "/programs/tutoring/private-tutoring"],
+  ["/product/teacher-workdays", "/programs/camps/track-out-teacher-workday"],
+  ["/product/stem", "/programs/camps/summer-camp"],
+  ["/product/sat-prep-in-north-carolina", "/programs/sat-act-prep/sat-prep"],
+  ["/product/act-prep-in-north-carolina", "/programs/sat-act-prep/act-prep"],
   ["/product/pathways-academy", "/programs/pathways-academy"],
-  ["/product/homeschool-co-op-holly-springs-nc", "/programs/homeschool-co-op"],
+  ["/product/homeschool-co-op-holly-springs-nc", "/programs/homeschool-co-op/homeschool-co-op"],
   ["/product/aba-educational-support", "/programs/aba-services"],
-  ["/product/college-admissions", "/programs/college-prep"],
+  ["/product/college-admissions", "/programs/college-prep/college-admissions"],
   ["/product/iep-advocacy", "/programs/iep-504-advocate"],
-  ["/product/executive-functioning-coaching-and-support", "/programs/executive-functioning"],
-  ["/product/summer-bridge-programs-in-nc", "/programs/summer-bridge"],
+  ["/product/executive-functioning-coaching-and-support", "/programs/tutoring/executive-functioning"],
+  ["/product/summer-bridge-programs-in-nc", "/programs/tutoring/summer-bridge"],
 
   // --- WooCommerce category archives ---------------------------------------
   ["/product-category/steam-programs", "/courses#steam-programs"],
