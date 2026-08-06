@@ -60,6 +60,14 @@ export type PricingTier = {
   featured?: boolean;
   /** Struck-through former price, where the live site shows a sale. */
   wasPrice?: string;
+  /**
+   * Where this tier's button goes. Defaults to booking a consultation, which
+   * is right for the packages that genuinely start with a conversation. Tiers
+   * that are actually buyable point at their product page's buy box instead —
+   * a published rate with a "book a consultation" button under it reads as if
+   * you cannot simply purchase it.
+   */
+  cta?: { label: string; href: string };
 };
 
 export type ScheduleRow = { label: string; value: string; note?: string };
@@ -1346,24 +1354,28 @@ export const programs: Program[] = [
           {
             name: "1 Class",
             price: "$425",
+            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["One class from the academic day or lab day"],
           },
           {
             name: "2 Classes",
             price: "$850",
+            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["Any two classes, academic day or lab day"],
           },
           {
             name: "3 Classes",
             price: "$1,250",
+            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["Any three classes, academic day or lab day"],
           },
           {
             name: "Full Academic Day",
             price: "$1,650",
+            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             meta: "4 classes",
             featured: true,
@@ -1372,6 +1384,7 @@ export const programs: Program[] = [
           {
             name: "Academic + Lab Track",
             price: "$2,450",
+            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             meta: "The full two-day program",
             features: [
@@ -1624,6 +1637,7 @@ export const programs: Program[] = [
             name: "Common App Essay Only",
             price: "$549",
             meta: "The centerpiece of most applications",
+            cta: { label: "Buy this package", href: "/programs/college-prep/college-admissions#buy" },
             features: [
               "Guided brainstorming and topic discovery",
               "Narrative structure and outlining",
@@ -1635,6 +1649,7 @@ export const programs: Program[] = [
             name: "Essay + Common App + Supplements",
             price: "$899",
             badge: "Complete support",
+            cta: { label: "Buy this package", href: "/programs/college-prep/college-admissions#buy" },
             meta: "Common App essay, the application itself, and up to 5 supplements",
             featured: true,
             features: [

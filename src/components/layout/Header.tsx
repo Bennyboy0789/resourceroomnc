@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { getProgram, imagePosition, programs } from "@/content/programs";
-import { productPagesForProgram } from "@/content/products";
+import { menuChildrenFor } from "@/content/products";
 import { navigation, programMenuGroups, site } from "@/content/site";
 import { cn } from "@/lib/cn";
 
@@ -218,8 +218,8 @@ function ProgramMega() {
                 /* Programs whose products are their own pages list them as a
                    nested tier — Camps is the reason this exists, so Track-Out
                    and Summer Camps are reachable from the menu rather than
-                   only from the Camps page. */
-                const children = productPagesForProgram(slug);
+                   only from the Camps page. Single-product programs get none. */
+                const children = menuChildrenFor(slug);
 
                 return (
                   <li key={slug} className="group/prog">
@@ -261,18 +261,31 @@ function ProgramMega() {
                       still closes the whole menu.
                     */}
                     {children.length ? (
-                      <ul className="mb-2 ml-[3.75rem] hidden space-y-0.5 border-l border-navy-950/10 pl-3 group-hover/prog:block group-focus-within/prog:block">
-                        {children.map((child) => (
-                          <li key={child.slug}>
-                            <Link
-                              href={`/programs/${slug}/${child.slug}`}
-                              className="block py-1 text-xs font-semibold leading-snug text-navy-600 transition-colors hover:text-brand-500"
-                            >
-                              {child.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                      /*
+                        Animated open rather than toggled, so the items below
+                        slide instead of jumping.
+
+                        The height comes from a grid row going 0fr -> 1fr, which
+                        is the one way to transition to "however tall the content
+                        happens to be" — `height: auto` is not animatable, and a
+                        max-height guess either clips long labels or eases
+                        against dead space. The child needs `overflow-hidden` for
+                        the clip to work while the row is collapsed.
+                      */
+                      <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover/prog:grid-rows-[1fr] group-focus-within/prog:grid-rows-[1fr] motion-reduce:transition-none">
+                        <ul className="ml-[3.75rem] overflow-hidden border-l border-navy-950/10 pl-3 opacity-0 transition-opacity duration-200 ease-out group-hover/prog:opacity-100 group-focus-within/prog:opacity-100 motion-reduce:transition-none">
+                          {children.map((child) => (
+                            <li key={child.slug} className="first:pt-1 last:pb-2">
+                              <Link
+                                href={`/programs/${slug}/${child.slug}`}
+                                className="block py-1 text-xs font-semibold leading-snug text-navy-600 transition-colors hover:text-brand-500"
+                              >
+                                {child.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ) : null}
                   </li>
                 );
@@ -383,7 +396,7 @@ function MobileMenu({
                     href: `/programs/${program.slug}`,
                     nested: false,
                   },
-                  ...productPagesForProgram(program.slug).map((product) => ({
+                  ...menuChildrenFor(program.slug).map((product) => ({
                     label: product.name,
                     href: `/programs/${program.slug}/${product.slug}`,
                     nested: true,

@@ -264,11 +264,11 @@ function Pricing({
                   keeps the buttons on a shared baseline across the row. */}
               <div className="mt-auto pt-6">
                 <Button
-                  href="/contact"
+                  href={tier.cta?.href ?? "/contact"}
                   variant={tier.featured ? "navy" : "quiet"}
                   className="w-full"
                 >
-                  Book a Free Consultation
+                  {tier.cta?.label ?? "Book a Free Consultation"}
                 </Button>
               </div>
             </div>

@@ -659,3 +659,16 @@ export function productPagesForProgram(programSlug: string): ProductPage[] {
 export function getProductBySlug(slug: string): ProductPage | undefined {
   return products.find((p) => p.slug === slug);
 }
+
+/**
+ * The product pages worth showing as a nested tier in the nav.
+ *
+ * A dropdown holding one item is not a choice — it just puts an extra step in
+ * front of a page the parent link already reaches. College Prep and Homeschool
+ * Co-Op each have a single product, so they get no tier; the program link goes
+ * straight there. Add a second product and the tier appears on its own.
+ */
+export function menuChildrenFor(programSlug: string): ProductPage[] {
+  const pages = productPagesForProgram(programSlug);
+  return pages.length > 1 ? pages : [];
+}

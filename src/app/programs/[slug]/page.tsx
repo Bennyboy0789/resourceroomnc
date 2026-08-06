@@ -142,7 +142,10 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
 
           Also the internal-linking fix: course pages were reachable only from
           the catalog, leaving sixteen of them on a single inbound link. */}
-      {programProducts.length ? (
+      {/* A grid of one is not a choice — it is a card pointing at a page the
+          pricing block above already links to. College Prep and Homeschool
+          Co-Op each have a single product, so they skip the grid entirely. */}
+      {programProducts.length > 1 ? (
         <Section tone="mist" size="wide">
           <SectionHeading
             eyebrow={`${programProducts.length} options`}
