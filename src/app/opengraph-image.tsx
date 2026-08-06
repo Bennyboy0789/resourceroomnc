@@ -40,8 +40,8 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#3d60a9",
-            color: "#fff100",
+            background: "#086090",
+            color: "#f4d84a",
             fontSize: 34,
             fontWeight: 800,
             letterSpacing: -1,
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
           }}
         >
           <span style={{ display: "flex" }}>A Complete Learning Center for&nbsp;</span>
-          <span style={{ display: "flex", color: "#fff100" }}>Every Student.</span>
+          <span style={{ display: "flex", color: "#f4d84a" }}>Every Student.</span>
         </div>
         <div style={{ color: "#b9c7e4", fontSize: 26, marginTop: 24, lineHeight: 1.4 }}>
           Tutoring · Camps · SAT &amp; ACT · College Prep · Pathways Academy
@@ -94,7 +94,7 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex" }}>{addressLine}</div>
-        <div style={{ display: "flex", color: "#fff100", fontWeight: 700 }}>{site.phone}</div>
+        <div style={{ display: "flex", color: "#f4d84a", fontWeight: 700 }}>{site.phone}</div>
       </div>
     </div>,
     size,

@@ -1,6 +1,6 @@
 "use server";
 
-import { mailerConfigured, sendMail } from "@/lib/smtp2go";
+import { mailerConfigured, sendMail, type MailAttachment } from "@/lib/smtp2go";
 
 export type ContactState = {
   status: "idle" | "sent" | "error";
@@ -25,6 +25,14 @@ const CAREERS_FIELDS = [
 ] as const;
 
 const MAX_LENGTH = 5000;
+
+/** Resume upload limits — see the guard in submitContact. */
+const MAX_RESUME_BYTES = 5 * 1024 * 1024;
+const ALLOWED_RESUME_TYPES = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
 
 function clean(value: FormDataEntryValue | null): string {
   return String(value ?? "")
@@ -74,6 +82,40 @@ export async function submitContact(
       ? `Application — ${name}`
       : `Consultation request — ${clean(formData.get("program")) || "not sure yet"}`;
 
+  /*
+   * Resume, if one was attached. Guarded on three axes because this is the one
+   * place the site accepts a file from a stranger:
+   *
+   *   type   PDF or Word only, so the inbox never receives an executable
+   *   size   5MB, comfortably under SMTP2Go's 50MB envelope and small enough
+   *          that a slow phone upload still completes inside the action
+   *   name   stripped to a basename, so a crafted "../" filename cannot
+   *          suggest a path when the attachment is saved
+   *
+   * A rejected file fails the submission outright rather than silently sending
+   * without it — an applicant who attached a resume must not be told their
+   * application went through minus the resume.
+   */
+  const attachments: MailAttachment[] = [];
+  const resume = formData.get("resume");
+
+  if (resume instanceof File && resume.size > 0) {
+    if (!ALLOWED_RESUME_TYPES.has(resume.type)) {
+      return { status: "error", message: "Please attach your resume as a PDF or Word document." };
+    }
+    if (resume.size > MAX_RESUME_BYTES) {
+      return { status: "error", message: "That file is over 5MB. Please attach a smaller resume." };
+    }
+
+    const bytes = Buffer.from(await resume.arrayBuffer());
+    attachments.push({
+      filename: resume.name.replace(/^.*[\\/]/, "").slice(0, 120) || "resume",
+      fileblob: bytes.toString("base64"),
+      mimetype: resume.type,
+    });
+    lines.push("", `Resume attached: ${resume.name} (${Math.round(resume.size / 1024)} KB)`);
+  }
+
   if (!mailerConfigured()) {
     // Surfaces a misconfigured deploy in the logs instead of silently dropping
     // a real enquiry on the floor.
@@ -85,7 +127,7 @@ export async function submitContact(
   }
 
   try {
-    await sendMail({ subject, text: lines.join("\n"), replyTo: email });
+    await sendMail({ subject, text: lines.join("\n"), replyTo: email, attachments });
     return { status: "sent" };
   } catch (error) {
     console.error("[contact] send failed:", error);

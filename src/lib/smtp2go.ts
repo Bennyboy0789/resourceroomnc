@@ -18,19 +18,33 @@ import "server-only";
 
 const ENDPOINT = "https://api.smtp2go.com/v3/email/send";
 
+export type MailAttachment = {
+  filename: string;
+  /** Base64 of the file's bytes, which is the only form SMTP2Go accepts. */
+  fileblob: string;
+  mimetype: string;
+};
+
 export type MailPayload = {
   subject: string;
   /** Plain-text body. */
   text: string;
   /** Where a reply should go — the person who filled in the form. */
   replyTo?: string;
+  /** Resumes from the careers form. Omitted for the consultation form. */
+  attachments?: MailAttachment[];
 };
 
 export function mailerConfigured(): boolean {
   return Boolean(process.env.SMTP2GO_API_KEY && process.env.SMTP2GO_SENDER);
 }
 
-export async function sendMail({ subject, text, replyTo }: MailPayload): Promise<void> {
+export async function sendMail({
+  subject,
+  text,
+  replyTo,
+  attachments,
+}: MailPayload): Promise<void> {
   const apiKey = process.env.SMTP2GO_API_KEY;
   const sender = process.env.SMTP2GO_SENDER;
 
@@ -56,6 +70,7 @@ export async function sendMail({ subject, text, replyTo }: MailPayload): Promise
       subject,
       text_body: text,
       ...(replyTo ? { custom_headers: [{ header: "Reply-To", value: replyTo }] } : {}),
+      ...(attachments?.length ? { attachments } : {}),
     }),
   });
 

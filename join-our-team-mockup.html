@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Join Our Team - Resource Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rr-blue: #086090;
+    --rr-blue-dark: #064a70;
+    --rr-gold: #F4D84A;
+    --rr-gold-dark: #E9CB33;
+    --rr-ink: #163247;
+    --rr-cream: #FAF8F3;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--rr-cream);
+    color: var(--rr-ink);
+  }
+
+  a { text-decoration: none; }
+
+  /* ===== HERO ===== */
+  .jot-hero {
+    background: linear-gradient(160deg, var(--rr-blue) 0%, var(--rr-blue-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 76px 20px 84px;
+    position: relative;
+    overflow: hidden;
+  }
+  .jot-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(244,216,74,0.12);
+  }
+  .jot-eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rr-gold);
+    margin-bottom: 18px;
+  }
+  .jot-hero h1 {
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 20px;
+  }
+  .jot-hero h1 span { color: var(--rr-gold); }
+  .jot-hero p {
+    max-width: 640px;
+    margin: 0 auto 32px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.92);
+  }
+  .jot-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rr-gold);
+    color: var(--rr-blue-dark);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px 34px;
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    transition: transform .2s ease, background .2s ease;
+  }
+  .jot-hero-cta:hover { background: var(--rr-gold-dark); transform: translateY(-2px); }
+
+  /* ===== SECTION WRAPPER ===== */
+  .jot-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 70px 24px;
+  }
+  .jot-section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rr-blue);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .jot-section h2 {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 14px;
+    color: var(--rr-ink);
+  }
+  .jot-section > p.jot-intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 48px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4a5c68;
+  }
+
+  /* ===== WHY US GRID ===== */
+  .jot-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .jot-why-card {
+    background: #fff;
+    border: 1px solid #e7ecef;
+    border-radius: 16px;
+    padding: 28px 22px;
+    text-align: left;
+  }
+  .jot-why-card .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rr-gold-dark);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .jot-why-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--rr-blue-dark);
+  }
+  .jot-why-card p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #4a5c68;
+    margin: 0;
+  }
+
+  /* ===== ROLES ===== */
+  .jot-roles {
+    background: #fff;
+  }
+  .jot-role-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .jot-role-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--rr-cream);
+    border: 1px solid #eee2c9;
+  }
+  .jot-role-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--rr-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .jot-role-item h4 {
+    margin: 0 0 4px;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--rr-ink);
+  }
+  .jot-role-item p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #5a6c78;
+    line-height: 1.5;
+  }
+
+  /* ===== PROCESS ===== */
+  .jot-process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+  .jot-process-step {
+    text-align: center;
+    padding: 24px 14px;
+  }
+  .jot-process-step .circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--rr-blue);
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .jot-process-step h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--rr-ink);
+  }
+  .jot-process-step p {
+    font-size: 13.5px;
+    color: #5a6c78;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ===== QUOTE ===== */
+  .jot-quote-wrap {
+    background: linear-gradient(160deg, var(--rr-blue) 0%, var(--rr-blue-dark) 100%);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .jot-quote-wrap blockquote {
+    max-width: 700px;
+    margin: 0 auto 18px;
+    font-size: 21px;
+    line-height: 1.55;
+    color: #fff;
+    font-weight: 500;
+  }
+  .jot-quote-wrap .attribution {
+    color: var(--rr-gold);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .5px;
+  }
+
+  /* ===== FORM ===== */
+  .jot-form-section {
+    background: #fff;
+  }
+  .jot-form {
+    max-width: 640px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    background: var(--rr-cream);
+    padding: 36px;
+    border-radius: 20px;
+    border: 1px solid #eee2c9;
+  }
+  .jot-form .full { grid-column: 1 / -1; }
+  .jot-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--rr-blue-dark);
+    margin-bottom: 6px;
+  }
+  .jot-form input, .jot-form select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #d9dfe3;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background: #fff;
+    color: var(--rr-ink);
+  }
+  .jot-form .file-input {
+    border: 1.5px dashed #c7d0d6;
+    background: #fcfcfa;
+    padding: 18px 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: #7a8892;
+    text-align: center;
+  }
+  .jot-submit-btn {
+    grid-column: 1 / -1;
+    background: var(--rr-gold);
+    color: var(--rr-blue-dark);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .2s ease;
+  }
+  .jot-submit-btn:hover { background: var(--rr-gold-dark); }
+
+  /* ===== CONTACT STRIP ===== */
+  .jot-contact-strip {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    padding: 40px 24px 70px;
+    text-align: center;
+  }
+  .jot-contact-item h5 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--rr-blue);
+    margin: 0 0 6px;
+  }
+  .jot-contact-item p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--rr-ink);
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .jot-why-grid { grid-template-columns: 1fr 1fr; }
+    .jot-role-list { grid-template-columns: 1fr; }
+    .jot-process { grid-template-columns: 1fr 1fr; }
+    .jot-form { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .jot-hero h1 { font-size: 30px; }
+    .jot-why-grid { grid-template-columns: 1fr; }
+    .jot-process { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="jot-hero">
+    <div class="jot-eyebrow">Careers at Resource Room</div>
+    <h1>Teach the way you<br><span>always wanted to teach.</span></h1>
+    <p>Small classes. Real relationships. A team of licensed educators who actually have time to know every student's name. If that sounds like the classroom you signed up for, we want to meet you.</p>
+    <a href="#apply" class="jot-hero-cta">Apply Now &#8594;</a>
+  </section>
+
+  <!-- WHY WORK HERE -->
+  <section class="jot-section">
+    <div class="jot-section-label">Why Resource Room</div>
+    <h2>A place educators actually want to stay.</h2>
+    <p class="jot-intro">We built Resource Room because we were tired of watching great teachers burn out in systems that didn't let them teach. Here's what's different.</p>
+    <div class="jot-why-grid">
+      <div class="jot-why-card">
+        <div class="num">01</div>
+        <h3>Small by Design</h3>
+        <p>Low student-to-teacher ratios mean you actually get to teach, not just manage a room.</p>
+      </div>
+      <div class="jot-why-card">
+        <div class="num">02</div>
+        <h3>Family-Run</h3>
+        <p>Owned and operated by licensed educators, not a franchise or private equity roll-up. Decisions get made by people who've been in your seat.</p>
+      </div>
+      <div class="jot-why-card">
+        <div class="num">03</div>
+        <h3>Flexible Schedules</h3>
+        <p>Part-time, full-time, seasonal camp work, we build roles around real life, not the other way around.</p>
+      </div>
+      <div class="jot-why-card">
+        <div class="num">04</div>
+        <h3>Room to Grow</h3>
+        <p>Start as a tutor, move into camp leadership, coaching, or admissions. We promote from within, often.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="jot-section jot-roles">
+    <div class="jot-section-label">Open Roles</div>
+    <h2>Where you could fit in.</h2>
+    <p class="jot-intro">We hire year-round across these areas. Even if your exact role isn't listed, tell us where your strengths are, we're always building the right seat for the right person.</p>
+    <div class="jot-role-list">
+      <div class="jot-role-item">
+        <div class="jot-role-icon">T</div>
+        <div>
+          <h4>Private Tutors, All Subjects</h4>
+          <p>K-12 through AP Math and Science. One-on-one, in-person or virtual.</p>
+        </div>
+      </div>
+      <div class="jot-role-item">
+        <div class="jot-role-icon">S</div>
+        <div>
+          <h4>STEM Camp Instructors</h4>
+          <p>Lead hands-on, curriculum-based activities for track-out, summer, and teacher workday camps.</p>
+        </div>
+      </div>
+      <div class="jot-role-item">
+        <div class="jot-role-icon">A</div>
+        <div>
+          <h4>ABA Support Staff</h4>
+          <p>Deliver behavioral support inside a real learning environment, partnered with our BCBA team.</p>
+        </div>
+      </div>
+      <div class="jot-role-item">
+        <div class="jot-role-icon">H</div>
+        <div>
+          <h4>Homeschool Co-Op Instructors</h4>
+          <p>Teach small-group classes for middle and high school homeschool families.</p>
+        </div>
+      </div>
+      <div class="jot-role-item">
+        <div class="jot-role-icon">P</div>
+        <div>
+          <h4>Pathways Academy Teachers</h4>
+          <p>Licensed special education teachers for our private diploma-granting high school for neurodiverse learners.</p>
+        </div>
+      </div>
+      <div class="jot-role-item">
+        <div class="jot-role-icon">C</div>
+        <div>
+          <h4>College Admissions Coaches</h4>
+          <p>Guide students through essays, applications, and the Common App process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="jot-section">
+    <div class="jot-section-label">How It Works</div>
+    <h2>Four steps to joining the team.</h2>
+    <div class="jot-process">
+      <div class="jot-process-step">
+        <div class="circle">1</div>
+        <h4>Apply</h4>
+        <p>Submit the form below and email your resume.</p>
+      </div>
+      <div class="jot-process-step">
+        <div class="circle">2</div>
+        <h4>Review</h4>
+        <p>We review every application personally, usually within a few days.</p>
+      </div>
+      <div class="jot-process-step">
+        <div class="circle">3</div>
+        <h4>Interview</h4>
+        <p>A relaxed conversation with Joe or Sam about your background and goals.</p>
+      </div>
+      <div class="jot-process-step">
+        <div class="circle">4</div>
+        <h4>Welcome Aboard</h4>
+        <p>Onboarding, training, and your first placement with a student or camp group.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="jot-quote-wrap">
+    <blockquote>"We built Resource Room with one goal in mind: to create a place where great educators want to build a career, not just fill a schedule."</blockquote>
+    <div class="attribution">JOE &amp; SAM, RESOURCE ROOM FOUNDERS</div>
+  </div>
+
+  <!-- FORM -->
+  <section class="jot-section jot-form-section" id="apply">
+    <div class="jot-section-label">Apply Today</div>
+    <h2>Tell us about you.</h2>
+    <p class="jot-intro">Fill out the form and email your resume to learn@resourceroomnc.com. We'll follow up personally.</p>
+    <form class="jot-form">
+      <div>
+        <label>Full Name *</label>
+        <input type="text" placeholder="Jane Smith">
+      </div>
+      <div>
+        <label>Email Address *</label>
+        <input type="email" placeholder="jane@email.com">
+      </div>
+      <div>
+        <label>Phone Number</label>
+        <input type="tel" placeholder="(984) 555-0123">
+      </div>
+      <div>
+        <label>Highest Education Level</label>
+        <select>
+          <option>Select one</option>
+          <option>High School Diploma</option>
+          <option>Associate's Degree</option>
+          <option>Bachelor's Degree</option>
+          <option>Master's Degree</option>
+          <option>Doctorate</option>
+        </select>
+      </div>
+      <div class="full">
+        <label>Position You're Applying For</label>
+        <select>
+          <option>Select one</option>
+          <option>Private Tutor</option>
+          <option>STEM Camp Instructor</option>
+          <option>ABA Support Staff</option>
+          <option>Homeschool Co-Op Instructor</option>
+          <option>Pathways Academy Teacher</option>
+          <option>College Admissions Coach</option>
+          <option>Other / Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="full">
+        <label>Upload Resume</label>
+        <div class="file-input">Drag and drop your resume here, or click to browse (PDF or Word)</div>
+      </div>
+      <button type="button" class="jot-submit-btn">Submit Application</button>
+    </form>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="jot-contact-strip">
+    <div class="jot-contact-item">
+      <h5>Email</h5>
+      <p>learn@resourceroomnc.com</p>
+    </div>
+    <div class="jot-contact-item">
+      <h5>Phone</h5>
+      <p>(984) 777-1244</p>
+    </div>
+    <div class="jot-contact-item">
+      <h5>Address</h5>
+      <p>2100 Crossway Ln, Holly Springs, NC</p>
+    </div>
+  </div>
+
+</body>
+</html>

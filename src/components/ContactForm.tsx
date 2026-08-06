@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { Icon } from "@/components/icons";
 import { programs } from "@/content/programs";
+import { careersPositions, educationLevels } from "@/content/careers";
 import { site } from "@/content/site";
 
 /*
@@ -186,11 +187,12 @@ export function CareersForm() {
         </span>
         <p className="mt-4 text-lg font-bold text-navy-950">Thanks — we have your details.</p>
         <p className="mt-2 leading-relaxed">
-          Please email your resume to{" "}
+          We read every application personally and will be in touch, usually within a few days. If
+          you did not attach a resume, send one to{" "}
           <a href={site.emailHref} className="font-semibold text-navy-950 hover:underline">
             {site.email}
-          </a>{" "}
-          so we can match it to this application. We read every one.
+          </a>
+          .
         </p>
       </div>
     );
@@ -242,7 +244,12 @@ export function CareersForm() {
           <label className={labelClasses} htmlFor="c-education">
             Highest education level
           </label>
-          <input id="c-education" name="education" className={`${fieldClasses} mt-2`} />
+          <select id="c-education" name="education" defaultValue="" className={`${fieldClasses} mt-2`}>
+            <option value="">Select one</option>
+            {educationLevels.map((level) => (
+              <option key={level}>{level}</option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -250,13 +257,15 @@ export function CareersForm() {
         <label className={labelClasses} htmlFor="c-position">
           Position you are applying for
         </label>
-        <input
-          id="c-position"
-          name="position"
-          placeholder="e.g. Math tutor, camp instructor"
-          className={`${fieldClasses} mt-2`}
-        />
+        <select id="c-position" name="position" defaultValue="" className={`${fieldClasses} mt-2`}>
+          <option value="">Select one</option>
+          {careersPositions.map((position) => (
+            <option key={position}>{position}</option>
+          ))}
+        </select>
       </div>
+
+      <ResumeField />
 
       <div>
         <label className={labelClasses} htmlFor="c-message">
@@ -278,6 +287,36 @@ export function CareersForm() {
         </p>
       ) : null}
     </form>
+  );
+}
+
+/**
+ * Resume upload.
+ *
+ * A plain `<input type="file">` styled with `file:` variants rather than the
+ * usual hidden-input-plus-fake-button: the native control is already keyboard
+ * operable and announces the chosen filename to a screen reader, and every
+ * custom version of this has to reimplement both. `accept` filters the picker;
+ * the server re-checks type and size, because `accept` is only a hint.
+ */
+function ResumeField() {
+  return (
+    <div>
+      <label className={labelClasses} htmlFor="c-resume">
+        Upload resume
+      </label>
+      <input
+        id="c-resume"
+        name="resume"
+        type="file"
+        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        aria-describedby="c-resume-hint"
+        className="mt-2 w-full cursor-pointer rounded-chip border-2 border-dashed border-navy-900/25 bg-mist px-4 py-5 text-sm text-navy-600 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-navy-900 file:px-5 file:py-2.5 file:text-xs file:font-bold file:uppercase file:tracking-[0.08em] file:text-white hover:border-navy-900/40"
+      />
+      <p id="c-resume-hint" className="mt-2 text-xs text-navy-600">
+        PDF or Word document, up to 5MB. Optional — you can also email it to us.
+      </p>
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@
 /*
  * Resource Room design tokens. The brand is exactly two colors:
  *
- *   BLUE  #3d60a9  (brand-500)     GOLD  #fff100  (sun-500)
+ *   BLUE  #086090  (brand-500)     GOLD  #f4d84a  (sun-500)
  *
  * Those two are the anchors and they are what the site actually shows —
  * every eyebrow, icon, accent word and fill resolves to one of them. The
@@ -28,29 +28,30 @@
      fails on mist, which is where most of the muted text actually sits. */
   --color-navy-500: #5a6c92;
 
-  /* Brand blue. 500 IS the logo blue and carries every blue accent on the
-     site: 6.10:1 on white, 5.63:1 on mist, 5.37:1 on frost — AA everywhere it
-     is used as text. 50/100/400 are tints for fills and gradients; 600 is the
-     one darker step, reserved for hover and the end of a blue gradient. */
-  --color-brand-50: #eef3fc;
-  --color-brand-100: #dbe5f7;
-  --color-brand-400: #6f8fcd;
-  --color-brand-500: #3d60a9;
-  --color-brand-600: #324f8b;
+  /* Brand blue. 500 IS the brand blue and carries every blue accent on the
+     site: 6.80:1 on white, 6.29:1 on mist, 5.99:1 on frost — AA everywhere it
+     is used as text, and a little stronger than the #3d60a9 it replaced.
+     50/100/400 are tints for fills and gradients; 600 is the one darker step,
+     reserved for hover and the end of a blue gradient. */
+  --color-brand-50: #e7f6fe;
+  --color-brand-100: #c5e8fc;
+  --color-brand-400: #2f93c8;
+  --color-brand-500: #086090;
+  --color-brand-600: #064a6f;
 
-  /* Brand gold. 500 IS the logo gold and carries every gold accent: 15.4:1 on
-     navy-950, so it is the strongest mark on any dark surface. */
-  --color-sun-50: #fffce6;
-  --color-sun-200: #fff59a;
-  --color-sun-500: #fff100;
+  /* Brand gold. 500 IS the brand gold and carries every gold accent: 12.75:1
+     against navy-950, so it stays the strongest mark on any dark surface. */
+  --color-sun-50: #fefae9;
+  --color-sun-200: #faeca4;
+  --color-sun-500: #f4d84a;
   /* Deepened gold — the pressed/hover state under a sun-500 fill. The brand
      gold is the rest state, so a hover has to move off it to register at all,
-     and this still carries navy ink at 12.3:1. */
-  --color-sun-600: #e6d900;
+     and this still carries navy ink at 9.9:1. */
+  --color-sun-600: #d4bc40;
   /* Gold ink for rating stars on light surfaces. The brand gold is invisible
-     as ink on white (1.18:1); the old #c8a600 measured 2.36:1 and still failed
-     WCAG 1.4.11's 3:1 floor for graphical objects. This clears it at 3.88:1 on
-     white and 3.59:1 on mist. Ink only — never a fill. */
+     as ink on white (1.42:1), so small marks need their own darker value. This
+     clears WCAG 1.4.11's 3:1 floor for graphical objects at 3.88:1 on white
+     and 3.59:1 on mist. Ink only — never a fill. */
   --color-sun-700: #9a7f00;
 
   /* Error state. The brand has no red, and signalling a failed form with the
@@ -83,7 +84,7 @@
    *
    * These are NOT Resource Room colors and must not be used elsewhere: the
    * navy is softer than navy-950, the gold is a muted antique rather than the
-   * brand's #fff100, and the page sits on warm creams instead of white. They
+   * brand's #f4d84a, and the page sits on warm creams instead of white. They
    * live here rather than inline so the one page that uses them stays
    * consistent, and so it is obvious at a glance that `pw-` means Pathways.
    */
