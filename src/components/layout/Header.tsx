@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
 import { getProgram, imagePosition, programs } from "@/content/programs";
+import { productPagesForProgram } from "@/content/products";
 import { navigation, programMenuGroups, site } from "@/content/site";
 import { cn } from "@/lib/cn";
 
@@ -214,6 +215,12 @@ function ProgramMega() {
                 const program = getProgram(slug);
                 if (!program) return null;
 
+                /* Programs whose products are their own pages list them as a
+                   nested tier — Camps is the reason this exists, so Track-Out
+                   and Summer Camps are reachable from the menu rather than
+                   only from the Camps page. */
+                const children = productPagesForProgram(slug);
+
                 return (
                   <li key={slug}>
                     <Link
@@ -240,6 +247,21 @@ function ProgramMega() {
                         </span>
                       </span>
                     </Link>
+
+                    {children.length ? (
+                      <ul className="mb-2 ml-[3.75rem] space-y-0.5 border-l border-navy-950/10 pl-3">
+                        {children.map((child) => (
+                          <li key={child.slug}>
+                            <Link
+                              href={`/programs/${slug}/${child.slug}`}
+                              className="block py-1 text-xs font-semibold leading-snug text-navy-600 transition-colors hover:text-brand-500"
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </li>
                 );
               })}
@@ -340,12 +362,22 @@ function MobileMenu({
             }
 
             const expanded = section === item.label;
+            /* Each program is followed by its product pages, indented — the
+               same second tier the desktop menu shows under Camps. */
             const links = item.mega
-              ? programs.map((program) => ({
-                  label: program.shortName,
-                  href: `/programs/${program.slug}`,
-                }))
-              : (item.children ?? []);
+              ? programs.flatMap((program) => [
+                  {
+                    label: program.shortName,
+                    href: `/programs/${program.slug}`,
+                    nested: false,
+                  },
+                  ...productPagesForProgram(program.slug).map((product) => ({
+                    label: product.name,
+                    href: `/programs/${program.slug}/${product.slug}`,
+                    nested: true,
+                  })),
+                ])
+              : (item.children ?? []).map((link) => ({ ...link, nested: false }));
 
             return (
               <li key={item.label} className="border-b border-navy-950/8">
@@ -372,7 +404,13 @@ function MobileMenu({
                     ) : null}
                     {links.map((link) => (
                       <li key={link.href}>
-                        <Link href={link.href} className="block py-2.5 text-sm text-navy-600">
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "block py-2.5 text-sm text-navy-600",
+                            link.nested && "pl-4 text-xs text-navy-500",
+                          )}
+                        >
                           {link.label}
                         </Link>
                       </li>
