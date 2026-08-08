@@ -191,6 +191,397 @@ export const products: ProductPage[] = [
     ],
     seeAlso: ["private-tutoring"],
   },
+  /*
+   * The four below were catalog courses at /courses/<slug> — noindex pages with
+   * a single inbound link. Joe asked for them in the Tutoring menu, and a page
+   * in the primary navigation should be one search can find, so they were moved
+   * onto the product URL pattern and the old paths redirect here. The copy is
+   * the copy that was already on them, restructured into blocks.
+   */
+  {
+    slug: "end-of-course-end-of-grade-exams",
+    programSlug: "tutoring",
+    catalogSlug: null,
+    name: "End-of-Course/End-of-Grade Exams",
+    shortName: "EOG & EOC Prep",
+    tagline: "Targeted preparation aligned to North Carolina standards.",
+    summary:
+      "Targeted End of Grade and End of Course prep for North Carolina students in grades 3–8 and high school. We help students review key standards, strengthen weak areas, and build confidence before test day.",
+    image: {
+      src: "/images/courses/end-of-course-end-of-grade-exams.jpg",
+      alt: "A Resource Room teacher reviewing exam practice questions with a student.",
+      kind: "photo",
+    },
+    intro: [
+      "Not generic worksheets. Not last-minute cramming. Real review that builds real confidence.",
+      "State testing season creates stress for the whole family. Your child has spent the entire year learning material, and now a single set of exams is supposed to measure how much stuck. The best preparation isn't more pressure. It's targeted review that helps students organize what they already know and strengthen what they don't.",
+      "At Resource Room, our EOG and EOC prep is built around the actual North Carolina Standard Course of Study, not a generic test prep program. We identify where your child is strong, where they're unsure, and where focused review will make the biggest difference on test day.",
+    ],
+    stats: [
+      { value: "100+", label: "Five-star reviews", stars: true },
+      { value: "2022", label: "Holly Springs Business of the Year" },
+      { value: "Since 2015", label: "Trusted by local families" },
+    ],
+    highlights: [
+      {
+        title: "Standards-aligned",
+        body: "Our review is rooted in the NC Standard Course of Study. We reinforce the actual skills your child is expected to know, not random test tricks.",
+      },
+      {
+        title: "Gap-focused",
+        body: "We identify where your child is strong and where they need reinforcement, then target the review where it will make the biggest impact.",
+      },
+      {
+        title: "Confidence-building",
+        body: "For students with test anxiety, attention challenges, or executive functioning difficulties, we break review into manageable pieces and build comfort with the test format.",
+      },
+    ],
+    blocks: [
+      {
+        kind: "cards",
+        eyebrow: "Two programs, one goal",
+        title: "Confidence on",
+        accent: "test day.",
+        wide: true,
+        cards: [
+          {
+            title: "EOG Prep (Grades 3–8)",
+            body: "End-of-Grade assessments measure reading and math for grades 3–8, with science in grades 5 and 8. We focus on reading comprehension across literary and informational texts, vocabulary in context and close reading, math problem solving, computation and multi-step reasoning, science review for grades 5 and 8, test pacing and stamina, and reducing test-related anxiety.",
+            icon: "book",
+          },
+          {
+            title: "EOC Prep (High School)",
+            body: "End-of-Course assessments are given in specific high school courses: NC Math 1, NC Math 3, English II, and Biology. High school students often need more than a broad review — they need help organizing what they've learned across the full course and understanding how to apply it under test conditions.",
+            icon: "cap",
+          },
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "Who benefits most",
+        title: "Built for the student who",
+        accent: "knows more than the score shows.",
+        cards: [
+          {
+            title: "The capable but inconsistent student",
+            body: "Does well day-to-day but struggles on cumulative assessments. Needs help organizing a full year of material into a coherent review.",
+            icon: "chart",
+          },
+          {
+            title: "The student with gaps",
+            body: "Missed key concepts earlier in the year, or has foundational weaknesses that show up under testing pressure. Needs targeted reinforcement before exam day.",
+            icon: "target",
+          },
+          {
+            title: "The anxious test-taker",
+            body: "Knows the material but freezes up during tests. Needs practice with the format, the pacing, and the confidence that comes from structured preparation.",
+            icon: "heart",
+          },
+        ],
+      },
+    ],
+    seeAlso: ["private-tutoring", "homework-help"],
+  },
+  {
+    slug: "homework-help",
+    programSlug: "tutoring",
+    catalogSlug: null,
+    name: "Homework Help Tutoring",
+    shortName: "Homework Help",
+    tagline: "Homework should build understanding, not create a nightly battle.",
+    summary:
+      "Additional academic support benefits all types of students. Through our private tutoring sessions, school assignments can always be addressed by any of our teachers and tutors on staff.",
+    image: {
+      src: "/images/courses/homework-help.jpg",
+      alt: "A Resource Room tutor helping a student work through a homework assignment.",
+      kind: "photo",
+    },
+    intro: [
+      "If homework has become a source of stress in your home — the arguments, the tears, the hours spent on what should take thirty minutes — you're not alone, and it's not your child's fault.",
+      "The problem usually isn't the content. It's that no one ever taught your child how to manage the work itself: how to get started, stay focused, break things into steps, and actually retain what they're learning. That's what we fix.",
+    ],
+    stats: [
+      { value: "100+", label: "Five-star reviews", stars: true },
+      { value: "2022", label: "Holly Springs Business of the Year" },
+      { value: "Since 2015", label: "Trusted by local families" },
+    ],
+    highlights: [
+      {
+        title: "Understand the why",
+        body: "Not just complete the assignment. Understand the concepts behind it so the work actually reinforces learning.",
+      },
+      {
+        title: "Plan and prioritize",
+        body: "Break multi-step tasks into manageable pieces, manage time, and build routines that transfer to independent work.",
+      },
+      {
+        title: "Build independence",
+        body: "The goal isn't permanent support. It's teaching your child the skills to eventually manage their work on their own.",
+      },
+    ],
+    blocks: [
+      {
+        kind: "cards",
+        eyebrow: "Who benefits most",
+        title: "Designed for all students,",
+        accent: "especially these.",
+        wide: true,
+        cards: [
+          {
+            title: "The overwhelmed student",
+            body: "Gets paralyzed by multi-step assignments. Doesn't know where to start. Shuts down when the workload feels like too much. Needs someone to help break it down and build a plan.",
+            icon: "compass",
+          },
+          {
+            title: "The rusher",
+            body: "Flies through work just to be done. Makes avoidable mistakes. Doesn't review. Needs support slowing down, checking work, and actually engaging with what they're learning.",
+            icon: "clock",
+          },
+          {
+            title: "The neurodiverse learner",
+            body: "Students with ADHD, autism, executive functioning challenges, or attention difficulties who need structure, pacing, redirection, and patient support from someone who understands how they think.",
+            icon: "heart",
+          },
+          {
+            title: "The digitally lost student",
+            body: "Struggling with Google Classroom, Canvas, DeltaMath, or online portals? We help students navigate the platforms, not just the content, so nothing slips through the cracks.",
+            icon: "chart",
+          },
+        ],
+      },
+      {
+        kind: "steps",
+        eyebrow: "A session",
+        title: "What homework help",
+        accent: "actually looks like.",
+        steps: [
+          {
+            title: "Check in",
+            body: "Review what's due, what's coming up, and what needs priority. Build a plan for the session.",
+          },
+          {
+            title: "Work together",
+            body: "Tackle assignments with real-time support. Teaching concepts, not just giving answers. Building understanding that sticks.",
+          },
+          {
+            title: "Reinforce",
+            body: "When school assignments aren't enough, we provide additional practice to close gaps and build long-term retention.",
+          },
+          {
+            title: "Build skills",
+            body: "Every session reinforces planning, organization, and independence, so students need less help over time, not more.",
+          },
+        ],
+      },
+      {
+        kind: "checklist",
+        eyebrow: "What changes",
+        title: "What consistent support",
+        accent: "actually changes.",
+        description:
+          "Most students are never formally taught how to study. They're assigned work but not shown how to manage it. With consistent support, families typically see improvements in:",
+        items: [
+          "Accuracy and completion of daily assignments",
+          "Deeper understanding of classroom material",
+          "Stronger study habits and routines",
+          "Ability to retain information over time",
+          "Confidence and willingness to engage with schoolwork",
+          "Growing independence — less help needed at home",
+        ],
+      },
+    ],
+    seeAlso: ["private-tutoring", "students-with-ieps"],
+  },
+  {
+    slug: "students-with-ieps",
+    programSlug: "tutoring",
+    catalogSlug: null,
+    name: "Students With IEP's",
+    shortName: "Students With IEP's",
+    tagline: "Your child has an IEP. Now what?",
+    summary:
+      "Supportive, individualized academic help for students with IEPs, including reading and math instruction, executive functioning support, and guidance for neurodiverse learners and their families.",
+    image: {
+      src: "/images/courses/students-with-ieps.jpg",
+      alt: "A Resource Room educator working one-to-one with a student who has an IEP.",
+      kind: "photo",
+    },
+    intro: [
+      "We help families turn the plan on paper into real academic progress.",
+      "If you're a parent of a student with an IEP, you already know: having a plan doesn't mean the plan is working. You're managing accommodations, decoding school recommendations, supporting homework at home, and trying to figure out what kind of help will actually move the needle.",
+      "You are not alone, and there are real options for support. At Resource Room, we work with students who need more individualized instruction, more structure, more patience, and a teaching approach that genuinely responds to how they learn.",
+    ],
+    stats: [
+      { value: "100+", label: "Five-star reviews", stars: true },
+      { value: "2022", label: "Holly Springs Business of the Year" },
+      { value: "Since 2015", label: "Trusted by local families" },
+    ],
+    highlights: [
+      {
+        title: "Reading & math",
+        body: "Foundational skill-building, reinforcement of classroom material, and individualized instruction at the right level for your child.",
+      },
+      {
+        title: "Executive functioning",
+        body: "Organization, planning, task initiation, and follow-through — the skills that make all other learning possible.",
+      },
+      {
+        title: "Accommodation coaching",
+        body: "We help students understand and use supports like extended time, modified assignments, and testing accommodations effectively.",
+      },
+      {
+        title: "Self-advocacy",
+        body: "Students learn to ask questions, communicate their needs, and understand how they learn best. Independence starts here.",
+      },
+    ],
+    blocks: [
+      {
+        kind: "prose",
+        eyebrow: "Funding",
+        title: "ESA+ funding may",
+        accent: "cover the cost.",
+        body: [
+          "Resource Room is an approved provider for ESA+ grant-funded reading and math instruction for students with IEPs. North Carolina's ESA+ program helps families of students with disabilities pay for education services, including tutoring and supplemental instruction in core academic subjects.",
+          "If your child has an IEP, you may already qualify for funding that covers the cost of outside academic support. We help families navigate the application process and understand their options.",
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "Is this the right fit?",
+        title: "This support is designed for",
+        accent: "students who:",
+        cards: [
+          {
+            title: "Are falling behind despite having an IEP",
+            body: "The accommodations help, but they haven't closed the gap. Your child needs more targeted, individualized instruction than the classroom can provide.",
+            icon: "chart",
+          },
+          {
+            title: "Are losing confidence",
+            body: "Your child is bright and capable but increasingly frustrated, avoidant, or shut down when it comes to schoolwork. They need a setting that rebuilds belief in themselves.",
+            icon: "heart",
+          },
+          {
+            title: "Need a different kind of environment",
+            body: "Some students need concepts broken down more clearly. Some need repetition and guided practice. Some need a setting that's calmer, more structured, and more responsive to their pace.",
+            icon: "home",
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "A note for parents",
+        title: "Needing more support doesn't mean",
+        accent: "your child isn't capable.",
+        body: [
+          "It often means your child needs instruction that is more targeted and better matched to how they actually learn. That's exactly what we provide.",
+          "For some families, weekly tutoring is the right level of support. For others — especially families with high-school-aged neurodiverse learners — a more immersive educational environment may be a better fit. Pathways Academy at Resource Room is a private diploma-granting high school for neurodiverse learners in grades 9–12: small cohort, structured support, executive functioning development, and a full ecosystem of services coordinated under one roof.",
+        ],
+      },
+    ],
+    seeAlso: ["private-tutoring", "homework-help"],
+  },
+  {
+    slug: "virtual-tutoring",
+    programSlug: "tutoring",
+    catalogSlug: null,
+    name: "Virtual Tutoring",
+    shortName: "Virtual Tutoring",
+    tagline: "The same quality. The same personal attention. Available anywhere.",
+    summary:
+      "Resource Room offers live virtual tutoring to students across the country. Our teachers provide the same personalized instruction, academic support, and high-quality service online that families know and trust from our in-person programs.",
+    image: {
+      src: "/images/courses/zoom-tutoring.jpg",
+      alt: "A student in a live online tutoring session with a Resource Room teacher.",
+      kind: "photo",
+    },
+    intro: [
+      "Not every family can get to our Holly Springs location, and not every schedule allows for it. That shouldn't mean your child goes without quality academic support. Our virtual tutoring delivers the same personalized, one-on-one instruction Resource Room is known for, live through Zoom or Google Meet.",
+      "This isn't a passive screen experience. Sessions are live, interactive, and built around your child. Real teaching, real feedback, real progress.",
+    ],
+    stats: [
+      { value: "7 days", label: "Available every day of the week" },
+      { value: "30, 60, 120 min", label: "Flexible session lengths" },
+      { value: "Nationwide", label: "Students anywhere in the U.S." },
+    ],
+    highlights: [
+      {
+        title: "Subject tutoring",
+        body: "Math, reading, writing, science, and social studies across all grade levels, K–12.",
+      },
+      {
+        title: "Homework help",
+        body: "Not just getting it done. Understanding the concepts, building habits, and reinforcing what's being taught in class.",
+      },
+      {
+        title: "Executive functioning",
+        body: "Organization, planning, task initiation, time management, and building independence as a learner.",
+      },
+      {
+        title: "Digital platform support",
+        body: "Help navigating Google Classroom, Canvas, DeltaMath, and other online tools your child uses for school.",
+      },
+    ],
+    blocks: [
+      {
+        kind: "steps",
+        eyebrow: "How it works",
+        title: "From booking to",
+        accent: "real progress.",
+        steps: [
+          {
+            title: "Schedule",
+            body: "Book a session that fits your family. Available 7 days a week, daytime and evening.",
+          },
+          {
+            title: "Click and join",
+            body: "We send a Zoom or Google Meet link before the session. Your child clicks and they're in. That's it.",
+          },
+          {
+            title: "Learn",
+            body: "Live instruction, screen sharing, guided practice, and real accountability. Not a video your child watches alone.",
+          },
+          {
+            title: "Stay connected",
+            body: "We provide regular feedback to parents on progress, patterns, and areas of focus.",
+          },
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "Who benefits most",
+        title: "Virtual tutoring suits",
+        accent: "these families.",
+        cards: [
+          {
+            title: "Families outside Holly Springs",
+            body: "You want Resource Room's quality but don't live nearby. Virtual tutoring brings our team to your child no matter where you are in the country.",
+            icon: "pin",
+          },
+          {
+            title: "Busy families",
+            body: "Between school, activities, and work, getting to a physical location isn't always realistic. Virtual sessions fit around your schedule, not the other way around.",
+            icon: "clock",
+          },
+          {
+            title: "Students who learn better at home",
+            body: "Some students focus better in their own space. Virtual tutoring removes the travel and transitions, letting them settle into learning more comfortably.",
+            icon: "home",
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Hybrid",
+        title: "Want the best",
+        accent: "of both?",
+        body: [
+          "A hybrid approach is always available. Your child can do some sessions online and come in person at other times — whatever combination works best for your family.",
+        ],
+      },
+    ],
+    seeAlso: ["private-tutoring", "homework-help"],
+  },
   {
     slug: "sat-prep",
     programSlug: "sat-act-prep",

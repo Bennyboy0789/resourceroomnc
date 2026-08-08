@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogCategories, posts } from "@/content/blog";
+import { products } from "@/content/products";
 import { programs } from "@/content/programs";
 import { site } from "@/content/site";
 import { categorySlug } from "@/lib/blog";
@@ -33,6 +34,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${site.url}/programs/${program.slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    /*
+     * The buyable pages inside each program. These were missing entirely, which
+     * mattered little while they were three pages reachable from a program
+     * grid, and matters now that six of them sit in the primary navigation.
+     */
+    ...products.map((product) => ({
+      url: `${site.url}/programs/${product.programSlug}/${product.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     ...posts.map((post) => ({
       url: `${site.url}/blog/${post.slug}`,

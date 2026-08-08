@@ -24,6 +24,11 @@ const PAGES = [
   ["programs index", "/programs"],
   ["program detail", "/programs/sat-act-prep"],
   ["program detail (calendar)", "/programs/camps"],
+  /* The product template was missing, so its buy box and block layouts were
+     never audited. Homework Help exercises cards, steps and a checklist in one
+     page; Summer Camp is the variant picker with 55 options. */
+  ["product detail", "/programs/tutoring/homework-help"],
+  ["product detail (buy box)", "/programs/camps/summer-camp"],
   ["course catalog", "/courses"],
   ["course detail", "/courses/crafty-learning"],
   ["blog index", "/blog"],

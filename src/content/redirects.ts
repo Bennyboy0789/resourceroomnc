@@ -80,6 +80,20 @@ const MANUAL: [source: string, destination: string][] = [
   ["/programs/tutoring/executive-functioning", "/programs/executive-functioning"],
   ["/product/summer-bridge-programs-in-nc", "/programs/tutoring/summer-bridge"],
 
+  /* Four catalog courses promoted to product pages so they could go in the
+     Tutoring menu — a page in the primary nav should not be noindex. They are
+     no longer in content/courses.ts, so both the WordPress path and the
+     /courses path they briefly held are caught here rather than generated.
+     Virtual Tutoring also drops the "zoom" slug it inherited from Woo. */
+  ["/product/end-of-course-end-of-grade-exams", "/programs/tutoring/end-of-course-end-of-grade-exams"],
+  ["/courses/end-of-course-end-of-grade-exams", "/programs/tutoring/end-of-course-end-of-grade-exams"],
+  ["/product/homework-help", "/programs/tutoring/homework-help"],
+  ["/courses/homework-help", "/programs/tutoring/homework-help"],
+  ["/product/students-with-ieps", "/programs/tutoring/students-with-ieps"],
+  ["/courses/students-with-ieps", "/programs/tutoring/students-with-ieps"],
+  ["/product/zoom-tutoring", "/programs/tutoring/virtual-tutoring"],
+  ["/courses/zoom-tutoring", "/programs/tutoring/virtual-tutoring"],
+
   // --- WooCommerce category archives ---------------------------------------
   ["/product-category/steam-programs", "/courses#steam-programs"],
   ["/product-category/lego-robotics", "/courses#lego-robotics"],
