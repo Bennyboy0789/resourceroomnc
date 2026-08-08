@@ -43,7 +43,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
   }
   if (raw.length > MAX_ITEMS) {
-    return NextResponse.json({ error: "Too many items in one order." }, { status: 400 });
+    // Reachable now that a picker can add many sessions at once, so the message
+    // says what to do about it rather than just refusing.
+    return NextResponse.json(
+      {
+        error: `An order can hold ${MAX_ITEMS} different options. Please check out in two orders, or call us and we will book them together.`,
+      },
+      { status: 400 },
+    );
   }
 
   const lineItems: { price: string; quantity: number }[] = [];

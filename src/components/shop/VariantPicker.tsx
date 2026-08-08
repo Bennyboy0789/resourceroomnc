@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Icon } from "@/components/icons";
 import { useCart } from "@/components/shop/CartProvider";
-import type { CatalogProduct } from "@/lib/catalog";
+import type { CatalogProduct, CatalogVariant } from "@/lib/catalog";
 import { cn } from "@/lib/cn";
 
 function money(amount: number, currency: string) {
@@ -15,10 +15,31 @@ function money(amount: number, currency: string) {
 }
 
 /**
- * Enrollment options for one product, resolving to a Stripe Price.
+ * Asks for an attribute by name. Some are already phrased as an instruction in
+ * Stripe ("Choose Your Program"), and prefixing those gave "Choose Choose Your
+ * Program" on the button.
+ */
+function prompt(name: string) {
+  return /^(choose|select|pick)\b/i.test(name) ? name : `Choose ${name}`;
+}
+
+/**
+ * Enrollment options for one product, resolving to one or more Stripe Prices.
  *
- * Not every combination of attributes exists — WooCommerce products routinely
- * price some pairings and not others. Rather than let someone pick a dead end,
+ * Most products here vary along a single axis — which camp week, which test
+ * date, which section. Families routinely buy several at once (two weeks of
+ * summer camp, three teacher workdays), so when a product has exactly one
+ * priced attribute every option is a checkbox and each one chosen becomes its
+ * own line in the cart. Making them add the weeks one at a time, waiting for
+ * the drawer between each, was the single most tedious thing about enrolling.
+ *
+ * Homeschool Co-Op is the one product priced on two axes (Grade Level ×
+ * Enrollment Type). A cross-product of those is meaningless — you enrol one
+ * child at one grade — so it stays single-select, and a second child is a
+ * second trip through the picker.
+ *
+ * Not every combination of attributes exists: WooCommerce products routinely
+ * priced some pairings and not others. Rather than let someone pick a dead end,
  * each option is checked against the remaining variants and disabled when
  * nothing is left, the same way the old store behaved.
  *
@@ -38,67 +59,118 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
     [product.attributes],
   );
 
-  const [selection, setSelection] = useState<Record<string, string>>(() =>
+  /** One axis to choose along means picking several is unambiguous. */
+  const multiSelect = priced.length === 1 && priced[0].options.length > 1;
+
+  // Values are arrays even in single-select mode, so the matching and pruning
+  // below has one shape rather than two.
+  const [selection, setSelection] = useState<Record<string, string[]>>(() =>
     // A single-variant product has nothing to choose; pre-select it so the
     // button is live immediately.
-    product.variants.length === 1 ? { ...product.variants[0].options } : {},
+    product.variants.length === 1
+      ? Object.fromEntries(
+          Object.entries(product.variants[0].options).map(([name, value]) => [name, [value]]),
+        )
+      : {},
   );
   const [notes, setNotes] = useState<Record<string, string>>({});
+
+  const chosen = (name: string) => selection[name] ?? [];
 
   /** Variants still reachable given everything chosen except `ignore`. */
   const matching = (ignore?: string) =>
     product.variants.filter((variant) =>
-      Object.entries(selection).every(
-        ([name, value]) => name === ignore || !value || variant.options[name] === value,
+      priced.every(({ name }) => {
+        if (name === ignore) return true;
+        const values = chosen(name);
+        return values.length === 0 || values.includes(variant.options[name]);
+      }),
+    );
+
+  const selectedVariants = useMemo<CatalogVariant[]>(() => {
+    if (!priced.length) return product.variants[0] ? [product.variants[0]] : [];
+
+    // Every axis needs an answer before anything resolves to a price.
+    if (!priced.every((attribute) => (selection[attribute.name] ?? []).length)) return [];
+
+    if (multiSelect) {
+      // Click order, not price order, so the cart reads back in the sequence
+      // the family built it.
+      const { name } = priced[0];
+      return (selection[name] ?? []).flatMap((option) => {
+        const variant = product.variants.find((v) => v.options[name] === option);
+        return variant ? [variant] : [];
+      });
+    }
+
+    return product.variants.filter((variant) =>
+      priced.every((attribute) =>
+        (selection[attribute.name] ?? []).includes(variant.options[attribute.name]),
       ),
     );
+  }, [multiSelect, priced, product.variants, selection]);
 
-  const selected = useMemo(() => {
-    if (!priced.length) return product.variants[0] ?? null;
-    const complete = priced.every((attribute) => selection[attribute.name]);
-    if (!complete) return null;
-    return (
-      product.variants.find((variant) =>
-        priced.every((attribute) => variant.options[attribute.name] === selection[attribute.name]),
-      ) ?? null
-    );
-  }, [priced, product.variants, selection]);
-
+  const total = selectedVariants.reduce((sum, variant) => sum + variant.amount, 0);
   const missingNote = informational.find((attribute) => !notes[attribute.name]);
-  const canAdd = Boolean(selected) && !missingNote;
+  const canAdd = selectedVariants.length > 0 && !missingNote;
 
   function choose(name: string, value: string) {
     setSelection((current) => {
-      const next = { ...current, [name]: current[name] === value ? "" : value };
+      const values = current[name] ?? [];
+      const next: Record<string, string[]> = {
+        ...current,
+        [name]: values.includes(value)
+          ? values.filter((v) => v !== value)
+          : multiSelect
+            ? [...values, value]
+            : [value],
+      };
 
-      // Clear any later choice this one just invalidated, so the picker cannot
+      // Clear any other choice this one just invalidated, so the picker cannot
       // sit in a state that matches no variant.
       for (const attribute of priced) {
-        const chosen = next[attribute.name];
-        if (!chosen) continue;
-        const reachable = product.variants.some((variant) =>
-          Object.entries(next).every(
-            ([key, value]) => !value || variant.options[key] === value,
+        if (attribute.name === name) continue;
+        const kept = (next[attribute.name] ?? []).filter((value) =>
+          product.variants.some(
+            (variant) =>
+              variant.options[attribute.name] === value &&
+              priced.every(({ name: other }) => {
+                if (other === attribute.name) return true;
+                const otherValues = next[other] ?? [];
+                return !otherValues.length || otherValues.includes(variant.options[other]);
+              }),
           ),
         );
-        if (!reachable) next[attribute.name] = "";
+        if (kept.length !== (next[attribute.name] ?? []).length) next[attribute.name] = kept;
       }
+
       return next;
     });
   }
 
   function addToCart() {
-    if (!selected) return;
-    cart.add({
-      priceId: selected.priceId,
-      quantity: 1,
-      productName: product.name,
-      variantLabel: Object.values(selected.options).join(" / ") || "Standard",
-      amount: selected.amount,
-      currency: selected.currency,
-      notes: Object.keys(notes).length ? notes : undefined,
-    });
+    if (!canAdd) return;
+
+    // The cart store commits synchronously, so a loop of adds accumulates
+    // rather than each one racing the last.
+    for (const variant of selectedVariants) {
+      cart.add({
+        priceId: variant.priceId,
+        quantity: 1,
+        productName: product.name,
+        variantLabel: Object.values(variant.options).join(" / ") || "Standard",
+        amount: variant.amount,
+        currency: variant.currency,
+        notes: Object.keys(notes).length ? notes : undefined,
+      });
+    }
+
+    // Leaving five weeks highlighted after they have been added invites adding
+    // them twice. Single-variant products keep their pre-selection.
+    if (product.variants.length > 1) setSelection({});
   }
+
+  const currency = product.variants[0]?.currency ?? "usd";
 
   return (
     <div className="rounded-card border border-navy-950/12 bg-white p-6 sm:p-8">
@@ -107,12 +179,10 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
           {product.name}
         </h3>
         <p className="text-lg font-bold text-navy-950">
-          {selected ? (
-            money(selected.amount, selected.currency)
+          {selectedVariants.length ? (
+            money(total, currency)
           ) : (
-            <span className="text-navy-600">
-              From {money(product.fromAmount, product.variants[0].currency)}
-            </span>
+            <span className="text-navy-600">From {money(product.fromAmount, currency)}</span>
           )}
         </p>
       </div>
@@ -126,13 +196,20 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
 
         return (
           <fieldset key={attribute.name} className="mt-7">
-            <legend className="eyebrow mb-3 text-brand-500">{attribute.name}</legend>
+            <legend className="eyebrow mb-3 text-brand-500">
+              {attribute.name}
+              {multiSelect ? (
+                <span className="ml-2 font-semibold normal-case tracking-normal text-navy-600">
+                  — choose as many as you need
+                </span>
+              ) : null}
+            </legend>
             <div className="flex flex-wrap gap-2">
               {attribute.options.map((option) => {
                 const available = reachable.some(
                   (variant) => variant.options[attribute.name] === option,
                 );
-                const active = selection[attribute.name] === option;
+                const active = chosen(attribute.name).includes(option);
 
                 return (
                   <button
@@ -142,7 +219,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
                     aria-pressed={active}
                     onClick={() => choose(attribute.name, option)}
                     className={cn(
-                      "border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.06em] transition-colors",
+                      "inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.06em] transition-colors",
                       active
                         ? "border-navy-950 bg-navy-950 text-white"
                         : "border-navy-950/20 text-navy-800 hover:border-navy-950",
@@ -150,6 +227,9 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
                         "cursor-not-allowed border-navy-950/10 text-navy-950/30 line-through hover:border-navy-950/10",
                     )}
                   >
+                    {/* A tick makes "several are on at once" readable at a glance,
+                        which a filled background alone does not on a wall of 55. */}
+                    {multiSelect && active ? <Icon name="check" className="h-3.5 w-3.5" /> : null}
                     {option}
                   </button>
                 );
@@ -191,6 +271,12 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
         </fieldset>
       ))}
 
+      {selectedVariants.length > 1 ? (
+        <p className="mt-6 text-sm text-navy-600">
+          {selectedVariants.length} selected — {money(total, currency)} total
+        </p>
+      ) : null}
+
       <button
         type="button"
         onClick={addToCart}
@@ -204,13 +290,13 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
       >
         {canAdd ? (
           <>
-            Add to Cart
+            {selectedVariants.length > 1 ? `Add ${selectedVariants.length} to Cart` : "Add to Cart"}
             <Icon name="arrowRight" className="h-4 w-4" />
           </>
-        ) : missingNote && selected ? (
-          `Choose ${missingNote.name}`
+        ) : missingNote && selectedVariants.length ? (
+          prompt(missingNote.name)
         ) : (
-          `Choose ${priced.find((a) => !selection[a.name])?.name ?? "options"}`
+          prompt(priced.find((a) => !chosen(a.name).length)?.name ?? "options")
         )}
       </button>
     </div>

@@ -107,7 +107,7 @@ export const products: ProductPage[] = [
         ],
       },
     ],
-    seeAlso: ["summer-bridge", "executive-functioning"],
+    seeAlso: ["summer-bridge"],
   },
   {
     slug: "summer-bridge",
@@ -189,31 +189,8 @@ export const products: ProductPage[] = [
         ],
       },
     ],
-    seeAlso: ["private-tutoring", "executive-functioning"],
+    seeAlso: ["private-tutoring"],
   },
-  {
-    slug: "executive-functioning",
-    programSlug: "tutoring",
-    catalogSlug: "executive-functioning-coaching-and-support",
-    name: "Executive Functioning Coaching and Support",
-    shortName: "Executive Functioning",
-    tagline: "The skills that make everything else possible.",
-    summary:
-      "Coaching in planning, organisation, task initiation, time management and follow-through, for students who know the material but cannot get the work done.",
-    priceLabel: "$100",
-    image: {
-      src: "/images/tile-executive-functioning.png",
-      alt: "Resource Room Executive Functioning Coaching and Support.",
-      kind: "tile",
-    },
-    intro: [
-      "Some students understand the material perfectly and still hand nothing in. The gap is not knowledge, it is the set of skills that turn knowing into doing: planning, starting, sequencing, tracking, and finishing.",
-      "Executive functioning coaching works on those skills directly, with an educator who builds systems around how your student actually operates rather than handing them a planner and hoping.",
-    ],
-    seeAlso: ["private-tutoring", "summer-bridge"],
-  },
-
-  /* -------------------------------------------------------- test prep */
   {
     slug: "sat-prep",
     programSlug: "sat-act-prep",

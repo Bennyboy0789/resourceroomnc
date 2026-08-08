@@ -73,7 +73,11 @@ const MANUAL: [source: string, destination: string][] = [
   ["/product/aba-educational-support", "/programs/aba-services"],
   ["/product/college-admissions", "/programs/college-prep/college-admissions"],
   ["/product/iep-advocacy", "/programs/iep-504-advocate"],
-  ["/product/executive-functioning-coaching-and-support", "/programs/tutoring/executive-functioning"],
+  ["/product/executive-functioning-coaching-and-support", "/programs/executive-functioning"],
+  /* Executive Functioning briefly had a product page under Tutoring. It was
+     removed at Joe's request and now lives only on its own program page, so
+     the old path is caught rather than left to 404. */
+  ["/programs/tutoring/executive-functioning", "/programs/executive-functioning"],
   ["/product/summer-bridge-programs-in-nc", "/programs/tutoring/summer-bridge"],
 
   // --- WooCommerce category archives ---------------------------------------

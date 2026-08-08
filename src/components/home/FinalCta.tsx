@@ -11,9 +11,18 @@ export function FinalCta({
   heading?: string;
   body?: string;
 }) {
+  /*
+   * A real tutoring session, not the stock robot hand that used to sit here.
+   * This block closes almost every page on the site, so it is the last thing a
+   * family sees before deciding whether to call.
+   *
+   * `alt=""` on purpose: the photograph is a background behind the heading,
+   * which already carries the meaning. Describing it again would make a screen
+   * reader announce the same idea twice.
+   */
   return (
     <EditorialBlock
-      image="/images/why-engaging.jpg"
+      image="/images/why-individualized.jpg"
       alt=""
       align="left"
       height="short"

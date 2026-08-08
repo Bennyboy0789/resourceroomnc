@@ -171,7 +171,10 @@ export const programMenuGroups: { title: string; slugs: string[] }[] = [
     title: "Tutoring Programs",
     slugs: ["tutoring", "sat-act-prep", "college-prep", "executive-functioning"],
   },
-  { title: "STEM Camps", slugs: ["camps", "summer-bridge"] },
+  /* Summer Bridge is tutoring that happens over the summer, not a camp. It
+     reaches the menu under Tutoring Programs as a child of Tutoring, so listing
+     it here as well put the same program in two groups. */
+  { title: "STEM Camps", slugs: ["camps"] },
   {
     title: "Specialized Support",
     slugs: ["pathways-academy", "homeschool-co-op", "aba-services", "iep-504-advocate"],
