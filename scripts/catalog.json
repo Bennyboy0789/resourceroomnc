@@ -135,54 +135,6 @@
       ]
     },
     {
-      "wooId": 5308,
-      "slug": "scratch-coding",
-      "name": "Scratch Coding",
-      "programSlug": "camps",
-      "attributes": [
-        {
-          "name": "Date",
-          "options": [
-            "November 11",
-            "November 18",
-            "December 2",
-            "December 16"
-          ],
-          "informational": false
-        }
-      ],
-      "variants": [
-        {
-          "wooId": 5309,
-          "amount": 24900,
-          "options": {
-            "Date": "November 11"
-          }
-        },
-        {
-          "wooId": 5310,
-          "amount": 24900,
-          "options": {
-            "Date": "November 18"
-          }
-        },
-        {
-          "wooId": 5311,
-          "amount": 24900,
-          "options": {
-            "Date": "December 2"
-          }
-        },
-        {
-          "wooId": 5312,
-          "amount": 24900,
-          "options": {
-            "Date": "December 16"
-          }
-        }
-      ]
-    },
-    {
       "wooId": 5180,
       "slug": "teacher-workdays",
       "name": "Teacher Workday Camps/ Single Day Camps",

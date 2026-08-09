@@ -36,7 +36,8 @@ const PROGRAM_BY_SLUG = {
   "homeschool-co-op-holly-springs-nc": "homeschool-co-op",
   stem: "camps",
   "teacher-workdays": "camps",
-  "scratch-coding": "camps",
+  /* scratch-coding retired: pulled from the site, then archived in Stripe.
+     Listing it here would pull it back in on the next export. */
   "educational-workshops": "camps",
   "sat-prep-in-north-carolina": "sat-act-prep",
   "act-prep-in-north-carolina": "sat-act-prep",
