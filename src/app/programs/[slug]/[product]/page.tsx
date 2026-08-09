@@ -16,7 +16,7 @@ import { getProgram } from "@/content/programs";
 import { getProductBySlug, getProductPage, products } from "@/content/products";
 import { site } from "@/content/site";
 import { reviewsAbout } from "@/content/testimonials";
-import { getProduct } from "@/lib/catalog";
+import { getProduct, getProductsForProgram } from "@/lib/catalog";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -64,6 +64,16 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
 
   const program = getProgram(slug);
   const catalogProduct = product.catalogSlug ? await getProduct(product.catalogSlug) : null;
+
+  /* What the buy box offers. Kept as a list even for the single-product case
+     so the empty state — a broken Stripe key, an unseeded catalog — stays the
+     consultation fallback below rather than an empty section. */
+  const buyProducts =
+    product.enrollment === "program"
+      ? await getProductsForProgram(slug)
+      : catalogProduct
+        ? [catalogProduct]
+        : [];
   /* Products and programs share the see-also grid but resolve differently,
      so both are normalised to the few fields the card actually renders. */
   const seeAlso = [
@@ -124,7 +134,7 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="#buy" size="lg">
-            {catalogProduct ? "Book now" : "Schedule a Free Consultation"}
+            {buyProducts.length ? "Book now" : "Schedule a Free Consultation"}
             <Icon name="arrowRight" className="h-4 w-4" />
           </Button>
           <Button href={site.phoneHref} variant="outline" size="lg">
@@ -165,16 +175,20 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
           title="Reserve your"
           accent="place."
           description={
-            catalogProduct
+            buyProducts.length
               ? "Choose your options below. Checkout is handled securely by Stripe — we never see your card details."
               : "This one starts with a conversation. Book a free consultation and we will confirm the right plan and price for your student."
           }
         />
 
         <div className="mt-12">
-          {catalogProduct ? (
-            <div className="max-w-2xl">
-              <VariantPicker product={catalogProduct} />
+          {buyProducts.length ? (
+            /* Two up once there is more than one thing to buy, matching the
+               program page's enrollment grid. */
+            <div className={buyProducts.length > 1 ? "grid gap-6 lg:grid-cols-2" : "max-w-2xl"}>
+              {buyProducts.map((item) => (
+                <VariantPicker key={item.id} product={item} />
+              ))}
             </div>
           ) : (
             <div className="flex flex-col gap-4 rounded-card border border-navy-900/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">

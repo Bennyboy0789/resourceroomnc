@@ -45,6 +45,19 @@ export type ProductPage = {
   includes?: string[];
   blocks?: ProgramBlock[];
   /**
+   * What the buy box sells.
+   *
+   * "product" — just this product, resolved through `catalogSlug`. The default,
+   * and right for a page that sells one thing.
+   *
+   * "program" — every product in the program, the same set and order the
+   * program page's own enrollment section shows. Set on pages that a family
+   * reaches expecting the full booking form: Track-Out & Teacher Workday is
+   * where people land looking for camp generally, and offering only single
+   * days there sent anyone wanting a full week away empty-handed.
+   */
+  enrollment?: "product" | "program";
+  /**
    * Reviews to show, by topic, between the copy and the blocks.
    *
    * Filtered rather than page-specific: the reviews live in one place and a
@@ -1072,6 +1085,7 @@ export const products: ProductPage[] = [
     catalogSlug: "teacher-workdays",
     name: "Track-Out & Teacher Workday Camps",
     shortName: "Track-Out & Teacher Workday",
+    enrollment: "program",
     tagline: "Your track is out. We're open.",
     summary:
       "Single days and full weeks for every Wake County track, plus the days when all four tracks are out at once. Campers dive into a mix of hands-on STEM and creative art activities.",
@@ -1085,10 +1099,13 @@ export const products: ProductPage[] = [
       "Track out camp at Resource Room Learning Center. Hands on projects, small groups, and a day with real structure to it. All the best parts of a school day and none of the rest. Every Wake County track, every window, all year long.",
       "From fluffy slime and erupting volcanoes to race tracks, LEGO robotics, electric potatoes, squirt-gun art, and Minecraft Education, our camp days are packed with variety. With rotating themes no two Resource Room camp days are ever the same. It's a full day of building, creating, experimenting, and fun: all led by educators who know how to keep kids engaged and excited to learn.",
     ],
+    /* Same row as the program page. The "$329 full week" figure is honest
+       here now that this page sells the full week too, which it was not when
+       the buy box offered single days only. */
     stats: [
-      { value: "Grades K–6", label: "All learners welcome" },
-      { value: "Licensed", label: "Teachers on staff" },
-      { value: "Open", label: "Most school holidays" },
+      { value: "K–6", label: "All learners welcome" },
+      { value: "8:00–3:30", label: "Monday through Friday" },
+      { value: "$329", label: "Full week" },
     ],
     includes: [
       "Single days and full weeks across every Wake County track",
