@@ -157,18 +157,7 @@ export function programSchema(program: Program) {
   };
 
   const faqBlock = program.blocks?.find((block) => block.kind === "faq");
-  const faq =
-    faqBlock && faqBlock.kind === "faq"
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqBlock.items.map((item) => ({
-            "@type": "Question",
-            name: item.q,
-            acceptedAnswer: { "@type": "Answer", text: item.a },
-          })),
-        }
-      : null;
+  const faq = faqBlock && faqBlock.kind === "faq" ? faqSchema(faqBlock.items) : null;
 
   /* Published rates, where the program states them. Answer engines quote
      price constantly and will otherwise say "contact for pricing". */
@@ -194,6 +183,26 @@ export function programSchema(program: Program) {
   return {
     service: offers.length ? { ...service, offers } : service,
     faq,
+  };
+}
+
+/**
+ * An FAQ block as FAQPage markup.
+ *
+ * Shared by the program and product pages so the two cannot drift. Returns
+ * null for an absent or empty block, which `jsonLd` then drops.
+ */
+export function faqSchema(items: { q: string; a: string }[] | undefined) {
+  if (!items?.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 }
 

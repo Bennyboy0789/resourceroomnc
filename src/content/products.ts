@@ -1,4 +1,5 @@
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
+import type { Review } from "@/content/testimonials";
 
 /**
  * Product pages — the individual, buyable things inside a program.
@@ -28,16 +29,43 @@ export type ProductPage = {
   summary: string;
   /** Published range, shown until Stripe supplies the live figure. */
   priceLabel?: string;
+  /**
+   * Replaces the bare price line in the buy box.
+   *
+   * For products quoted at consultation rather than sold off a rate card: a
+   * lone "from $350" invites the reader to assume that is the price. This
+   * says what the figure actually is. `priceLabel` still stands on cards and
+   * in the product grid, where there is only room for a number.
+   */
+  priceNote?: string;
   image: ProgramImage;
   intro: string[];
   stats?: ProgramStat[];
   highlights?: { title: string; body: string }[];
   includes?: string[];
   blocks?: ProgramBlock[];
+  /**
+   * Reviews to show, by topic, between the copy and the blocks.
+   *
+   * Filtered rather than page-specific: the reviews live in one place and a
+   * page claims the ones that speak to it, so a camp review never lands under
+   * a tutoring headline. See `reviewsAbout` in content/testimonials.
+   */
+  reviewTopic?: NonNullable<Review["topics"]>[number];
   /** Fine print, set below the blocks and above the see-also grid. */
   disclaimer?: string;
   /** Sibling products cross-linked at the foot of the page. */
   seeAlso?: string[];
+  /**
+   * Programs cross-linked alongside `seeAlso`.
+   *
+   * Separate because the two resolve differently — a product lives at
+   * /programs/[program]/[product] and a program at /programs/[slug]. Several
+   * of the things worth sending a tutoring family to (executive functioning
+   * coaching, college prep) are programs in their own right, not products
+   * inside this one.
+   */
+  seeAlsoPrograms?: string[];
 };
 
 export const products: ProductPage[] = [
@@ -52,6 +80,9 @@ export const products: ProductPage[] = [
     summary:
       "Private, individualized tutoring for all subject areas from K–12. We work alongside emerging learners all the way through the most challenging high school courses.",
     priceLabel: "Packages from $350",
+    priceNote:
+      "Packages start at $350, with pricing custom-built around your student's subjects, hours, and goals. We'll walk you through exact pricing on your free consultation, no guesswork, no surprises.",
+    reviewTopic: "tutoring",
     image: {
       src: "/images/program-tutoring.jpg",
       alt: "A Resource Room tutor working one-to-one with a student on geometry at a table.",
@@ -81,7 +112,7 @@ export const products: ProductPage[] = [
       },
       {
         title: "One place for every subject, every grade",
-        body: "From kindergarten through twelfth grade, across every core subject, Resource Room is a single trusted home for academic support, even as your child's needs change over the years.",
+        body: "From kindergarten through twelfth grade, across every core subject, Resource Room is a single trusted home for academic support, even as your child's needs change over the years. We are based in Holly Springs and serve families throughout Holly Springs, Apex, Fuquay-Varina, Cary, Morrisville, and the greater Raleigh area.",
       },
     ],
     includes: [
@@ -196,8 +227,57 @@ export const products: ProductPage[] = [
           },
         ],
       },
+      {
+        kind: "faq",
+        eyebrow: "Common questions",
+        title: "What families ask",
+        accent: "before they start.",
+        items: [
+          {
+            q: "How long are tutoring sessions?",
+            a: "Sessions run 30, 45, or 60 minutes, depending on your student's age, needs, and area of focus. We'll set the right length during your consultation.",
+          },
+          {
+            q: "How often will my student meet with their tutor?",
+            a: "Frequency depends on your student's age, focus area, and how many subjects they're working on. We'll build the right schedule together during your consultation.",
+          },
+          {
+            q: "How fast can we start?",
+            a: "Most new students start within one week of signing up.",
+          },
+          {
+            q: "Is there a minimum commitment?",
+            a: "Packages start at a 5-hour base and scale up to monthly and yearly plans, so you can start small and build from there as needs change.",
+          },
+          {
+            q: "What if the tutor match isn't the right fit?",
+            a: "If the connection isn't right, or if your student's subjects or situation change, we'll re-match at no additional cost. The right fit matters more than filling a slot.",
+          },
+          {
+            q: "Do you offer online or virtual tutoring, or only in-person?",
+            a: "In-person is our preferred format for the strongest connection and engagement, but we also offer virtual and hybrid options when that's the better fit for your family.",
+          },
+          {
+            q: "Do you coordinate with my child's school or IEP team?",
+            a: "Yes. Resource Room is founded and run by career educators, including licensed special education teachers, and we can coordinate with your student's school team or IEP or 504 plan when helpful. We also offer dedicated IEP and 504 advocacy as its own program.",
+          },
+          {
+            q: "What areas do you serve?",
+            a: "Resource Room is based in Holly Springs and serves families throughout Holly Springs, Apex, Fuquay-Varina, Cary, Morrisville, and the greater Raleigh area.",
+          },
+          {
+            q: "Do you tutor a specific single subject, or multiple subjects at once?",
+            a: "Both. Some students come for one subject, others build a multi-subject plan. We'll recommend the right scope during your consultation.",
+          },
+          {
+            q: "How do I get started?",
+            a: "Fill out the contact form to schedule your free consultation. We typically respond within 24 hours, and we'll walk you through scheduling and pricing on that call.",
+          },
+        ],
+      },
     ],
     seeAlso: ["summer-bridge"],
+    seeAlsoPrograms: ["executive-functioning", "college-prep"],
   },
   {
     slug: "summer-bridge",

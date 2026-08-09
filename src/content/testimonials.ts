@@ -6,7 +6,21 @@ export type Review = {
   source?: string;
   /** Links back to the review on its original platform, when there is one. */
   url?: string;
+  /**
+   * What the review is actually about, so a program page can show the reviews
+   * that speak to it rather than the full mixed set.
+   *
+   * Tagged from what the reviewer wrote, not from what we would like it to
+   * say — a review that only mentions SAT prep is not tutoring evidence.
+   * A review can carry more than one tag when it genuinely covers more.
+   */
+  topics?: ("tutoring" | "test-prep" | "college-prep")[];
 };
+
+/** The reviews that speak to a given topic, in their original order. */
+export function reviewsAbout(topic: NonNullable<Review["topics"]>[number]): Review[] {
+  return testimonials.filter((review) => review.topics?.includes(topic));
+}
 
 /** Kept for the existing import name. */
 export type Testimonial = Review;
@@ -25,6 +39,7 @@ export const testimonials: Review[] = [
     role: "Parent of student at Resource Room",
     quote:
       "The Resource Room has been such a help to our family! From elementary to high school they know their stuff. So glad we found them!",
+    topics: ["tutoring"],
   },
   {
     name: "Megan R",
@@ -37,6 +52,7 @@ export const testimonials: Review[] = [
     role: "Parent of student at Resource Room",
     quote:
       "Resource Room has been a tremendous help to my 4th grade daughter this year — she loves working with the staff, and her grades went up significantly this year. She is on her school's high honor role for the first time in years! More importantly, she gained confidence and is much happier in school. They have also been a great resource during Covid school closure, as they kept her up to date with her work. As a dual working family, that was such a huge help!!",
+    topics: ["tutoring"],
   },
   {
     name: "Victoria V",
@@ -49,6 +65,7 @@ export const testimonials: Review[] = [
     role: "Parent of student at Resource Room",
     quote:
       "Our 2 children have used Resource Room for the last couple of years for general tutoring in math, science and global studies. Their grades have always gotten better after RR. We have also used them for SAT/ACT and Regents and have been very pleased with the results. Staff is very professional, our children are very comfortable in the environment, and choose to go there themselves for help. RR has given them knowledge and confidence. I would recommend Resource Room to anyone that is looking for tutoring.",
+    topics: ["tutoring", "test-prep"],
   },
   {
     name: "Remm B",
@@ -61,6 +78,7 @@ export const testimonials: Review[] = [
     role: "Parent of student at Resource Room",
     quote:
       "The staff at the resource room was wonderful with guiding me towards the right decisions for my child. This tutoring service has improved my son's confidence in math and writing. I highly recommend any one of their tutors. Sam and Joe are excellent at getting to the heart of the issue.",
+    topics: ["tutoring"],
   },
   {
     name: "Sherri S",
@@ -73,6 +91,7 @@ export const testimonials: Review[] = [
     role: "Student at Resource Room",
     quote:
       "Great experience working with Sam for Calculus and SAT I and SAT II. Have been coming here since they opened and have stayed for many other subjects including my college essay which was a major help. Highly recommend for other high school students doing SAT and college essays.",
+    topics: ["tutoring", "test-prep", "college-prep"],
   },
   {
     name: "Katie M",

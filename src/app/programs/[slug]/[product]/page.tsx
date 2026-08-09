@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FinalCta } from "@/components/home/FinalCta";
+import { ReviewCarousel } from "@/components/home/ReviewCarousel";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { ProgramBlocks } from "@/components/program/ProgramBlocks";
@@ -14,8 +15,9 @@ import { Stars } from "@/components/ui/Stars";
 import { getProgram } from "@/content/programs";
 import { getProductBySlug, getProductPage, products } from "@/content/products";
 import { site } from "@/content/site";
+import { reviewsAbout } from "@/content/testimonials";
 import { getProduct } from "@/lib/catalog";
-import { breadcrumbSchema, jsonLd } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
 
@@ -62,9 +64,35 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
 
   const program = getProgram(slug);
   const catalogProduct = product.catalogSlug ? await getProduct(product.catalogSlug) : null;
-  const seeAlso = (product.seeAlso ?? [])
-    .map((s) => getProductBySlug(s))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+  /* Products and programs share the see-also grid but resolve differently,
+     so both are normalised to the few fields the card actually renders. */
+  const seeAlso = [
+    ...(product.seeAlso ?? [])
+      .map((s) => getProductBySlug(s))
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .map((p) => ({
+        key: p.slug,
+        href: `/programs/${p.programSlug}/${p.slug}`,
+        name: p.name,
+        summary: p.summary,
+        meta: p.priceLabel ?? "See details",
+      })),
+    ...(product.seeAlsoPrograms ?? [])
+      .map((s) => getProgram(s))
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .map((p) => ({
+        key: p.slug,
+        href: `/programs/${p.slug}`,
+        name: p.name,
+        summary: p.summary,
+        meta: p.category,
+      })),
+  ];
+
+  const reviews = product.reviewTopic ? reviewsAbout(product.reviewTopic) : [];
+
+  const faqBlock = product.blocks?.find((block) => block.kind === "faq");
+  const faq = faqBlock?.kind === "faq" ? faqSchema(faqBlock.items) : null;
 
   return (
     <>
@@ -78,6 +106,7 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
               ...(program ? [{ name: program.name, path: `/programs/${slug}` }] : []),
               { name: product.name, path: `/programs/${slug}/${productSlug}` },
             ]),
+            faq,
           ),
         }}
       />
@@ -150,9 +179,13 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
           ) : (
             <div className="flex flex-col gap-4 rounded-card border border-navy-900/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-lg font-bold text-navy-950">
-                  {product.priceLabel ?? "Quoted at your free consultation"}
-                </p>
+                {product.priceNote ? (
+                  <p className="leading-relaxed text-navy-800">{product.priceNote}</p>
+                ) : (
+                  <p className="text-lg font-bold text-navy-950">
+                    {product.priceLabel ?? "Quoted at your free consultation"}
+                  </p>
+                )}
                 <p className="mt-2 text-sm leading-relaxed text-navy-600">
                   Consultations are always free, and we never recommend a plan that isn&rsquo;t the
                   right fit.
@@ -219,6 +252,26 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
         </div>
       </Section>
 
+      {/* Reviews sit between the copy and the blocks: the stat row above
+          claims 100+ five-star reviews, and this is where a reader who wants
+          to test that claim looks. Bleeds so the carousel rail can run to the
+          screen edge the way it does on the home page. */}
+      {reviews.length ? (
+        <Section tone="mist" bleed>
+          <Container size="wide">
+            <SectionHeading
+              eyebrow="What families say"
+              title="In their own"
+              accent="words."
+              description={`Reviews from families who came to us for ${product.shortName.toLowerCase()}.`}
+            />
+          </Container>
+          <div className="mt-12">
+            <ReviewCarousel reviews={reviews} />
+          </div>
+        </Section>
+      ) : null}
+
       {product.blocks?.length ? (
         <ProgramBlocks blocks={product.blocks} accent={program?.accent ?? "blue"} />
       ) : null}
@@ -237,9 +290,9 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
           <SectionHeading eyebrow="Also in this program" title="You might also" accent="need." />
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {seeAlso.map((other, index) => (
-              <Reveal key={other.slug} as="li" delay={stagger(index, 0.08)}>
+              <Reveal key={other.key} as="li" delay={stagger(index, 0.08)}>
                 <Link
-                  href={`/programs/${other.programSlug}/${other.slug}`}
+                  href={other.href}
                   className="group flex h-full flex-col rounded-card border border-navy-900/10 bg-white p-6 transition-colors hover:border-navy-900/30"
                 >
                   <h3 className="text-base font-bold tracking-tight text-navy-950 group-hover:text-brand-500">
@@ -249,7 +302,7 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
                     {other.summary}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-950">
-                    {other.priceLabel ?? "See details"}
+                    {other.meta}
                     <Icon
                       name="arrowRight"
                       className="h-4 w-4 transition-transform group-hover:translate-x-1"
