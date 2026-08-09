@@ -91,7 +91,7 @@ const YEAR = /\b(20\d{2})\b/;
  * 2027 week silently among the 2026 ones. Anything without a year is treated
  * as undated and keeps its position instead.
  */
-function optionDate(label: string): number | null {
+export function optionDate(label: string): number | null {
   const monthDay = MONTH_DAY.exec(label);
   const year = YEAR.exec(label);
   if (!monthDay || !year) return null;
@@ -124,6 +124,44 @@ function inCalendarOrder(options: string[]): string[] {
 
   dated.sort((a, b) => a.at - b.at);
   return [...undated, ...dated.map((option) => option.label)];
+}
+
+/**
+ * A catalog product with its dated options narrowed to the given months.
+ *
+ * The STEM catalog product is one Stripe SKU spanning the full track-out
+ * year, but the page that markets it as "Summer Camps" should only offer the
+ * weeks a family searching for summer camp is actually looking for.
+ *
+ * Undated options — Extended Day, Single Day — pass through untouched; the
+ * filter only judges options that name a date. A week is kept or dropped by
+ * the month it *starts* in, same as the calendar-order sort above, so a week
+ * labelled "Aug 30 – Sept 3" counts as August.
+ *
+ * `months` is 0-indexed (June is 5), matching `Date`.
+ */
+export function filterByMonth(product: CatalogProduct, months: number[]): CatalogProduct {
+  const keep = new Set(months);
+
+  const attributes = product.attributes.map((attribute) => {
+    if (attribute.informational) return attribute;
+    return {
+      ...attribute,
+      options: attribute.options.filter((option) => {
+        const at = optionDate(option);
+        return at === null || keep.has(new Date(at).getUTCMonth());
+      }),
+    };
+  });
+
+  const survivingByAttribute = new Map(attributes.map((a) => [a.name, new Set(a.options)]));
+  const variants = product.variants.filter((variant) =>
+    Object.entries(variant.options).every(
+      ([name, value]) => survivingByAttribute.get(name)?.has(value) ?? true,
+    ),
+  );
+
+  return { ...product, attributes, variants };
 }
 
 export async function getCatalog(): Promise<CatalogProduct[]> {

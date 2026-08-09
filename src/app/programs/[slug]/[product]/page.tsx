@@ -16,7 +16,7 @@ import { getProgram } from "@/content/programs";
 import { getProductBySlug, getProductPage, products } from "@/content/products";
 import { site } from "@/content/site";
 import { reviewsAbout } from "@/content/testimonials";
-import { getProduct, getProductsForProgram } from "@/lib/catalog";
+import { filterByMonth, getProduct, getProductsForProgram } from "@/lib/catalog";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -68,12 +68,13 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
   /* What the buy box offers. Kept as a list even for the single-product case
      so the empty state — a broken Stripe key, an unseeded catalog — stays the
      consultation fallback below rather than an empty section. */
-  const buyProducts =
+  const buyProducts = (
     product.enrollment === "program"
       ? await getProductsForProgram(slug)
       : catalogProduct
         ? [catalogProduct]
-        : [];
+        : []
+  ).map((item) => (product.catalogMonths ? filterByMonth(item, product.catalogMonths) : item));
   /* Products and programs share the see-also grid but resolve differently,
      so both are normalised to the few fields the card actually renders. */
   const seeAlso = [

@@ -58,6 +58,16 @@ export type ProductPage = {
    */
   enrollment?: "product" | "program";
   /**
+   * Narrows a catalog product's dated buy-box options to these months
+   * (0-indexed, June is 5), passed to `filterByMonth`.
+   *
+   * The STEM Stripe product covers the whole track-out year, but a page
+   * branded as summer camp specifically should only offer summer weeks —
+   * the rest are still bookable from /programs/camps and the Track-Out
+   * page, which are not scoped this way. Undated add-ons are unaffected.
+   */
+  catalogMonths?: number[];
+  /**
    * Reviews to show, by topic, between the copy and the blocks.
    *
    * Filtered rather than page-specific: the reviews live in one place and a
@@ -1525,6 +1535,9 @@ export const products: ProductPage[] = [
     slug: "summer-camp",
     programSlug: "camps",
     catalogSlug: "stem",
+    /* June, July, August — the rest of the STEM product's year-round weeks
+       still book from /programs/camps and the Track-Out page. */
+    catalogMonths: [5, 6, 7],
     name: "STEM Themed Summer Camps",
     shortName: "Summer Camps",
     tagline: "Where kids beg to come back.",
