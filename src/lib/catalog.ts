@@ -81,6 +81,16 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
         .autoPagingToArray({ limit: 2000 }),
     ]);
 
+    /*
+     * Stripe lists prices newest-first, but the seed script creates them in
+     * catalog.json order — which is the curated, chronological order for
+     * date-shaped attributes like camp weeks. Restoring creation order here is
+     * what keeps "June 7-June 11" before "July 12-July 16" in the picker;
+     * parsing the option strings instead is a dead end, since most carry no
+     * year and the camp season wraps around the calendar.
+     */
+    prices.sort((a, b) => a.created - b.created);
+
     const byProduct = new Map<string, CatalogVariant[]>();
 
     for (const price of prices) {
