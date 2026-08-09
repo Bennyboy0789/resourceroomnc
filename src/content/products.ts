@@ -907,8 +907,8 @@ export const products: ProductPage[] = [
       "Single days and full weeks for every Wake County track, plus the days when all four tracks are out at once. Campers dive into a mix of hands-on STEM and creative art activities.",
     priceLabel: "$11 – $75",
     image: {
-      src: "/images/program-camps.jpg",
-      alt: "Campers stretching glow-in-the-dark slime during a hands-on STEAM camp activity.",
+      src: "/images/tile-trackout-workday-camps.jpg",
+      alt: "Campers building STEM projects with cars and gadgets during Track-Out & Teacher Workday Camps.",
       kind: "photo",
     },
     intro: [
@@ -940,7 +940,7 @@ export const products: ProductPage[] = [
       "Full-week camps for grades K–6. Hands-on science, creative building, coding, nature, and real fun. Our STEM weeks offer a unique opportunity for students to learn in a hands-on “funducational” manner.",
     priceLabel: "$11 – $329",
     image: {
-      src: "/images/tile-stem-camps.png",
+      src: "/images/tile-stem-camps.jpg",
       alt: "Resource Room STEM themed summer camps.",
       kind: "tile",
     },
