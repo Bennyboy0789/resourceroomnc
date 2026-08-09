@@ -114,6 +114,20 @@ export type ProgramBlock =
       /** Two columns instead of three, for longer card bodies. */
       wide?: boolean;
     })
+  /*
+   * Cards that are themselves links, for cross-selling the rest of the centre.
+   *
+   * A `cards` block says a program exists; this one lets a family reach it. The
+   * card title is the anchor text, so these read as descriptive internal links
+   * rather than the "click here" pills the WordPress pages used — which is what
+   * makes them worth anything to a crawler.
+   */
+  | (BlockHeading & {
+      kind: "links";
+      links: { title: string; body: string; href: string; icon?: IconName; external?: boolean }[];
+      /** Two columns instead of three, for longer card bodies. */
+      wide?: boolean;
+    })
   | (BlockHeading & {
       kind: "steps";
       steps: { title: string; body: string; note?: string }[];

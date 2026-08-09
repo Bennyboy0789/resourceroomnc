@@ -268,7 +268,7 @@ export const posts: BlogPost[] = [
 <p><strong>Learn More</strong></p>
 <p>Resource Room Learning Center is now offering expanded support through our partnership with POPS ABA for students across Resource Room, Pathways Academy, and our private education programs.</p>
 <p>To learn more or schedule a consultation, visit:</p>
-<p><strong>www.resourceroomnc.com</strong></p>
+<p><strong><a href="/contact">www.resourceroom.com</a></strong></p>
 <figure><img src="/images/blog/pops-aba-partnership-inline-1.png" alt="" loading="lazy"></figure>`,
   },
   {
@@ -418,7 +418,7 @@ export const posts: BlogPost[] = [
 </ul>
 <p>Then tutoring becomes reactive instead of proactive.</p>
 <p>A homeschool co-op provides that missing structure and turns support into forward progress.</p>
-<p>You can learn more about our tutoring options here:<br><a href="/tutoring-packages-policies/">https://resourceroomnc.com/tutoring-packages-policies/</a></p>
+<p>You can learn more about our tutoring options here:<br><a href="/tutoring-packages-policies/">www.resourceroom.com/tutoring-packages-policies</a></p>
 <hr>
 <h2>Who a Homeschool Co-Op Is a Good Fit For</h2>
 <p>A homeschool co-op in Holly Springs may be a good fit for:</p>
@@ -451,7 +451,7 @@ export const posts: BlogPost[] = [
 <h2>Is a Homeschool Co-Op the Right Next Step</h2>
 <p>If you are asking that question, you are not alone.</p>
 <p>The best next step is to learn more about how a structured homeschool co-op works and whether it aligns with your child’s needs.</p>
-<p>You can explore our program here:<br><a href="/product/homeschool-co-op-holly-springs-nc/">https://resourceroomnc.com/product/homeschool-co-op-holly-springs-nc/</a></p>
+<p>You can explore our program here:<br><a href="/product/homeschool-co-op-holly-springs-nc/">www.resourceroom.com/product/homeschool-co-op-holly-springs-nc</a></p>
 <hr>
 <h2>Frequently Asked Questions About Homeschool Co-Ops</h2>
 <p><strong>How often do homeschool co-ops meet</strong><br>Most structured homeschool co-ops meet one to two days per week depending on the program and grade level.</p>
@@ -965,7 +965,7 @@ End \`\`\` <h2>Fun with Engineering and Math</h2>
 <p>Navigating the college application process can be daunting. That&#8217;s why we offer guidance on the college application process, including helping students craft compelling application essays. This service is crucial in helping students present their best selves to their dream colleges.</p>
 <h2>Academic Tutoring Services: Beyond Test Prep</h2>
 <p>We understand that academic success transcends beyond exams. Our academic tutoring services offer support for a wide range of subjects, helping students maintain high grades in their coursework. This holistic approach to academic achievement sets the Resource Room Learning Center apart.</p>
-<p>In summary, the Resource Room Learning Center in Holly Springs, NC, is not just a test prep center. It&#8217;s a comprehensive learning institution dedicated to seeing students excel in their academic pursuits and beyond. By choosing us, you&#8217;re choosing a partner who will walk with you through your academic journey, helping you unlock your fullest potential. To learn more, visit: <a href="/product/act-prep-in-north-carolina/">https://resourceroomnc.com/product/act-prep-in-north-carolina/</a></p>`,
+<p>In summary, the Resource Room Learning Center in Holly Springs, NC, is not just a test prep center. It&#8217;s a comprehensive learning institution dedicated to seeing students excel in their academic pursuits and beyond. By choosing us, you&#8217;re choosing a partner who will walk with you through your academic journey, helping you unlock your fullest potential. To learn more, visit: <a href="/product/act-prep-in-north-carolina/">www.resourceroom.com/product/act-prep-in-north-carolina</a></p>`,
   },
   {
     slug: `stem-education-unleashes-the-power-for-tomorrows-success`,

@@ -82,6 +82,14 @@ export const products: ProductPage[] = [
         body: "From kindergarten through twelfth grade, across every core subject, Resource Room is a single trusted home for academic support, even as your child's needs change over the years.",
       },
     ],
+    includes: [
+      "A free consultation to identify goals and gaps",
+      "A tutor matched on subject expertise, teaching style and personality",
+      "A personalized instruction plan reviewed as the student progresses",
+      "One-to-one sessions with an experienced educator",
+      "Homework, test and project support alongside skill building",
+      "Ongoing communication with families about progress",
+    ],
     blocks: [
       {
         kind: "cards",
@@ -102,6 +110,86 @@ export const products: ProductPage[] = [
           {
             title: "High School (9–12)",
             body: "Subject-specific support for demanding coursework. We help students deepen understanding, prepare for exams, and strengthen the performance that shapes their transcript and their future.",
+            icon: "cap",
+          },
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "By subject",
+        title: "High school subject",
+        accent: "expertise.",
+        wide: true,
+        cards: [
+          {
+            title: "Math",
+            body: "Foundational math through Algebra, Geometry, Algebra II, and advanced coursework including AP Calculus AB & BC.",
+            icon: "target",
+          },
+          {
+            title: "Science",
+            body: "Biology, chemistry, and physics, including advanced and AP-level coursework when available.",
+            icon: "sparkle",
+          },
+          {
+            title: "History",
+            body: "American History, World History, and advanced courses such as AP World History.",
+            icon: "compass",
+          },
+          {
+            title: "English",
+            body: "Reading comprehension, literary analysis, vocabulary, grammar, essay writing, and communication across all grade levels.",
+            icon: "pencil",
+          },
+        ],
+      },
+      {
+        kind: "checklist",
+        eyebrow: "Who it's for",
+        title: "Who we",
+        accent: "help.",
+        description:
+          "Resource Room serves the full range of students, from those catching up to high achievers who want an edge:",
+        items: [
+          "Students who have fallen behind and need to catch up",
+          "High-achieving students who want to get ahead or master advanced material",
+          "Students who need stronger study habits and academic routines",
+          "Students preparing for quizzes, tests, and major assignments",
+          "Students who simply learn better with a more personalized approach",
+          "Neurodiverse learners who benefit from educators trained to support how they learn",
+        ],
+      },
+      {
+        kind: "links",
+        eyebrow: "The wider center",
+        title: "More than a",
+        accent: "tutoring center.",
+        description:
+          "Because Resource Room is a full-service learning center, families can access far more than subject tutoring in one trusted place.",
+        wide: true,
+        links: [
+          {
+            title: "SAT & ACT Prep",
+            body: "Targeted test preparation that trains content, timing, pacing, and test-day stamina alongside the score.",
+            href: "/programs/sat-act-prep",
+            icon: "target",
+          },
+          {
+            title: "STEM Camps & Programs",
+            body: "Track-out, teacher workday, and summer camps built on hands-on science, robotics, coding, and creative building.",
+            href: "/programs/camps",
+            icon: "sparkle",
+          },
+          {
+            title: "Homeschool Co-Op",
+            body: "Structured daytime learning in Holly Springs for homeschool families who want more than homeschooling alone.",
+            href: "/programs/homeschool-co-op",
+            icon: "home",
+          },
+          {
+            title: "Pathways Academy",
+            body: "A private high school for neurodiverse learners with autism, run on its own campus and its own calendar.",
+            href: "/programs/pathways-academy",
             icon: "cap",
           },
         ],

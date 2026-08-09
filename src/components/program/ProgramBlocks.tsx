@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { FilterableSchedule } from "@/components/program/FilterableSchedule";
 import { Button } from "@/components/ui/Button";
@@ -55,6 +56,8 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
   switch (block.kind) {
     case "prose":
       return <Prose body={block.body} image={block.image} wide={block.wide} />;
+    case "links":
+      return <Links links={block.links} wide={block.wide} accent={accent} />;
     case "cards":
       return <Cards cards={block.cards} wide={block.wide} accent={accent} />;
     case "steps":
@@ -144,6 +147,74 @@ function Cards({
           </div>
         </Reveal>
       ))}
+    </ul>
+  );
+}
+
+/**
+ * The card shell of `Cards`, wrapped in an anchor.
+ *
+ * The whole card is the link rather than a button inside it — a 44px target on
+ * a phone instead of a 100px one, and one anchor per destination rather than
+ * two competing for the same anchor text.
+ */
+function Links({
+  links,
+  wide,
+  accent,
+}: {
+  links: { title: string; body: string; href: string; icon?: IconName; external?: boolean }[];
+  wide?: boolean;
+  accent: "sun" | "blue";
+}) {
+  return (
+    <ul className={cn("grid gap-5", wide ? "md:grid-cols-2" : "md:grid-cols-3")}>
+      {links.map((link, index) => {
+        // Matches Button: an absolute URL skips the client-side router.
+        const offsite = link.external || link.href.startsWith("http");
+
+        const body = (
+          <>
+            {link.icon ? (
+              <span
+                className={cn("grid h-11 w-11 place-items-center rounded-chip", chipClass(accent))}
+              >
+                <Icon name={link.icon} className="h-5 w-5" />
+              </span>
+            ) : null}
+            <h3
+              className={cn(
+                "flex items-start gap-2 text-lg font-bold tracking-tight text-navy-950 transition-colors duration-300 group-hover:text-brand-500",
+                link.icon ? "mt-5" : "",
+              )}
+            >
+              {link.title}
+              <Icon
+                name={offsite ? "arrowUpRight" : "arrowRight"}
+                className="mt-1 h-4 w-4 shrink-0 text-brand-500 transition-transform duration-300 group-hover:translate-x-0.5"
+              />
+            </h3>
+            <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{link.body}</p>
+          </>
+        );
+
+        const classes =
+          "group block h-full rounded-card border border-navy-900/8 bg-white p-7 transition-colors duration-300 hover:border-brand-500/40 hover:bg-brand-50/40";
+
+        return (
+          <Reveal key={link.href} as="li" delay={stagger(index, 0.06)}>
+            {offsite ? (
+              <a href={link.href} className={classes} target="_blank" rel="noopener noreferrer">
+                {body}
+              </a>
+            ) : (
+              <Link href={link.href} className={classes}>
+                {body}
+              </Link>
+            )}
+          </Reveal>
+        );
+      })}
     </ul>
   );
 }
