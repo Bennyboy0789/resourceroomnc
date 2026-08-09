@@ -59,6 +59,73 @@ function splitList(value: string | undefined) {
     .filter(Boolean);
 }
 
+const MONTHS: Record<string, number> = {
+  jan: 0,
+  feb: 1,
+  mar: 2,
+  apr: 3,
+  may: 4,
+  jun: 5,
+  jul: 6,
+  aug: 7,
+  sep: 8,
+  oct: 9,
+  nov: 10,
+  dec: 11,
+};
+
+/* Leading three letters of a month, any tail ("Sept", "March"), then the day.
+   No `g` flag: these are reused across calls and `lastIndex` would carry. */
+const MONTH_DAY = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s*(\d{1,2})\b/i;
+const YEAR = /\b(20\d{2})\b/;
+
+/**
+ * The calendar date an option chip names, or null when it does not name one.
+ *
+ * Camp options are sold as dates — "Sept 21, 2026", "Summer August 24-28,
+ * 2026" — next to a few that are not, like "Extended Day Per Day". Only the
+ * first month/day in the label is read, so a range sorts by the day it starts.
+ *
+ * The year is required rather than inferred. A camp season spans two Augusts,
+ * so "Aug 9- Aug 13" alone is genuinely ambiguous, and guessing would file a
+ * 2027 week silently among the 2026 ones. Anything without a year is treated
+ * as undated and keeps its position instead.
+ */
+function optionDate(label: string): number | null {
+  const monthDay = MONTH_DAY.exec(label);
+  const year = YEAR.exec(label);
+  if (!monthDay || !year) return null;
+
+  const month = MONTHS[monthDay[1].toLowerCase()];
+  return Date.UTC(Number(year[1]), month, Number(monthDay[2]));
+}
+
+/**
+ * Dated options in calendar order, undated ones first in the order given.
+ *
+ * Stripe has no ordering of its own. `prices.list` returns newest-first, and
+ * the seed script writes a product's prices faster than the one-second
+ * resolution of `created` — so whole batches share a timestamp, the tie-break
+ * is arbitrary, and the camp chips came out as "Oct 12, Sept 21, Aug 21".
+ * Reading the date off the label is stable however Stripe happens to answer.
+ *
+ * Undated options lead because they are the add-ons — extended day, single
+ * day — which belong above a year of dates rather than lost inside them.
+ */
+function inCalendarOrder(options: string[]): string[] {
+  const dated: { label: string; at: number }[] = [];
+  const undated: string[] = [];
+
+  for (const label of options) {
+    const at = optionDate(label);
+    if (at === null) undated.push(label);
+    else dated.push({ label, at });
+  }
+
+  dated.sort((a, b) => a.at - b.at);
+  return [...undated, ...dated.map((option) => option.label)];
+}
+
 export async function getCatalog(): Promise<CatalogProduct[]> {
   const stripe = getStripe();
   if (!stripe) return [];
@@ -82,12 +149,14 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
     ]);
 
     /*
-     * Stripe lists prices newest-first, but the seed script creates them in
-     * catalog.json order — which is the curated, chronological order for
-     * date-shaped attributes like camp weeks. Restoring creation order here is
-     * what keeps "June 7-June 11" before "July 12-July 16" in the picker;
-     * parsing the option strings instead is a dead end, since most carry no
-     * year and the camp season wraps around the calendar.
+     * Stripe lists prices newest-first; creation order is closer to the order
+     * the seed script wrote them in, so it is the better default for variants.
+     *
+     * It is not enough for the picker on its own. `created` has one-second
+     * resolution and the seed script writes far faster than that, so batches
+     * of prices tie and the tie-break is whatever order Stripe returned —
+     * which is what shuffled the camp chips. Option order is settled by the
+     * date in the label instead, in `inCalendarOrder` below.
      */
     prices.sort((a, b) => a.created - b.created);
 
@@ -143,7 +212,10 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
           const value = variant.options[name];
           if (value && !seen.includes(value)) seen.push(value);
         }
-        return { name, options: seen, informational: false };
+        /* Only the derived options are reordered. An informational attribute's
+           list is hand-written in product metadata, so its author's order is
+           the intended one. */
+        return { name, options: inCalendarOrder(seen), informational: false };
       });
 
       catalog.push({
