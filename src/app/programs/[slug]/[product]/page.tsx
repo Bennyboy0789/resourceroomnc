@@ -165,6 +165,11 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
                 </Reveal>
               ))}
             </dl>
+            {product.statsNote ? (
+              <p className="mt-8 border-t border-navy-950/15 pt-6 text-sm font-medium text-navy-950/70">
+                {product.statsNote}
+              </p>
+            ) : null}
           </Container>
         </section>
       ) : null}

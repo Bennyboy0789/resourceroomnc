@@ -41,6 +41,12 @@ export type ProductPage = {
   image: ProgramImage;
   intro: string[];
   stats?: ProgramStat[];
+  /**
+   * One line under the stat strip, for the qualifier that does not fit in a
+   * three-up row — a discount that has to be asked about, a caveat on the
+   * hours. Renders only when `stats` does.
+   */
+  statsNote?: string;
   highlights?: { title: string; body: string }[];
   includes?: string[];
   blocks?: ProgramBlock[];
@@ -1657,15 +1663,18 @@ export const products: ProductPage[] = [
     ],
     stats: [
       { value: "8:00–3:30", label: "Monday to Friday" },
-      { value: "Grades K–6", label: "Full-week sessions" },
+      { value: "Grades K–6", label: "Single days or full weeks" },
       { value: "Until 4:30pm", label: "Late pickup, +$55/week" },
     ],
+    statsNote: "Sibling discounts available. Contact us for details.",
     blocks: [
       {
         kind: "cards",
         eyebrow: "A camp day",
         title: "A camp day at Resource",
         accent: "Room.",
+        description:
+          "Every camp day is planned, balanced, and built around real engagement, not just supervision.",
         cards: [
           {
             title: "Hands-on science",
