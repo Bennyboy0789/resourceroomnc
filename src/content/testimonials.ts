@@ -59,6 +59,7 @@ export const testimonials: Review[] = [
     role: "Parent of student at Resource Room",
     quote:
       "I sent my son to the Resource Room for SAT Prep, primarily in math. He had already taken the SAT and this was an attempt to improve upon his scores when taking it again. Due to his school and work schedule, his time was limited. I reached out to the Resource Room and spoke to Sam regarding an improvement strategy. She worked with him once a week for two months and made the most of the little time they had together. My son's score went up by 70 points. I truly believe that this was a result of the work that Sam did with him. She honed in on his strengths and evened out his weaknesses. I highly recommend the Resource Room for all of your child's academic needs!",
+    topics: ["test-prep"],
   },
   {
     name: "Greg B",
@@ -85,6 +86,7 @@ export const testimonials: Review[] = [
     role: "Student at Resource Room",
     quote:
       "Sam and Joe have given us an excellent experience. Fantastic communication and prompt response any time I had a question. Rigorous and very informative SAT prep class. Highly recommend.",
+    topics: ["test-prep"],
   },
   {
     name: "Erik A",
@@ -99,6 +101,7 @@ export const testimonials: Review[] = [
     quote:
       "Sam and Joe, the owners, are super nice, fun, and helped me boost my scores by 210 points. They also help with getting ready for college.",
     source: "Google",
+    topics: ["test-prep", "college-prep"],
   },
   {
     name: "Ashley S",
@@ -106,6 +109,7 @@ export const testimonials: Review[] = [
     quote:
       "My son has moved mountains since working with the amazing staff at the Resource Room. The SAT prep courses have beyond impacted our household.",
     source: "Google",
+    topics: ["test-prep"],
   },
   {
     name: "Maya B",
@@ -113,5 +117,6 @@ export const testimonials: Review[] = [
     quote:
       "My biggest challenge preparing for the SAT was my lack of confidence and learning gaps caused by Covid. Sam specializes in math, Joe focuses on English. Together they make a remarkable team.",
     source: "Google",
+    topics: ["test-prep"],
   },
 ];

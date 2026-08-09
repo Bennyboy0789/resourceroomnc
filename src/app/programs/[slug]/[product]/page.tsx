@@ -274,11 +274,13 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
       {reviews.length ? (
         <Section tone="mist" bleed>
           <Container size="wide">
+            {/* shortName is not lower-cased here: it carries acronyms like
+                "SAT Prep", and "sat prep" reads as a different word. */}
             <SectionHeading
               eyebrow="What families say"
               title="In their own"
               accent="words."
-              description={`Reviews from families who came to us for ${product.shortName.toLowerCase()}.`}
+              description={`Reviews from families who came to us for ${product.shortName}.`}
             />
           </Container>
           <div className="mt-12">

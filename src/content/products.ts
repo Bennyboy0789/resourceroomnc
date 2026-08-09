@@ -781,6 +781,10 @@ export const products: ProductPage[] = [
     catalogSlug: "sat-prep-in-north-carolina",
     name: "SAT Test Prep in Holly Springs, NC",
     shortName: "SAT Prep",
+    /* The three reviews this page used to hardcode were copies of rows that
+       already live in content/testimonials — same words, two places to edit.
+       Tagged at the source instead. */
+    reviewTopic: "test-prep",
     tagline: "Private SAT prep and SAT classes built around your student.",
     summary:
       "Professionally administered SAT instruction from licensed, career educators. Course includes in-person instruction, proctored diagnostic assessments, and homework and practice assignments.",
@@ -802,32 +806,42 @@ export const products: ProductPage[] = [
     blocks: [
       /* Process and approach lead, pricing follows — a parent needs the "how"
          before being asked to pick a package. */
+      /*
+       * Deliberately not the program page's four highlights.
+       *
+       * /programs/sat-act-prep already runs "Proven results / Real teachers /
+       * Diagnostic-driven / Strategy and stamina", and this is its child page
+       * — repeating them verbatim made a parent read the same four paragraphs
+       * twice and split the two pages over the same terms. That page covers
+       * SAT and ACT together, so the specifics of this one are free to live
+       * here: the digital format, the three exams in the package, the number.
+       */
       {
         kind: "cards",
         eyebrow: "Why families choose us",
-        title: "Why families choose Resource",
-        accent: "Room.",
+        title: "What SAT prep here actually",
+        accent: "looks like.",
         wide: true,
         cards: [
           {
-            title: "Proven results",
-            body: "Thousands of students taught over more than a decade, with many regularly improving 200+ points from their initial diagnostic.",
-            icon: "chart",
-          },
-          {
-            title: "Real teachers",
-            body: "Instruction comes from licensed teachers and experienced SAT educators, not scripts. High-energy and fully individualized.",
-            icon: "cap",
-          },
-          {
-            title: "Diagnostic-driven",
-            body: "We start with full-length proctored diagnostics to establish a baseline and target tutoring time where it matters most.",
+            title: "Built for the digital SAT",
+            body: "Prep matched to the exam students actually sit: two adaptive modules, the Bluebook app and its built-in tools, and the tighter pacing the digital format demands.",
             icon: "target",
           },
           {
-            title: "Strategy and stamina",
-            body: "Beyond content, we train timing, pacing, test-day stamina, and confidence so students perform under pressure.",
-            icon: "clock",
+            title: "One tutor, start to finish",
+            body: "The same licensed educator for the length of the program, so nobody re-learns your student's weak spots halfway through. Instruction is built around how they learn, not read off a script.",
+            icon: "cap",
+          },
+          {
+            title: "Three proctored exams",
+            body: "Every package includes three full-length proctored diagnostics: one to set the baseline, two more to confirm the plan is working while there is still time to adjust.",
+            icon: "chart",
+          },
+          {
+            title: "200 to 300 points",
+            body: "The range most of our students move from their first diagnostic. Where a student lands depends on the starting point and the hours, and we give you a realistic number once that first exam is scored.",
+            icon: "badge",
           },
         ],
       },
@@ -912,29 +926,6 @@ export const products: ProductPage[] = [
               "All class materials and homework included",
               "Online portal access",
             ],
-          },
-        ],
-      },
-      {
-        kind: "cards",
-        eyebrow: "What families say",
-        title: "Real reviews from students and",
-        accent: "parents.",
-        cards: [
-          {
-            title: "Katie M. · Google Review",
-            body: "“Sam and Joe, the owners, are super nice, fun, and helped me boost my scores by 210 points. They also help with getting ready for college.”",
-            icon: "badge",
-          },
-          {
-            title: "Ashley S. · Local Guide",
-            body: "“My son has moved mountains since working with the amazing staff at the Resource Room. The SAT prep courses have beyond impacted our household.”",
-            icon: "badge",
-          },
-          {
-            title: "Maya B. · Google Review",
-            body: "“My biggest challenge preparing for the SAT was my lack of confidence and learning gaps caused by Covid. Sam specializes in math, Joe focuses on English. Together they make a remarkable team.”",
-            icon: "badge",
           },
         ],
       },
