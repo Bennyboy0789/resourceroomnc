@@ -396,56 +396,56 @@
             "Single Day Summer2026",
             "Summer July 27-31",
             "Summer August 3-7",
-            "Summer August 10-14",
-            "Summer August 17-21",
-            "Summer August 24-28",
-            "Aug 31- Sept 4",
-            "Sept 14-Sept 18",
-            "Sept 21- Sept 25",
-            "Sept 28-Oct 2",
-            "Oct12- Oct 16",
-            "Oct 19-Oct 23",
-            "Oct 26- Oct 30",
-            "Nov 2- Nov 6",
-            "Nov 9 – Nov 13",
-            "Nov 16- Nov 20",
-            "Nov 30-Dec 4",
-            "Dec 7- Dec 11",
-            "Dec 14- Dec 18",
-            "Jan 4-Jan 8",
-            "Jan 11-15",
-            "Jan 18- Jan 22",
-            "Jan 25-29",
-            "Feb 1- Feb 5",
-            "Feb 8- Feb 12",
-            "Feb 15- Feb 19",
-            "Feb 22- Feb 26",
-            "March 1- March 5",
-            "March 8- March 12",
-            "March 15- March 19",
-            "March 22- March 26",
-            "March 29- April 2",
-            "April 5- April 9",
-            "April 12- April 16",
-            "April 19- April 23",
-            "April 26 – April 30",
-            "May 3- May 7",
-            "May 10- May 14",
-            "May 17- May 21",
-            "May 24- May 28",
-            "June 7-June 11",
-            "June 14-June 18",
-            "June 21-June 25",
-            "June 28- July 2",
-            "July 5 – July 9",
-            "July 12-July 16",
-            "July 19-July 23",
-            "July 26- July 30",
-            "Aug 2-Aug 6",
-            "Aug 9- Aug 13",
-            "Aug 16- Aug 20",
-            "Aug 23- Aug 27",
-            "Aug 30- Sept 3"
+            "Summer August 10-14, 2026",
+            "Summer August 17-21, 2026",
+            "Summer August 24-28, 2026",
+            "Aug 31- Sept 04, 2026",
+            "Sept 14 - Sept 18, 2026",
+            "Sept 21- Sept 25, 2026",
+            "Sept 28-Oct 2, 2026",
+            "Oct12- Oct 16, 2026",
+            "Oct 19-Oct 23, 2026",
+            "Oct 26- Oct 30, 2026",
+            "Nov 02- Nov 06, 2026",
+            "Nov 09 – Nov 13, 2026",
+            "Nov 16- Nov 20, 2026",
+            "Nov 30 - Dec 4, 2026",
+            "Dec 07- Dec 11, 2026",
+            "Dec 14- Dec 18, 2026",
+            "Jan 04-Jan 08, 2027",
+            "Jan 11- Jan 15, 2027",
+            "Jan 18- Jan 22, 2027",
+            "Jan 25- Jan 29, 2027",
+            "Feb 01- Feb 05, 2027",
+            "Feb 08- Feb 12, 2027",
+            "Feb 15- Feb 19, 2027",
+            "Feb 22- Feb 26, 2027",
+            "March 01- March 05, 2027",
+            "March 8- March 12, 2027",
+            "March 15- March 19, 2027",
+            "March 22- March 26, 2027",
+            "March 29- April 02, 2027",
+            "April 05- April 09, 2027",
+            "April 12- April 16, 2027",
+            "April 19- April 23, 2027",
+            "April 26 – April 30, 2027",
+            "May 03- May 07, 2027",
+            "May 10- May 14, 2027",
+            "May 17- May 21, 2027",
+            "May 24- May 28, 2027",
+            "June 07-June 11, 2027",
+            "June 14-June 18, 2027",
+            "June 21-June 25, 2027",
+            "June 28- July 02, 2027",
+            "July 05 – July 09, 2027",
+            "July 12-July 16, 2027",
+            "July 19-July 23, 2027",
+            "July 26- July 30, 2027",
+            "Aug 02-Aug 06, 2027",
+            "Aug 09- Aug 13, 2027",
+            "Aug 16- Aug 20, 2027",
+            "Aug 23- Aug 27, 2027",
+            "Aug 30- Sept 03, 2027"
           ],
           "informational": false
         }
@@ -490,350 +490,350 @@
           "wooId": 7200,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Summer August 10-14"
+            "Choose Your Program": "Summer August 10-14, 2026"
           }
         },
         {
           "wooId": 7201,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Summer August 17-21"
+            "Choose Your Program": "Summer August 17-21, 2026"
           }
         },
         {
           "wooId": 7202,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Summer August 24-28"
+            "Choose Your Program": "Summer August 24-28, 2026"
           }
         },
         {
           "wooId": 8771,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 31- Sept 4"
+            "Choose Your Program": "Aug 31- Sept 04, 2026"
           }
         },
         {
           "wooId": 8772,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Sept 14-Sept 18"
+            "Choose Your Program": "Sept 14 - Sept 18, 2026"
           }
         },
         {
           "wooId": 8773,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Sept 21- Sept 25"
+            "Choose Your Program": "Sept 21- Sept 25, 2026"
           }
         },
         {
           "wooId": 8774,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Sept 28-Oct 2"
+            "Choose Your Program": "Sept 28-Oct 2, 2026"
           }
         },
         {
           "wooId": 8775,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Oct12- Oct 16"
+            "Choose Your Program": "Oct12- Oct 16, 2026"
           }
         },
         {
           "wooId": 8776,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Oct 19-Oct 23"
+            "Choose Your Program": "Oct 19-Oct 23, 2026"
           }
         },
         {
           "wooId": 8777,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Oct 26- Oct 30"
+            "Choose Your Program": "Oct 26- Oct 30, 2026"
           }
         },
         {
           "wooId": 8778,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Nov 2- Nov 6"
+            "Choose Your Program": "Nov 02- Nov 06, 2026"
           }
         },
         {
           "wooId": 8779,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Nov 9 – Nov 13"
+            "Choose Your Program": "Nov 09 – Nov 13, 2026"
           }
         },
         {
           "wooId": 8780,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Nov 16- Nov 20"
+            "Choose Your Program": "Nov 16- Nov 20, 2026"
           }
         },
         {
           "wooId": 8781,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Nov 30-Dec 4"
+            "Choose Your Program": "Nov 30 - Dec 4, 2026"
           }
         },
         {
           "wooId": 8782,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Dec 7- Dec 11"
+            "Choose Your Program": "Dec 07- Dec 11, 2026"
           }
         },
         {
           "wooId": 8783,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Dec 14- Dec 18"
+            "Choose Your Program": "Dec 14- Dec 18, 2026"
           }
         },
         {
           "wooId": 8784,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Jan 4-Jan 8"
+            "Choose Your Program": "Jan 04-Jan 08, 2027"
           }
         },
         {
           "wooId": 8785,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Jan 11-15"
+            "Choose Your Program": "Jan 11- Jan 15, 2027"
           }
         },
         {
           "wooId": 8786,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Jan 18- Jan 22"
+            "Choose Your Program": "Jan 18- Jan 22, 2027"
           }
         },
         {
           "wooId": 8787,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Jan 25-29"
+            "Choose Your Program": "Jan 25- Jan 29, 2027"
           }
         },
         {
           "wooId": 8788,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Feb 1- Feb 5"
+            "Choose Your Program": "Feb 01- Feb 05, 2027"
           }
         },
         {
           "wooId": 8789,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Feb 8- Feb 12"
+            "Choose Your Program": "Feb 08- Feb 12, 2027"
           }
         },
         {
           "wooId": 8790,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Feb 15- Feb 19"
+            "Choose Your Program": "Feb 15- Feb 19, 2027"
           }
         },
         {
           "wooId": 8791,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Feb 22- Feb 26"
+            "Choose Your Program": "Feb 22- Feb 26, 2027"
           }
         },
         {
           "wooId": 8792,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "March 1- March 5"
+            "Choose Your Program": "March 01- March 05, 2027"
           }
         },
         {
           "wooId": 8793,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "March 8- March 12"
+            "Choose Your Program": "March 8- March 12, 2027"
           }
         },
         {
           "wooId": 8794,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "March 15- March 19"
+            "Choose Your Program": "March 15- March 19, 2027"
           }
         },
         {
           "wooId": 8795,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "March 22- March 26"
+            "Choose Your Program": "March 22- March 26, 2027"
           }
         },
         {
           "wooId": 8796,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "March 29- April 2"
+            "Choose Your Program": "March 29- April 02, 2027"
           }
         },
         {
           "wooId": 8797,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "April 5- April 9"
+            "Choose Your Program": "April 05- April 09, 2027"
           }
         },
         {
           "wooId": 8798,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "April 12- April 16"
+            "Choose Your Program": "April 12- April 16, 2027"
           }
         },
         {
           "wooId": 8799,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "April 19- April 23"
+            "Choose Your Program": "April 19- April 23, 2027"
           }
         },
         {
           "wooId": 8800,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "April 26 – April 30"
+            "Choose Your Program": "April 26 – April 30, 2027"
           }
         },
         {
           "wooId": 8801,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "May 3- May 7"
+            "Choose Your Program": "May 03- May 07, 2027"
           }
         },
         {
           "wooId": 8802,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "May 10- May 14"
+            "Choose Your Program": "May 10- May 14, 2027"
           }
         },
         {
           "wooId": 8803,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "May 17- May 21"
+            "Choose Your Program": "May 17- May 21, 2027"
           }
         },
         {
           "wooId": 8804,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "May 24- May 28"
+            "Choose Your Program": "May 24- May 28, 2027"
           }
         },
         {
           "wooId": 8805,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "June 7-June 11"
+            "Choose Your Program": "June 07-June 11, 2027"
           }
         },
         {
           "wooId": 8806,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "June 14-June 18"
+            "Choose Your Program": "June 14-June 18, 2027"
           }
         },
         {
           "wooId": 8807,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "June 21-June 25"
+            "Choose Your Program": "June 21-June 25, 2027"
           }
         },
         {
           "wooId": 8808,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "June 28- July 2"
+            "Choose Your Program": "June 28- July 02, 2027"
           }
         },
         {
           "wooId": 8809,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "July 5 – July 9"
+            "Choose Your Program": "July 05 – July 09, 2027"
           }
         },
         {
           "wooId": 8810,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "July 12-July 16"
+            "Choose Your Program": "July 12-July 16, 2027"
           }
         },
         {
           "wooId": 8811,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "July 19-July 23"
+            "Choose Your Program": "July 19-July 23, 2027"
           }
         },
         {
           "wooId": 8812,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "July 26- July 30"
+            "Choose Your Program": "July 26- July 30, 2027"
           }
         },
         {
           "wooId": 8813,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 2-Aug 6"
+            "Choose Your Program": "Aug 02-Aug 06, 2027"
           }
         },
         {
           "wooId": 8814,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 9- Aug 13"
+            "Choose Your Program": "Aug 09- Aug 13, 2027"
           }
         },
         {
           "wooId": 8815,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 16- Aug 20"
+            "Choose Your Program": "Aug 16- Aug 20, 2027"
           }
         },
         {
           "wooId": 8816,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 23- Aug 27"
+            "Choose Your Program": "Aug 23- Aug 27, 2027"
           }
         },
         {
           "wooId": 8817,
           "amount": 32900,
           "options": {
-            "Choose Your Program": "Aug 30- Sept 3"
+            "Choose Your Program": "Aug 30- Sept 03, 2027"
           }
         }
       ]
