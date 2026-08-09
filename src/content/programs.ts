@@ -150,6 +150,18 @@ export type ProgramBlock =
       note?: string;
       /** Renders filter chips over the groups, matched on `ScheduleGroup.filter`. */
       filters?: { label: string; allLabel?: string };
+      /*
+       * Turns every row into a link to the booking form, and adds a button
+       * under the block.
+       *
+       * Opt-in, because a schedule is not always something you can buy: the
+       * same block kind renders the daily 8:00–3:30 timetable and the camp
+       * logistics table, and a link out of those would go nowhere useful.
+       * Set it on calendars whose rows are actual bookable dates.
+       */
+      bookHref?: string;
+      /** Button label for `bookHref`. */
+      bookLabel?: string;
     })
   | (BlockHeading & { kind: "checklist"; items: string[] })
   | (BlockHeading & {
@@ -502,6 +514,10 @@ export const programs: Program[] = [
         description:
           "Pick your child's track to see only your track-out windows, week by week. Dates follow the Wake County Public School System 2026-27 multi-track year-round calendar, and district closure days are already marked so you know exactly which days we run.",
         filters: { label: "Track", allLabel: "All tracks" },
+        /* Every week in this calendar is a week you can buy, but the booking
+           form is far enough down the page that the two read as unrelated. */
+        bookHref: "#enroll",
+        bookLabel: "Book a camp week",
         groups: [
           {
             title: "Track 4 · Window 1 of 4",

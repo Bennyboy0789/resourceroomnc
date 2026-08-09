@@ -67,7 +67,15 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
     case "person":
       return <Person block={block} accent={accent} />;
     case "schedule":
-      return <Schedule groups={block.groups} note={block.note} filters={block.filters} />;
+      return (
+        <Schedule
+          groups={block.groups}
+          note={block.note}
+          filters={block.filters}
+          bookHref={block.bookHref}
+          bookLabel={block.bookLabel}
+        />
+      );
     case "checklist":
       return <Checklist items={block.items} />;
     case "dates":
@@ -423,13 +431,17 @@ function Schedule({
   groups,
   note,
   filters,
+  bookHref,
+  bookLabel,
 }: {
   groups: Extract<ProgramBlock, { kind: "schedule" }>["groups"];
   note?: string;
   filters?: Extract<ProgramBlock, { kind: "schedule" }>["filters"];
+  bookHref?: string;
+  bookLabel?: string;
 }) {
   const cards = groups.map((group, index) => (
-    <ScheduleCard key={group.title} group={group} index={index} />
+    <ScheduleCard key={group.title} group={group} index={index} bookHref={bookHref} />
   ));
 
   return (
@@ -451,11 +463,28 @@ function Schedule({
       )}
 
       {note ? <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p> : null}
+
+      {bookHref ? (
+        <div className="mt-8">
+          <Button href={bookHref} size="lg">
+            {bookLabel ?? "Book now"}
+            <Icon name="arrowRight" className="h-4 w-4" />
+          </Button>
+        </div>
+      ) : null}
     </>
   );
 }
 
-function ScheduleCard({ group, index }: { group: ScheduleGroup; index: number }) {
+function ScheduleCard({
+  group,
+  index,
+  bookHref,
+}: {
+  group: ScheduleGroup;
+  index: number;
+  bookHref?: string;
+}) {
   return (
     <Reveal delay={stagger(index % 6, 0.04)}>
       <div className="h-full rounded-card border border-navy-900/8 bg-white p-6">
@@ -468,10 +497,37 @@ function ScheduleCard({ group, index }: { group: ScheduleGroup; index: number })
               key={`${row.label}-${row.value}`}
               className="border-t border-navy-900/8 pt-3.5 first:border-t-0 first:pt-0"
             >
+              {/* The link lives inside the `dt` rather than wrapping the row:
+                  a `dl` may only hold `dt`/`dd` (or a `div` of them), so an
+                  anchor around the pair would be invalid. `dt` takes flow
+                  content, so the date itself becomes the link. */}
               <dt className="text-xs font-bold uppercase tracking-[0.06em] text-navy-500">
-                {row.label}
+                {bookHref ? (
+                  <Link
+                    href={bookHref}
+                    className="group inline-flex min-h-11 items-center gap-1.5 text-brand-500 transition-colors hover:text-brand-600"
+                  >
+                    {row.label}
+                    <Icon
+                      name="arrowRight"
+                      className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+                    />
+                    <span className="sr-only"> — book this week</span>
+                  </Link>
+                ) : (
+                  row.label
+                )}
               </dt>
-              <dd className="mt-1 text-sm leading-relaxed text-navy-800">{row.value}</dd>
+              <dd
+                className={cn(
+                  "text-sm leading-relaxed text-navy-800",
+                  /* The link already carries a 44px touch target, which is
+                     its own top margin. */
+                  bookHref ? "-mt-1.5" : "mt-1",
+                )}
+              >
+                {row.value}
+              </dd>
               {row.note ? (
                 <dd className="mt-1 text-sm leading-relaxed text-navy-500">{row.note}</dd>
               ) : null}
