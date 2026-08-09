@@ -668,21 +668,6 @@ export const courses: Course[] = [
     ],
   },
   {
-    slug: `scratch-coding`,
-    name: `Scratch Coding`,
-    group: `STEAM Programs`,
-    grades: null,
-    summary: `Scratch is a coding community for children. The coding language comes with simple visual interface that allows children to create digital stories, games, cards, and animations. Classes coming February 2023`,
-    price: { low: 249, high: 249 },
-    image: `/images/courses/scratch-coding.jpg`,
-    imageAlt: `coding`,
-    legacyPath: `/product/scratch-coding/`,
-    body: [
-      `Scratch is a coding community for children. The coding language comes with simple visual interface that allows children to create digital stories, games, cards, and animations.`,
-      `Scratch fosters critical thinking and problem solving skills, creative thinking, expression, and teamwork skills. Come learn the basics of coding through our scratch coding course. Scratch offers the basics with drag and drop coding. Your child will learn how to make games like Pong, Flappy Bird, Fruit Ninja, and more!`,
-    ],
-  },
-  {
     slug: `steam-programs-at-resource-room-nc`,
     name: `STEAM Programs at Resource Room NC`,
     group: `STEAM Programs`,

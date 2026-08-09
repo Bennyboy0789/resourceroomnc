@@ -94,6 +94,11 @@ const MANUAL: [source: string, destination: string][] = [
   ["/product/zoom-tutoring", "/programs/tutoring/virtual-tutoring"],
   ["/courses/zoom-tutoring", "/programs/tutoring/virtual-tutoring"],
 
+  /* Scratch Coding removed from the catalog at Joe's request — no longer in
+     content/courses.ts, so its WordPress path is caught here rather than
+     generated. */
+  ["/product/scratch-coding", "/courses#steam-programs"],
+
   // --- WooCommerce category archives ---------------------------------------
   ["/product-category/steam-programs", "/courses#steam-programs"],
   ["/product-category/lego-robotics", "/courses#lego-robotics"],
