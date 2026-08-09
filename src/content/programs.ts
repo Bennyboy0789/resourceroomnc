@@ -166,8 +166,15 @@ export type Program = {
   stats?: ProgramStat[];
   /** Shown as the feature list on the program page. */
   highlights: { title: string; body: string }[];
+  /**
+   * Heading over the product grid, when the shared "What runs inside this
+   * program." does not fit. `accent` is the emphasised trailing phrase.
+   */
+  productsHeading?: { title: string; accent: string };
   /** "What's included" checklist. */
   includes: string[];
+  /** Heading over the includes checklist, overriding "What the program includes." */
+  includesHeading?: { title: string; accent: string };
   /** "Who it's for" list. */
   audience: string[];
   /** Long-form sections below the fold. */
@@ -229,6 +236,10 @@ export const programs: Program[] = [
         body: "From kindergarten through twelfth grade, across every core subject, Resource Room is a single trusted home for academic support, even as your child's needs change over the years.",
       },
     ],
+    productsHeading: {
+      title: "Choose the right Private Tutoring Program",
+      accent: "for your student.",
+    },
     includes: [
       "A free consultation to identify goals and gaps",
       "A tutor matched on subject expertise, teaching style and personality",
@@ -237,6 +248,7 @@ export const programs: Program[] = [
       "Homework, test and project support alongside skill building",
       "Ongoing communication with families about progress",
     ],
+    includesHeading: { title: "The Resource Room", accent: "approach." },
     audience: [
       "Students who have fallen behind and need to catch up",
       "High-achieving students who want to get ahead or master advanced material",

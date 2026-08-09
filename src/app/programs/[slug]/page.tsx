@@ -149,8 +149,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         <Section tone="mist" size="wide">
           <SectionHeading
             eyebrow={`${programProducts.length} options`}
-            title="What runs inside this"
-            accent="program."
+            title={program.productsHeading?.title ?? "What runs inside this"}
+            accent={program.productsHeading?.accent ?? "program."}
             description="Individual classes and sessions within this program. Anything without a listed rate is quoted at your free consultation."
           />
           <ul className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4">
@@ -246,7 +246,11 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
       </Section>
 
       <Section tone="frost">
-        <SectionHeading eyebrow="Details" title="What the program" accent="includes." />
+        <SectionHeading
+          eyebrow="Details"
+          title={program.includesHeading?.title ?? "What the program"}
+          accent={program.includesHeading?.accent ?? "includes."}
+        />
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {program.includes.map((item) => (
             <li
