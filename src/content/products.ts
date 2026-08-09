@@ -34,6 +34,8 @@ export type ProductPage = {
   highlights?: { title: string; body: string }[];
   includes?: string[];
   blocks?: ProgramBlock[];
+  /** Fine print, set below the blocks and above the see-also grid. */
+  disclaimer?: string;
   /** Sibling products cross-linked at the foot of the page. */
   seeAlso?: string[];
 };
@@ -1015,6 +1017,411 @@ export const products: ProductPage[] = [
       "Extended day available until 4:30pm",
       "Choose Single Day or Full Week at checkout, then list your dates in the order notes",
     ],
+    /*
+     * Mirrors the rest of the /programs/camps page — Joe asked for a family
+     * landing directly on this product URL to see the same track-out
+     * calendar, bonus days and schedule the program page leads with, not a
+     * thinner page underneath it.
+     *
+     * `stats` and `includes` above stay as this product's own, more specific
+     * copy rather than the program's — the program's stat row quotes "$329
+     * full week", which is the STEM product's price, not this one's.
+     */
+    highlights: [
+      {
+        title: "Led by educators, not teenagers",
+        body: "Our camp team are experienced educators who understand kids, know how to manage a room, and pitch a project so every camper has something real to do.",
+      },
+      {
+        title: "Structure kids can count on",
+        body: "A posted schedule, clear expectations, and a rhythm that repeats every day. Kids settle in fast when they already know what comes next.",
+      },
+      {
+        title: "Hands on, every single day",
+        body: "Build it, test it, take it apart, try again. Robotics, engineering challenges, and science experiments that end the week with something to carry home.",
+      },
+      {
+        title: "Enough variety to stay interesting",
+        body: "Academics, STEM, art, games, and outside time all in the same day. Long enough to get into something, short enough that nobody checks out.",
+      },
+      {
+        title: "Known in Holly Springs",
+        body: "2022 Holly Springs Business of the Year and 2025 Raleigh's Best Bronze in Education. Founded in 2015 by two career educators, Sam and Joe, and family run ever since.",
+      },
+    ],
+    blocks: [
+      {
+        kind: "checklist",
+        eyebrow: "Who it's for",
+        title: "Who this",
+        accent: "camp is for.",
+        items: [
+          "Year-round school families needing track-out coverage",
+          "Families looking for summer programming with academic value",
+          "Homeschool families who want a structured week",
+          "Parents who need reliable teacher-workday care",
+          "The kid who would rather build something than sit in a gym",
+        ],
+      },
+      {
+        kind: "pricing",
+        eyebrow: "Rates",
+        title: "What camp",
+        accent: "costs.",
+        description:
+          "Spots are limited by design. Track-out weeks and the bonus day camps fill first, so book the dates you know you need.",
+        tiers: [
+          {
+            name: "Full Week",
+            price: "$329",
+            cta: { label: "Book a camp week", href: "/programs/camps/summer-camp#buy" },
+            cadence: "per week",
+            badge: "Most booked",
+            meta: "Monday to Friday, 8:00 a.m. to 3:30 p.m.",
+            featured: true,
+            features: [
+              "Five full camp days",
+              "All materials and project supplies included",
+              "Hands-on science, engineering, coding and outdoor time daily",
+              "Small groups led by experienced educators",
+            ],
+          },
+          {
+            name: "Single Day",
+            price: "Available",
+            cta: { label: "Book a single day", href: "/programs/camps/track-out-teacher-workday#buy" },
+            meta: "Teacher workdays, district holidays and break weeks",
+            features: [
+              "Full camp day, same schedule as a camp week",
+              "Ideal for teacher workdays and one-off closures",
+              "Choose Single Day at checkout, then list your dates in the order notes",
+            ],
+          },
+          {
+            name: "Late Pickup",
+            price: "$55",
+            cta: { label: "Add late pickup", href: "/programs/camps/summer-camp#buy" },
+            cadence: "per week",
+            meta: "Add-on — extends the day to 4:30 p.m.",
+            features: [
+              "Supervised extended day until 4:30 p.m.",
+              "Available by the day or by the week",
+              "Sibling discounts available — contact us for details",
+            ],
+          },
+        ],
+        note: "Booking is simple: choose Single Day or Full Week at checkout, then enter the exact dates you need in the order notes and we will confirm by email.",
+      },
+      {
+        kind: "schedule",
+        eyebrow: "A day at camp",
+        title: "A school day made of only the",
+        accent: "good parts.",
+        description:
+          "Same rhythm every day, posted on the wall where kids can see it. Enough structure that nobody is guessing what comes next, enough variety that nobody gets bored.",
+        groups: [
+          {
+            title: "The daily schedule",
+            rows: [
+              {
+                label: "8:00 – 8:30",
+                value: "Arrival and soft start",
+                note: "Quiet tables, puzzles, drawing, and a chance to settle in before the day gets going.",
+              },
+              {
+                label: "8:30 – 10:00",
+                value: "Hands-on science",
+                note: "Slime, volcanoes, elephant toothpaste, oobleck, and experiments that spark real curiosity.",
+              },
+              {
+                label: "10:00 – 11:30",
+                value: "Building and engineering",
+                note: "LEGO challenges, robotics, design thinking, and problem solving that takes a whole team to crack.",
+              },
+              {
+                label: "11:30 – 1:00",
+                value: "Lunch and outdoor time",
+                note: "Bagged lunch, then nature walks, outdoor games, and fresh air before the afternoon.",
+              },
+              {
+                label: "1:00 – 2:30",
+                value: "Coding and digital challenges",
+                note: "Interactive coding games and puzzles that build logic and sequencing without feeling like a lesson.",
+              },
+              {
+                label: "2:30 – 3:30",
+                value: "Crafts, creativity, and wrap up",
+                note: "Projects that let kids create and build their own ideas. Clean up, share the day, and get ready for pickup.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        kind: "schedule",
+        eyebrow: "2026–27 track-out calendar",
+        title: "Find your track's",
+        accent: "weeks.",
+        description:
+          "Pick your child's track to see only your track-out windows, week by week. Dates follow the Wake County Public School System 2026-27 multi-track year-round calendar, and district closure days are already marked so you know exactly which days we run.",
+        filters: { label: "Track", allLabel: "All tracks" },
+        /* This page's buy box sits right under the hero at #buy, not further
+           down at #enroll like the program page's — see EnrollmentSection. */
+        bookHref: "#buy",
+        bookLabel: "Book a camp week",
+        groups: [
+          {
+            title: "Track 4 · Window 1 of 4",
+            filter: "Track 4",
+            subtitle: "July 7 to July 29, 2026",
+            rows: [
+              { label: "Jul 7 – Jul 10", value: "4 days" },
+              { label: "Jul 13 – Jul 17", value: "5 days" },
+              { label: "Jul 20 – Jul 24", value: "5 days" },
+              { label: "Jul 27 – Jul 29", value: "3 days" },
+            ],
+          },
+          {
+            title: "Track 3 · Window 1 of 4",
+            filter: "Track 3",
+            subtitle: "July 30 to August 20, 2026",
+            rows: [
+              { label: "Jul 30 – Jul 31", value: "2 days" },
+              { label: "Aug 3 – Aug 7", value: "5 days" },
+              { label: "Aug 10 – Aug 14", value: "5 days" },
+              { label: "Aug 17 – Aug 20", value: "4 days" },
+            ],
+          },
+          {
+            title: "Track 2 · Window 1 of 4",
+            filter: "Track 2",
+            subtitle: "August 24 to September 11, 2026",
+            rows: [
+              { label: "Aug 24 – Aug 28", value: "5 days" },
+              { label: "Aug 31 – Sep 4", value: "5 days" },
+              { label: "Sep 8 – Sep 11", value: "4 days" },
+            ],
+            note: "Closed Sep 7, Labor Day",
+          },
+          {
+            title: "Track 1 · Window 1 of 4",
+            filter: "Track 1",
+            subtitle: "September 14 to October 6, 2026",
+            rows: [
+              { label: "Sep 14 – Sep 18", value: "5 days" },
+              { label: "Sep 21 – Sep 25", value: "5 days" },
+              { label: "Sep 28 – Oct 2", value: "5 days" },
+              { label: "Oct 5 – Oct 6", value: "2 days" },
+            ],
+          },
+          {
+            title: "Track 4 · Window 2 of 4",
+            filter: "Track 4",
+            subtitle: "October 7 to October 23, 2026",
+            rows: [
+              { label: "Oct 7 – Oct 9", value: "3 days" },
+              { label: "Oct 12 – Oct 16", value: "5 days" },
+              { label: "Oct 19 – Oct 23", value: "5 days" },
+            ],
+          },
+          {
+            title: "Track 3 · Window 2 of 4",
+            filter: "Track 3",
+            subtitle: "October 26 to November 13, 2026",
+            rows: [
+              { label: "Oct 26 – Oct 30", value: "5 days" },
+              { label: "Nov 2 – Nov 6", value: "5 days" },
+              { label: "Nov 9 – Nov 13", value: "5 days" },
+            ],
+            note: "Open Veterans Day",
+          },
+          {
+            title: "Track 2 · Window 2 of 4",
+            filter: "Track 2",
+            subtitle: "November 16 to December 4, 2026",
+            rows: [
+              { label: "Nov 16 – Nov 20", value: "5 days" },
+              { label: "Nov 23 – Nov 25", value: "3 days" },
+              { label: "Nov 30 – Dec 4", value: "5 days" },
+            ],
+            note: "Closed Nov 26 and 27, Thanksgiving",
+          },
+          {
+            title: "Track 1 · Window 2 of 4",
+            filter: "Track 1",
+            subtitle: "December 7 to December 18, 2026",
+            rows: [
+              { label: "Dec 7 – Dec 11", value: "5 days" },
+              { label: "Dec 14 – Dec 18", value: "5 days" },
+            ],
+          },
+          {
+            title: "Track 4 · Window 3 of 4",
+            filter: "Track 4",
+            subtitle: "January 4 to January 22, 2027",
+            rows: [
+              { label: "Jan 4 – Jan 8", value: "5 days" },
+              { label: "Jan 11 – Jan 15", value: "5 days" },
+              { label: "Jan 18 – Jan 22", value: "5 days" },
+            ],
+            note: "Open MLK Day",
+          },
+          {
+            title: "Track 3 · Window 3 of 4",
+            filter: "Track 3",
+            subtitle: "January 25 to February 12, 2027",
+            rows: [
+              { label: "Jan 25 – Jan 29", value: "5 days" },
+              { label: "Feb 1 – Feb 5", value: "5 days" },
+              { label: "Feb 8 – Feb 12", value: "5 days" },
+            ],
+          },
+          {
+            title: "Track 2 · Window 3 of 4",
+            filter: "Track 2",
+            subtitle: "February 15 to March 5, 2027",
+            rows: [
+              { label: "Feb 15 – Feb 19", value: "5 days" },
+              { label: "Feb 22 – Feb 26", value: "5 days" },
+              { label: "Mar 1 – Mar 5", value: "5 days" },
+            ],
+            note: "Open Presidents' Day",
+          },
+          {
+            title: "Track 1 · Window 3 of 4",
+            filter: "Track 1",
+            subtitle: "March 8 to March 26, 2027",
+            rows: [
+              { label: "Mar 8 – Mar 12", value: "5 days" },
+              { label: "Mar 15 – Mar 19", value: "5 days" },
+              { label: "Mar 22 – Mar 26", value: "5 days" },
+            ],
+            note: "Open Mar 26 district holiday",
+          },
+          {
+            title: "Track 4 · Window 4 of 4",
+            filter: "Track 4",
+            subtitle: "March 29 to April 16, 2027",
+            rows: [
+              { label: "Mar 29 – Apr 2", value: "5 days" },
+              { label: "Apr 5 – Apr 9", value: "5 days" },
+              { label: "Apr 12 – Apr 16", value: "5 days" },
+            ],
+          },
+          {
+            title: "Track 3 · Window 4 of 4",
+            filter: "Track 3",
+            subtitle: "April 19 to May 7, 2027",
+            rows: [
+              { label: "Apr 19 – Apr 23", value: "5 days" },
+              { label: "Apr 26 – Apr 30", value: "5 days" },
+              { label: "May 3 – May 7", value: "5 days" },
+            ],
+          },
+          {
+            title: "Track 2 · Window 4 of 4",
+            filter: "Track 2",
+            subtitle: "May 10 to June 3, 2027",
+            rows: [
+              { label: "May 10 – May 14", value: "5 days" },
+              { label: "May 17 – May 21", value: "5 days" },
+              { label: "May 24 – May 28", value: "5 days" },
+              { label: "Jun 1 – Jun 3", value: "3 days" },
+            ],
+            note: "Closed May 31, Memorial Day",
+          },
+          {
+            title: "Track 1 · Window 4 of 4",
+            filter: "Track 1",
+            subtitle: "June 4 to June 30, 2027",
+            rows: [
+              { label: "Jun 4", value: "1 day" },
+              { label: "Jun 7 – Jun 11", value: "5 days" },
+              { label: "Jun 14 – Jun 18", value: "5 days" },
+              { label: "Jun 21 – Jun 25", value: "5 days" },
+              { label: "Jun 28 – Jun 30", value: "3 days" },
+            ],
+            note: "Rolls into Summer Camp",
+          },
+        ],
+        note: "If the district adjusts the calendar for weather makeup days, we will update this page and email registered families.",
+      },
+      {
+        kind: "dates",
+        eyebrow: "Bonus camp days",
+        title: "When Wake County closes, we",
+        accent: "open.",
+        description:
+          "Teacher workdays, district holidays, and break weeks put all four tracks home on the same day, and most camps go dark right along with the schools. We don't. Twelve bonus camp days across the year, and they fill faster than anything else we run.",
+        items: [
+          {
+            date: "Friday, August 21, 2026",
+            note: "Teacher workday across the year-round calendar. Full camp day.",
+          },
+          {
+            date: "Tuesday, November 3, 2026",
+            note: "Teacher workday and Election Day. Kids build and create while you vote.",
+          },
+          {
+            date: "Wednesday, November 11, 2026",
+            note: "Veterans Day. Schools are closed, camp is open all day.",
+          },
+          {
+            date: "Wednesday, November 25, 2026",
+            note: "Thanksgiving week coverage. Closed Thanksgiving Day and the Friday after.",
+          },
+          {
+            date: "Dec 21 – 23 and Dec 28 – 30, 2026",
+            note: "Winter break camp, six full days. Closed Dec 24, Dec 25, Dec 31, and Jan 1.",
+          },
+          {
+            date: "Monday, January 18, 2027",
+            note: "Martin Luther King Jr. Day. Schools are closed, camp is open all day.",
+          },
+          {
+            date: "Friday, March 26, 2027",
+            note: "District holiday before spring sessions resume. Full camp day.",
+          },
+        ],
+        note: "Choose Single Day at checkout and list the dates you want in the order notes.",
+      },
+      {
+        kind: "schedule",
+        eyebrow: "The details",
+        title: "Everything you need to",
+        accent: "know.",
+        groups: [
+          {
+            title: "Camp logistics",
+            rows: [
+              { label: "Grades", value: "K through 6" },
+              { label: "Camp hours", value: "8:00 a.m. to 3:30 p.m., Monday to Friday" },
+              { label: "Late pickup", value: "Until 4:30 p.m., $55 per week" },
+              { label: "Full week", value: "$329" },
+              { label: "Single days", value: "Available, see options at checkout" },
+              { label: "Sibling discount", value: "Available, contact us for details" },
+              {
+                label: "Open on",
+                value: "Veterans Day, MLK Day, Presidents' Day, Election Day, Juneteenth",
+              },
+              {
+                label: "Closed on",
+                value:
+                  "Labor Day, Thanksgiving Day and the Friday after, Dec 24–25, Dec 31, Jan 1, Memorial Day",
+              },
+              {
+                label: "Bring each day",
+                value: "Bagged lunch, snacks, water bottle. No nut products, please",
+              },
+              { label: "Location", value: "2100 Crossway Ln, Holly Springs, NC 27540" },
+            ],
+            note: "Refrigeration is available on site.",
+          },
+        ],
+      },
+    ],
+    disclaimer:
+      "Camp rescheduling policy: rescheduling a camp week is subject to a 30 percent fee. If rescheduling within 2 weeks of the camp start date, there is no refund. Camp materials and supplies are purchased specifically for each camp week and camper.",
     seeAlso: ["summer-camp"],
   },
   {

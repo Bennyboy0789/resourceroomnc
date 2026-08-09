@@ -223,6 +223,14 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
         <ProgramBlocks blocks={product.blocks} accent={program?.accent ?? "blue"} />
       ) : null}
 
+      {product.disclaimer ? (
+        <Section tone="white" size="narrow" className="!pt-0">
+          <p className="border-t border-navy-900/10 pt-8 text-xs leading-relaxed text-navy-500">
+            {product.disclaimer}
+          </p>
+        </Section>
+      ) : null}
+
       {/* -------------------------------------------------------- see also */}
       {seeAlso.length ? (
         <Section tone="mist" size="wide">
