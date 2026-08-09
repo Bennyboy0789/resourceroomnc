@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { FilterableSchedule } from "@/components/program/FilterableSchedule";
+import { PhotoCarousel } from "@/components/program/PhotoCarousel";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -33,9 +34,14 @@ export function ProgramBlocks({
   blocks: ProgramBlock[];
   accent: "sun" | "blue";
 }) {
+  /* A gallery with no pictures yet would otherwise render as a heading over
+     empty space, and would take a tone out of the alternating sequence on the
+     way past. Dropped before anything is laid out. */
+  const visible = blocks.filter((block) => block.kind !== "gallery" || block.photos.length > 0);
+
   return (
     <>
-      {blocks.map((block, index) => (
+      {visible.map((block, index) => (
         <Section key={`${block.kind}-${block.title}`} tone={TONES[index % TONES.length]}>
           <SectionHeading
             eyebrow={block.eyebrow}
@@ -76,6 +82,8 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
           bookLabel={block.bookLabel}
         />
       );
+    case "gallery":
+      return <PhotoCarousel photos={block.photos} />;
     case "checklist":
       return <Checklist items={block.items} />;
     case "dates":

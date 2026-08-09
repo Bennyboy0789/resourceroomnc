@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Inter, Playfair_Display } from "next/font/google";
+import { Caveat, DM_Sans, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -35,6 +35,20 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+/*
+ * The handwritten caption on the camp photo gallery, and nothing else.
+ *
+ * Loaded through next/font rather than a <link> injected at runtime: the
+ * stylesheet is self-hosted at build time, so there is no render-blocking
+ * request to fonts.googleapis.com, no flash of the fallback, and no third
+ * party told which visitors looked at the camp page.
+ */
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -89,7 +103,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${dmSans.variable} h-full`}
+      className={`${inter.variable} ${playfair.variable} ${dmSans.variable} ${caveat.variable} h-full`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <script

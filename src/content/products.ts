@@ -1703,6 +1703,30 @@ export const products: ProductPage[] = [
           },
         ],
       },
+      /*
+       * Camp photo gallery.
+       *
+       * `photos` is deliberately empty: the five files below do not exist in
+       * the repo yet, and the block renders nothing until at least one does,
+       * so this ships without a row of broken images. Drop the files into
+       * public/images/gallery and move these entries into `photos` — no code
+       * change needed.
+       *
+       *   { src: "/images/gallery/marble-run.jpg",       alt: "Campers building a marble run tower",                caption: "Marble Run Engineering",        rotate: -3 },
+       *   { src: "/images/gallery/color-splash.jpg",     alt: "A camper rolling paint-covered marbles across paper", caption: "Color Splash Art",              rotate: 2 },
+       *   { src: "/images/gallery/track-build.jpg",      alt: "A camper assembling a winding hex track",             caption: "Track Building Challenge",      rotate: -2 },
+       *   { src: "/images/gallery/spaghetti-tower.jpg",  alt: "A camper building a marshmallow and spaghetti tower", caption: "Spaghetti Tower STEM Challenge", rotate: 3 },
+       *   { src: "/images/gallery/magnet-tiles.jpg",     alt: "A camper building with translucent magnetic tiles",   caption: "Magnetic Tile Architecture",    rotate: -1.5 },
+       */
+      {
+        kind: "gallery",
+        eyebrow: "From camp",
+        title: "What a week actually",
+        accent: "looks like.",
+        description:
+          "Real projects from real camp weeks, built by campers who came back the next week to do it again.",
+        photos: [],
+      },
       {
         kind: "cards",
         eyebrow: "Why parents trust us",

@@ -86,6 +86,14 @@ export type ScheduleGroup = {
   filter?: string;
 };
 
+/** One photo in a gallery block. `rotate` is the polaroid's tilt in degrees. */
+export type GalleryPhoto = {
+  src: string;
+  alt: string;
+  caption: string;
+  rotate?: number;
+};
+
 type BlockHeading = {
   eyebrow?: string;
   title: string;
@@ -165,6 +173,14 @@ export type ProgramBlock =
       /** Button label for `bookHref`. */
       bookLabel?: string;
     })
+  /*
+   * Camp photos as a polaroid carousel.
+   *
+   * Renders nothing when `photos` is empty, so the block can sit in the
+   * content ahead of the pictures arriving without leaving a hole or a row
+   * of broken images on the page.
+   */
+  | (BlockHeading & { kind: "gallery"; photos: GalleryPhoto[] })
   | (BlockHeading & { kind: "checklist"; items: string[] })
   | (BlockHeading & {
       kind: "dates";
