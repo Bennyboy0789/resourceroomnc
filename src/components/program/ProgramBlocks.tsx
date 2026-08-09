@@ -59,7 +59,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
     case "links":
       return <Links links={block.links} wide={block.wide} accent={accent} />;
     case "cards":
-      return <Cards cards={block.cards} wide={block.wide} accent={accent} />;
+      return <Cards cards={block.cards} wide={block.wide} accent={accent} note={block.note} />;
     case "steps":
       return <Steps steps={block.steps} accent={accent} />;
     case "pricing":
@@ -126,12 +126,15 @@ function Cards({
   cards,
   wide,
   accent,
+  note,
 }: {
   cards: { title: string; body: string; icon?: IconName }[];
   wide?: boolean;
   accent: "sun" | "blue";
+  note?: string;
 }) {
   return (
+    <>
     <ul className={cn("grid gap-5", wide ? "md:grid-cols-2" : "md:grid-cols-3")}>
       {cards.map((card, index) => (
         <Reveal key={card.title} as="li" delay={stagger(index, 0.06)}>
@@ -156,6 +159,10 @@ function Cards({
         </Reveal>
       ))}
     </ul>
+    {note ? (
+      <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p>
+    ) : null}
+    </>
   );
 }
 

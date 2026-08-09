@@ -800,6 +800,85 @@ export const products: ProductPage[] = [
       { value: "10+ yrs", label: "SAT prep experience" },
     ],
     blocks: [
+      /* Process and approach lead, pricing follows — a parent needs the "how"
+         before being asked to pick a package. */
+      {
+        kind: "cards",
+        eyebrow: "Why families choose us",
+        title: "Why families choose Resource",
+        accent: "Room.",
+        wide: true,
+        cards: [
+          {
+            title: "Proven results",
+            body: "Thousands of students taught over more than a decade, with many regularly improving 200+ points from their initial diagnostic.",
+            icon: "chart",
+          },
+          {
+            title: "Real teachers",
+            body: "Instruction comes from licensed teachers and experienced SAT educators, not scripts. High-energy and fully individualized.",
+            icon: "cap",
+          },
+          {
+            title: "Diagnostic-driven",
+            body: "We start with full-length proctored diagnostics to establish a baseline and target tutoring time where it matters most.",
+            icon: "target",
+          },
+          {
+            title: "Strategy and stamina",
+            body: "Beyond content, we train timing, pacing, test-day stamina, and confidence so students perform under pressure.",
+            icon: "clock",
+          },
+        ],
+      },
+      {
+        kind: "steps",
+        eyebrow: "How it works",
+        title: "Our SAT prep",
+        accent: "process.",
+        description:
+          "We begin with a comprehensive evaluation so every hour of tutoring is spent where it will move the score most.",
+        steps: [
+          {
+            title: "Diagnose",
+            body: "Initial full-length diagnostics establish a clear score baseline and reveal section-by-section strengths and weaknesses.",
+          },
+          {
+            title: "Plan",
+            body: "We build a targeted plan around the student's profile, whether they need content remediation, strategy, pacing, or confidence.",
+          },
+          {
+            title: "Teach",
+            body: "One consistent tutor delivers customized instruction matched to the student's pace, learning style, and target score.",
+          },
+          {
+            title: "Monitor",
+            body: "Ongoing practice and periodic proctored assessments track progress and keep prep on course through test day.",
+          },
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "The exam",
+        title: "What the SAT",
+        accent: "covers.",
+        description:
+          "The current SAT is a digital exam with two sections, Reading & Writing and Math, and runs about 2 hours and 14 minutes plus breaks.",
+        wide: true,
+        cards: [
+          {
+            title: "Reading & Writing",
+            body: "Comprehension, vocabulary in context, grammar, revision, and editing skills.",
+            icon: "book",
+          },
+          {
+            title: "Math",
+            body: "Algebra, advanced math, problem-solving and data analysis, and geometry and trigonometry. A calculator is allowed on the entire Math section, and Bluebook includes a built-in one.",
+            icon: "chart",
+          },
+        ],
+        note: "Because the digital SAT is shorter, adaptive, and strategically paced, students benefit from prep that teaches both the content and the mechanics of the exam. Before test day, students should download Bluebook and complete exam setup on their device in advance.",
+      },
       {
         kind: "pricing",
         eyebrow: "Programs",
@@ -856,6 +935,38 @@ export const products: ProductPage[] = [
             title: "Maya B. · Google Review",
             body: "“My biggest challenge preparing for the SAT was my lack of confidence and learning gaps caused by Covid. Sam specializes in math, Joe focuses on English. Together they make a remarkable team.”",
             icon: "badge",
+          },
+        ],
+      },
+      {
+        kind: "faq",
+        eyebrow: "Common questions",
+        title: "SAT prep questions,",
+        accent: "answered.",
+        items: [
+          {
+            q: "SAT or ACT, which is better?",
+            a: "There is no universal answer, but most students we work with currently prefer the SAT. Many find its pacing more manageable, while the ACT's timing is often more unforgiving. We recommend starting with a diagnostic and letting the data decide which test fits your student best.",
+          },
+          {
+            q: "How many hours of tutoring does a student need?",
+            a: "Most students do best with our 20-hour private package, which gives enough time to build on strengths, address weak areas, improve timing, and build confidence. We confirm the right amount during your free consultation after reviewing goals and diagnostics.",
+          },
+          {
+            q: "Do you offer in-person and virtual tutoring?",
+            a: "Yes, both. In-person is our preferred format, but virtual and hybrid options are available when that's the better fit for your family.",
+          },
+          {
+            /* Deliberately no cycle dates. The source copy named a specific
+               start month, which goes stale silently and is the kind of
+               detail a parent plans around. The general form matches the
+               pricing block above and needs no upkeep. */
+            q: "When do the SAT group classes run?",
+            a: "The group class is offered once a year, timed to the March SAT. If you need prep on a different timeline, private tutoring is available year-round and you can start anytime.",
+          },
+          {
+            q: "How much can a student improve?",
+            a: "Many of our students see 200 to 300 point gains from their initial diagnostic baseline, though results depend on starting point, target score, and hours invested. We'll give you a realistic range for your student after the first diagnostic.",
           },
         ],
       },

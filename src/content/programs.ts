@@ -113,6 +113,8 @@ export type ProgramBlock =
       cards: { title: string; body: string; icon?: IconName }[];
       /** Two columns instead of three, for longer card bodies. */
       wide?: boolean;
+      /** Closing line under the grid, as on pricing and schedule blocks. */
+      note?: string;
     })
   /*
    * Cards that are themselves links, for cross-selling the rest of the centre.
