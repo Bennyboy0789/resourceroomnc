@@ -77,11 +77,15 @@ export function organizationSchema() {
        $24,000 a year for the private high school, so the band is wide. */
     priceRange: "$$",
     currenciesAccepted: "USD",
+    /* Keep in step with the service-area sentence on the program and product
+       pages — the towns claimed in copy and the towns claimed in markup
+       should be the same list. */
     areaServed: [
       "Holly Springs, NC",
       "Apex, NC",
       "Cary, NC",
       "Fuquay-Varina, NC",
+      "Morrisville, NC",
       "Raleigh, NC",
       "Wake County, NC",
     ].map((name) => ({ "@type": "Place", name })),
