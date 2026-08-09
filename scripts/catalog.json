@@ -799,9 +799,7 @@
         {
           "name": "Section",
           "options": [
-            "SAT Diagnostic Feb 22",
-            "SAT Diagnostic Feb 28",
-            "SAT Diagnostic March 1",
+            "SAT Diagnostic: Single",
             "2026 Private Only Package"
           ],
           "informational": false
@@ -809,24 +807,10 @@
       ],
       "variants": [
         {
-          "wooId": 7240,
-          "amount": 7500,
-          "options": {
-            "Section": "SAT Diagnostic Feb 22"
-          }
-        },
-        {
-          "wooId": 7745,
-          "amount": 7500,
-          "options": {
-            "Section": "SAT Diagnostic Feb 28"
-          }
-        },
-        {
           "wooId": 7746,
           "amount": 7500,
           "options": {
-            "Section": "SAT Diagnostic March 1"
+            "Section": "SAT Diagnostic: Single"
           }
         },
         {
