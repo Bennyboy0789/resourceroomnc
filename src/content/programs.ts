@@ -286,6 +286,18 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     caption: "Pixel Mosaic Design",
     rotate: 2.5,
   },
+  {
+    src: "/images/gallery/glow-lab-mixing.jpg",
+    alt: "A tray of glowing colored liquids being mixed under blacklight, with glowing water bottles beside it.",
+    caption: "Glow Lab",
+    rotate: -2.5,
+  },
+  {
+    src: "/images/gallery/glow-lab-bottles.jpg",
+    alt: "Two glowing containers of neon liquid under blacklight, with glowing bottles in the background.",
+    caption: "Blacklight Reactions",
+    rotate: 1.5,
+  },
 ];
 
 export const programs: Program[] = [
