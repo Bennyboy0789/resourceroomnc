@@ -363,6 +363,18 @@ export const campGalleryPhotos: GalleryPhoto[] = [
   },
 ];
 
+/**
+ * Camp films, shared by every page that markets camp — same reasoning as
+ * `campGalleryPhotos`.
+ *
+ * Titles are the real YouTube titles, checked against the oEmbed endpoint,
+ * so what a screen reader announces matches what starts playing.
+ */
+export const campVideos = [
+  { id: "QpW6dnlvWuQ", title: "Resource Room STEM Camp 1" },
+  { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
+];
+
 export const programs: Program[] = [
   {
     slug: "tutoring",
@@ -669,10 +681,7 @@ export const programs: Program[] = [
         description:
           "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
         vertical: true,
-        videos: [
-          { id: "QpW6dnlvWuQ", title: "Resource Room STEM Camp 1" },
-          { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
-        ],
+        videos: campVideos,
       },
       {
         kind: "schedule",

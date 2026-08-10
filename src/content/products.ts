@@ -1,4 +1,4 @@
-import { campGalleryPhotos } from "@/content/programs";
+import { campGalleryPhotos, campVideos } from "@/content/programs";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
 
@@ -1373,6 +1373,28 @@ export const products: ProductPage[] = [
           },
         ],
       },
+      /* Same pair, in the same place, as the camps program page: the daily
+         timetable says what a day is made of, then the stills and the films
+         show it. Shared lists, so all three camp pages stay in step. */
+      {
+        kind: "gallery",
+        eyebrow: "From camp",
+        title: "What a week actually",
+        accent: "looks like.",
+        description:
+          "Real projects from real camp weeks, built by campers who came back the next week to do it again.",
+        photos: campGalleryPhotos,
+      },
+      {
+        kind: "video",
+        eyebrow: "Camp in motion",
+        title: "A camp week, start to",
+        accent: "finish.",
+        description:
+          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+        vertical: true,
+        videos: campVideos,
+      },
       {
         kind: "schedule",
         eyebrow: "2026–27 track-out calendar",
@@ -1712,6 +1734,16 @@ export const products: ProductPage[] = [
         description:
           "Real projects from real camp weeks, built by campers who came back the next week to do it again.",
         photos: campGalleryPhotos,
+      },
+      {
+        kind: "video",
+        eyebrow: "Camp in motion",
+        title: "A camp week, start to",
+        accent: "finish.",
+        description:
+          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+        vertical: true,
+        videos: campVideos,
       },
       {
         kind: "cards",
