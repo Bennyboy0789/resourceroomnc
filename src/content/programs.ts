@@ -325,6 +325,42 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     caption: "Blacklight Lab Night",
     rotate: -1.5,
   },
+  {
+    src: "/images/gallery/marble-run.jpg",
+    alt: "A camper building a marble run from cardboard tubes taped inside a large cardboard box.",
+    caption: "Cardboard Marble Run",
+    rotate: 2,
+  },
+  {
+    src: "/images/gallery/ph-lab.jpg",
+    alt: "A rack of test tubes holding liquids in green, cream, red and orange beside a pH recording worksheet.",
+    caption: "pH Indicator Lab",
+    rotate: -2,
+  },
+  {
+    src: "/images/gallery/slime-stretch.jpg",
+    alt: "A camper stretching a long rope of grey slime between both hands over a mixing bowl.",
+    caption: "Slime Lab",
+    rotate: 3,
+  },
+  {
+    src: "/images/gallery/lego-machines.jpg",
+    alt: "A LEGO machine built from gears and beams next to the open instruction book it was built from.",
+    caption: "LEGO Machines",
+    rotate: -2.5,
+  },
+  {
+    src: "/images/gallery/watercolor.jpg",
+    alt: "A camper painting watercolours into outlined shapes beside a well-used paint palette.",
+    caption: "Watercolor Studio",
+    rotate: 1.5,
+  },
+  {
+    src: "/images/gallery/cardboard-creatures.jpg",
+    alt: "A dog built from cardboard, buttons and string, with tube legs and yarn whiskers.",
+    caption: "Cardboard Creatures",
+    rotate: -1,
+  },
 ];
 
 export const programs: Program[] = [
