@@ -111,7 +111,7 @@ export const products: ProductPage[] = [
       "Private, individualized tutoring for all subject areas from K–12. We work alongside emerging learners all the way through the most challenging high school courses.",
     priceLabel: "Packages from $350",
     priceNote:
-      "Packages start at $350, with pricing custom-built around your student's subjects, hours, and goals. We'll walk you through exact pricing on your free consultation, no guesswork, no surprises.",
+      "Packages start at $350. Your exact price depends on subjects, hours, and goals, and we'll map that out together on a free call. No pressure, no upsell, just the plan that fits.",
     reviewTopic: "tutoring",
     image: {
       src: "/images/program-tutoring.jpg",

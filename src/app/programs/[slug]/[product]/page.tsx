@@ -183,7 +183,7 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
           description={
             buyProducts.length
               ? "Choose your options below. Checkout is handled securely by Stripe — we never see your card details."
-              : "This one starts with a conversation. Book a free consultation and we will confirm the right plan and price for your student."
+              : "Free consultation. We'll build the right plan for your student, together."
           }
         />
 
@@ -200,16 +200,19 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
             <div className="flex flex-col gap-4 rounded-card border border-navy-900/10 bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 {product.priceNote ? (
+                  /* A priceNote already closes on the reassurance line, so the
+                     generic one below would repeat it word for word. */
                   <p className="leading-relaxed text-navy-800">{product.priceNote}</p>
                 ) : (
-                  <p className="text-lg font-bold text-navy-950">
-                    {product.priceLabel ?? "Quoted at your free consultation"}
-                  </p>
+                  <>
+                    <p className="text-lg font-bold text-navy-950">
+                      {product.priceLabel ?? "Quoted at your free consultation"}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-600">
+                      No pressure, no upsell, just the plan that fits.
+                    </p>
+                  </>
                 )}
-                <p className="mt-2 text-sm leading-relaxed text-navy-600">
-                  Consultations are always free, and we never recommend a plan that isn&rsquo;t the
-                  right fit.
-                </p>
               </div>
               <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
                 <Button href={site.consultationUrl}>Book a consultation</Button>
