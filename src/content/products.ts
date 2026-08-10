@@ -1120,22 +1120,74 @@ export const products: ProductPage[] = [
           "Put simply, the ACT rewards students who have had enough time to build both section-specific strategies and test-day endurance. During your free consultation we confirm the right amount based on the student's goals and diagnostics.",
         ],
       },
+      /*
+       * ACT's published national calendar, transcribed from
+       * act.org/.../registration/test-dates.html on 9 August 2026.
+       *
+       * Replaces a three-row list that had gone stale — it still led with
+       * June 13 and July 11 2026, both already past, and told the reader the
+       * rest of the year was somewhere on act.org. Same treatment as the SAT
+       * block on the sibling page: the full year, the date it was checked,
+       * and a link out to confirm. ACT's "projected" 2027-28 dates are left
+       * out; they say themselves those are subject to change.
+       */
       {
-        kind: "dates",
-        eyebrow: "Test dates",
-        title: "Upcoming ACT",
-        accent: "administrations.",
+        kind: "schedule",
+        eyebrow: "2026–27 ACT calendar",
+        title: "Test dates and registration",
+        accent: "deadlines.",
         description:
-          "Registration is handled directly through ACT at act.org. We recommend registering early to secure your preferred date, location, and testing format.",
-        items: [
-          { date: "June 13, 2026", note: "Registration closed · standby only via MyACT" },
+          "Every national ACT date for the 2026–27 year, with the deadline to register for each one. National dates cover the United States, its territories and Puerto Rico. All deadlines close at 11:59 p.m. Central Time.",
+        bookHref: "https://www.act.org/content/act/en/products-and-services/the-act/registration.html",
+        bookLabel: "Register at ACT",
+        groups: [
           {
-            date: "July 11, 2026",
-            note: "Regular deadline: June 5 · Late: June 24 · not offered in NY",
+            title: "Fall 2026",
+            rows: [
+              {
+                label: "September 19, 2026",
+                value: "Register by August 14, 2026",
+                note: "Late registration until September 1, 2026",
+              },
+              {
+                label: "October 17, 2026",
+                value: "Register by September 11, 2026",
+                note: "Late registration until September 29, 2026",
+              },
+              {
+                label: "December 12, 2026",
+                value: "Register by November 6, 2026",
+                note: "Late registration until November 29, 2026",
+              },
+            ],
           },
-          { date: "September 19, 2026", note: "2026–2027 testing cycle begins" },
+          {
+            title: "Spring and summer 2027",
+            rows: [
+              {
+                label: "February 27, 2027",
+                value: "Register by January 22, 2027",
+                note: "Late registration until February 9, 2027",
+              },
+              {
+                label: "April 10, 2027",
+                value: "Register by March 5, 2027",
+                note: "Late registration until March 23, 2027",
+              },
+              {
+                label: "June 12, 2027",
+                value: "Register by May 7, 2027",
+                note: "Late registration until May 25, 2027",
+              },
+              {
+                label: "July 10, 2027",
+                value: "Register by June 4, 2027",
+                note: "Late registration until June 22, 2027",
+              },
+            ],
+          },
         ],
-        note: "Additional fall and winter dates (October and December) follow the September administration. Check act.org for the complete, up-to-date schedule.",
+        note: "Registering for the ACT is the family's responsibility, not ours: students and parents register through the student's own MyACT account. Register as early as you can — test centers are assigned first come, first served, and students who register late are far more likely to be sent to a center further from home. Late registration carries an extra fee. Scores are released roughly two to four weeks after each test date. Dates above are as published by ACT on August 9, 2026; confirm on their site before you rely on a deadline.",
       },
     ],
     seeAlso: ["sat-prep", "college-admissions"],
