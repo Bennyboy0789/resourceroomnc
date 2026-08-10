@@ -246,8 +246,12 @@ export type Program = {
  * step between the two is worse than no gallery.
  *
  * Every shot is a real project from a Resource Room camp week, cropped square
- * from the originals. None of them shows a child's face — a deliberate choice
- * while photo-release consent is unconfirmed, not a coincidence of framing.
+ * from the originals. Every photo but one avoids showing a child's face,
+ * deliberately, since most of these were picked before photo-release consent
+ * was confirmed for this batch. "Blacklight Lab Night" is the one exception —
+ * consent confirmed by Joe on Aug 9 2026 — and is the only entry here that
+ * should be treated as cleared for identifiable faces; do not use that
+ * confirmation to justify adding another face-visible photo later.
  */
 export const campGalleryPhotos: GalleryPhoto[] = [
   {
@@ -297,6 +301,13 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     alt: "Two glowing containers of neon liquid under blacklight, with glowing bottles in the background.",
     caption: "Blacklight Reactions",
     rotate: 1.5,
+  },
+  /* Consent confirmed by Joe on Aug 9 2026 — see the block comment above. */
+  {
+    src: "/images/gallery/blacklight-room.jpg",
+    alt: "Campers gathered around tables during a blacklight lab night, working with glowing science materials.",
+    caption: "Blacklight Lab Night",
+    rotate: -1.5,
   },
 ];
 
