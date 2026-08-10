@@ -238,6 +238,56 @@ export type Program = {
   externalUrl?: string;
 };
 
+/**
+ * Camp photos, shared by every page that markets camp.
+ *
+ * One list rather than a copy per page: these appear on the camps program
+ * page and on the Summer Camps product page, and a gallery that drifts out of
+ * step between the two is worse than no gallery.
+ *
+ * Every shot is a real project from a Resource Room camp week, cropped square
+ * from the originals. None of them shows a child's face — a deliberate choice
+ * while photo-release consent is unconfirmed, not a coincidence of framing.
+ */
+export const campGalleryPhotos: GalleryPhoto[] = [
+  {
+    src: "/images/gallery/science-flasks.jpg",
+    alt: "Six flasks of bubbling coloured liquid lined up on a tray during a camp chemistry experiment.",
+    caption: "Color Chemistry",
+    rotate: -3,
+  },
+  {
+    src: "/images/gallery/marble-painting.jpg",
+    alt: "A tray holding a sheet of paper covered in criss-crossed paint trails made by rolling marbles.",
+    caption: "Marble Splatter Art",
+    rotate: 2,
+  },
+  {
+    src: "/images/gallery/magnet-tiles.jpg",
+    alt: "A tower built from translucent coloured magnetic tiles, with toy vehicles parked around it.",
+    caption: "Magnetic Tile Build",
+    rotate: -2,
+  },
+  {
+    src: "/images/gallery/spaghetti-tower.jpg",
+    alt: "A free-standing tower frame built from dry spaghetti and marshmallows on a table.",
+    caption: "Spaghetti Tower Challenge",
+    rotate: 3,
+  },
+  {
+    src: "/images/gallery/track-build.jpg",
+    alt: "Hexagonal track tiles laid out across the floor into a road network, with a toy digger on a ramp.",
+    caption: "Track Engineering",
+    rotate: -1.5,
+  },
+  {
+    src: "/images/gallery/peg-mosaic.jpg",
+    alt: "A camper pressing coloured pegs into a mosaic pegboard beside a tray of spare pegs.",
+    caption: "Pixel Mosaic Design",
+    rotate: 2.5,
+  },
+];
+
 export const programs: Program[] = [
   {
     slug: "tutoring",
@@ -523,6 +573,17 @@ export const programs: Program[] = [
             ],
           },
         ],
+      },
+      /* Straight after the daily timetable: the schedule says what a day is
+         made of, and this shows it. */
+      {
+        kind: "gallery",
+        eyebrow: "From camp",
+        title: "What a week actually",
+        accent: "looks like.",
+        description:
+          "Real projects from real camp weeks, built by campers who came back the next week to do it again.",
+        photos: campGalleryPhotos,
       },
       {
         kind: "schedule",

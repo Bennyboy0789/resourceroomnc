@@ -102,7 +102,11 @@ export function PhotoCarousel({ photos }: { photos: GalleryPhoto[] }) {
                   className="absolute -top-3 left-1/2 h-6 w-6 -translate-x-1/2 -rotate-12 text-sun-500 drop-shadow"
                 />
               ) : null}
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-mist">
+              {/* Square, like the picture area of a real polaroid. It is also
+                  the crop that costs the least: the source photos are mostly
+                  4:3 landscape, and a portrait frame would have thrown away
+                  about 40% of every one of them. */}
+              <div className="relative aspect-square w-full overflow-hidden bg-mist">
                 <Image
                   src={photo.src}
                   alt={main ? photo.alt : ""}
