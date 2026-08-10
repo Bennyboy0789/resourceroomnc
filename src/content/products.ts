@@ -968,6 +968,81 @@ export const products: ProductPage[] = [
           },
         ],
       },
+      /*
+       * College Board's published SAT calendar, transcribed from
+       * satsuite.collegeboard.org/sat/dates-deadlines on 9 August 2026.
+       *
+       * This is somebody else's data on somebody else's schedule, and it is
+       * the one block on the site that goes stale without anyone touching the
+       * repo. The note carries the date it was checked and sends the reader to
+       * College Board to confirm, so a deadline that moves embarrasses nobody.
+       * The 2027-28 dates College Board lists as "anticipated" are left out on
+       * purpose — publishing a date they have not committed to is worse than
+       * publishing nothing.
+       */
+      {
+        kind: "schedule",
+        eyebrow: "2026–27 SAT calendar",
+        title: "Test dates and registration",
+        accent: "deadlines.",
+        description:
+          "Every SAT date College Board has confirmed for the 2026–27 year, with the deadline to register for each one. All deadlines close at 11:59 p.m. ET.",
+        bookHref: "https://satsuite.collegeboard.org/sat/dates-deadlines",
+        bookLabel: "Register at College Board",
+        groups: [
+          {
+            title: "Fall 2026",
+            rows: [
+              {
+                label: "August 22, 2026",
+                value: "Register by August 7, 2026",
+                note: "Changes and late registration until August 11, 2026",
+              },
+              {
+                label: "September 12, 2026",
+                value: "Register by August 28, 2026",
+                note: "Changes and late registration until September 1, 2026",
+              },
+              {
+                label: "October 3, 2026",
+                value: "Register by September 18, 2026",
+                note: "Changes and late registration until September 22, 2026",
+              },
+              {
+                label: "November 7, 2026",
+                value: "Register by October 23, 2026",
+                note: "Changes and late registration until October 27, 2026",
+              },
+              {
+                label: "December 5, 2026",
+                value: "Register by November 20, 2026",
+                note: "Changes and late registration until November 24, 2026",
+              },
+            ],
+          },
+          {
+            title: "Spring 2027",
+            rows: [
+              {
+                label: "March 6, 2027",
+                value: "Register by February 19, 2027",
+                note: "Changes and late registration until February 23, 2027",
+              },
+              {
+                label: "May 1, 2027",
+                value: "Register by April 16, 2027",
+                note: "Changes and late registration until April 20, 2027",
+              },
+              {
+                label: "June 5, 2027",
+                value: "Register by May 21, 2027",
+                note: "Changes and late registration until May 25, 2027",
+              },
+            ],
+          },
+        ],
+        note: "Registering for the SAT is the family's responsibility, not ours: students and parents register through the student's own College Board account. Register as early as you can — test centers are assigned first come, first served, and students who register late are far more likely to be sent to a center further from home. Late registration carries an extra fee. Dates above are as published by College Board on August 9, 2026; confirm on their site before you rely on a deadline.",
+      },
     ],
     seeAlso: ["act-prep", "college-admissions"],
   },

@@ -457,8 +457,18 @@ function Schedule({
   bookHref?: string;
   bookLabel?: string;
 }) {
+  /* What a screen reader hears after the date. The button label is written for
+     a button ("Book a camp week"), so it reads wrong appended to a date. */
+  const bookAction = (bookLabel ?? "Book now").toLowerCase();
+
   const cards = groups.map((group, index) => (
-    <ScheduleCard key={group.title} group={group} index={index} bookHref={bookHref} />
+    <ScheduleCard
+      key={group.title}
+      group={group}
+      index={index}
+      bookHref={bookHref}
+      bookAction={bookAction}
+    />
   ));
 
   return (
@@ -493,14 +503,57 @@ function Schedule({
   );
 }
 
+/**
+ * A schedule row's date, as a link.
+ *
+ * Off-site destinations open in a new tab and carry the diagonal arrow, so a
+ * family clicking a College Board test date does not lose the page they were
+ * reading. On-site links stay in the client router.
+ */
+function ScheduleRowLink({
+  href,
+  label,
+  action,
+}: {
+  href: string;
+  label: string;
+  action: string;
+}) {
+  const offsite = href.startsWith("http");
+  const classes =
+    "group inline-flex min-h-11 items-center gap-1.5 text-brand-500 transition-colors hover:text-brand-600";
+  const body = (
+    <>
+      {label}
+      <Icon
+        name={offsite ? "arrowUpRight" : "arrowRight"}
+        className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
+      />
+      <span className="sr-only"> — {action}</span>
+    </>
+  );
+
+  return offsite ? (
+    <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+      {body}
+    </a>
+  ) : (
+    <Link href={href} className={classes}>
+      {body}
+    </Link>
+  );
+}
+
 function ScheduleCard({
   group,
   index,
   bookHref,
+  bookAction,
 }: {
   group: ScheduleGroup;
   index: number;
   bookHref?: string;
+  bookAction: string;
 }) {
   return (
     <Reveal delay={stagger(index % 6, 0.04)}>
@@ -520,17 +573,7 @@ function ScheduleCard({
                   content, so the date itself becomes the link. */}
               <dt className="text-xs font-bold uppercase tracking-[0.06em] text-navy-500">
                 {bookHref ? (
-                  <Link
-                    href={bookHref}
-                    className="group inline-flex min-h-11 items-center gap-1.5 text-brand-500 transition-colors hover:text-brand-600"
-                  >
-                    {row.label}
-                    <Icon
-                      name="arrowRight"
-                      className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
-                    />
-                    <span className="sr-only"> — book this week</span>
-                  </Link>
+                  <ScheduleRowLink href={bookHref} label={row.label} action={bookAction} />
                 ) : (
                   row.label
                 )}
