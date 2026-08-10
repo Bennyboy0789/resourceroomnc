@@ -84,6 +84,8 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
       );
     case "gallery":
       return <PhotoCarousel photos={block.photos} />;
+    case "video":
+      return <Videos videos={block.videos} vertical={block.vertical} />;
     case "checklist":
       return <Checklist items={block.items} />;
     case "dates":
@@ -557,6 +559,57 @@ function ScheduleCard({
         ) : null}
       </div>
     </Reveal>
+  );
+}
+
+/**
+ * YouTube embeds.
+ *
+ * Served from youtube-nocookie.com, which holds off on the tracking cookie
+ * until someone actually presses play, and deferred with `loading="lazy"` so
+ * the player only downloads once the reader has scrolled near it. Two eager
+ * embeds is about a megabyte of third-party JavaScript charged to a phone
+ * that may never reach this far down the page.
+ *
+ * `rel=0` keeps the end screen on this channel rather than offering up a
+ * competitor's camp.
+ */
+function Videos({
+  videos,
+  vertical,
+}: {
+  videos: { id: string; title: string }[];
+  vertical?: boolean;
+}) {
+  return (
+    <ul className={cn("grid gap-6", videos.length > 1 && "sm:grid-cols-2")}>
+      {videos.map((video, index) => (
+        <Reveal
+          key={video.id}
+          as="li"
+          delay={stagger(index, 0.08)}
+          /* Shorts are tall. Left full-width they tower over everything else
+             on the page, so they are capped and centred in their column. */
+          className={vertical ? "mx-auto w-full max-w-[330px]" : "w-full"}
+        >
+          <div
+            className={cn(
+              "overflow-hidden rounded-card bg-navy-950 shadow-lg",
+              vertical ? "aspect-[9/16]" : "aspect-video",
+            )}
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+              title={video.title}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="h-full w-full border-0"
+            />
+          </div>
+        </Reveal>
+      ))}
+    </ul>
   );
 }
 

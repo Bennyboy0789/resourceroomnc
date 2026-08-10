@@ -181,6 +181,22 @@ export type ProgramBlock =
    * of broken images on the page.
    */
   | (BlockHeading & { kind: "gallery"; photos: GalleryPhoto[] })
+  /*
+   * YouTube embeds.
+   *
+   * `vertical` is for Shorts, which are 9:16 — in a 16:9 frame they render
+   * as a thin strip of video between two black pillars.
+   *
+   * The renderer embeds through youtube-nocookie.com and defers the iframe
+   * until it is near the viewport. An embed is roughly half a megabyte of
+   * third-party JavaScript, and two of them above the fold would undo the
+   * page's load time on a phone.
+   */
+  | (BlockHeading & {
+      kind: "video";
+      videos: { id: string; title: string }[];
+      vertical?: boolean;
+    })
   | (BlockHeading & { kind: "checklist"; items: string[] })
   | (BlockHeading & {
       kind: "dates";
@@ -607,6 +623,20 @@ export const programs: Program[] = [
         description:
           "Real projects from real camp weeks, built by campers who came back the next week to do it again.",
         photos: campGalleryPhotos,
+      },
+      /* Stills, then motion. Both are Shorts from the Resource Room channel. */
+      {
+        kind: "video",
+        eyebrow: "Camp in motion",
+        title: "A camp week, start to",
+        accent: "finish.",
+        description:
+          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+        vertical: true,
+        videos: [
+          { id: "QpW6dnlvWuQ", title: "Resource Room STEM Camp 1" },
+          { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
+        ],
       },
       {
         kind: "schedule",
