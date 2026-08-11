@@ -10,7 +10,7 @@ import { CartButton } from "@/components/shop/CartDrawer";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
-import { getProgram, imagePosition, programs } from "@/content/programs";
+import { getProgram, imagePosition } from "@/content/programs";
 import { menuChildrenFor } from "@/content/products";
 import { navigation, programMenuGroups, site } from "@/content/site";
 import { cn } from "@/lib/cn";
@@ -387,21 +387,42 @@ function MobileMenu({
             }
 
             const expanded = section === item.label;
-            /* Each program is followed by its product pages, indented — the
-               same second tier the desktop menu shows under Camps. */
+            /*
+             * Walks `programMenuGroups`, the same curated source the desktop
+             * mega menu uses, so the two menus cannot disagree about what the
+             * programs are.
+             *
+             * It used to walk the raw `programs` array instead, which is every
+             * program that has a page rather than every program that belongs
+             * in the menu. Summer Bridge is the case that exposed it: it is a
+             * program in its own right *and* a product under Tutoring, so it
+             * came out twice — once nested where it belongs, and once as a
+             * top-level entry at the bottom of the list, because it happens to
+             * be last in the array.
+             *
+             * Each program is followed by its product pages, indented, which
+             * is the second tier the desktop menu shows under Camps.
+             */
             const links = item.mega
-              ? programs.flatMap((program) => [
-                  {
-                    label: program.shortName,
-                    href: `/programs/${program.slug}`,
-                    nested: false,
-                  },
-                  ...menuChildrenFor(program.slug).map((product) => ({
-                    label: product.name,
-                    href: `/programs/${program.slug}/${product.slug}`,
-                    nested: true,
-                  })),
-                ])
+              ? programMenuGroups.flatMap((group) =>
+                  group.slugs.flatMap((slug) => {
+                    const program = getProgram(slug);
+                    if (!program) return [];
+
+                    return [
+                      {
+                        label: program.shortName,
+                        href: `/programs/${slug}`,
+                        nested: false,
+                      },
+                      ...menuChildrenFor(slug).map((product) => ({
+                        label: product.name,
+                        href: `/programs/${slug}/${product.slug}`,
+                        nested: true,
+                      })),
+                    ];
+                  }),
+                )
               : (item.children ?? []).map((link) => ({ ...link, nested: false }));
 
             return (
