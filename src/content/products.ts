@@ -34,7 +34,7 @@ export type ProductPage = {
    * Replaces the bare price line in the buy box.
    *
    * For products quoted at consultation rather than sold off a rate card: a
-   * lone "from $350" invites the reader to assume that is the price. This
+   * lone "from $375" invites the reader to assume that is the price. This
    * says what the figure actually is. `priceLabel` still stands on cards and
    * in the product grid, where there is only room for a number.
    */
@@ -109,9 +109,11 @@ export const products: ProductPage[] = [
     tagline: "Educator-led. Personally matched. The right tutor for every student.",
     summary:
       "Private, individualized tutoring for all subject areas from K–12. We work alongside emerging learners all the way through the most challenging high school courses.",
-    priceLabel: "Packages from $350",
+    /* Starter Stack at the K–5 band, the cheapest package on the rate card.
+       Keep in step with content/tutoring-packages when prices change. */
+    priceLabel: "Packages from $375",
     priceNote:
-      "Packages start at $350. Your exact price depends on subjects, hours, and goals, and we'll map that out together on a free call. No pressure, no upsell, just the plan that fits.",
+      "Packages start at $375. Your exact price depends on subjects, hours, and goals, and we'll map that out together on a free call. No pressure, no upsell, just the plan that fits.",
     reviewTopic: "tutoring",
     image: {
       src: "/images/program-tutoring.jpg",

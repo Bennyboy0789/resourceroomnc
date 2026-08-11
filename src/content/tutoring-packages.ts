@@ -209,7 +209,11 @@ export const academicYear = {
       featured: true,
     },
   ] satisfies PricedPlan[],
-  oneTimeNote: "One-time payment · save 5% · our lowest rate, as low as $66/hr",
+  /* $67, not $66: the lowest hourly on the card is the one-time 8h/mo K–5
+     plan, $4,790 over 72 hours, which is $66.53. Every other per-hour cue on
+     this page divides exactly, so this was the one figure a family could
+     check and find short. */
+  oneTimeNote: "One-time payment · save 5% · our lowest rate, as low as $67/hr",
   bestFor:
     "Returning families who want consistent support and the best hourly rate we offer. Perfect for students with academic gaps or long-term goals.",
 };
