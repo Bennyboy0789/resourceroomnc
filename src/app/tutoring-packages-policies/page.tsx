@@ -13,9 +13,11 @@ import {
   packagesFaqs,
   packagesMeta,
   policies,
+  readingIntervention,
   registrationFee,
   subscription,
   type PricedPlan,
+  type TermPlan,
 } from "@/content/tutoring-packages";
 import { site } from "@/content/site";
 import { stagger } from "@/lib/stagger";
@@ -69,7 +71,10 @@ export default function TutoringPackagesPage() {
               {registrationFee.title}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-navy-600">{registrationFee.body}</p>
-            <ul className="mt-4 space-y-2.5">
+            <h3 className="mt-5 text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
+              {registrationFee.waivedTitle}
+            </h3>
+            <ul className="mt-3 space-y-2.5">
               {registrationFee.waivedFor.map((item) => (
                 <li key={item} className="flex gap-3 text-sm leading-relaxed text-navy-700">
                   <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
@@ -77,6 +82,9 @@ export default function TutoringPackagesPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-5 border-t border-navy-900/10 pt-4 text-sm leading-relaxed text-navy-600">
+              {registrationFee.upgradeNote}
+            </p>
           </aside>
         </div>
 
@@ -102,8 +110,45 @@ export default function TutoringPackagesPage() {
         </ul>
       </Section>
 
-      {/* -------------------------------------------------- subscription */}
+      {/* -------------------------------------------- reading intervention */}
       <Section tone="white" size="wide">
+        <SectionHeading
+          eyebrow="Reading"
+          title="Emerging reader"
+          accent="intervention."
+          description={readingIntervention.description}
+        />
+
+        <div className="mt-12 rounded-card border-l-4 border-brand-500 bg-mist p-7 sm:p-8">
+          <h3 className="text-base font-bold tracking-tight text-navy-950">
+            {readingIntervention.rationaleTitle}
+          </h3>
+          <p className="mt-3 leading-relaxed text-navy-600">{readingIntervention.rationale}</p>
+
+          <h3 className="mt-8 text-base font-bold tracking-tight text-navy-950">
+            {readingIntervention.includesTitle}
+          </h3>
+          <ul className="mt-4 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+            {readingIntervention.includes.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-relaxed text-navy-700">
+                <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-sun-700" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <ul className="mx-auto mt-8 grid max-w-4xl gap-6 sm:grid-cols-2">
+          {readingIntervention.plans.map((plan, index) => (
+            <Reveal key={plan.name} as="li" delay={stagger(index, 0.08)} className="h-full">
+              <TermCard plan={plan} />
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
+
+      {/* -------------------------------------------------- subscription */}
+      <Section tone="mist" size="wide">
         <SectionHeading
           eyebrow="Monthly"
           title="Scholar's"
@@ -121,7 +166,7 @@ export default function TutoringPackagesPage() {
       </Section>
 
       {/* ------------------------------------------------- academic year */}
-      <Section tone="mist" size="wide">
+      <Section tone="white" size="wide">
         <SectionHeading
           eyebrow="Returning clients"
           title="Full academic year"
@@ -145,7 +190,7 @@ export default function TutoringPackagesPage() {
       </Section>
 
       {/* ----------------------------------------------------- incentives */}
-      <Section tone="white">
+      <Section tone="mist">
         <SectionHeading eyebrow="Extras" title="Bonus" accent="incentives." align="center" />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {bonusIncentives.items.map((item, index) => (
@@ -166,7 +211,7 @@ export default function TutoringPackagesPage() {
       </Section>
 
       {/* ------------------------------------------------------- policies */}
-      <Section tone="mist">
+      <Section tone="white">
         <SectionHeading
           eyebrow="The fine print"
           title="Policies &"
@@ -219,7 +264,7 @@ export default function TutoringPackagesPage() {
       </Section>
 
       {/* ------------------------------------------------------------ faq */}
-      <Section tone="white">
+      <Section tone="mist">
         <SectionHeading eyebrow="Questions" title="Frequently asked" accent="questions." />
         <div className="mt-10 max-w-3xl divide-y divide-navy-900/10 border-y border-navy-900/10">
           {packagesFaqs.map((item) => (
@@ -314,6 +359,51 @@ function PlanCard({ plan, bestFor }: { plan: PricedPlan; bestFor?: string }) {
           {bestFor}
         </p>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * One reading-intervention term.
+ *
+ * Reading is priced per session at one rate for everyone, so this card leads
+ * on the per-session figure and carries a single total, rather than the four
+ * grade bands a `PlanCard` shows.
+ */
+function TermCard({ plan }: { plan: TermPlan }) {
+  return (
+    <div
+      className={`flex h-full flex-col rounded-card border bg-white p-7 ${
+        plan.featured ? "border-sun-500 ring-1 ring-sun-500" : "border-navy-900/10"
+      }`}
+    >
+      {plan.badge ? (
+        <span className="mb-4 inline-flex self-start rounded-full bg-sun-500 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.1em] text-navy-950">
+          {plan.badge}
+        </span>
+      ) : null}
+
+      <h3 className="text-lg font-bold tracking-tight text-navy-950">{plan.name}</h3>
+      <p className="mt-1.5 text-sm text-navy-600">{plan.meta}</p>
+      <p className="mt-3 inline-flex self-start rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.06em] text-brand-500">
+        {plan.perSession}
+      </p>
+
+      <dl className="mt-6 border-y border-navy-900/8">
+        <div className="flex items-center justify-between gap-4 py-2.5">
+          <dt className="text-sm text-navy-600">{plan.priceLabel}</dt>
+          <dd className="text-sm font-bold tabular-nums text-navy-950">{plan.price}</dd>
+        </div>
+      </dl>
+
+      <p className="mt-4 text-xs font-semibold uppercase tracking-[0.06em] text-navy-500">
+        {plan.completeWithin}
+      </p>
+
+      <p className="mt-auto pt-5 text-sm leading-relaxed text-navy-600">
+        <span className="font-bold text-navy-950">Best for: </span>
+        {plan.bestFor}
+      </p>
     </div>
   );
 }
