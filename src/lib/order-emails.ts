@@ -184,6 +184,31 @@ export function customerReceiptEmail(order: Order) {
   };
 }
 
+/**
+ * Which variant a line item's Price is — the camp week, the test date, the
+ * grade level.
+ *
+ * Stripe's line-item `description` is the product name alone ("STEM Themed
+ * Camps"), so an order for a specific week read as just the product and the
+ * office could not tell which week the family paid for. The seed script writes
+ * the variant onto each Price twice: `nickname` carries the human label
+ * ("Summer July 27-31") and `opt_<Attribute>` metadata carries the raw values.
+ * The nickname is preferred because it joins multi-attribute variants in the
+ * curated order; metadata is the fallback for prices created without one.
+ */
+function variantLabel(price: Stripe.Price | null | undefined): string | null {
+  if (!price) return null;
+
+  // Single-variant products are seeded with the placeholder nickname
+  // "Standard" — there was nothing to choose, so there is nothing to say.
+  if (price.nickname && price.nickname !== "Standard") return price.nickname;
+
+  const values = Object.entries(price.metadata ?? {})
+    .filter(([key, value]) => key.startsWith("opt_") && value)
+    .map(([, value]) => value);
+  return values.length ? values.join(" / ") : null;
+}
+
 /** Flattens a Stripe Checkout Session into the shape both emails read from. */
 export function orderFromSession(session: Stripe.Checkout.Session): Order {
   const address = session.customer_details?.address;
@@ -204,11 +229,15 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     billingAddress: billing,
     studentName: studentField?.text?.value ?? null,
     enrollmentNotes: session.metadata?.enrollment_notes ?? null,
-    lines: (session.line_items?.data ?? []).map((item) => ({
-      description: item.description ?? "Item",
-      quantity: item.quantity ?? 1,
-      amountTotal: item.amount_total ?? 0,
-    })),
+    lines: (session.line_items?.data ?? []).map((item) => {
+      const name = item.description ?? "Item";
+      const variant = variantLabel(item.price);
+      return {
+        description: variant && variant !== name ? `${name} — ${variant}` : name,
+        quantity: item.quantity ?? 1,
+        amountTotal: item.amount_total ?? 0,
+      };
+    }),
     amountTotal: session.amount_total ?? 0,
     currency: session.currency ?? "usd",
   };
