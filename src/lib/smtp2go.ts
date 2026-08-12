@@ -33,6 +33,14 @@ export type MailPayload = {
   replyTo?: string;
   /** Resumes from the careers form. Omitted for the consultation form. */
   attachments?: MailAttachment[];
+  /**
+   * Recipients, when they are not the office.
+   *
+   * Everything else here goes to `SMTP2GO_TO` — a form submission is always
+   * inbound. The order receipt is the exception: it goes out to the customer,
+   * so it passes their address explicitly.
+   */
+  to?: string[];
 };
 
 export function mailerConfigured(): boolean {
@@ -44,6 +52,7 @@ export async function sendMail({
   text,
   replyTo,
   attachments,
+  to: explicitTo,
 }: MailPayload): Promise<void> {
   const apiKey = process.env.SMTP2GO_API_KEY;
   const sender = process.env.SMTP2GO_SENDER;
@@ -52,10 +61,18 @@ export async function sendMail({
     throw new Error("SMTP2Go is not configured: set SMTP2GO_API_KEY and SMTP2GO_SENDER");
   }
 
-  const to = (process.env.SMTP2GO_TO ?? "Learn@ResourceRoomNC.com")
-    .split(",")
+  const to = (explicitTo ?? [])
+    .concat(
+      explicitTo?.length
+        ? []
+        : (process.env.SMTP2GO_TO ?? "Learn@ResourceRoomNC.com").split(","),
+    )
     .map((address) => address.trim())
     .filter(Boolean);
+
+  if (!to.length) {
+    throw new Error("SMTP2Go: no recipient");
+  }
 
   const response = await fetch(ENDPOINT, {
     method: "POST",
