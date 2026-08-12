@@ -25,10 +25,36 @@ export function getStripe(): Stripe | null {
   return cached;
 }
 
-/** Where Stripe sends people back to after checkout. */
+/**
+ * Where Stripe sends people back to after checkout.
+ *
+ * Order matters, and the middle entry is the one that was missing. `VERCEL_URL`
+ * is the per-deployment hostname — `project-hash-scope.vercel.app` — never the
+ * custom domain, and deployment hostnames sit behind Vercel Authentication. A
+ * live customer who paid was bounced to a Vercel login page instead of the
+ * confirmation page, because `NEXT_PUBLIC_SITE_URL` was unset and this fell
+ * straight through to that hostname.
+ *
+ * `VERCEL_PROJECT_PRODUCTION_URL` is the project's real production domain and
+ * is injected automatically, so production now lands correctly even if nobody
+ * sets `NEXT_PUBLIC_SITE_URL`. That variable still wins when present, which is
+ * what pins the apex-versus-www choice.
+ */
 export function siteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
-  );
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  if (process.env.VERCEL_URL) {
+    /* A preview. Fine for a preview, but worth saying out loud if it ever
+       happens on something customer-facing. */
+    console.warn(
+      "[stripe] NEXT_PUBLIC_SITE_URL unset; returning customers to the deployment URL,",
+      "which may be behind Vercel Authentication.",
+    );
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return "http://localhost:3000";
 }
