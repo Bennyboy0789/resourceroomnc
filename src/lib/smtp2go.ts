@@ -92,7 +92,17 @@ export async function sendMail({
   });
 
   if (!response.ok) {
-    throw new Error(`SMTP2Go returned ${response.status}`);
+    /*
+     * The body carries the reason; the status alone does not. A 403 can mean a
+     * revoked key, a key without the "Email: send" scope, or a key restricted
+     * to an IP allowlist that a serverless function will never match — three
+     * different fixes behind one number. Truncated because SMTP2Go can return
+     * a long payload, and it holds no credentials worth redacting.
+     */
+    const detail = await response.text().catch(() => "");
+    throw new Error(
+      `SMTP2Go returned ${response.status}${detail ? `: ${detail.slice(0, 300)}` : ""}`,
+    );
   }
 
   // A 200 can still carry a per-message failure, so check the envelope.
