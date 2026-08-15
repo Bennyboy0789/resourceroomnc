@@ -206,9 +206,10 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
             </legend>
             <div className="flex flex-wrap gap-2">
               {attribute.options.map((option) => {
-                const available = reachable.some(
-                  (variant) => variant.options[attribute.name] === option,
-                );
+                const soldOut = attribute.soldOut.includes(option);
+                const available =
+                  !soldOut &&
+                  reachable.some((variant) => variant.options[attribute.name] === option);
                 const active = chosen(attribute.name).includes(option);
 
                 return (
@@ -224,13 +225,21 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
                         ? "border-navy-950 bg-navy-950 text-white"
                         : "border-navy-950/20 text-navy-800 hover:border-navy-950",
                       !available &&
-                        "cursor-not-allowed border-navy-950/10 text-navy-950/30 line-through hover:border-navy-950/10",
+                        "cursor-not-allowed border-navy-950/10 text-navy-950/30 hover:border-navy-950/10",
                     )}
                   >
                     {/* A tick makes "several are on at once" readable at a glance,
                         which a filled background alone does not on a wall of 55. */}
                     {multiSelect && active ? <Icon name="check" className="h-3.5 w-3.5" /> : null}
-                    {option}
+                    {/* The strike is on the label, not the button. A decoration
+                        set on the button paints through everything inside it,
+                        and a descendant cannot opt out — which would draw a
+                        line through "Sold out" as well. */}
+                    <span className={cn(!available && "line-through")}>{option}</span>
+                    {/* Said in words as well as struck through: the strike alone
+                        also marks combinations that are merely unreachable, and
+                        "full" is a different thing to tell a parent. */}
+                    {soldOut ? <span>· Sold out</span> : null}
                   </button>
                 );
               })}

@@ -21,6 +21,12 @@ export type CatalogAttribute = {
   name: string;
   options: string[];
   /**
+   * Options that are full. Shown, struck through and unselectable rather than
+   * removed: a family looking for the week their neighbour booked should see
+   * that it exists and has gone, not silently fail to find it.
+   */
+  soldOut: string[];
+  /**
    * Asked at enrollment but not part of choosing a variant — it carries no
    * price of its own and is passed through as order metadata. Migrated from
    * Woo attributes that were marked "used for variations" yet left unset on
@@ -35,6 +41,16 @@ export type CatalogVariant = {
   currency: string;
   /** Attribute name to value, for the price-bearing attributes only. */
   options: Record<string, string>;
+  /**
+   * `metadata.sold_out = "true"` on the Stripe Price.
+   *
+   * Deliberately not archiving the price: archiving removes the option from
+   * the page entirely, and a camp week that filled should still be visible.
+   * Keeping it in metadata also means a week closes and reopens from the
+   * Stripe dashboard, with no deploy — which matters in camp season, when
+   * that happens far more often than the code changes.
+   */
+  soldOut: boolean;
 };
 
 export type CatalogProduct = {
@@ -220,6 +236,7 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
         amount: price.unit_amount,
         currency: price.currency,
         options,
+        soldOut: price.metadata?.sold_out === "true",
       });
       byProduct.set(productId, list);
     }
@@ -242,6 +259,7 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
           return {
             name,
             options: splitList(product.metadata?.[`options_${name}`]),
+            soldOut: [],
             informational: true,
           };
         }
@@ -250,10 +268,23 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
           const value = variant.options[name];
           if (value && !seen.includes(value)) seen.push(value);
         }
+
+        /*
+         * Sold out only when every price carrying that value is sold out. On a
+         * product with one attribute that is the single price behind the chip;
+         * on a multi-attribute product it means the option is unbuyable in
+         * every remaining combination, which is the only case where striking
+         * it through is honest.
+         */
+        const soldOut = seen.filter((value) => {
+          const carrying = variants.filter((variant) => variant.options[name] === value);
+          return carrying.length > 0 && carrying.every((variant) => variant.soldOut);
+        });
+
         /* Only the derived options are reordered. An informational attribute's
            list is hand-written in product metadata, so its author's order is
            the intended one. */
-        return { name, options: inCalendarOrder(seen), informational: false };
+        return { name, options: inCalendarOrder(seen), soldOut, informational: false };
       });
 
       catalog.push({
