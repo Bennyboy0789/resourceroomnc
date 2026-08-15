@@ -91,11 +91,27 @@ export async function POST(request: Request) {
       // metadata value at 500 characters, so this is trimmed rather than
       // allowed to fail the whole session.
       metadata: noteLines.length ? { enrollment_notes: noteLines.join("; ").slice(0, 500) } : {},
+      /*
+       * Stripe allows three. The second exists because single-day camps and
+       * teacher workdays are bought as a quantity rather than a dated option,
+       * so without somewhere to write it down the office receives an order for
+       * "two single days" with no way to know which two.
+       *
+       * Optional on purpose: it is the right place for a question, and a
+       * required free-text box in front of a card form loses sales.
+       */
       custom_fields: [
         {
           key: "student_name",
           label: { type: "custom", custom: "Student name" },
           type: "text",
+        },
+        {
+          key: "notes",
+          label: { type: "custom", custom: "Dates needed, or a note for us" },
+          type: "text",
+          optional: true,
+          text: { maximum_length: 255 },
         },
       ],
     });

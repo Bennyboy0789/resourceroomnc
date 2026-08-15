@@ -32,6 +32,11 @@ export type Order = {
   billingAddress: string | null;
   /** From the checkout's custom field. */
   studentName: string | null;
+  /**
+   * What the family typed in the free-text field at checkout — usually which
+   * dates they want for a single-day booking, sometimes a question.
+   */
+  customerNote: string | null;
   /** Answers to picker options that carried no price of their own. */
   enrollmentNotes: string | null;
   lines: OrderLine[];
@@ -106,6 +111,13 @@ export function officeOrderEmail(order: Order) {
     `  Billing:      ${order.billingAddress ?? "—"}`,
   ];
 
+  /* Above the picker answers and the customer block: this is the one part of
+     the order somebody has to read and act on, and it is where the dates for
+     a single-day booking arrive. */
+  if (order.customerNote) {
+    lines.push("", "NOTE FROM THE FAMILY", `  ${order.customerNote}`);
+  }
+
   const notes = parseNotes(order.enrollmentNotes);
   if (notes.length) {
     lines.push(
@@ -164,6 +176,12 @@ export function customerReceiptEmail(order: Order) {
     lines.push("", "DATES AND OPTIONS YOU CHOSE", ...notes.map((note) => `  ${note.value}`));
   }
 
+  /* Read back to them. If they asked for particular dates, seeing their own
+     words repeated is what tells them the request landed somewhere. */
+  if (order.customerNote) {
+    lines.push("", "WHAT YOU TOLD US", `  ${order.customerNote}`);
+  }
+
   lines.push(
     "",
     "WHAT HAPPENS NEXT",
@@ -218,7 +236,8 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
         .join(", ")
     : null;
 
-  const studentField = session.custom_fields?.find((field) => field.key === "student_name");
+  const field = (key: string) =>
+    session.custom_fields?.find((entry) => entry.key === key)?.text?.value || null;
 
   return {
     reference: session.id,
@@ -227,7 +246,8 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     customerEmail: session.customer_details?.email ?? null,
     customerPhone: session.customer_details?.phone ?? null,
     billingAddress: billing,
-    studentName: studentField?.text?.value ?? null,
+    studentName: field("student_name"),
+    customerNote: field("notes"),
     enrollmentNotes: session.metadata?.enrollment_notes ?? null,
     lines: (session.line_items?.data ?? []).map((item) => {
       const name = item.description ?? "Item";
