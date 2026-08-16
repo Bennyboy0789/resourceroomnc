@@ -53,8 +53,36 @@ function litAt(index: number, total: number) {
  * Under prefers-reduced-motion everything renders complete and still, with no
  * looping motion at all, exactly as Reveal behaves elsewhere on the site.
  */
-export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
+/*
+ * The highlighted node has to be the odd one out among the five, which means
+ * it cannot reuse the page's own accent: on a sun-accented program every chip
+ * is already sun-500, so a sun node reads as matching the furniture and the
+ * four plain nodes become the unusual ones. Gold pops on a blue page, navy
+ * pops on a gold one.
+ */
+function highlightTone(accent: "sun" | "blue") {
+  return accent === "sun"
+    ? {
+        node: "border-navy-950 bg-navy-950 text-sun-500 shadow-lg shadow-navy-950/25",
+        ring: "border-navy-950",
+        badge: "bg-navy-950 text-sun-500",
+      }
+    : {
+        node: "border-sun-500 bg-sun-500 text-navy-950 shadow-lg shadow-sun-500/30",
+        ring: "border-sun-500",
+        badge: "bg-sun-500 text-navy-950",
+      };
+}
+
+export function JourneyPath({
+  steps,
+  accent,
+}: {
+  steps: JourneyStep[];
+  accent: "sun" | "blue";
+}) {
   const reduce = useReducedMotion();
+  const tone = highlightTone(accent);
 
   const viewport = { once: true, margin: "0px 0px -15% 0px" } as const;
 
@@ -126,9 +154,7 @@ export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
         {steps.map((step, index) => {
           const circleClass = cn(
             "relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border-2",
-            step.highlight
-              ? "border-sun-500 bg-sun-500 text-navy-950 shadow-lg shadow-sun-500/30"
-              : "border-brand-500/30 bg-white text-brand-500",
+            step.highlight ? tone.node : "border-brand-500/30 bg-white text-brand-500",
           );
 
           /* Both the swell and the ring fire on the beat the light arrives. */
@@ -157,7 +183,7 @@ export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
                 aria-hidden="true"
                 className={cn(
                   "pointer-events-none absolute -inset-0.5 rounded-full border-2",
-                  step.highlight ? "border-sun-500" : "border-brand-500",
+                  step.highlight ? tone.ring : "border-brand-500",
                 )}
                 initial={{ opacity: 0, scale: 1 }}
                 animate={{ opacity: [0, 0.7, 0], scale: [1, 1.4, 1.8] }}
@@ -173,7 +199,12 @@ export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
 
               <div className="min-w-0 lg:mt-5">
                 {step.badge ? (
-                  <span className="mb-2 inline-flex rounded-full bg-sun-500 px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.1em] text-navy-950">
+                  <span
+                    className={cn(
+                      "mb-2 inline-flex rounded-full px-2.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.1em]",
+                      tone.badge,
+                    )}
+                  >
                     {step.badge}
                   </span>
                 ) : null}

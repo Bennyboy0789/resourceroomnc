@@ -1918,31 +1918,39 @@ export const programs: Program[] = [
           "Mr. C's insider knowledge from university-level admissions gives your student a genuine, distinct advantage.",
       },
       {
-        kind: "steps",
+        kind: "journey",
         eyebrow: "Our process",
         title: "From first conversation to final",
         accent: "submission.",
-        description: "A clear, collaborative path, tailored to your student.",
+        description:
+          "A clear, collaborative path, tailored to your student — and read at every stage by someone who used to sit on the admissions side of the desk.",
         steps: [
           {
             title: "Free consultation",
-            body: "We begin with your student's unique story. We listen, understand their background and goals, and map out a strategy for an essay and application that reflect who they truly are.",
+            body: "We start with your student's story: their background, their goals, and the colleges on the list. The strategy follows from there.",
+            icon: "users",
           },
           {
             title: "Planning meetings",
-            body: "Through guided brainstorming and theme exploration, we lay a solid foundation for the essay and partner with your student at every step.",
+            body: "Guided brainstorming and theme exploration, until there is a foundation genuinely worth building an essay on.",
+            icon: "compass",
           },
           {
             title: "First draft creation",
-            body: "We help transform ideas into a compelling first draft, with expert guidance that keeps the student's authentic voice front and center.",
+            body: "Ideas become a real draft. We guide the shape of it; your student writes every word of it.",
+            icon: "pencil",
           },
           {
             title: "Edits and revisions",
-            body: "Our editors provide detailed, constructive feedback, collaborating with your student to refine and strengthen the narrative.",
+            body: "Detailed editorial feedback from someone who read applications for a living — your student's essay, read the way a college will read it.",
+            icon: "target",
+            badge: "Admissions insider",
+            highlight: true,
           },
           {
             title: "Final draft perfection",
-            body: "We polish a powerful final draft built to capture an admissions officer's attention and leave a lasting impression.",
+            body: "A last polish, then submission: an application built to hold an admissions officer's attention to the final line.",
+            icon: "check",
           },
         ],
       },

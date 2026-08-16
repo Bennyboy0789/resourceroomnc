@@ -70,7 +70,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
     case "steps":
       return <Steps steps={block.steps} accent={accent} />;
     case "journey":
-      return <JourneyPath steps={block.steps} />;
+      return <JourneyPath steps={block.steps} accent={accent} />;
     case "pricing":
       return <Pricing tiers={block.tiers} note={block.note} accent={accent} />;
     case "person":
