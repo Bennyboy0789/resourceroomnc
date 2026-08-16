@@ -16,9 +16,33 @@ export type JourneyStep = {
 /** Matches Reveal's easing so the page animates as one system. */
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+/** Seconds the connector takes to draw itself in, once, on scroll. */
+const DRAW = 1.4;
+/** Seconds the travelling light takes to cross the drawn connector. */
+const TRAVEL = 2.8;
+/** Full loop: the light crosses, then the path rests before the next pass. */
+const CYCLE = 3.7;
+/** Seconds a node stays lit as the light passes through it. */
+const LIT = 0.7;
+
+/**
+ * The light is a band 20% of the track long, swept from just before the start
+ * to just past the end — so its center covers -10%..110% of the track. Solving
+ * for when that center sits over node `index` gives the moment to light it.
+ */
+function litAt(index: number, total: number) {
+  const position = index / Math.max(total - 1, 1);
+  return DRAW + (TRAVEL * (position + 0.1)) / 1.2;
+}
+
 /**
  * A process drawn as a path: numbered nodes joined by a line that draws
  * itself as the section scrolls into view, nodes popping in along it.
+ *
+ * Once drawn, the path stays alive — a light runs the length of it on a loop
+ * and each node pulses as the light reaches it, so the eye is walked 1→5
+ * rather than left on a static diagram. Node timings are derived from the
+ * light's position (see litAt) so the two never drift apart.
  *
  * Two layouts from one markup. On large screens the five nodes sit in a row
  * and the line runs horizontally behind their centers; below that the nodes
@@ -26,13 +50,22 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  * scaleX, one scaleY — each shown only at its own breakpoint, because a
  * single element cannot animate a different axis per media query.
  *
- * Under prefers-reduced-motion everything renders complete and still, exactly
- * as Reveal behaves elsewhere on the site.
+ * Under prefers-reduced-motion everything renders complete and still, with no
+ * looping motion at all, exactly as Reveal behaves elsewhere on the site.
  */
 export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
   const reduce = useReducedMotion();
 
   const viewport = { once: true, margin: "0px 0px -15% 0px" } as const;
+
+  /** The looping sweep, shared by both connectors — only the axis differs. */
+  const sweep = {
+    duration: TRAVEL,
+    ease: "linear",
+    repeat: Infinity,
+    repeatDelay: CYCLE - TRAVEL,
+    delay: DRAW,
+  } as const;
 
   return (
     <div className="relative">
@@ -45,13 +78,21 @@ export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
         {reduce ? (
           <div className="h-full w-full bg-brand-500/25" />
         ) : (
-          <motion.div
-            className="h-full w-full origin-left bg-brand-500/25"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={viewport}
-            transition={{ duration: 1.4, ease: EASE }}
-          />
+          <>
+            <motion.div
+              className="h-full w-full origin-left bg-brand-500/25"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={viewport}
+              transition={{ duration: DRAW, ease: EASE }}
+            />
+            <motion.div
+              className="absolute inset-y-0 left-0 w-[20%] bg-gradient-to-r from-transparent via-brand-500 to-transparent"
+              initial={{ x: "-100%" }}
+              animate={{ x: "500%" }}
+              transition={sweep}
+            />
+          </>
         )}
       </div>
 
@@ -63,30 +104,72 @@ export function JourneyPath({ steps }: { steps: JourneyStep[] }) {
         {reduce ? (
           <div className="h-full w-full bg-brand-500/25" />
         ) : (
-          <motion.div
-            className="h-full w-full origin-top bg-brand-500/25"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={viewport}
-            transition={{ duration: 1.4, ease: EASE }}
-          />
+          <>
+            <motion.div
+              className="h-full w-full origin-top bg-brand-500/25"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={viewport}
+              transition={{ duration: DRAW, ease: EASE }}
+            />
+            <motion.div
+              className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-transparent via-brand-500 to-transparent"
+              initial={{ y: "-100%" }}
+              animate={{ y: "500%" }}
+              transition={sweep}
+            />
+          </>
         )}
       </div>
 
       <ol className="relative grid gap-10 lg:grid-cols-5 lg:gap-6">
         {steps.map((step, index) => {
+          const circleClass = cn(
+            "relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border-2",
+            step.highlight
+              ? "border-sun-500 bg-sun-500 text-navy-950 shadow-lg shadow-sun-500/30"
+              : "border-brand-500/30 bg-white text-brand-500",
+          );
+
+          /* Both the swell and the ring fire on the beat the light arrives. */
+          const lit = {
+            duration: LIT,
+            ease: "easeOut",
+            repeat: Infinity,
+            repeatDelay: CYCLE - LIT,
+            delay: litAt(index, steps.length),
+          } as const;
+
+          const circle = reduce ? (
+            <span className={circleClass}>
+              <Icon name={step.icon} className="h-6 w-6" />
+            </span>
+          ) : (
+            <motion.span
+              className={circleClass}
+              animate={{ scale: [1, 1.12, 1] }}
+              transition={lit}
+            >
+              {/* -inset-0.5 lands this exactly on top of the circle's own 2px
+                  border (inset-0 would resolve to the padding box, 2px in), so
+                  it reads as the node's outline lighting up and radiating. */}
+              <motion.span
+                aria-hidden="true"
+                className={cn(
+                  "pointer-events-none absolute -inset-0.5 rounded-full border-2",
+                  step.highlight ? "border-sun-500" : "border-brand-500",
+                )}
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: [0, 0.7, 0], scale: [1, 1.4, 1.8] }}
+                transition={lit}
+              />
+              <Icon name={step.icon} className="h-6 w-6" />
+            </motion.span>
+          );
+
           const node = (
             <>
-              <span
-                className={cn(
-                  "relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full border-2",
-                  step.highlight
-                    ? "border-sun-500 bg-sun-500 text-navy-950 shadow-lg shadow-sun-500/30"
-                    : "border-brand-500/30 bg-white text-brand-500",
-                )}
-              >
-                <Icon name={step.icon} className="h-6 w-6" />
-              </span>
+              {circle}
 
               <div className="min-w-0 lg:mt-5">
                 {step.badge ? (
