@@ -70,7 +70,18 @@ export type PricingTier = {
   cta?: { label: string; href: string };
 };
 
-export type ScheduleRow = { label: string; value: string; note?: string };
+export type ScheduleRow = {
+  label: string;
+  value: string;
+  note?: string;
+  /**
+   * Renders as a gap in the sequence rather than an event, under `timeline`.
+   * The weekly rhythms use it for the stretches between contact — those are
+   * real parts of the week, but they are not one of the touch points the
+   * heading is counting.
+   */
+  muted?: boolean;
+};
 
 export type ScheduleGroup = {
   title: string;
@@ -189,6 +200,16 @@ export type ProgramBlock =
       note?: string;
       /** Renders filter chips over the groups, matched on `ScheduleGroup.filter`. */
       filters?: { label: string; allLabel?: string };
+      /*
+       * Draws the rows as a sequence down a rail instead of a stack of
+       * definitions, marking each one on the line as it goes.
+       *
+       * Opt-in for the same reason `bookHref` is: most schedules here are
+       * lookup tables — SAT dates, track-out windows, a daily timetable — and
+       * a table of dates is not a journey through time. Set it only where the
+       * order of the rows is the actual content, as in the weekly rhythms.
+       */
+      timeline?: boolean;
       /*
        * Turns every row into a link to the booking form, and adds a button
        * under the block.
@@ -2393,6 +2414,7 @@ export const programs: Program[] = [
         accent: "days.",
         description:
           "Days are scheduled to fit your family. The structure stays the same: one session, two check-ins, every week.",
+        timeline: true,
         groups: [
           {
             title: "A week of coaching",
@@ -2405,6 +2427,7 @@ export const programs: Program[] = [
                 label: "Between sessions",
                 value: "Independent practice",
                 note: "Student applies the strategies",
+                muted: true,
               },
               {
                 label: "Session · 1 hour",
@@ -2414,6 +2437,7 @@ export const programs: Program[] = [
                 label: "Between sessions",
                 value: "Independent practice",
                 note: "Student applies the strategies",
+                muted: true,
               },
               {
                 label: "Check-in · 15 minutes",

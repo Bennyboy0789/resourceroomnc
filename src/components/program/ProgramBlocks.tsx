@@ -109,6 +109,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
           filters={block.filters}
           bookHref={block.bookHref}
           bookLabel={block.bookLabel}
+          timeline={block.timeline}
         />
       );
     case "gallery":
@@ -116,7 +117,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
     case "video":
       return <Videos videos={block.videos} vertical={block.vertical} />;
     case "checklist":
-      return <Checklist items={block.items} />;
+      return <Checklist items={block.items} accent={accent} />;
     case "dates":
       return <Dates items={block.items} note={block.note} accent={accent} />;
     case "faq":
@@ -479,12 +480,14 @@ function Schedule({
   filters,
   bookHref,
   bookLabel,
+  timeline,
 }: {
   groups: Extract<ProgramBlock, { kind: "schedule" }>["groups"];
   note?: string;
   filters?: Extract<ProgramBlock, { kind: "schedule" }>["filters"];
   bookHref?: string;
   bookLabel?: string;
+  timeline?: boolean;
 }) {
   /* What a screen reader hears after the date. The button label is written for
      a button ("Book a camp week"), so it reads wrong appended to a date. */
@@ -497,6 +500,7 @@ function Schedule({
       index={index}
       bookHref={bookHref}
       bookAction={bookAction}
+      timeline={timeline}
     />
   ));
 
@@ -578,12 +582,18 @@ function ScheduleCard({
   index,
   bookHref,
   bookAction,
+  timeline,
 }: {
   group: ScheduleGroup;
   index: number;
   bookHref?: string;
   bookAction: string;
+  timeline?: boolean;
 }) {
+  if (timeline) {
+    return <ScheduleTimeline group={group} index={index} />;
+  }
+
   return (
     <Reveal delay={stagger(index % 6, 0.04)}>
       <div className="h-full rounded-card border border-navy-900/8 bg-white p-6">
@@ -629,6 +639,91 @@ function ScheduleCard({
 
         {group.note ? (
           <p className="mt-5 border-t border-navy-900/8 pt-4 text-xs leading-relaxed text-brand-500">
+            {group.note}
+          </p>
+        ) : null}
+      </div>
+    </Reveal>
+  );
+}
+
+/**
+ * A schedule whose rows are a sequence, drawn down a rail.
+ *
+ * The markers carry the meaning rather than decorating it: a filled node is a
+ * point of contact, a hollow one is the stretch in between. On the coaching
+ * weeks that is exactly the claim the heading makes — three touch points out
+ * of five days — so the diagram and the headline agree at a glance.
+ */
+function ScheduleTimeline({ group, index }: { group: ScheduleGroup; index: number }) {
+  return (
+    <Reveal delay={stagger(index % 6, 0.04)}>
+      <div className="h-full overflow-hidden rounded-card border border-navy-900/8 bg-white">
+        <div className="border-b border-navy-900/8 bg-gradient-to-r from-brand-50 to-white px-6 py-5 sm:px-8">
+          <h3 className="text-base font-bold tracking-tight text-navy-950">{group.title}</h3>
+          {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
+        </div>
+
+        <dl className="px-6 py-7 sm:px-8">
+          {group.rows.map((row, rowIndex) => {
+            const last = rowIndex === group.rows.length - 1;
+            return (
+              <div key={rowIndex} className={cn("relative flex gap-5", !last && "pb-7")}>
+                {/* Rail segment down to the next marker. Drawn per row rather
+                    than as one absolute line so it always ends exactly at the
+                    last marker, whatever the rows above it wrapped to. */}
+                {last ? null : (
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[13px] top-7 h-[calc(100%-1.75rem)] w-0.5 bg-brand-500/20"
+                  />
+                )}
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "relative z-10 mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition",
+                    row.muted
+                      ? "border-brand-500/25 bg-white"
+                      : "border-brand-500 bg-brand-500 shadow-md shadow-brand-500/25",
+                  )}
+                >
+                  {row.muted ? (
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-500/40" />
+                  ) : (
+                    <Icon name="check" className="h-3.5 w-3.5 text-white" />
+                  )}
+                </span>
+
+                <div className="min-w-0 pb-1">
+                  <dt
+                    className={cn(
+                      "text-xs font-bold uppercase tracking-[0.08em]",
+                      row.muted ? "text-navy-500" : "text-brand-500",
+                    )}
+                  >
+                    {row.label}
+                  </dt>
+                  <dd
+                    className={cn(
+                      "mt-1 leading-relaxed",
+                      row.muted
+                        ? "text-sm text-navy-500"
+                        : "text-base font-semibold text-navy-950",
+                    )}
+                  >
+                    {row.value}
+                  </dd>
+                  {row.note ? (
+                    <dd className="mt-1 text-sm leading-relaxed text-navy-500">{row.note}</dd>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </dl>
+
+        {group.note ? (
+          <p className="border-t border-navy-900/8 bg-mist px-6 py-5 text-sm leading-relaxed text-navy-700 sm:px-8">
             {group.note}
           </p>
         ) : null}
@@ -688,14 +783,24 @@ function Videos({
   );
 }
 
-function Checklist({ items }: { items: string[] }) {
+function Checklist({ items, accent }: { items: string[]; accent: "sun" | "blue" }) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {items.map((item, index) => (
         <Reveal key={item} as="li" delay={stagger(index, 0.04)}>
-          <div className="flex h-full gap-4 rounded-card border border-navy-900/8 bg-white p-5 text-sm leading-relaxed text-navy-700">
-            <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-            {item}
+          {/* Tick sits in the same chip the cards, dates and steps blocks use,
+              so an outcomes list reads as part of the page rather than as a
+              row of bare text. */}
+          <div className="group flex h-full items-center gap-4 rounded-card border border-navy-900/8 bg-white p-5 transition duration-200 hover:-translate-y-0.5 hover:border-brand-500/30 hover:shadow-lg hover:shadow-navy-900/5">
+            <span
+              className={cn(
+                "grid h-9 w-9 shrink-0 place-items-center rounded-chip transition duration-200 group-hover:scale-110",
+                chipClass(accent),
+              )}
+            >
+              <Icon name="check" className="h-4 w-4" />
+            </span>
+            <span className="text-sm font-medium leading-relaxed text-navy-800">{item}</span>
           </div>
         </Reveal>
       ))}
