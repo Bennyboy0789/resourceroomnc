@@ -142,6 +142,24 @@ export type ProgramBlock =
       kind: "steps";
       steps: { title: string; body: string; note?: string }[];
     })
+  /*
+   * The connected version of `steps`: a path of nodes joined by a line that
+   * draws itself as it scrolls into view. `steps` reads as a checklist of
+   * things the reader will do; this reads as something that happens to their
+   * child, start to finish, which is the right shape for the tutoring
+   * matching process. One step may carry `highlight` and a `badge` — the
+   * educator evaluation is the part parents are actually choosing us for.
+   */
+  | (BlockHeading & {
+      kind: "journey";
+      steps: {
+        title: string;
+        body: string;
+        icon: IconName;
+        badge?: string;
+        highlight?: boolean;
+      }[];
+    })
   | (BlockHeading & { kind: "pricing"; tiers: PricingTier[]; note?: string })
   | (BlockHeading & {
       kind: "person";

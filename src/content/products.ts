@@ -156,6 +156,45 @@ export const products: ProductPage[] = [
       "Ongoing communication with families about progress",
     ],
     blocks: [
+      /* Placed first: a parent deciding whether to call wants to know what
+         calling actually leads to before they read about grade bands. */
+      {
+        kind: "journey",
+        eyebrow: "How it works",
+        title: "From first conversation to first",
+        accent: "session.",
+        description:
+          "Five steps, usually inside a week. No placement tests, no call centre, and nobody guessing what your student needs.",
+        steps: [
+          {
+            title: "Free consultation",
+            body: "Sit down with us in person, or meet virtually. We listen first: what is working, what is not, and what your family actually needs.",
+            icon: "users",
+          },
+          {
+            title: "Educator evaluation",
+            body: "An experienced, licensed teacher reviews your student's skills, gaps and the way they learn. Not an intake form, and not a script.",
+            icon: "cap",
+            badge: "Licensed educators",
+            highlight: true,
+          },
+          {
+            title: "A plan for one student",
+            body: "We set the subjects, the goals and the order to work through them, built around this student rather than a package.",
+            icon: "pencil",
+          },
+          {
+            title: "Matched to a tutor",
+            body: "Paired on subject expertise, teaching style and personality. The right fit is the part that makes the rest work.",
+            icon: "heart",
+          },
+          {
+            title: "Frequency, then start",
+            body: "How often and how long, set by need and by your schedule. Most families begin within a week of the consultation.",
+            icon: "clock",
+          },
+        ],
+      },
       {
         kind: "cards",
         eyebrow: "By grade level",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon, type IconName } from "@/components/icons";
 import { FilterableSchedule } from "@/components/program/FilterableSchedule";
+import { JourneyPath } from "@/components/program/JourneyPath";
 import { PhotoCarousel } from "@/components/program/PhotoCarousel";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -68,6 +69,8 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
       return <Cards cards={block.cards} wide={block.wide} accent={accent} note={block.note} />;
     case "steps":
       return <Steps steps={block.steps} accent={accent} />;
+    case "journey":
+      return <JourneyPath steps={block.steps} />;
     case "pricing":
       return <Pricing tiers={block.tiers} note={block.note} accent={accent} />;
     case "person":
