@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { Container } from "@/components/ui/Container";
 import { PhotoSlot } from "@/components/ui/PhotoSlot";
@@ -26,31 +27,42 @@ export function WhyChoose() {
         <ul className="mt-14 grid gap-px overflow-hidden bg-navy-950/10 md:grid-cols-3 md:gap-x-10 md:overflow-visible md:bg-transparent">
           {whyChooseUs.map((item, index) => (
             <Reveal key={item.title} as="li" className="bg-mist" delay={stagger(index, 0.1)}>
-              <PhotoSlot
-                src={item.image.src}
-                alt={item.image.alt}
-                icon={item.icon}
-                ratio="4/3"
-                /* Matches the cap below, so the browser stops fetching a 500px
-                   render for a 352px slot. */
-                sizes="(min-width: 768px) 22rem, 100vw"
-                className="rounded-card md:mx-auto md:max-w-[22rem]"
-              />
-              {/* Capped to the same width as the photograph above it, so the
-                  centred copy sits under the image rather than under the
-                  column, which on a 110rem container are far apart. */}
-              <div className="px-1 py-7 sm:px-6 md:mx-auto md:max-w-[22rem] md:px-0 md:text-center">
-                <div className="flex items-center gap-3 md:justify-center">
-                  <span className="text-xs font-bold tabular-nums text-brand-500">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <Icon name={item.icon} className="h-5 w-5 text-navy-950" />
+              {/* Picture and copy are one anchor rather than a link inside the
+                  card: it makes the whole tile the tap target instead of a line
+                  of text, and leaves one link per destination rather than two
+                  competing for the same anchor text. Matches the links block on
+                  the program pages. */}
+              <Link href={item.href} className="group block">
+                <PhotoSlot
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  icon={item.icon}
+                  ratio="4/3"
+                  /* Matches the cap below, so the browser stops fetching a 500px
+                     render for a 352px slot. */
+                  sizes="(min-width: 768px) 22rem, 100vw"
+                  className="rounded-card transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-navy-950/10 md:mx-auto md:max-w-[22rem]"
+                />
+                {/* Capped to the same width as the photograph above it, so the
+                    centred copy sits under the image rather than under the
+                    column, which on a 110rem container are far apart. */}
+                <div className="px-1 py-7 sm:px-6 md:mx-auto md:max-w-[22rem] md:px-0 md:text-center">
+                  <div className="flex items-center gap-3 md:justify-center">
+                    <span className="text-xs font-bold tabular-nums text-brand-500">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <Icon name={item.icon} className="h-5 w-5 text-navy-950" />
+                  </div>
+                  <h3 className="mt-4 flex items-center gap-2 text-2xl font-extrabold uppercase tracking-tight text-navy-950 transition-colors duration-300 group-hover:text-brand-500 md:justify-center">
+                    {item.title}
+                    <Icon
+                      name="arrowRight"
+                      className="h-5 w-5 shrink-0 text-brand-500 transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-navy-600">{item.body}</p>
                 </div>
-                <h3 className="mt-4 text-2xl font-extrabold uppercase tracking-tight text-navy-950">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-navy-600">{item.body}</p>
-              </div>
+              </Link>
             </Reveal>
           ))}
         </ul>

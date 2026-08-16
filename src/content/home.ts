@@ -50,12 +50,15 @@ export const whyChooseUs: {
   title: string;
   body: string;
   icon: IconName;
+  /** The whole card links here — see WhyChoose. */
+  href: string;
   image: { src: string; alt: string };
 }[] = [
   {
     title: "Individualized",
     body: "A targeted approach for each student.",
     icon: "target",
+    href: "/programs/tutoring/private-tutoring",
     image: {
       src: "/images/why-individualized.jpg",
       alt: "A tutor and student working through a problem together at a Resource Room table.",
@@ -65,6 +68,7 @@ export const whyChooseUs: {
     title: "Engaging",
     body: "Curriculum based STEAM Programs.",
     icon: "sparkle",
+    href: "/programs/camps",
     image: {
       src: "/images/why-engaging.jpg",
       alt: "Students building and programming a LEGO robotics project.",
@@ -74,6 +78,7 @@ export const whyChooseUs: {
     title: "Professional",
     body: "Owned and Operated by licensed educators.",
     icon: "badge",
+    href: "/about",
     image: {
       src: "/images/why-professional.jpg",
       alt: "The Resource Room learning center classroom space in Holly Springs.",
