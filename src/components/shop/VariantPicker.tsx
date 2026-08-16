@@ -295,7 +295,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
                         "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors",
                         on
                           ? "bg-navy-950 text-white"
-                          : "bg-navy-950/5 text-navy-700 hover:bg-navy-950/10",
+                          : "bg-brand-50 text-brand-500 hover:bg-brand-100",
                       )}
                     >
                       {short}
@@ -368,8 +368,11 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
           list filtered to July, the two June weeks already chosen would
           otherwise be invisible until checkout. Each pill removes itself. */}
       {multiSelect && selectedVariants.length > 0 ? (
-        <div className="mt-6 rounded-card border border-brand-500/20 bg-brand-50/50 p-4">
-          <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
+        <div className="mt-6 rounded-card border border-sun-500/40 border-l-4 border-l-sun-500 bg-sun-50 p-4">
+          {/* Navy ink, not sun-700: sun-700 only clears the 3:1 floor for
+              graphical marks like icons, not the 4.5:1 a text label needs.
+              Navy-on-gold is the palette's own pattern for a gold fill. */}
+          <p className="text-xs font-bold uppercase tracking-[0.08em] text-navy-900">
             {selectedVariants.length} selected — {money(total, currency)} total
           </p>
           <ul className="mt-2.5 flex flex-wrap gap-1.5">
