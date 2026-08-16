@@ -93,7 +93,10 @@ export const credentials = [
   "Parrish “Ham” Womble Distinguished Service Award",
   "K-12 Through AP Math & Science",
   "95% Client Retention",
-  "Serving the Triangle Since 2015",
+  /* Not "the Triangle since 2015": Resource Room was founded in 2015, but in
+     Staten Island — Holly Springs opened in October 2021. Serving families is
+     the claim that holds for the whole span. */
+  "Serving Families Since 2015",
 ];
 
 export const founders = {
