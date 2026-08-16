@@ -38,7 +38,20 @@ const contactMethods = [
   },
 ];
 
-export default function ContactPage() {
+/*
+ * `?returning=1` swaps the form's framing for families who already know us.
+ *
+ * Read here rather than with useSearchParams in the form: this page is static,
+ * and reading the query client-side would force the whole form behind a
+ * Suspense boundary for the sake of one heading.
+ */
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ returning?: string }>;
+}) {
+  const returning = (await searchParams).returning === "1";
+
   return (
     <>
       <PageHero {...pageHeroes.contact} image={heroImages.contact} icon="mail" />
@@ -56,13 +69,16 @@ export default function ContactPage() {
             caps the track at the container width. */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="min-w-0">
-            <h2 className="text-2xl font-bold tracking-tight text-navy-950">Send us a message</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-navy-950">
+              {returning ? "Welcome back" : "Send us a message"}
+            </h2>
             <p className="mt-2 text-navy-600">
-              Tell us a little about your student and we will follow up to schedule your free
-              consultation.
+              {returning
+                ? "No consultation needed — just tell us who your student is and the days that work, and we will get them back on the schedule."
+                : "Tell us a little about your student and we will follow up to schedule your free consultation."}
             </p>
             <div className="mt-8">
-              <ContactForm />
+              <ContactForm returning={returning} />
             </div>
           </div>
 

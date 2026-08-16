@@ -40,7 +40,7 @@ const initialState: ContactState = { status: "idle" };
  * Progressive enhancement: the action is wired via `useActionState`, so the
  * form still submits without client JS.
  */
-export function ContactForm() {
+export function ContactForm({ returning = false }: { returning?: boolean }) {
   const [state, formAction] = useActionState(submitContact, initialState);
 
   if (state.status === "sent") {
@@ -137,22 +137,31 @@ export function ContactForm() {
         </select>
       </div>
 
+      {/* A returning family is answering a different question: they are not
+          describing a problem, they are asking for their slot back. Marking
+          the request tells the office which pile it belongs in. */}
+      {returning ? <input type="hidden" name="returning" value="Returning family" /> : null}
+
       <div>
         <label className={labelClasses} htmlFor="message">
-          How can we help?
+          {returning ? "What do you need this term?" : "How can we help?"}
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
           required
-          placeholder="Tell us a little about your student — where they are now and what you would like to see change."
+          placeholder={
+            returning
+              ? "Who your student worked with last time, the subjects you want this term, and the days and times that suit you."
+              : "Tell us a little about your student — where they are now and what you would like to see change."
+          }
           className={`${fieldClasses} mt-2 resize-y`}
         />
       </div>
 
       <HoneyPot />
-      <SubmitButton label="Send my request" />
+      <SubmitButton label={returning ? "Request my schedule" : "Send my request"} />
 
       {state.status === "error" ? (
         <p

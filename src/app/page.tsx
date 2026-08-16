@@ -1,4 +1,5 @@
 import { Accolades } from "@/components/home/Accolades";
+import { BackToSchool } from "@/components/home/BackToSchool";
 import { AboutStrip } from "@/components/home/AboutStrip";
 import { BlogTeaser } from "@/components/home/BlogTeaser";
 import { Counters } from "@/components/home/Counters";
@@ -20,6 +21,8 @@ export default function HomePage() {
     <>
       <Hero />
       <QuickLinks />
+      <BackToSchool />
+
       <Marquee items={credentials} />
       <PopularPrograms />
       <Accolades />

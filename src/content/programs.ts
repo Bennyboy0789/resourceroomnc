@@ -2685,8 +2685,14 @@ export const programs: Program[] = [
 ];
 
 /**
- * The six cards in the home page "What Families Are Booking Now" grid, in the
- * order the live site shows them.
+ * The cards in the home page programs rail, in the order the live site shows
+ * them.
+ *
+ * Ordered for the school year rather than by popularity: term starts and the
+ * first thing a family wants is a tutor, so private tutoring leads and the
+ * daytime alternatives follow. Summer Bridge is deliberately absent — it is a
+ * summer product, and leading the rail with it in September advertises
+ * something nobody can buy.
  */
 export const popularOfferings: {
   title: string;
@@ -2697,15 +2703,15 @@ export const popularOfferings: {
   image: ProgramImage;
 }[] = [
   {
-    title: "ABA Support in an Educational Setting",
-    category: "Structured Daytime Learning",
-    body: "Behavioral support delivered inside a real learning environment, where the skills need to hold up.",
-    href: "/programs/aba-services",
-    icon: "heart",
+    title: "Private Tutoring for All Subjects",
+    category: "Tutoring Programs",
+    body: "One-to-one instruction K-12, including AP. Every student matched to a tutor by subject, style and personality.",
+    href: "/programs/tutoring/private-tutoring",
+    icon: "pencil",
     image: {
-      src: "/images/tile-aba.png",
-      alt: "Resource Room and POPS ABA partnership — ABA support in an educational setting.",
-      kind: "tile",
+      src: "/images/program-tutoring.jpg",
+      alt: "A Resource Room tutor working one-to-one with a student on geometry at a table.",
+      kind: "photo",
     },
   },
   {
@@ -2721,21 +2727,21 @@ export const popularOfferings: {
     },
   },
   {
-    title: "Executive Functioning Coaching and Support",
-    category: "Tutoring Programs",
-    body: "One session and two check-ins every week, $100 a week, led by a certified EF coach.",
-    href: "/programs/executive-functioning",
-    icon: "chart",
+    title: "Pathways Academy",
+    category: "Private High School",
+    body: "A private high school for neurodiverse learners with autism, built around a genuinely personalized school day.",
+    href: "/programs/pathways-academy",
+    icon: "cap",
     image: {
-      src: "/images/tile-executive-functioning.png",
-      alt: "Resource Room Executive Functioning coaching and support.",
-      kind: "tile",
+      src: "/images/program-pathways-academy.jpg",
+      alt: "Pathways Academy — a private high school for neurodiverse learners with autism.",
+      kind: "photo",
     },
   },
   {
-    title: "STEM Themed Camps",
+    title: "Track-Out & STEM Camps",
     category: "STEAM Programs",
-    body: "Full weeks and single days for grades K-6. Hands-on science, robotics, coding and outdoor time.",
+    body: "Track-out weeks, teacher workdays and single days for grades K-6. Science, robotics, coding and outdoor time.",
     href: "/programs/camps",
     icon: "sun",
     image: {
@@ -2757,14 +2763,26 @@ export const popularOfferings: {
     },
   },
   {
-    title: "Summer Bridge Tutoring Programs",
+    title: "Executive Functioning Coaching and Support",
     category: "Tutoring Programs",
-    body: "A summer plan built around your student — catch up, stay sharp, or get ahead.",
-    href: "/programs/summer-bridge",
-    icon: "pencil",
+    body: "One session and two check-ins every week, $100 a week, led by a certified EF coach.",
+    href: "/programs/executive-functioning",
+    icon: "chart",
     image: {
-      src: "/images/tile-summer-bridge.png",
-      alt: "Resource Room Summer Bridge tutoring — prevent the summer slide.",
+      src: "/images/tile-executive-functioning.png",
+      alt: "Resource Room Executive Functioning coaching and support.",
+      kind: "tile",
+    },
+  },
+  {
+    title: "ABA Support in an Educational Setting",
+    category: "Structured Daytime Learning",
+    body: "Behavioral support delivered inside a real learning environment, where the skills need to hold up.",
+    href: "/programs/aba-services",
+    icon: "heart",
+    image: {
+      src: "/images/tile-aba.png",
+      alt: "Resource Room and POPS ABA partnership — ABA support in an educational setting.",
       kind: "tile",
     },
   },

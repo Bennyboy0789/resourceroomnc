@@ -77,10 +77,17 @@ export async function submitContact(
   const lines = fields.map(([key, label]) => `${label}: ${clean(formData.get(key)) || "—"}`);
   if (message) lines.push("", message);
 
+  /* Returning families are triaged differently — they want a slot, not a
+     consultation — so the distinction belongs in the subject where the office
+     sees it without opening anything. */
+  const returning = clean(formData.get("returning"));
+
   const subject =
     kind === "careers"
       ? `Application — ${name}`
-      : `Consultation request — ${clean(formData.get("program")) || "not sure yet"}`;
+      : returning
+        ? `Returning family — ${clean(formData.get("program")) || "scheduling"}`
+        : `Consultation request — ${clean(formData.get("program")) || "not sure yet"}`;
 
   /*
    * Resume, if one was attached. Guarded on three axes because this is the one

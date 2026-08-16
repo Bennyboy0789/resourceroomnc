@@ -170,3 +170,79 @@ export const finalCta = {
   heading: "Give your student the right kind of help.",
   body: "Schedule a consultation and we'll pinpoint exactly where your student needs support, then build a plan that delivers real progress. Consultations are always free.",
 };
+
+/**
+ * The back-to-school band on the home page.
+ *
+ * Dated on purpose. A seasonal banner that has to be taken down by hand is a
+ * banner that is still up in November — this site has already carried stale
+ * camp weeks and stale ACT dates for exactly that reason. `from` and `until`
+ * are inclusive UTC dates; outside them the section renders nothing at all,
+ * and the hourly revalidate means it retires within an hour of `until`.
+ *
+ * The two headlines exist because the message changes the moment term starts:
+ * before the 24th the pitch is "get ahead of it", after it is "the first weeks
+ * are when problems show up". One build covers both.
+ */
+export const backToSchool = {
+  from: "2026-08-10",
+  /* Roughly six weeks in — long enough to catch families who only notice a
+     problem after the first progress reports. */
+  until: "2026-10-05",
+  /** Wake County traditional calendar. Drives which headline is shown. */
+  termStarts: "2026-08-24",
+  eyebrow: "Back to school",
+  before: {
+    heading: "Term starts August 24.",
+    accent: "Start it with a plan.",
+    body: "Wake County traditional students are back in class on Monday the 24th. The families who get support in place now are the ones not scrambling in October — and our fall tutoring slots fill in the first two weeks of term.",
+  },
+  after: {
+    heading: "The first weeks back",
+    accent: "tell you a lot.",
+    body: "Homework taking twice as long as it should? Organisation slipping already? The first month is when the gaps show, and it is far easier to close them now than after a term of falling behind.",
+  },
+  primary: { label: "Book a free consultation", href: "/contact" },
+  returning: {
+    label: "Returning family — get your slot",
+    href: "/contact?returning=1",
+    note: "Already worked with us? Skip the consultation and tell us the days you need.",
+  },
+  /* Reframes the programs rail underneath, so the cards read as the answer to
+     the band above rather than as a generic list. Retires on the same dates. */
+  rail: {
+    eyebrow: "For the new school year",
+    title: "What families are booking for",
+    accent: "the fall.",
+    description:
+      "Term is starting. These are the programs Triangle families put in place first — from one-to-one tutoring to a full daytime alternative.",
+  },
+};
+
+/** Midnight UTC for a plain YYYY-MM-DD, so the window never depends on where
+    the server happens to be running. */
+function day(date: string) {
+  return Date.parse(`${date}T00:00:00Z`);
+}
+
+/** The last instant of a plain YYYY-MM-DD. `until` is inclusive, so comparing
+    against midnight would have cut the band at the start of its final day. */
+function endOfDay(date: string) {
+  return day(date) + 24 * 60 * 60 * 1000 - 1;
+}
+
+/**
+ * Whether the home page is inside the back-to-school window.
+ *
+ * Shared by the band and the programs rail so the two can never disagree —
+ * a seasonal heading sitting above a rail whose banner has already retired
+ * would read as a mistake.
+ */
+export function inBackToSchoolSeason(now = Date.now()) {
+  return now >= day(backToSchool.from) && now <= endOfDay(backToSchool.until);
+}
+
+/** True once term has started, which is what swaps the band's headline. */
+export function isTermStarted(now = Date.now()) {
+  return now >= day(backToSchool.termStarts);
+}
