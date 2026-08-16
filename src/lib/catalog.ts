@@ -1,5 +1,6 @@
 import "server-only";
 import { getStripe } from "@/lib/stripe";
+import { optionDate } from "@/lib/option-date";
 
 /**
  * Reads the enrollment catalog back out of Stripe.
@@ -75,46 +76,10 @@ function splitList(value: string | undefined) {
     .filter(Boolean);
 }
 
-const MONTHS: Record<string, number> = {
-  jan: 0,
-  feb: 1,
-  mar: 2,
-  apr: 3,
-  may: 4,
-  jun: 5,
-  jul: 6,
-  aug: 7,
-  sep: 8,
-  oct: 9,
-  nov: 10,
-  dec: 11,
-};
 
 /* Leading three letters of a month, any tail ("Sept", "March"), then the day.
    No `g` flag: these are reused across calls and `lastIndex` would carry. */
-const MONTH_DAY = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s*(\d{1,2})\b/i;
-const YEAR = /\b(20\d{2})\b/;
 
-/**
- * The calendar date an option chip names, or null when it does not name one.
- *
- * Camp options are sold as dates — "Sept 21, 2026", "Summer August 24-28,
- * 2026" — next to a few that are not, like "Extended Day Per Day". Only the
- * first month/day in the label is read, so a range sorts by the day it starts.
- *
- * The year is required rather than inferred. A camp season spans two Augusts,
- * so "Aug 9- Aug 13" alone is genuinely ambiguous, and guessing would file a
- * 2027 week silently among the 2026 ones. Anything without a year is treated
- * as undated and keeps its position instead.
- */
-export function optionDate(label: string): number | null {
-  const monthDay = MONTH_DAY.exec(label);
-  const year = YEAR.exec(label);
-  if (!monthDay || !year) return null;
-
-  const month = MONTHS[monthDay[1].toLowerCase()];
-  return Date.UTC(Number(year[1]), month, Number(monthDay[2]));
-}
 
 /**
  * Dated options in calendar order, undated ones first in the order given.

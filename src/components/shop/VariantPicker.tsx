@@ -5,6 +5,14 @@ import { Icon } from "@/components/icons";
 import { useCart } from "@/components/shop/CartProvider";
 import type { CatalogProduct, CatalogVariant } from "@/lib/catalog";
 import { cn } from "@/lib/cn";
+import { groupByMonth } from "@/lib/option-date";
+
+/*
+ * Below this many options a flat wrap is easier to read than a filtered one:
+ * the chips fit on a couple of rows and the month headings would be more
+ * furniture than help. A camp season runs to about sixty and needs them.
+ */
+const GROUP_FROM = 12;
 
 function money(amount: number, currency: string) {
   return new Intl.NumberFormat("en-US", {
@@ -74,6 +82,8 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
       : {},
   );
   const [notes, setNotes] = useState<Record<string, string>>({});
+  /** Active month filter per attribute; absent means "all". */
+  const [month, setMonth] = useState<Record<string, string>>({});
 
   const chosen = (name: string) => selection[name] ?? [];
 
@@ -193,6 +203,59 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
 
       {priced.map((attribute) => {
         const reachable = matching(attribute.name);
+        const picked = chosen(attribute.name);
+
+        const chip = (option: string) => {
+          const soldOut = attribute.soldOut.includes(option);
+          const available =
+            !soldOut && reachable.some((variant) => variant.options[attribute.name] === option);
+          const active = picked.includes(option);
+
+          return (
+            <button
+              key={option}
+              type="button"
+              disabled={!available}
+              aria-pressed={active}
+              onClick={() => choose(attribute.name, option)}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-chip border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.06em] transition-colors",
+                active
+                  ? "border-brand-500 bg-brand-500 text-white shadow-md shadow-brand-500/25"
+                  : "border-navy-950/20 bg-white text-navy-800 hover:border-brand-500 hover:text-brand-500",
+                !available &&
+                  "cursor-not-allowed border-navy-950/10 bg-transparent text-navy-950/30 hover:border-navy-950/10 hover:text-navy-950/30",
+              )}
+            >
+              {/* A tick makes "several are on at once" readable at a glance,
+                  which a filled background alone does not on a wall of 55. */}
+              {multiSelect && active ? <Icon name="check" className="h-3.5 w-3.5" /> : null}
+              {/* The strike is on the label, not the button. A decoration
+                  set on the button paints through everything inside it,
+                  and a descendant cannot opt out — which would draw a
+                  line through "Sold out" as well. */}
+              <span className={cn(!available && "line-through")}>{option}</span>
+              {/* Said in words as well as struck through: the strike alone
+                  also marks combinations that are merely unreachable, and
+                  "full" is a different thing to tell a parent. */}
+              {soldOut ? <span>· Sold out</span> : null}
+            </button>
+          );
+        };
+
+        /*
+         * A season of camp weeks is ~60 chips; grouped under month headings
+         * with a filter row, a parent looking for one week in March reads
+         * four chips under "March" instead of scanning all sixty. Short
+         * lists keep the flat wrap — headings on a dozen chips are more
+         * furniture than help.
+         */
+        const months = groupByMonth(attribute.options);
+        const grouped = attribute.options.length >= GROUP_FROM && months.length > 1;
+        const activeMonth = month[attribute.name];
+        const shown = grouped
+          ? months.filter((m) => !activeMonth || m.key === activeMonth)
+          : months;
 
         return (
           <fieldset key={attribute.name} className="mt-7">
@@ -204,46 +267,67 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
                 </span>
               ) : null}
             </legend>
-            <div className="flex flex-wrap gap-2">
-              {attribute.options.map((option) => {
-                const soldOut = attribute.soldOut.includes(option);
-                const available =
-                  !soldOut &&
-                  reachable.some((variant) => variant.options[attribute.name] === option);
-                const active = chosen(attribute.name).includes(option);
 
-                return (
-                  <button
-                    key={option}
-                    type="button"
-                    disabled={!available}
-                    aria-pressed={active}
-                    onClick={() => choose(attribute.name, option)}
-                    className={cn(
-                      "inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.06em] transition-colors",
-                      active
-                        ? "border-navy-950 bg-navy-950 text-white"
-                        : "border-navy-950/20 text-navy-800 hover:border-navy-950",
-                      !available &&
-                        "cursor-not-allowed border-navy-950/10 text-navy-950/30 hover:border-navy-950/10",
-                    )}
-                  >
-                    {/* A tick makes "several are on at once" readable at a glance,
-                        which a filled background alone does not on a wall of 55. */}
-                    {multiSelect && active ? <Icon name="check" className="h-3.5 w-3.5" /> : null}
-                    {/* The strike is on the label, not the button. A decoration
-                        set on the button paints through everything inside it,
-                        and a descendant cannot opt out — which would draw a
-                        line through "Sold out" as well. */}
-                    <span className={cn(!available && "line-through")}>{option}</span>
-                    {/* Said in words as well as struck through: the strike alone
-                        also marks combinations that are merely unreachable, and
-                        "full" is a different thing to tell a parent. */}
-                    {soldOut ? <span>· Sold out</span> : null}
-                  </button>
-                );
-              })}
-            </div>
+            {grouped ? (
+              <div className="mb-5 flex flex-wrap gap-1.5">
+                {[
+                  { key: "", short: "All dates" },
+                  ...months.map(({ key, short }) => ({ key, short })),
+                ].map(({ key, short }) => {
+                  const on = (activeMonth ?? "") === key;
+                  /* The dot marks months holding a selection, so a family
+                     filtering to July can still see they left two weeks
+                     picked back in June. */
+                  const holds =
+                    key !== "" &&
+                    months
+                      .find((m) => m.key === key)
+                      ?.options.some((option) => picked.includes(option));
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() =>
+                        setMonth((current) => ({ ...current, [attribute.name]: key }))
+                      }
+                      className={cn(
+                        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors",
+                        on
+                          ? "bg-navy-950 text-white"
+                          : "bg-navy-950/5 text-navy-700 hover:bg-navy-950/10",
+                      )}
+                    >
+                      {short}
+                      {holds ? (
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "h-1.5 w-1.5 rounded-full",
+                            on ? "bg-sun-500" : "bg-brand-500",
+                          )}
+                        />
+                      ) : null}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+
+            {grouped ? (
+              <div className="space-y-5">
+                {shown.map((m) => (
+                  <div key={m.key}>
+                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-500">
+                      {m.label}
+                    </p>
+                    <div className="flex flex-wrap gap-2">{m.options.map(chip)}</div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-2">{attribute.options.map(chip)}</div>
+            )}
           </fieldset>
         );
       })}
@@ -280,10 +364,34 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
         </fieldset>
       ))}
 
-      {selectedVariants.length > 1 ? (
-        <p className="mt-6 text-sm text-navy-600">
-          {selectedVariants.length} selected — {money(total, currency)} total
-        </p>
+      {/* Everything picked, wherever the month filter is pointing: with the
+          list filtered to July, the two June weeks already chosen would
+          otherwise be invisible until checkout. Each pill removes itself. */}
+      {multiSelect && selectedVariants.length > 0 ? (
+        <div className="mt-6 rounded-card border border-brand-500/20 bg-brand-50/50 p-4">
+          <p className="text-xs font-bold uppercase tracking-[0.08em] text-brand-500">
+            {selectedVariants.length} selected — {money(total, currency)} total
+          </p>
+          <ul className="mt-2.5 flex flex-wrap gap-1.5">
+            {selectedVariants.map((variant) => {
+              const { name } = priced[0];
+              const option = variant.options[name];
+              return (
+                <li key={variant.priceId}>
+                  <button
+                    type="button"
+                    onClick={() => choose(name, option)}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-navy-800 shadow-sm ring-1 ring-navy-950/10 transition-colors hover:text-alert-600 hover:ring-alert-600/40"
+                  >
+                    {option}
+                    <Icon name="close" className="h-3 w-3" />
+                    <span className="sr-only"> — remove</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       ) : null}
 
       <button
