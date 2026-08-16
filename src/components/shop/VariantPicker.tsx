@@ -183,24 +183,30 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
   const currency = product.variants[0]?.currency ?? "usd";
 
   return (
-    <div className="rounded-card border border-navy-950/12 bg-white p-6 sm:p-8">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="text-xl font-extrabold uppercase tracking-tight text-navy-950">
-          {product.name}
-        </h3>
-        <p className="text-lg font-bold text-navy-950">
-          {selectedVariants.length ? (
-            money(total, currency)
-          ) : (
-            <span className="text-navy-600">From {money(product.fromAmount, currency)}</span>
-          )}
-        </p>
+    <div className="overflow-hidden rounded-card border border-navy-950/12 bg-white">
+      {/* Gold band, blue controls: the header is the one part of the card that
+          is never interactive, so it takes the brand fill and leaves blue to
+          mean "you can press this" all the way down the list. */}
+      <div className="border-b border-sun-500/40 bg-gradient-to-r from-sun-50 to-white px-6 py-5 sm:px-8 sm:py-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h3 className="text-xl font-extrabold uppercase tracking-tight text-navy-950">
+            {product.name}
+          </h3>
+          <p className="text-lg font-bold text-navy-950">
+            {selectedVariants.length ? (
+              money(total, currency)
+            ) : (
+              <span className="text-navy-700">From {money(product.fromAmount, currency)}</span>
+            )}
+          </p>
+        </div>
+
+        {product.description ? (
+          <p className="mt-3 text-sm leading-relaxed text-navy-700">{product.description}</p>
+        ) : null}
       </div>
 
-      {product.description ? (
-        <p className="mt-3 text-sm leading-relaxed text-navy-600">{product.description}</p>
-      ) : null}
-
+      <div className="px-6 py-6 sm:px-8 sm:py-8">
       {priced.map((attribute) => {
         const reachable = matching(attribute.name);
         const picked = chosen(attribute.name);
@@ -258,7 +264,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
           : months;
 
         return (
-          <fieldset key={attribute.name} className="mt-7">
+          <fieldset key={attribute.name} className="mt-7 first:mt-0">
             <legend className="eyebrow mb-3 text-brand-500">
               {attribute.name}
               {multiSelect ? (
@@ -318,7 +324,11 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
               <div className="space-y-5">
                 {shown.map((m) => (
                   <div key={m.key}>
-                    <p className="mb-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-500">
+                    <p className="mb-2.5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-navy-800">
+                      {/* Gives the eye something to land on between groups, so
+                          a long season reads as chapters rather than one column
+                          of gray labels. */}
+                      <span aria-hidden="true" className="h-3.5 w-1 rounded-full bg-brand-500" />
                       {m.label}
                     </p>
                     <div className="flex flex-wrap gap-2">{m.options.map(chip)}</div>
@@ -333,7 +343,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
       })}
 
       {informational.map((attribute) => (
-        <fieldset key={attribute.name} className="mt-7">
+        <fieldset key={attribute.name} className="mt-7 first:mt-0">
           <legend className="eyebrow mb-3 text-brand-500">{attribute.name}</legend>
           <div className="flex flex-wrap gap-2">
             {attribute.options.map((option) => {
@@ -419,6 +429,7 @@ export function VariantPicker({ product }: { product: CatalogProduct }) {
           prompt(priced.find((a) => !chosen(a.name).length)?.name ?? "options")
         )}
       </button>
+      </div>
     </div>
   );
 }
