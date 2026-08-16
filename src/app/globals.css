@@ -59,6 +59,27 @@
      7.31:1 on white, 7.07:1 on sun-50. */
   --color-alert-600: #9a3412;
 
+  /*
+   * Seasonal. The back-to-school band only, and only while it runs — see
+   * `backToSchool` in content/home.ts, which retires itself in October.
+   *
+   * Knowingly outside the two-colour brand above, for one reason: that band
+   * was the third dark-blue slab in the top third of the home page and sat
+   * directly on the blue marquee, so it read as one heavy blue mass. A warm
+   * ground breaks the stack. Terracotta rather than any other warm: the band's
+   * eyebrow, accent phrase and CTA are all sun-500, and gold on a warm ground
+   * belongs to the same family instead of being an accent stapled to a cool one.
+   *
+   * Dark on purpose. The CTA is a gold fill, so a bright warm ground would sink
+   * it — gold on amber measures 3.15:1 and stops reading as a button. At these
+   * two values every text colour in the band clears AA at both gradient ends,
+   * white headings at 10.42:1 and 7.03:1.
+   *
+   * Do not reach for these anywhere else; they are not brand colours.
+   */
+  --color-ember-700: #6f2a10;
+  --color-ember-600: #93401a;
+
   --color-mist: #f4f6f9;
   --color-frost: #eaf1fb;
 
