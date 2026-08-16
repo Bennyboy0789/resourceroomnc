@@ -110,6 +110,7 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
           bookHref={block.bookHref}
           bookLabel={block.bookLabel}
           timeline={block.timeline}
+          accent={accent}
         />
       );
     case "gallery":
@@ -481,6 +482,7 @@ function Schedule({
   bookHref,
   bookLabel,
   timeline,
+  accent,
 }: {
   groups: Extract<ProgramBlock, { kind: "schedule" }>["groups"];
   note?: string;
@@ -488,6 +490,7 @@ function Schedule({
   bookHref?: string;
   bookLabel?: string;
   timeline?: boolean;
+  accent: "sun" | "blue";
 }) {
   /* What a screen reader hears after the date. The button label is written for
      a button ("Book a camp week"), so it reads wrong appended to a date. */
@@ -501,6 +504,7 @@ function Schedule({
       bookHref={bookHref}
       bookAction={bookAction}
       timeline={timeline}
+      accent={accent}
     />
   ));
 
@@ -583,15 +587,17 @@ function ScheduleCard({
   bookHref,
   bookAction,
   timeline,
+  accent,
 }: {
   group: ScheduleGroup;
   index: number;
   bookHref?: string;
   bookAction: string;
   timeline?: boolean;
+  accent: "sun" | "blue";
 }) {
   if (timeline) {
-    return <ScheduleTimeline group={group} index={index} />;
+    return <ScheduleTimeline group={group} index={index} accent={accent} />;
   }
 
   return (
@@ -655,11 +661,31 @@ function ScheduleCard({
  * weeks that is exactly the claim the heading makes — three touch points out
  * of five days — so the diagram and the headline agree at a glance.
  */
-function ScheduleTimeline({ group, index }: { group: ScheduleGroup; index: number }) {
+function ScheduleTimeline({
+  group,
+  index,
+  accent,
+}: {
+  group: ScheduleGroup;
+  index: number;
+  accent: "sun" | "blue";
+}) {
+  /* Solid, not the light chip fill the other blocks use: these markers sit on
+     a rail as the strongest thing in the card, and brand-50 would disappear. */
+  const marker =
+    accent === "sun"
+      ? "border-sun-500 bg-sun-500 text-navy-950 shadow-md shadow-sun-500/30"
+      : "border-brand-500 bg-brand-500 text-white shadow-md shadow-brand-500/25";
+
   return (
     <Reveal delay={stagger(index % 6, 0.04)}>
       <div className="h-full overflow-hidden rounded-card border border-navy-900/8 bg-white">
-        <div className="border-b border-navy-900/8 bg-gradient-to-r from-brand-50 to-white px-6 py-5 sm:px-8">
+        <div
+          className={cn(
+            "border-b border-navy-900/8 bg-gradient-to-r px-6 py-5 sm:px-8",
+            accent === "sun" ? "from-sun-50 to-white" : "from-brand-50 to-white",
+          )}
+        >
           <h3 className="text-base font-bold tracking-tight text-navy-950">{group.title}</h3>
           {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
         </div>
@@ -675,22 +701,20 @@ function ScheduleTimeline({ group, index }: { group: ScheduleGroup; index: numbe
                 {last ? null : (
                   <span
                     aria-hidden="true"
-                    className="absolute left-[13px] top-7 h-[calc(100%-1.75rem)] w-0.5 bg-brand-500/20"
+                    className="absolute left-[17px] top-9 h-[calc(100%-2.25rem)] w-0.5 bg-navy-900/12"
                   />
                 )}
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "relative z-10 mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border-2 transition",
-                    row.muted
-                      ? "border-brand-500/25 bg-white"
-                      : "border-brand-500 bg-brand-500 shadow-md shadow-brand-500/25",
+                    "relative z-10 mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full border-2",
+                    row.muted ? "border-navy-900/15 bg-white" : marker,
                   )}
                 >
                   {row.muted ? (
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-500/40" />
+                    <span className="h-2 w-2 rounded-full bg-navy-900/20" />
                   ) : (
-                    <Icon name="check" className="h-3.5 w-3.5 text-white" />
+                    <Icon name={row.icon ?? "check"} className="h-4 w-4" />
                   )}
                 </span>
 

@@ -74,6 +74,8 @@ export type ScheduleRow = {
   label: string;
   value: string;
   note?: string;
+  /** Marks the row on the rail under `timeline`. Falls back to a tick. */
+  icon?: IconName;
   /**
    * Renders as a gap in the sequence rather than an event, under `timeline`.
    * The weekly rhythms use it for the stretches between contact — those are
@@ -425,6 +427,52 @@ export const campVideos = [
   { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
 ];
 
+/*
+ * The camp day, shared by the camps program page and the camp product pages.
+ *
+ * Held here for the same reason the photos and films are: it was two
+ * hand-maintained copies of the same six rows, which is one edit away from a
+ * family reading different lunch times on two pages of the same site.
+ */
+export const campDayRows: ScheduleRow[] = [
+  {
+    label: "8:00 – 8:30",
+    value: "Arrival and soft start",
+    note: "Quiet tables, puzzles, drawing, and a chance to settle in before the day gets going.",
+    icon: "sun",
+  },
+  {
+    label: "8:30 – 10:00",
+    value: "Hands-on science",
+    note: "Slime, volcanoes, elephant toothpaste, oobleck, and experiments that spark real curiosity.",
+    icon: "sparkle",
+  },
+  {
+    label: "10:00 – 11:30",
+    value: "Building and engineering",
+    note: "LEGO challenges, robotics, design thinking, and problem solving that takes a whole team to crack.",
+    icon: "users",
+  },
+  {
+    label: "11:30 – 1:00",
+    value: "Lunch and outdoor time",
+    note: "Bagged lunch, then nature walks, outdoor games, and fresh air before the afternoon.",
+    icon: "compass",
+  },
+  {
+    label: "1:00 – 2:30",
+    value: "Coding and digital challenges",
+    note: "Interactive coding games and puzzles that build logic and sequencing without feeling like a lesson.",
+    icon: "play",
+  },
+  {
+    label: "2:30 – 3:30",
+    value: "Crafts, creativity, and wrap up",
+    note: "Projects that let kids create and build their own ideas. Clean up, share the day, and get ready for pickup.",
+    icon: "pencil",
+  },
+];
+
 export const programs: Program[] = [
   {
     slug: "tutoring",
@@ -673,41 +721,11 @@ export const programs: Program[] = [
         accent: "good parts.",
         description:
           "Same rhythm every day, posted on the wall where kids can see it. Enough structure that nobody is guessing what comes next, enough variety that nobody gets bored.",
+        timeline: true,
         groups: [
           {
             title: "The daily schedule",
-            rows: [
-              {
-                label: "8:00 – 8:30",
-                value: "Arrival and soft start",
-                note: "Quiet tables, puzzles, drawing, and a chance to settle in before the day gets going.",
-              },
-              {
-                label: "8:30 – 10:00",
-                value: "Hands-on science",
-                note: "Slime, volcanoes, elephant toothpaste, oobleck, and experiments that spark real curiosity.",
-              },
-              {
-                label: "10:00 – 11:30",
-                value: "Building and engineering",
-                note: "LEGO challenges, robotics, design thinking, and problem solving that takes a whole team to crack.",
-              },
-              {
-                label: "11:30 – 1:00",
-                value: "Lunch and outdoor time",
-                note: "Bagged lunch, then nature walks, outdoor games, and fresh air before the afternoon.",
-              },
-              {
-                label: "1:00 – 2:30",
-                value: "Coding and digital challenges",
-                note: "Interactive coding games and puzzles that build logic and sequencing without feeling like a lesson.",
-              },
-              {
-                label: "2:30 – 3:30",
-                value: "Crafts, creativity, and wrap up",
-                note: "Projects that let kids create and build their own ideas. Clean up, share the day, and get ready for pickup.",
-              },
-            ],
+            rows: campDayRows,
           },
         ],
       },

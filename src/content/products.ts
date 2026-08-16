@@ -1,4 +1,4 @@
-import { campGalleryPhotos, campVideos } from "@/content/programs";
+import { campDayRows, campGalleryPhotos, campVideos } from "@/content/programs";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
 
@@ -1503,41 +1503,11 @@ export const products: ProductPage[] = [
         accent: "good parts.",
         description:
           "Same rhythm every day, posted on the wall where kids can see it. Enough structure that nobody is guessing what comes next, enough variety that nobody gets bored.",
+        timeline: true,
         groups: [
           {
             title: "The daily schedule",
-            rows: [
-              {
-                label: "8:00 – 8:30",
-                value: "Arrival and soft start",
-                note: "Quiet tables, puzzles, drawing, and a chance to settle in before the day gets going.",
-              },
-              {
-                label: "8:30 – 10:00",
-                value: "Hands-on science",
-                note: "Slime, volcanoes, elephant toothpaste, oobleck, and experiments that spark real curiosity.",
-              },
-              {
-                label: "10:00 – 11:30",
-                value: "Building and engineering",
-                note: "LEGO challenges, robotics, design thinking, and problem solving that takes a whole team to crack.",
-              },
-              {
-                label: "11:30 – 1:00",
-                value: "Lunch and outdoor time",
-                note: "Bagged lunch, then nature walks, outdoor games, and fresh air before the afternoon.",
-              },
-              {
-                label: "1:00 – 2:30",
-                value: "Coding and digital challenges",
-                note: "Interactive coding games and puzzles that build logic and sequencing without feeling like a lesson.",
-              },
-              {
-                label: "2:30 – 3:30",
-                value: "Crafts, creativity, and wrap up",
-                note: "Projects that let kids create and build their own ideas. Clean up, share the day, and get ready for pickup.",
-              },
-            ],
+            rows: campDayRows,
           },
         ],
       },
