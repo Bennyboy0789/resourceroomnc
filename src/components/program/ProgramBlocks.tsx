@@ -72,6 +72,8 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
       return <Steps steps={block.steps} accent={accent} />;
     case "journey":
       return <JourneyPath steps={block.steps} accent={accent} />;
+    case "subjects":
+      return <Subjects groups={block.groups} note={block.note} accent={accent} />;
     case "nexus":
       return (
         <>
@@ -804,6 +806,83 @@ function Videos({
         </Reveal>
       ))}
     </ul>
+  );
+}
+
+/**
+ * Subject areas, each opened up into the courses it actually covers.
+ *
+ * The course names are the content, not decoration: a parent looking for AP
+ * Chemistry should find the words "AP Chemistry" rather than infer it from
+ * "advanced coursework when available". Set as chips rather than prose so the
+ * eye can find one course in a list of a dozen.
+ *
+ * `featured` marks the subjects most asked for. It reads as emphasis, but it is
+ * information — it tells a family where the deepest bench is.
+ */
+function Subjects({
+  groups,
+  note,
+  accent,
+}: {
+  groups: Extract<ProgramBlock, { kind: "subjects" }>["groups"];
+  note?: string;
+  accent: "sun" | "blue";
+}) {
+  return (
+    <>
+      <ul className="grid gap-5 lg:grid-cols-2">
+        {groups.map((group, index) => (
+          <Reveal key={group.title} as="li" delay={stagger(index, 0.06)}>
+            <div
+              className={cn(
+                "flex h-full flex-col rounded-card border bg-white p-7 sm:p-8",
+                group.featured ? "border-brand-500/40 shadow-lg shadow-brand-500/5" : "border-navy-900/8",
+              )}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <span
+                  className={cn("grid h-11 w-11 place-items-center rounded-chip", chipClass(accent))}
+                >
+                  <Icon name={group.icon} className="h-5 w-5" />
+                </span>
+                {group.featured ? (
+                  <span className="rounded-full bg-sun-500 px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-[0.1em] text-navy-950">
+                    Most requested
+                  </span>
+                ) : null}
+              </div>
+
+              <h3 className="mt-5 text-xl font-bold tracking-tight text-navy-950">{group.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-navy-600">{group.body}</p>
+
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {group.courses.map((course) => (
+                  <li
+                    key={course}
+                    className="rounded-full border border-brand-500/20 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-500"
+                  >
+                    {course}
+                  </li>
+                ))}
+              </ul>
+
+              {group.note ? (
+                /* `mt-auto` so the note pins to the bottom of the card and the
+                   two cards in a row keep a common baseline however many
+                   courses each one lists. */
+                <p className="mt-auto pt-5 text-sm font-semibold leading-relaxed text-navy-700">
+                  {group.note}
+                </p>
+              ) : null}
+            </div>
+          </Reveal>
+        ))}
+      </ul>
+      {note ? (
+        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-navy-500">{note}</p>
+      ) : null}
+    </>
   );
 }
 

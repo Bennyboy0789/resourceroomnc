@@ -174,6 +174,27 @@ export type ProgramBlock =
       }[];
     })
   /*
+   * Subject areas with the actual course names under each.
+   *
+   * A one-line summary per subject cannot answer the question a parent of a
+   * junior is actually asking, which is whether you cover the specific course
+   * their child is failing. Naming the courses answers it without them having
+   * to call, and the list itself is the evidence of range.
+   */
+  | (BlockHeading & {
+      kind: "subjects";
+      groups: {
+        title: string;
+        icon: IconName;
+        body: string;
+        courses: string[];
+        /** Lifts the card and badges it — for the subjects most asked for. */
+        featured?: boolean;
+        note?: string;
+      }[];
+      note?: string;
+    })
+  /*
    * A hub with its dependents arranged around it, for a capability that is
    * central rather than sequential. Use `journey` when the order matters.
    */
