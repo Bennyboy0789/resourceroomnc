@@ -160,6 +160,17 @@ export type ProgramBlock =
         highlight?: boolean;
       }[];
     })
+  /*
+   * A hub with its dependents arranged around it, for a capability that is
+   * central rather than sequential. Use `journey` when the order matters.
+   */
+  | (BlockHeading & {
+      kind: "nexus";
+      hub: { title: string; body: string; icon: IconName };
+      nodes: { title: string; body: string; icon: IconName }[];
+      /** Panel under the diagram, for the audience it matters most to. */
+      footnote?: { title: string; body: string[]; note?: string };
+    })
   | (BlockHeading & { kind: "pricing"; tiers: PricingTier[]; note?: string })
   | (BlockHeading & {
       kind: "person";
@@ -2322,14 +2333,58 @@ export const programs: Program[] = [
     ],
     blocks: [
       {
-        kind: "prose",
+        kind: "nexus",
         eyebrow: "The basics",
         title: "What is executive",
         accent: "functioning?",
-        body: [
-          "Executive functioning is the set of mental skills that help students plan, organize, start tasks, stay focused, manage time, remember directions, solve problems, and regulate emotions.",
-          "These skills shape performance in every subject and play a major role in school success. When they lag behind a student's actual ability, the result is often frustration for everyone — capable students who cannot show what they know.",
+        description:
+          "Not a subject, and not a personality trait. It is the control system underneath every subject — and when it lags behind a student's actual ability, the result is a capable child who cannot show what they know.",
+        hub: {
+          title: "Executive function",
+          body: "The brain's control system",
+          icon: "compass",
+        },
+        nodes: [
+          {
+            title: "Getting started",
+            body: "Knowing exactly what the assignment is, and still not being able to begin it.",
+            icon: "play",
+          },
+          {
+            title: "Planning ahead",
+            body: "Seeing a project as a sequence of steps rather than one overwhelming block.",
+            icon: "chart",
+          },
+          {
+            title: "Managing time",
+            body: "Judging how long work will take, and starting early enough to finish it.",
+            icon: "clock",
+          },
+          {
+            title: "Holding instructions",
+            body: "Keeping directions in mind long enough to actually act on them.",
+            icon: "book",
+          },
+          {
+            title: "Staying with it",
+            body: "Holding attention on work that offers nothing interesting in return.",
+            icon: "target",
+          },
+          {
+            title: "Staying regulated",
+            body: "Meeting frustration, boredom or a hard problem without shutting down.",
+            icon: "heart",
+          },
         ],
+        footnote: {
+          title: "Why this matters most for students with ADHD",
+          body: [
+            "ADHD is, in large part, a difference in these exact skills — not in intelligence, not in effort, and not in how much a student cares. A child can understand the material completely, fully intend to do the work, and still lose the assignment, misjudge the hour, or stall at the starting line.",
+            "That gap is why the usual responses so rarely change anything. Trying harder does not build a system for starting. Taking away a phone does not teach a student to estimate how long an essay takes. What does move these skills is the unglamorous version: strategies taught explicitly, structure the student can borrow until it becomes their own, and someone checking in often enough that follow-through stops being optional.",
+            "That is exactly what the weekly session and the two check-ins are for.",
+          ],
+          note: "Executive functioning coaching is educational support. It works alongside whatever medical or clinical care a family has chosen, and is not a substitute for it.",
+        },
       },
       {
         kind: "schedule",

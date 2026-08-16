@@ -3,6 +3,7 @@ import { Icon, type IconName } from "@/components/icons";
 import { FilterableSchedule } from "@/components/program/FilterableSchedule";
 import { JourneyPath } from "@/components/program/JourneyPath";
 import { PhotoCarousel } from "@/components/program/PhotoCarousel";
+import { SkillNexus } from "@/components/program/SkillNexus";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -71,6 +72,31 @@ function Block({ block, accent }: { block: ProgramBlock; accent: "sun" | "blue" 
       return <Steps steps={block.steps} accent={accent} />;
     case "journey":
       return <JourneyPath steps={block.steps} accent={accent} />;
+    case "nexus":
+      return (
+        <>
+          <SkillNexus hub={block.hub} nodes={block.nodes} />
+          {block.footnote ? (
+            <Reveal>
+              <div className="mx-auto mt-14 max-w-3xl rounded-card border-2 border-brand-500/20 bg-white p-7 sm:p-9">
+                <h3 className="text-lg font-bold tracking-tight text-navy-950">
+                  {block.footnote.title}
+                </h3>
+                {block.footnote.body.map((paragraph) => (
+                  <p key={paragraph} className="mt-3 leading-relaxed text-navy-600">
+                    {paragraph}
+                  </p>
+                ))}
+                {block.footnote.note ? (
+                  <p className="mt-5 border-t border-brand-500/15 pt-4 text-sm leading-relaxed text-navy-500">
+                    {block.footnote.note}
+                  </p>
+                ) : null}
+              </div>
+            </Reveal>
+          ) : null}
+        </>
+      );
     case "pricing":
       return <Pricing tiers={block.tiers} note={block.note} accent={accent} />;
     case "person":
@@ -565,9 +591,12 @@ function ScheduleCard({
         {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
 
         <dl className="mt-5 space-y-3.5">
-          {group.rows.map((row) => (
+          {/* Keyed by position, not content: a timetable legitimately repeats a
+              row — the EF week has the same "Between sessions / Independent
+              practice" line twice — and a content key collides on those. */}
+          {group.rows.map((row, rowIndex) => (
             <div
-              key={`${row.label}-${row.value}`}
+              key={rowIndex}
               className="border-t border-navy-900/8 pt-3.5 first:border-t-0 first:pt-0"
             >
               {/* The link lives inside the `dt` rather than wrapping the row:
