@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
+import { CareWeb } from "@/components/ui/CareWeb";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { coreValues, partners, partnersIntro } from "@/content/about";
+import { coreValues, partnerNetwork, partners, partnersIntro } from "@/content/about";
 import { pageHeroes } from "@/content/sections";
 import { stagger } from "@/lib/stagger";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -25,6 +26,27 @@ export default function PreferredPartnersPage() {
         description={partnersIntro}
         breadcrumb={{ label: "About us", href: "/about" }}
       />
+
+      {/* The web sits ahead of the profiles: it explains what the three names
+          below have to do with each other, which reading them in sequence
+          does not. */}
+      <Section tone="mist">
+        <SectionHeading
+          eyebrow={partnerNetwork.eyebrow}
+          title={partnerNetwork.title}
+          accent={partnerNetwork.accent}
+          description={partnerNetwork.body}
+        />
+        <CareWeb
+          nodes={partnerNetwork.nodes}
+          logo={{ src: "/images/pathways/the-resource-room.png", alt: "The Resource Room" }}
+        />
+        <Reveal>
+          <p className="mt-14 text-center text-lg font-semibold italic text-brand-500">
+            &ldquo;{partnerNetwork.quote}&rdquo;
+          </p>
+        </Reveal>
+      </Section>
 
       <Section tone="white">
         <ul className="space-y-6">

@@ -3,6 +3,7 @@ import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/icons";
+import { CareWeb } from "@/components/ui/CareWeb";
 import type { PathwaysHighlight } from "@/content/pathways";
 import {
   pathwaysCoordinated,
@@ -519,7 +520,11 @@ export default function PathwaysAcademyPage() {
             {pathwaysCoordinated.body}
           </p>
 
-          <CareDiagram />
+          <CareWeb
+            nodes={pathwaysCoordinated.nodes}
+            tone="pathways"
+            logo={{ src: "/images/pathways/the-resource-room.png", alt: "The Resource Room" }}
+          />
 
           <p className="mx-auto mt-14 max-w-3xl font-pw-display text-xl italic text-pw-navy">
             &ldquo;{pathwaysCoordinated.quote}&rdquo;
@@ -628,123 +633,4 @@ function Emphasised({ text }: { text: string }) {
    page. It is not an even ring — the web is stretched horizontally and the
    lower three sit wider apart than the upper two — so the coordinates are
    transcribed rather than generated from an angle. */
-const CARE_BOX = { w: 856, h: 672 };
-const CARE_CENTRE = { x: 427, y: 373 };
-const CARE_POINTS = [
-  { x: 427, y: 66 }, // Your Student
-  { x: 111, y: 288 }, // Academic Support
-  { x: 744, y: 288 }, // Behavioral Support
-  { x: 72, y: 576 }, // Clinical Evaluation
-  { x: 427, y: 605 }, // Executive Functioning
-  { x: 783, y: 576 }, // Speech & Communication
-];
-/* The outer ring, by index into CARE_POINTS: student→academic→clinical→
-   executive→speech→behavioral→student. */
-const CARE_RING = [
-  [0, 1],
-  [1, 3],
-  [3, 4],
-  [4, 5],
-  [5, 2],
-  [2, 0],
-];
 
-function CareDiagram() {
-  return (
-    <>
-      <div
-        className="relative mx-auto mt-16 hidden w-full max-w-[856px] lg:block"
-        style={{ aspectRatio: `${CARE_BOX.w} / ${CARE_BOX.h}` }}
-      >
-        <svg
-          aria-hidden="true"
-          viewBox={`0 0 ${CARE_BOX.w} ${CARE_BOX.h}`}
-          className="absolute inset-0 h-full w-full"
-          fill="none"
-          stroke="var(--color-pw-gold)"
-          strokeWidth="1.5"
-          opacity="0.5"
-        >
-          {/* spokes out from the mark */}
-          {CARE_POINTS.map((p, i) => (
-            <line key={`spoke-${i}`} x1={CARE_CENTRE.x} y1={CARE_CENTRE.y} x2={p.x} y2={p.y} />
-          ))}
-          {/* and the ring joining neighbours */}
-          {CARE_RING.map(([a, b]) => (
-            <line
-              key={`ring-${a}-${b}`}
-              x1={CARE_POINTS[a].x}
-              y1={CARE_POINTS[a].y}
-              x2={CARE_POINTS[b].x}
-              y2={CARE_POINTS[b].y}
-            />
-          ))}
-        </svg>
-
-        <span
-          style={{
-            left: `${(CARE_CENTRE.x / CARE_BOX.w) * 100}%`,
-            top: `${(CARE_CENTRE.y / CARE_BOX.h) * 100}%`,
-          }}
-          className="absolute grid h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy-soft p-7"
-        >
-          <Image
-            src="/images/pathways/the-resource-room.png"
-            alt="The Resource Room"
-            width={188}
-            height={188}
-            className="h-full w-full object-contain"
-          />
-        </span>
-
-        {/* Keyed on title+strong, not `strong` alone: Academic Support and
-            Behavioral Support share a second line. */}
-        {pathwaysCoordinated.nodes.map((node, index) => (
-          <span
-            key={`${node.title} ${node.strong}`}
-            style={{
-              left: `${(CARE_POINTS[index].x / CARE_BOX.w) * 100}%`,
-              top: `${(CARE_POINTS[index].y / CARE_BOX.h) * 100}%`,
-            }}
-            className="absolute grid h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy px-3 text-center"
-          >
-            <span>
-              <span className="block text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-pw-gold">
-                {node.title}
-              </span>
-              <span className="block text-[0.8125rem] font-bold uppercase leading-tight tracking-[0.02em] text-white">
-                {node.strong}
-              </span>
-              {node.meta ? (
-                <span className="mt-1 block text-[0.625rem] leading-tight text-white/60">
-                  {node.meta}
-                </span>
-              ) : null}
-            </span>
-          </span>
-        ))}
-      </div>
-
-      <ul className="mt-12 grid gap-4 text-left sm:grid-cols-2 lg:hidden">
-        {pathwaysCoordinated.nodes.map((node) => (
-          <li
-            key={`${node.title} ${node.strong}`}
-            className="flex items-center gap-4 border border-pw-navy/10 bg-white p-5"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-pw-gold bg-pw-navy text-[0.6rem] font-bold uppercase text-pw-gold">
-              {node.strong.slice(0, 2)}
-            </span>
-            <span>
-              <span className="block text-[0.8rem] font-bold uppercase tracking-[0.08em] text-pw-navy">
-                {node.title} {node.strong}
-              </span>
-              {node.meta ? (
-                <span className="mt-0.5 block text-[0.8rem] text-pw-ink">{node.meta}</span>
-              ) : null}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}

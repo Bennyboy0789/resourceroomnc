@@ -97,3 +97,31 @@ export const partners: Partner[] = [
     ],
   },
 ];
+
+/**
+ * The referral web on the Preferred Partners page.
+ *
+ * Same six roles as the Pathways diagram, because it is the same network —
+ * but framed from the other direction. There the question is what surrounds a
+ * Pathways student; here it is what a family gains by starting with us, which
+ * is that the referral and the coordination afterwards are somebody else's job.
+ *
+ * Order is the diagram's, not the page's: top, mid-left, mid-right, then the
+ * lower three left to right. The two we deliver ourselves sit left and centre,
+ * the three partner disciplines to the right and below.
+ */
+export const partnerNetwork = {
+  eyebrow: "How referrals work",
+  title: "One network around",
+  accent: "one student.",
+  body: "Families usually arrive holding a stack of phone numbers and no way to make them talk to each other. Starting here means the referral is ours to make and the coordination afterwards is ours to keep — the evaluation, the therapy and the schoolwork all pointed at the same goal.",
+  nodes: [
+    { title: "Your", strong: "Student", meta: "" },
+    { title: "Academic", strong: "Support", meta: "Tutoring · Test Prep" },
+    { title: "Behavioral", strong: "Support", meta: "Hunter Weber, BCBA" },
+    { title: "Clinical", strong: "Evaluation", meta: "Dr. Shannon Erklin" },
+    { title: "Executive", strong: "Functioning", meta: "Planning · Organization" },
+    { title: "Speech &", strong: "Language", meta: "Jolyn Welsh, CCC-SLP" },
+  ],
+  quote: "One conversation to start. One team from then on.",
+};
