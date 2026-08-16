@@ -13,9 +13,17 @@ export function WhyChoose() {
       <Container size="wide">
         <SectionHeading {...homeSections.whyChoose} />
 
-        {/* Edge-to-edge images with the copy underneath — no card chrome, so the
-            photography reads as one continuous band across the section. */}
-        <ul className="mt-14 grid gap-px overflow-hidden bg-navy-950/10 md:grid-cols-3">
+        {/*
+          * Stacked on a phone the images are separated by a hairline — `gap-px`
+          * over a tinted list — which reads correctly there and is left alone.
+          *
+          * Once the three sit side by side that same hairline made them one
+          * continuous band, so from `md` up the divider is dropped for a real
+          * gap and each photograph is capped well short of its column. The
+          * container is 110rem wide, so an uncapped third of it runs to about
+          * 500px a side and the row becomes a wall of photography.
+          */}
+        <ul className="mt-14 grid gap-px overflow-hidden bg-navy-950/10 md:grid-cols-3 md:gap-x-10 md:overflow-visible md:bg-transparent">
           {whyChooseUs.map((item, index) => (
             <Reveal key={item.title} as="li" className="bg-mist" delay={stagger(index, 0.1)}>
               <PhotoSlot
@@ -23,11 +31,16 @@ export function WhyChoose() {
                 alt={item.image.alt}
                 icon={item.icon}
                 ratio="4/3"
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="rounded-card"
+                /* Matches the cap below, so the browser stops fetching a 500px
+                   render for a 352px slot. */
+                sizes="(min-width: 768px) 22rem, 100vw"
+                className="rounded-card md:mx-auto md:max-w-[22rem]"
               />
-              <div className="px-1 py-7 sm:px-6">
-                <div className="flex items-center gap-3">
+              {/* Capped to the same width as the photograph above it, so the
+                  centred copy sits under the image rather than under the
+                  column, which on a 110rem container are far apart. */}
+              <div className="px-1 py-7 sm:px-6 md:mx-auto md:max-w-[22rem] md:px-0 md:text-center">
+                <div className="flex items-center gap-3 md:justify-center">
                   <span className="text-xs font-bold tabular-nums text-brand-500">
                     {String(index + 1).padStart(2, "0")}
                   </span>
