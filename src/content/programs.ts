@@ -1,4 +1,5 @@
 import type { IconName } from "@/components/icons";
+import type { SiteNotice } from "@/lib/notice-window";
 
 /**
  * Program content, transcribed from resourceroomnc.com.
@@ -280,6 +281,8 @@ export type ProgramBlock =
 
 export type Program = {
   slug: string;
+  /** Short-lived banner under the hero. Retires on its own dates. */
+  notice?: SiteNotice;
   /** Full name, used as the page H1. */
   name: string;
   /** Short label for cards, nav and pills. */
@@ -447,6 +450,21 @@ export const campVideos = [
   { id: "QpW6dnlvWuQ", title: "Resource Room STEM Camp 1" },
   { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
 ];
+
+/*
+ * Single-day camps are full for the week of 17 August 2026.
+ *
+ * Shared by all three camp pages so one edit covers them, and dated so it
+ * clears itself the moment the week is over — a notice saying "this week is
+ * full" is actively wrong the following Monday, and this one sits directly
+ * above a booking calendar that would contradict it.
+ */
+export const campSingleDayPause: SiteNotice = {
+  from: "2026-08-16",
+  until: "2026-08-21",
+  title: "Single days full this week",
+  body: "There are no single-day camp sessions available 17–21 August. Full-week places and later dates are unaffected, and single days open again the following week.",
+};
 
 /*
  * The camp day, shared by the camps program page and the camp product pages.
@@ -626,6 +644,7 @@ export const programs: Program[] = [
   },
   {
     slug: "camps",
+    notice: campSingleDayPause,
     name: "Track-Out, Summer & Teacher-Workday Camps",
     shortName: "Camps",
     category: "STEAM Programs",

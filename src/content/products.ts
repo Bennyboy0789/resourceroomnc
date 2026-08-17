@@ -1,4 +1,5 @@
-import { campDayRows, campGalleryPhotos, campVideos } from "@/content/programs";
+import { campDayRows, campGalleryPhotos, campSingleDayPause, campVideos } from "@/content/programs";
+import type { SiteNotice } from "@/lib/notice-window";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
 
@@ -21,6 +22,8 @@ import type { Review } from "@/content/testimonials";
  */
 export type ProductPage = {
   slug: string;
+  /** Short-lived banner under the hero. Retires on its own dates. */
+  notice?: SiteNotice;
   programSlug: string;
   catalogSlug: string | null;
   name: string;
@@ -1413,6 +1416,7 @@ export const products: ProductPage[] = [
   /* -------------------------------------------------------------- camps */
   {
     slug: "track-out-teacher-workday",
+    notice: campSingleDayPause,
     programSlug: "camps",
     catalogSlug: "teacher-workdays",
     name: "Track-Out & Teacher Workday Camps",
@@ -1847,6 +1851,7 @@ export const products: ProductPage[] = [
   },
   {
     slug: "summer-camp",
+    notice: campSingleDayPause,
     programSlug: "camps",
     catalogSlug: "stem",
     /* June, July, August — the rest of the STEM product's year-round weeks

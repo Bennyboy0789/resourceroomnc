@@ -5,6 +5,7 @@ import { FinalCta } from "@/components/home/FinalCta";
 import { ReviewCarousel } from "@/components/home/ReviewCarousel";
 import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
+import { Notice } from "@/components/ui/Notice";
 import { ProgramBlocks } from "@/components/program/ProgramBlocks";
 import { VariantPicker } from "@/components/shop/VariantPicker";
 import { Button } from "@/components/ui/Button";
@@ -144,6 +145,8 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
           </Button>
         </div>
       </PageHero>
+
+      {product.notice ? <Notice notice={product.notice} /> : null}
 
       {product.stats?.length ? (
         <section className="border-b border-navy-900/10 bg-sun-500 text-navy-950">
