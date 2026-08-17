@@ -12,7 +12,7 @@ import { seoDescription, seoTitle } from "@/lib/seo";
 export const metadata: Metadata = {
   title: seoTitle("Contact Us", "Holly Springs, NC"),
   description: seoDescription(
-    "Schedule a free consultation with Resource Room in Holly Springs, NC. Call 984-777-1244 or send us a note about your student.",
+    "Schedule a free consultation with Resource Room in Holly Springs, NC. Call or text 984-777-1244, or send us a note about your student.",
   ),
   alternates: { canonical: "/contact" },
 };
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const contactMethods = [
   {
     icon: "phone" as const,
-    label: "Call us",
+    label: "Call or text us",
     value: site.phone,
     href: site.phoneHref,
   },

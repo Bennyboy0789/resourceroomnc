@@ -174,7 +174,7 @@ export function ContactForm({ returning = false }: { returning?: boolean }) {
       ) : null}
 
       <p className="text-xs leading-relaxed text-navy-600">
-        Every message reaches a real person on our team. Prefer to talk? Call{" "}
+        Every message reaches a real person on our team. Prefer to talk? Call or text{" "}
         <a href={site.phoneHref} className="font-semibold text-navy-950 hover:underline">
           {site.phone}
         </a>
