@@ -462,8 +462,8 @@ export const campVideos = [
 export const campSingleDayPause: SiteNotice = {
   from: "2026-08-16",
   until: "2026-08-21",
-  title: "Single days full this week",
-  body: "There are no single-day camp sessions available 17–21 August. Full-week places and later dates are unaffected, and single days open again the following week.",
+  title: "August 17–21 is full",
+  body: "No single-day or full-week places remain for this week. Both are open again for the weeks that follow.",
 };
 
 /*
