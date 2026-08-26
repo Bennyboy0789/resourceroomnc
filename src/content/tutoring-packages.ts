@@ -27,15 +27,18 @@ export const packagesMeta = {
 export const gradeTiers = ["K–5", "Grades 6–8", "Grades 9–12", "SAT/AP"] as const;
 
 /**
- * The intake fee, renamed from "Registration Fee" and raised from $75 to $95
- * in the September 2026 rate card.
+ * The intake fee, renamed from "Registration Fee" in the September 2026 rate
+ * card. That card raised it to $95; it has since been set back to $75.
  *
  * Note what moved: 10+ hours no longer waives it, so Study Sprint now carries
  * the fee where it used to be free. Honor Roll, a 3-month subscription, any
  * reading term and the full-year plan waive it.
+ *
+ * The sibling rate below is unchanged at $50, so it is now a smaller discount
+ * against the lower fee than it was against $95.
  */
 export const registrationFee = {
-  title: "New Student Enrollment · $95",
+  title: "New Student Enrollment · $75",
   body: "A one-time fee for new families. Covers intake, tutor matching, scheduling, and all standard session materials.",
   waivedTitle: "Waived with",
   waivedFor: [
@@ -45,7 +48,7 @@ export const registrationFee = {
     "A Full Academic Year Plan",
   ],
   upgradeNote:
-    "Upgrading? Move up to a larger package within 30 days and the $95 is credited toward it.",
+    "Upgrading? Move up to a larger package within 30 days and the $75 is credited toward it.",
   note: "Not sure where to start? New families often begin with a Starter Stack. Students working with us weekly save the most with the Honor Roll Plan or a monthly subscription.",
 };
 
@@ -68,7 +71,7 @@ export const hourlyPackages = {
       name: "Starter Stack",
       meta: "5 Hours · From $75/hr",
       prices: ["$375", "$385", "$400", "$425"],
-      note: "$95 New Student Enrollment applies",
+      note: "$75 New Student Enrollment applies",
       bestFor:
         "Families new to Resource Room, or those targeting one subject, prepping for a quiz, or trying tutoring before a longer commitment.",
     },
@@ -76,7 +79,7 @@ export const hourlyPackages = {
       name: "Study Sprint",
       meta: "10 Hours · From $73/hr",
       prices: ["$730", "$750", "$780", "$830"],
-      note: "$95 New Student Enrollment applies · discounted rate",
+      note: "$75 New Student Enrollment applies · discounted rate",
       bestFor:
         "Students who need academic reinforcement over a few weeks. Ideal for mid-quarter check-ins or project-based support.",
     },
@@ -131,7 +134,7 @@ export const readingIntervention = {
     "Fluency, spelling, and comprehension work",
     "Written progress report every 6 weeks",
     "Parent conference at the end of each term",
-    "$95 New Student Enrollment waived",
+    "$75 New Student Enrollment waived",
   ],
   plans: [
     {
@@ -331,7 +334,7 @@ export const policies = {
         {
           title: "",
           items: [
-            "The $95 New Student Enrollment fee applies to the first student only; siblings enrolling within the same 12 months pay $50",
+            "The $75 New Student Enrollment fee applies to the first student only; siblings enrolling within the same 12 months pay $50",
             "Enrollment credit toward an upgrade must be requested within 30 days of the first session",
             "The enrollment fee is non-refundable once a student has been matched and scheduled",
             "Packages cannot be split between siblings unless approved",
@@ -394,7 +397,7 @@ export const packagesFaqs = [
   },
   {
     q: "What does the New Student Enrollment fee cover?",
-    a: "A one-time $95 fee for new families covering intake, tutor matching, scheduling, and all standard session materials. It applies to the Starter Stack and Study Sprint, and is waived with the Honor Roll Plan, a 3-month Scholar's Subscription, any Reading Intervention term, or a Full Academic Year Plan. Move up to a larger package within 30 days and we credit it toward your new plan.",
+    a: "A one-time $75 fee for new families covering intake, tutor matching, scheduling, and all standard session materials. It applies to the Starter Stack and Study Sprint, and is waived with the Honor Roll Plan, a 3-month Scholar's Subscription, any Reading Intervention term, or a Full Academic Year Plan. Move up to a larger package within 30 days and we credit it toward your new plan.",
   },
   {
     q: "My child is struggling with reading. Which option is right?",
