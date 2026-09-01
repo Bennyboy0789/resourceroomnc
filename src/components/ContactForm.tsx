@@ -23,7 +23,7 @@ import { site } from "@/content/site";
  * viewport whenever a focused form control is under 16px, and then does not
  * zoom back out — so tapping the first field threw the whole layout out of
  * scale for the rest of the form. Drops to 14px from `sm` up, where no mobile
- * browser applies that behaviour.
+ * browser applies that behavior.
  */
 const fieldClasses =
   "w-full min-w-0 rounded-chip border border-navy-900/40 bg-white px-4 py-3 text-base text-navy-950 placeholder:text-navy-500 focus:border-brand-500 sm:text-sm";

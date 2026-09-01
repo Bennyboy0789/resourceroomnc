@@ -18,7 +18,7 @@ const AUTOPLAY_MS = 4000;
  * Every polaroid's placement is one composed `transform`. Tailwind's
  * translate/scale utilities and an inline rotate cannot be mixed here: they
  * both write the same CSS property, the inline one wins, and the neighbours
- * would land centred on top of the main photo with nothing to show for it.
+ * would land centered on top of the main photo with nothing to show for it.
  *
  * Autoplay follows the same rules as the review carousel: it never starts
  * under prefers-reduced-motion, it pauses on hover and on focus, and there is

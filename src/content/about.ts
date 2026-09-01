@@ -107,7 +107,7 @@ export const partners: Partner[] = [
  * is that the referral and the coordination afterwards are somebody else's job.
  *
  * Order is the diagram's, not the page's: top, mid-left, mid-right, then the
- * lower three left to right. The two we deliver ourselves sit left and centre,
+ * lower three left to right. The two we deliver ourselves sit left and center,
  * the three partner disciplines to the right and below.
  */
 export const partnerNetwork = {

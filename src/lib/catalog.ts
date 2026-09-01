@@ -23,7 +23,7 @@ export type CatalogAttribute = {
   options: string[];
   /**
    * Options that are full. Shown, struck through and unselectable rather than
-   * removed: a family looking for the week their neighbour booked should see
+   * removed: a family looking for the week their neighbor booked should see
    * that it exists and has gone, not silently fail to find it.
    */
   soldOut: string[];
@@ -117,7 +117,7 @@ function inCalendarOrder(options: string[]): string[] {
  * Undated options — Extended Day, Single Day — pass through untouched; the
  * filter only judges options that name a date. A week is kept or dropped by
  * the month it *starts* in, same as the calendar-order sort above, so a week
- * labelled "Aug 30 – Sept 3" counts as August.
+ * labeled "Aug 30 – Sept 3" counts as August.
  *
  * `months` is 0-indexed (June is 5), matching `Date`.
  */
@@ -156,7 +156,7 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
      * `limit: 100` is Stripe's maximum per request, and the seeded catalog is
      * already over it — 102 prices across 9 products, with STEM alone holding
      * 55 weekly sessions. A single page silently dropped the two oldest, which
-     * cost Homeschool Co-Op one of its ten enrolment options: no error, just a
+     * cost Homeschool Co-Op one of its ten enrollment options: no error, just a
      * combination a family could not buy. `autoPagingToArray` needs an explicit
      * ceiling, so both are set well above the present catalog with room to grow.
      */

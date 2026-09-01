@@ -139,7 +139,7 @@ export type ProgramBlock =
       note?: string;
     })
   /*
-   * Cards that are themselves links, for cross-selling the rest of the centre.
+   * Cards that are themselves links, for cross-selling the rest of the center.
    *
    * A `cards` block says a program exists; this one lets a family reach it. The
    * card title is the anchor text, so these read as descriptive internal links
@@ -304,7 +304,7 @@ export type Program = {
   highlights: { title: string; body: string }[];
   /**
    * Heading over the product grid, when the shared "What runs inside this
-   * program." does not fit. `accent` is the emphasised trailing phrase.
+   * program." does not fit. `accent` is the emphasized trailing phrase.
    */
   productsHeading?: { title: string; accent: string };
   /** "What's included" checklist. */
@@ -415,7 +415,7 @@ export const campGalleryPhotos: GalleryPhoto[] = [
   },
   {
     src: "/images/gallery/slime-stretch.jpg",
-    alt: "A camper stretching a long rope of grey slime between both hands over a mixing bowl.",
+    alt: "A camper stretching a long rope of gray slime between both hands over a mixing bowl.",
     caption: "Slime Lab",
     rotate: 3,
   },
@@ -1686,28 +1686,28 @@ export const programs: Program[] = [
           {
             name: "1 Class",
             price: "$425",
-            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
+            cta: { label: "Enroll now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["One class from the academic day or lab day"],
           },
           {
             name: "2 Classes",
             price: "$850",
-            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
+            cta: { label: "Enroll now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["Any two classes, academic day or lab day"],
           },
           {
             name: "3 Classes",
             price: "$1,250",
-            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
+            cta: { label: "Enroll now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             features: ["Any three classes, academic day or lab day"],
           },
           {
             name: "Full Academic Day",
             price: "$1,650",
-            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
+            cta: { label: "Enroll now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             meta: "4 classes",
             featured: true,
@@ -1716,7 +1716,7 @@ export const programs: Program[] = [
           {
             name: "Academic + Lab Track",
             price: "$2,450",
-            cta: { label: "Enrol now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
+            cta: { label: "Enroll now", href: "/programs/homeschool-co-op/homeschool-co-op#buy" },
             cadence: "per semester",
             meta: "The full two-day program",
             features: [

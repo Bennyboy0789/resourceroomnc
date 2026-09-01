@@ -14,7 +14,7 @@
 
 export type SectionCopy = {
   eyebrow?: string;
-  /** Rendered as the h2. `accent` is appended in the accent colour. */
+  /** Rendered as the h2. `accent` is appended in the accent color. */
   title: string;
   accent?: string;
   description?: string;

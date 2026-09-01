@@ -90,7 +90,7 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
 
 /**
  * The office copy: everything needed to action the booking without opening
- * Stripe. Student name and enrolment notes lead, because those are the two
+ * Stripe. Student name and enrollment notes lead, because those are the two
  * things Stripe's own notification email does not carry.
  */
 export function officeOrderEmail(order: Order) {

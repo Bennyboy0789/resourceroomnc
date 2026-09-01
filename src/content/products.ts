@@ -167,7 +167,7 @@ export const products: ProductPage[] = [
         title: "From first conversation to first",
         accent: "session.",
         description:
-          "Five steps, usually inside a week. No placement tests, no call centre, and nobody guessing what your student needs.",
+          "Five steps, usually inside a week. No placement tests, no call center, and nobody guessing what your student needs.",
         steps: [
           {
             title: "Free consultation",
@@ -472,7 +472,7 @@ export const products: ProductPage[] = [
           },
           {
             title: "Executive functioning",
-            body: "Planning, organisation, task initiation and time management, built without the daily pressure of school.",
+            body: "Planning, organization, task initiation and time management, built without the daily pressure of school.",
             icon: "compass",
           },
         ],

@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
  *
  * Four steps rather than a continuous scale: a linear font-size ramp across 66
  * tags produces sizes nobody can tell apart, and the smallest end drops below
- * a readable size. Weight and colour carry most of the signal; size is a nudge.
+ * a readable size. Weight and color carry most of the signal; size is a nudge.
  */
 const STEPS = [
   { min: 8, className: "text-xl text-navy-950" },

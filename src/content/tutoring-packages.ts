@@ -100,7 +100,7 @@ export const hourlyPackages = {
  * Emerging Reader Intervention — new in the September 2026 rate card.
  *
  * Priced per session rather than across the four grade bands, because it is
- * one programme at one rate rather than a package that costs more for older
+ * one program at one rate rather than a package that costs more for older
  * students. That is why it needs its own shape instead of `PricedPlan`.
  */
 export type TermPlan = {

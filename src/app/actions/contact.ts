@@ -125,7 +125,7 @@ export async function submitContact(
 
   if (!mailerConfigured()) {
     // Surfaces a misconfigured deploy in the logs instead of silently dropping
-    // a real enquiry on the floor.
+    // a real inquiry on the floor.
     console.error("[contact] SMTP2Go not configured; dropping submission from", email);
     return {
       status: "error",

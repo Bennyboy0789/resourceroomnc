@@ -5,7 +5,7 @@ import { addressLine, site } from "@/content/site";
 /**
  * Address, email and phone strip above the nav.
  *
- * Rendered as a labelled `<section>` so the content sits inside a landmark —
+ * Rendered as a labeled `<section>` so the content sits inside a landmark —
  * otherwise the address and phone number are orphaned outside header, main and
  * footer, and a screen-reader user navigating by landmark never reaches them.
  */

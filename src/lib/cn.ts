@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge";
  * twice in PhotoSlot's border radius.
  *
  * With twMerge a later argument reliably overrides an earlier one, which is the
- * behaviour every call site already assumed.
+ * behavior every call site already assumed.
  */
 export function cn(...classes: (string | false | null | undefined)[]) {
   return twMerge(classes.filter(Boolean).join(" "));

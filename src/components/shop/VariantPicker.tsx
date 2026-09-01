@@ -42,7 +42,7 @@ function prompt(name: string) {
  * the drawer between each, was the single most tedious thing about enrolling.
  *
  * Homeschool Co-Op is the one product priced on two axes (Grade Level ×
- * Enrollment Type). A cross-product of those is meaningless — you enrol one
+ * Enrollment Type). A cross-product of those is meaningless — you enroll one
  * child at one grade — so it stays single-select, and a second child is a
  * second trip through the picker.
  *

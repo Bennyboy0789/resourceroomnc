@@ -31,7 +31,7 @@ export function CartDrawer() {
   }, [cart]);
 
   /**
-   * Modal focus behaviour.
+   * Modal focus behavior.
    *
    * Without this the drawer is only visually modal: focus stays wherever it was
    * in the page behind, so a keyboard or screen-reader user opens the cart and

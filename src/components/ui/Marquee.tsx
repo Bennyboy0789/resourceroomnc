@@ -43,7 +43,7 @@ export function Marquee({ items }: { items: string[] }) {
       </div>
 
       {/* Text scrolled out from behind a translucent button, which read as a
-          rendering fault. This fades the strip into the page colour first, then
+          rendering fault. This fades the strip into the page color first, then
           sits the button on solid navy on top of the fade. */}
       <div
         aria-hidden="true"

@@ -52,7 +52,7 @@ export function organizationSchema() {
         closes: "19:00",
       },
       /* The contact page says "Saturday by appointment", so the schema should
-         not claim the centre is shut. No hours are published for it, hence the
+         not claim the center is shut. No hours are published for it, hence the
          `description` rather than an opens/closes pair. */
       {
         "@type": "OpeningHoursSpecification",

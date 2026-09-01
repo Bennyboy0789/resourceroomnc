@@ -208,7 +208,7 @@ export const backToSchool = {
   after: {
     heading: "The first weeks back",
     accent: "tell you a lot.",
-    body: "Homework taking twice as long as it should? Organisation slipping already? The first month is when the gaps show, and it is far easier to close them now than after a term of falling behind.",
+    body: "Homework taking twice as long as it should? Organization slipping already? The first month is when the gaps show, and it is far easier to close them now than after a term of falling behind.",
   },
   primary: { label: "Book a free consultation", href: "/contact" },
   returning: {

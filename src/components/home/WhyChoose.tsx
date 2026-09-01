@@ -44,7 +44,7 @@ export function WhyChoose() {
                   className="rounded-card transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-navy-950/10 md:mx-auto md:max-w-[22rem]"
                 />
                 {/* Capped to the same width as the photograph above it, so the
-                    centred copy sits under the image rather than under the
+                    centered copy sits under the image rather than under the
                     column, which on a 110rem container are far apart. */}
                 <div className="px-1 py-7 sm:px-6 md:mx-auto md:max-w-[22rem] md:px-0 md:text-center">
                   <div className="flex items-center gap-3 md:justify-center">

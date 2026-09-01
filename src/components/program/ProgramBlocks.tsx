@@ -785,7 +785,7 @@ function Videos({
           as="li"
           delay={stagger(index, 0.08)}
           /* Shorts are tall. Left full-width they tower over everything else
-             on the page, so they are capped and centred in their column. */
+             on the page, so they are capped and centered in their column. */
           className={vertical ? "mx-auto w-full max-w-[330px]" : "w-full"}
         >
           <div

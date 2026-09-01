@@ -156,7 +156,7 @@ export default function PathwaysAcademyPage() {
           className="object-cover object-center"
         />
         {/* Left-weighted scrim: the artwork carries the Pathways wordmark in the
-            middle, so the copy side darkens and the centre stays legible. */}
+            middle, so the copy side darkens and the center stays legible. */}
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-r from-pw-navy/85 via-pw-navy/45 to-pw-navy/10"
@@ -497,7 +497,7 @@ export default function PathwaysAcademyPage() {
               </h2>
               {pathwaysDiploma.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="mt-5 leading-[1.85] text-pw-ink">
-                  <Emphasised text={paragraph} />
+                  <Emphasized text={paragraph} />
                 </p>
               ))}
             </div>
@@ -605,7 +605,7 @@ function CheckList({ items }: { items: string[] }) {
 }
 
 /** Renders the **bold** spans the diploma copy carries on the original. */
-function Emphasised({ text }: { text: string }) {
+function Emphasized({ text }: { text: string }) {
   return (
     <>
       {text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>

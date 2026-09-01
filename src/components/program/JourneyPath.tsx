@@ -18,7 +18,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** Seconds the connector takes to draw itself in, once, on scroll. */
 const DRAW = 1.4;
-/** Seconds the travelling light takes to cross the drawn connector. */
+/** Seconds the traveling light takes to cross the drawn connector. */
 const TRAVEL = 2.8;
 /** Full loop: the light crosses, then the path rests before the next pass. */
 const CYCLE = 3.7;

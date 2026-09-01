@@ -18,17 +18,17 @@ export type CareNode = {
  * the result, in the viewBox's own units.
  */
 const BOX = { w: 856, h: 672 };
-const CENTRE = { x: 427, y: 373 };
+const CENTER = { x: 427, y: 373 };
 const POINTS = [
   { x: 427, y: 66 }, // top — the student
   { x: 111, y: 288 }, // mid left
   { x: 744, y: 288 }, // mid right
   { x: 72, y: 576 }, // lower left
-  { x: 427, y: 605 }, // lower centre
+  { x: 427, y: 605 }, // lower center
   { x: 783, y: 576 }, // lower right
 ];
-/* The outer ring, by index: top→mid-left→lower-left→lower-centre→lower-right→
-   mid-right→top. Every neighbour joined, so the six read as a network rather
+/* The outer ring, by index: top→mid-left→lower-left→lower-center→lower-right→
+   mid-right→top. Every neighbor joined, so the six read as a network rather
    than as six things each wired only to the middle. */
 const RING = [
   [0, 1],
@@ -42,13 +42,13 @@ const RING = [
 /*
  * Two palettes, because this runs on two brands. Pathways is a deliberately
  * separate identity — its `pw-` tokens are documented as not Resource Room
- * colours — so the geometry is shared and the colour is not.
+ * colors — so the geometry is shared and the color is not.
  */
 const tones = {
   pathways: {
     stroke: "var(--color-pw-gold)",
     node: "border-pw-gold bg-pw-navy",
-    centre: "border-pw-gold bg-pw-navy-soft",
+    center: "border-pw-gold bg-pw-navy-soft",
     title: "text-pw-gold",
     meta: "text-white/60",
     card: "border-pw-navy/10 bg-white",
@@ -59,7 +59,7 @@ const tones = {
   brand: {
     stroke: "var(--color-sun-500)",
     node: "border-sun-500 bg-navy-950",
-    centre: "border-sun-500 bg-brand-500",
+    center: "border-sun-500 bg-brand-500",
     title: "text-sun-500",
     meta: "text-white/70",
     card: "border-navy-900/10 bg-white",
@@ -70,8 +70,8 @@ const tones = {
 } as const;
 
 /**
- * A support network drawn as a web: the mark at the centre, six roles around
- * it, every neighbour joined.
+ * A support network drawn as a web: the mark at the center, six roles around
+ * it, every neighbor joined.
  *
  * The ring is the argument. Spokes alone would say each service reports to the
  * middle; joining the neighbours says they also talk to each other, which is
@@ -108,7 +108,7 @@ export function CareWeb({
           opacity="0.5"
         >
           {POINTS.map((p, i) => (
-            <line key={`spoke-${i}`} x1={CENTRE.x} y1={CENTRE.y} x2={p.x} y2={p.y} />
+            <line key={`spoke-${i}`} x1={CENTER.x} y1={CENTER.y} x2={p.x} y2={p.y} />
           ))}
           {RING.map(([a, b]) => (
             <line
@@ -123,10 +123,10 @@ export function CareWeb({
 
         <span
           style={{
-            left: `${(CENTRE.x / BOX.w) * 100}%`,
-            top: `${(CENTRE.y / BOX.h) * 100}%`,
+            left: `${(CENTER.x / BOX.w) * 100}%`,
+            top: `${(CENTER.y / BOX.h) * 100}%`,
           }}
-          className={`absolute grid h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 p-7 ${t.centre}`}
+          className={`absolute grid h-[188px] w-[188px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 p-7 ${t.center}`}
         >
           <Image
             src={logo.src}
