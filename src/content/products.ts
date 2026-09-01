@@ -1,4 +1,4 @@
-import { campDayRows, campGalleryPhotos, campSingleDayPause, campVideos } from "@/content/programs";
+import { campDayRows, campGalleryPhotos, campNotice, campVideos } from "@/content/programs";
 import type { SiteNotice } from "@/lib/notice-window";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
@@ -1416,7 +1416,7 @@ export const products: ProductPage[] = [
   /* -------------------------------------------------------------- camps */
   {
     slug: "track-out-teacher-workday",
-    notice: campSingleDayPause,
+    notice: campNotice,
     programSlug: "camps",
     catalogSlug: "teacher-workdays",
     name: "Track-Out & Teacher Workday Camps",
@@ -1624,7 +1624,7 @@ export const products: ProductPage[] = [
             rows: [
               { label: "Aug 24 – Aug 28", value: "5 days" },
               { label: "Aug 31 – Sep 4", value: "5 days" },
-              { label: "Sep 8 – Sep 11", value: "4 days" },
+              { label: "Sep 8 – Sep 11", value: "4 days", note: "No camp this week" },
             ],
             note: "Closed Sep 7, Labor Day",
           },
@@ -1851,7 +1851,7 @@ export const products: ProductPage[] = [
   },
   {
     slug: "summer-camp",
-    notice: campSingleDayPause,
+    notice: campNotice,
     programSlug: "camps",
     catalogSlug: "stem",
     /* June, July, August — the rest of the STEM product's year-round weeks

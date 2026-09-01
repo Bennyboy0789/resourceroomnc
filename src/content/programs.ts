@@ -452,18 +452,21 @@ export const campVideos = [
 ];
 
 /*
- * Single-day camps are full for the week of 17 August 2026.
+ * Whatever the camp pages currently need to say about a specific week.
  *
- * Shared by all three camp pages so one edit covers them, and dated so it
- * clears itself the moment the week is over — a notice saying "this week is
- * full" is actively wrong the following Monday, and this one sits directly
- * above a booking calendar that would contradict it.
+ * Shared by all three of them so one edit covers the set, and dated so it
+ * clears itself — this sits directly above a booking calendar, and a notice
+ * about a week that has passed contradicts what the calendar is offering.
+ *
+ * Currently: no camps at all the week of 7 September 2026. It runs from well
+ * before the week rather than during it, because the point is to reach a
+ * family while they are still planning that week, not once it arrives.
  */
-export const campSingleDayPause: SiteNotice = {
-  from: "2026-08-16",
-  until: "2026-08-21",
-  title: "August 17–21 is full",
-  body: "No single-day or full-week places remain for this week. Both are open again for the weeks that follow.",
+export const campNotice: SiteNotice = {
+  from: "2026-08-27",
+  until: "2026-09-11",
+  title: "No camps September 7–11",
+  body: "There are no full-week or single-day sessions that week. Camps run as normal the weeks either side.",
 };
 
 /*
@@ -644,7 +647,7 @@ export const programs: Program[] = [
   },
   {
     slug: "camps",
-    notice: campSingleDayPause,
+    notice: campNotice,
     name: "Track-Out, Summer & Teacher-Workday Camps",
     shortName: "Camps",
     category: "STEAM Programs",
@@ -833,7 +836,7 @@ export const programs: Program[] = [
             rows: [
               { label: "Aug 24 – Aug 28", value: "5 days" },
               { label: "Aug 31 – Sep 4", value: "5 days" },
-              { label: "Sep 8 – Sep 11", value: "4 days" },
+              { label: "Sep 8 – Sep 11", value: "4 days", note: "No camp this week" },
             ],
             note: "Closed Sep 7, Labor Day",
           },
