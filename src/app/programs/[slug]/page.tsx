@@ -113,7 +113,9 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
         </div>
       </PageHero>
 
-      {program.notice ? <Notice notice={program.notice} /> : null}
+      {program.notices?.map((notice) => (
+        <Notice key={notice.title} notice={notice} />
+      ))}
 
       {program.stats?.length ? (
         <section className="border-b border-navy-900/10 bg-sun-500 text-navy-950">

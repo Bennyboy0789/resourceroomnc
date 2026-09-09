@@ -281,8 +281,8 @@ export type ProgramBlock =
 
 export type Program = {
   slug: string;
-  /** Short-lived banner under the hero. Retires on its own dates. */
-  notice?: SiteNotice;
+  /** Short-lived banners under the hero. Each retires on its own dates. */
+  notices?: SiteNotice[];
   /** Full name, used as the page H1. */
   name: string;
   /** Short label for cards, nav and pills. */
@@ -452,22 +452,34 @@ export const campVideos = [
 ];
 
 /*
- * Whatever the camp pages currently need to say about a specific week.
+ * Whatever the camp pages currently need to say about specific weeks.
  *
- * Shared by all three of them so one edit covers the set, and dated so it
- * clears itself — this sits directly above a booking calendar, and a notice
- * about a week that has passed contradicts what the calendar is offering.
+ * A list rather than one entry, because closures overlap: the week of the 7th
+ * is still running while the week of the 14th needs announcing, and a family
+ * planning ahead needs both. Each carries its own dates and disappears on its
+ * own, so the overlap resolves itself without anyone editing this again.
  *
- * Currently: no camps at all the week of 7 September 2026. It runs from well
- * before the week rather than during it, because the point is to reach a
- * family while they are still planning that week, not once it arrives.
+ * Shared by all three camp pages so one edit covers the set. They sit directly
+ * above a booking calendar, which is why the dates matter: a notice about a
+ * week that has passed contradicts what the calendar is offering.
+ *
+ * Each runs from well before its week rather than during it — the point is to
+ * reach a family while they are still planning, not once the week arrives.
  */
-export const campNotice: SiteNotice = {
-  from: "2026-08-27",
-  until: "2026-09-11",
-  title: "No camps September 7–11",
-  body: "There are no full-week or single-day sessions that week. Camps run as normal the weeks either side.",
-};
+export const campNotices: SiteNotice[] = [
+  {
+    from: "2026-08-27",
+    until: "2026-09-11",
+    title: "No camps September 7–11",
+    body: "There are no full-week or single-day sessions that week. Camps run as normal the weeks either side.",
+  },
+  {
+    from: "2026-09-08",
+    until: "2026-09-18",
+    title: "No camps September 14–18",
+    body: "There are no single-day or full-week sessions that week. Camps run as normal again from September 21.",
+  },
+];
 
 /*
  * The camp day, shared by the camps program page and the camp product pages.
@@ -647,7 +659,7 @@ export const programs: Program[] = [
   },
   {
     slug: "camps",
-    notice: campNotice,
+    notices: campNotices,
     name: "Track-Out, Summer & Teacher-Workday Camps",
     shortName: "Camps",
     category: "STEAM Programs",

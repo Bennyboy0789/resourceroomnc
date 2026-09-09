@@ -146,7 +146,9 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
         </div>
       </PageHero>
 
-      {product.notice ? <Notice notice={product.notice} /> : null}
+      {product.notices?.map((notice) => (
+        <Notice key={notice.title} notice={notice} />
+      ))}
 
       {product.stats?.length ? (
         <section className="border-b border-navy-900/10 bg-sun-500 text-navy-950">
