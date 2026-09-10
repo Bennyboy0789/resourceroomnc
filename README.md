@@ -61,6 +61,34 @@ Still to supply:
 
 - Confirm `blogUrl` in `src/content/site.ts` points at the right blog.
 - Add real Facebook/Instagram URLs in `socials` (same file).
-- The contact form composes an email via `mailto:` so it works on a static deploy. To route
-  submissions to a CRM or inbox instead, replace `handleSubmit` in
-  `src/components/ContactForm.tsx` with a Server Action or form-provider POST.
+- The consultation and careers forms post to the Server Action in
+  `src/app/actions/contact.ts`, which delivers through SMTP2Go to `SMTP2GO_TO`.
+
+## Form spam
+
+Both forms are scored by `src/lib/spam.ts` before anything is sent. There is no captcha: a
+submission reaches a Server Action only from a browser that rendered the page and ran React, so
+"can this client run JS" filters almost nothing, and what actually separates a bot from a parent is
+what it writes. Signals are weighted — links and where they point, marketing vocabulary, script,
+risky and disposable email domains, fill time, repeats from one address — and the total decides:
+
+| Score | What happens |
+| --- | --- |
+| 0–2 | Delivered normally. |
+| 3–5 | Delivered with `[possible spam]` in the subject and the reasons appended to the body. |
+| 6+ | Dropped, and logged with its reasons via `console.warn` (visible in the Vercel logs). |
+
+No single signal can block on its own. Blocking a real family is the expensive mistake here, so
+tune with the regression suite rather than by eye:
+
+```sh
+npm run spam:check
+```
+
+It asserts that known spam is blocked and that awkward-but-real messages are not — a pasted link,
+all capitals, a name in another script, JS disabled, a college-prep question mentioning student
+loans. When spam gets through, paste it into `SPAM` in `scripts/spam-check.mjs` and raise weights
+until the suite passes. When a family says a message never arrived, their wording goes in `REAL`.
+
+If spam ever outgrows this, the next step is Cloudflare Turnstile in front of the action — free,
+invisible to visitors, but it needs a Cloudflare account and two env vars.
