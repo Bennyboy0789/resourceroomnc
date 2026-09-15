@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "import:wordpress": "node scripts/import-wordpress.mjs",
-    "a11y": "node scripts/a11y-audit.mjs && node scripts/a11y-interaction.mjs"
+    "a11y": "node scripts/a11y-audit.mjs && node scripts/a11y-interaction.mjs",
+    "spam:check": "node scripts/spam-check.mjs"
   },
   "dependencies": {
     "motion": "^12.42.2",

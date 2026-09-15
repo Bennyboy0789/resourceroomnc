@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { Icon } from "@/components/icons";
@@ -283,7 +283,7 @@ export function CareersForm() {
         <textarea id="c-message" name="message" rows={5} className={`${fieldClasses} mt-2 resize-y`} />
       </div>
 
-      <HoneyPot />
+      <HoneyPot prefix="c-" />
       <SubmitButton label="Submit application" />
 
       {state.status === "error" ? (
@@ -330,14 +330,39 @@ function ResumeField() {
 }
 
 /**
- * Hidden field bots fill in and people never see. Kept out of the tab order and
- * hidden from assistive tech rather than `display:none`, which some bots detect.
+ * Fields bots fill in and people never see, plus the timing signal.
+ *
+ * Kept out of the tab order and hidden from assistive tech by position rather
+ * than `display:none`, which some bots detect. Two decoys: "company" is the
+ * obvious trap, and "website" is the one a bot fills because a URL field looks
+ * like exactly what it came to submit.
+ *
+ * `startedAt` records when the form reached the screen. The server compares it
+ * against the submit time — a form completed in under three seconds was not
+ * read. It is client-supplied and therefore forgeable, which is why the server
+ * treats it as one weight among several rather than a gate; a visitor with JS
+ * off sends nothing here and still gets through on the strength of what they
+ * wrote. `ids` keeps the two forms' hidden inputs from colliding when both
+ * ever render on one page.
  */
-function HoneyPot() {
+function HoneyPot({ prefix = "" }: { prefix?: string }) {
+  const startedAt = useRef<HTMLInputElement>(null);
+
+  /* Stamped in an effect rather than during render because these pages are
+     statically generated: a render-time Date.now() would bake the build time
+     into the HTML and mismatch on hydration. The effect runs when the form
+     actually reaches this visitor's screen, which is the moment we want. */
+  useEffect(() => {
+    if (startedAt.current) startedAt.current.value = String(Date.now());
+  }, []);
+
   return (
     <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
-      <label htmlFor="company">Please do not fill in this field</label>
-      <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+      <label htmlFor={`${prefix}company`}>Please do not fill in this field</label>
+      <input id={`${prefix}company`} name="company" tabIndex={-1} autoComplete="off" />
+      <label htmlFor={`${prefix}website`}>Please do not fill in this field either</label>
+      <input id={`${prefix}website`} name="website" tabIndex={-1} autoComplete="off" />
+      <input ref={startedAt} type="hidden" name="startedAt" defaultValue="" />
     </div>
   );
 }

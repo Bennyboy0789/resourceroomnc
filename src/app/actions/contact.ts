@@ -1,5 +1,8 @@
 "use server";
 
+import { headers } from "next/headers";
+
+import { checkSpam, clientIp } from "@/lib/spam";
 import { mailerConfigured, sendMail, type MailAttachment } from "@/lib/smtp2go";
 
 export type ContactState = {
@@ -34,6 +37,19 @@ const ALLOWED_RESUME_TYPES = new Set([
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ]);
 
+/**
+ * How long the form was on screen, per the hidden field the client sets on
+ * mount. Absent with JS off, which the scorer treats as a mild signal rather
+ * than a failure — the forms are built to submit without JS.
+ */
+function readElapsed(formData: FormData): number | null {
+  const started = Number(formData.get("startedAt"));
+  if (!Number.isFinite(started) || started <= 0) return null;
+  const elapsed = Date.now() - started;
+  // A negative value means a skewed client clock, not a fast bot.
+  return elapsed >= 0 ? elapsed : null;
+}
+
 function clean(value: FormDataEntryValue | null): string {
   return String(value ?? "")
     .replace(/[\r\n]+/g, " ")
@@ -46,15 +62,21 @@ function clean(value: FormDataEntryValue | null): string {
  *
  * Runs on the server so the SMTP2Go key never reaches the browser. Validation
  * is deliberately light — a real parent typing a real message should never be
- * bounced by a regex — but the honeypot and the length cap keep out the bulk
- * of automated spam.
+ * bounced by a regex. Spam is handled separately, by scoring the submission in
+ * @/lib/spam: a confident match is dropped and logged, a borderline one is
+ * delivered with a tagged subject so the office decides.
  */
 export async function submitContact(
   _previous: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  // Bots fill hidden fields; humans never see this one.
-  if (clean(formData.get("company"))) {
+  /*
+   * Honeypots. Two of them, because a bot that has learned to skip one
+   * obviously-fake field often still fills a plausible-looking "website".
+   * A hit returns "sent": telling a bot it was caught is how it learns to
+   * stop tripping the trap.
+   */
+  if (clean(formData.get("company")) || clean(formData.get("website"))) {
     return { status: "sent" };
   }
 
@@ -74,6 +96,29 @@ export async function submitContact(
     return { status: "error", message: "That email address does not look right." };
   }
 
+  /*
+   * Score before doing any work that costs money or reaches the inbox — a
+   * blocked submission should not decode a 5MB attachment or call SMTP2Go.
+   */
+  const verdict = checkSpam({
+    name,
+    email,
+    phone: clean(formData.get("phone")),
+    message,
+    elapsedMs: readElapsed(formData),
+    ip: clientIp(await headers()),
+  });
+
+  if (verdict.action === "block") {
+    /* Logged, not silent: if this ever catches a real family, the Vercel log
+       is the only place that will show it. Reported as sent so the bot cannot
+       tell which of its messages got through and tune around the filter. */
+    console.warn(
+      `[contact] blocked ${kind} submission from ${email} (score ${verdict.score}): ${verdict.reasons.join(", ")}`,
+    );
+    return { status: "sent" };
+  }
+
   const lines = fields.map(([key, label]) => `${label}: ${clean(formData.get(key)) || "—"}`);
   if (message) lines.push("", message);
 
@@ -82,12 +127,20 @@ export async function submitContact(
      sees it without opening anything. */
   const returning = clean(formData.get("returning"));
 
+  /* Borderline submissions still arrive, prefixed, so the office can route
+     them with one mail rule and we can see what the filter is unsure about. */
+  const flag = verdict.action === "flag" ? "[possible spam] " : "";
+
   const subject =
     kind === "careers"
-      ? `Application — ${name}`
+      ? `${flag}Application — ${name}`
       : returning
-        ? `Returning family — ${clean(formData.get("program")) || "scheduling"}`
-        : `Consultation request — ${clean(formData.get("program")) || "not sure yet"}`;
+        ? `${flag}Returning family — ${clean(formData.get("program")) || "scheduling"}`
+        : `${flag}Consultation request — ${clean(formData.get("program")) || "not sure yet"}`;
+
+  if (flag) {
+    lines.push("", `— Flagged by the spam filter (score ${verdict.score}): ${verdict.reasons.join(", ")}`);
+  }
 
   /*
    * Resume, if one was attached. Guarded on three axes because this is the one
