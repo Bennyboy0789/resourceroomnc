@@ -20,6 +20,12 @@ export type BlogPost = {
   categories: string[];
   tags: string[];
   excerpt: string;
+  /**
+   * Search-result description, when the author wrote one. Otherwise the
+   * excerpt is truncated to fit — which works, but cuts mid-thought on a long
+   * excerpt, where a line written for the purpose does not.
+   */
+  metaDescription?: string;
   readingMinutes: number;
   image: string | null;
   imageAlt: string;
@@ -35,6 +41,64 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: `august-2026-sat-results`,
+    title: `Every Student Improved: Our August 2026 SAT Results`,
+    date: `2026-09-14`,
+    modified: `2026-09-14`,
+    author: {
+      name: `Joe Cuccurullo`,
+      jobTitle: `Co-founder, Resource Room Learning Center`,
+      url: `/about`,
+      image: `/images/joe-cuccurullo.jpg`,
+      description: `Licensed special education teacher who has taught in the New York City and Wake County (WCPSS) public school systems, and served as a Behavior Support Teacher. Co-founded Resource Room in 2015 and leads its IEP and 504 advocacy.`,
+    },
+    categories: [`ACT/SAT Test Prep Resources`],
+    tags: [`SAT`, `Test Prep`, `College Prep`, `SAT Scores`, `Test Optional`, `Holly Springs`],
+    excerpt: `Seventeen students finished our 20 hour summer SAT course and sat for the official August exam. Every one of them scored higher than where they started. Here is what the numbers show, and what a strong SAT score actually looks like in 2026.`,
+    metaDescription: `See the August 2026 SAT results from Resource Room Learning Center in Holly Springs, NC. All 17 students improved, with an average gain of 178 points.`,
+    readingMinutes: 4,
+    /* Chart not yet in public/images/blog — set to `/images/blog/august-2026-sat-results.png` once it is. */
+    image: null,
+    imageAlt: `Chart showing 17 students, each with an arrow rising from their first practice test score to their official August 2026 SAT score`,
+    /* Never lived on WordPress. Equal to its own URL, so getRedirects skips it. */
+    legacyPath: `/blog/august-2026-sat-results`,
+    plain: `Congratulations to our Summer SAT cohort. Of our students who completed our 20 hour course and took the August exam, every one has arrows pointing up. Every single one of them scored higher than where they started. What the numbers show The average gain was 178 points. Eleven of the seventeen gained somewhere between 100 and 250. Six students gained more than 200, and the biggest jump was 370 points. Those are the headline numbers. But an SAT score is not just a number on a page. It is a decision about what your student sends to colleges, and that is where this gets interesting. Why 1200 is the number that matters Most colleges are test optional now. That sounds like good news, and in many ways it is, but it quietly shifts the burden onto families. If a school does not require a score, you have to decide whether sending one helps your student or hurts them. In practice, 1200 is where a score starts helping. Below that line, most students are better off leaving it off the application entirely. Above it, the score becomes something that strengthens the file rather than something that raises questions. When this group of students started with us, two of them were above 1200. By August, thirteen were. Eleven students crossed that line in a single summer. That is eleven families who now have a real choice to make about their applications, and eleven students who went from having nothing to send to having something worth sending. The top of the chart Look at the upper end and the story gets better. One student began above 1300. Six finished there. Five of those six came from below 1200. They did not just clear the bar. They cleared it and kept going. You do not need a 1500 to be in the top percentile Here is something worth knowing, because we hear it from parents constantly. A lot of families are still calibrating to the SAT they took, or the one their older child took, where 1500 felt like the mark of a top student. That is no longer how the scale works. On today's SAT, a 1370 beats 91 out of every 100 students who take the test. A 1300 beats 87. A 1200, the number we talked about above, already beats 76. The scale has changed, and a lot of families are still measuring against a test that no longer exists. When a parent tells us their child got a 1310 and follows it with an apology, we get to deliver some good news: that score puts them in the top 13 percent of test takers in the country. Knowing where a score actually lands changes how you talk to your student about it. It changes whether they walk into the fall feeling behind or feeling ready. How we measure We are careful about how we report results, so here is exactly what these numbers mean. Every student's starting score comes from a full length practice SAT taken under real test conditions, proctored in our center, before any instruction began. We use that first test as the baseline every time, even when a student tests better later in the program. The August figures are official College Board scores, not our estimates. The percentiles come from College Board's published tables. Three of them are taken directly from students' official score reports, and the rest are close estimates, accurate to within about two points. One honest caveat. A first practice test is taken cold, with no familiarity with the format and no pacing strategy. Part of every gain you see here comes from simply learning what the test is. That is true of every tutoring program that reports score gains this way, including ours, and we would rather say it plainly than pretend otherwise. These are the results of one group of students. They are not a guarantee of any individual result. What made the difference There is no trick here. Our students meet one on one with a tutor for 20 hours, take proctored full length practice tests along the way so we can see real progress under real conditions, and do their independent practice at home between sessions. The tutoring matters. So does the practice. Our strongest gainers were, almost without exception, the students who did the work between sessions. We are proud of these students. They showed up, they did the work, and they earned every single point on this chart. Enrolling now for fall Our fall SAT program is open. If your student is testing this year, the first step is simple: we sit down, look at where they are right now, and talk honestly about where they could be by test day. Call us at 984-777-1244 or email Learn@ResourceRoomNC.com. Resource Room Learning Center 2100 Crossway Lane, Holly Springs, NC 27540`,
+    html: `<p>Congratulations to our Summer SAT cohort. Of our students who completed our 20 hour course and took the August exam, every one has arrows pointing up.</p>
+<p>Every single one of them scored higher than where they started.</p>
+<h2>What the numbers show</h2>
+<p>The average gain was 178 points. Eleven of the seventeen gained somewhere between 100 and 250. Six students gained more than 200, and the biggest jump was 370 points.</p>
+<p>Those are the headline numbers. But an SAT score is not just a number on a page. It is a decision about what your student sends to colleges, and that is where this gets interesting.</p>
+<h2>Why 1200 is the number that matters</h2>
+<p>Most colleges are test optional now. That sounds like good news, and in many ways it is, but it quietly shifts the burden onto families. If a school does not require a score, you have to decide whether sending one helps your student or hurts them.</p>
+<p>In practice, 1200 is where a score starts helping. Below that line, most students are better off leaving it off the application entirely. Above it, the score becomes something that strengthens the file rather than something that raises questions.</p>
+<p>When this group of students started with us, two of them were above 1200.</p>
+<p>By August, thirteen were.</p>
+<p>Eleven students crossed that line in a single summer. That is eleven families who now have a real choice to make about their applications, and eleven students who went from having nothing to send to having something worth sending.</p>
+<h2>The top of the chart</h2>
+<p>Look at the upper end and the story gets better. One student began above 1300. Six finished there.</p>
+<p>Five of those six came from below 1200. They did not just clear the bar. They cleared it and kept going.</p>
+<h2>You do not need a 1500 to be in the top percentile</h2>
+<p>Here is something worth knowing, because we hear it from parents constantly.</p>
+<p>A lot of families are still calibrating to the SAT they took, or the one their older child took, where 1500 felt like the mark of a top student. That is no longer how the scale works.</p>
+<p>On today's SAT, a 1370 beats 91 out of every 100 students who take the test. A 1300 beats 87. A 1200, the number we talked about above, already beats 76.</p>
+<p>The scale has changed, and a lot of families are still measuring against a test that no longer exists. When a parent tells us their child got a 1310 and follows it with an apology, we get to deliver some good news: that score puts them in the top 13 percent of test takers in the country.</p>
+<p>Knowing where a score actually lands changes how you talk to your student about it. It changes whether they walk into the fall feeling behind or feeling ready.</p>
+<h2>How we measure</h2>
+<p>We are careful about how we report results, so here is exactly what these numbers mean.</p>
+<p>Every student's starting score comes from a full length practice SAT taken under real test conditions, proctored in our center, before any instruction began. We use that first test as the baseline every time, even when a student tests better later in the program. The August figures are official College Board scores, not our estimates.</p>
+<p>The percentiles come from College Board's published tables. Three of them are taken directly from students' official score reports, and the rest are close estimates, accurate to within about two points.</p>
+<p>One honest caveat. A first practice test is taken cold, with no familiarity with the format and no pacing strategy. Part of every gain you see here comes from simply learning what the test is. That is true of every tutoring program that reports score gains this way, including ours, and we would rather say it plainly than pretend otherwise.</p>
+<p>These are the results of one group of students. They are not a guarantee of any individual result.</p>
+<h2>What made the difference</h2>
+<p>There is no trick here. Our students meet one on one with a tutor for 20 hours, take proctored full length practice tests along the way so we can see real progress under real conditions, and do their independent practice at home between sessions.</p>
+<p>The tutoring matters. So does the practice. Our strongest gainers were, almost without exception, the students who did the work between sessions.</p>
+<p>We are proud of these students. They showed up, they did the work, and they earned every single point on this chart.</p>
+<h2>Enrolling now for fall</h2>
+<p>Our <a href="/programs/sat-act-prep/sat-prep">fall SAT program</a> is open. If your student is testing this year, the first step is simple: we sit down, look at where they are right now, and talk honestly about where they could be by test day.</p>
+<p>Call us at <a href="tel:+19847771244">984-777-1244</a> or email <a href="mailto:Learn@ResourceRoomNC.com">Learn@ResourceRoomNC.com</a>.</p>
+<p>Resource Room Learning Center<br>2100 Crossway Lane, Holly Springs, NC 27540</p>`,
+  },
   {
     slug: `were-not-going-to-say-no-were-going-to-say-how`,
     title: `We’re Not Going to Say No.We’re Going to Say How.`,

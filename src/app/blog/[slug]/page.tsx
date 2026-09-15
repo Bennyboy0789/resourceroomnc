@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
 
   return {
     title: seoTitle(post.title),
-    description: seoDescription(post.excerpt),
+    description: seoDescription(post.metaDescription ?? post.excerpt),
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
       title: post.title,
-      description: post.excerpt,
+      description: post.metaDescription ?? post.excerpt,
       url: `/blog/${post.slug}`,
       publishedTime: post.date,
       /* Falls back to the generated brand card explicitly. Declaring
