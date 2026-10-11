@@ -4,6 +4,12 @@ export type SiteNotice = {
   until: string;
   title: string;
   body: string;
+  /**
+   * `fall` swaps the navy ground for the warm terracotta one. Seasonal only —
+   * navy stays the default so a run of notices does not turn the top of the
+   * page into a colour chart.
+   */
+  tone?: "navy" | "fall";
 };
 
 /** Midnight UTC, so the window never depends on where the server runs. */

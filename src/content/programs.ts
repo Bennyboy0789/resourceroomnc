@@ -467,17 +467,22 @@ export const campVideos = [
  * reach a family while they are still planning, not once the week arrives.
  */
 export const campNotices: SiteNotice[] = [
+  /*
+   * Short run on purpose: this one announces a sell-out rather than warning
+   * families off a week they might book, so it is worth saying loudly for two
+   * days and then getting out of the way. Ends at the close of the 12th UTC,
+   * which is 8pm Eastern on Columbus Day itself.
+   *
+   * "Open again from the week of October 26" is doing quiet work — the week of
+   * the 19th is also gone from the catalog, so naming the 26th is the honest
+   * next date rather than implying the 19th is available.
+   */
   {
-    from: "2026-08-27",
-    until: "2026-09-11",
-    title: "No camps September 7–11",
-    body: "There are no full-week or single-day sessions that week. Camps run as normal the weeks either side.",
-  },
-  {
-    from: "2026-09-08",
-    until: "2026-09-18",
-    title: "No camps September 14–18",
-    body: "There are no single-day or full-week sessions that week. Camps run as normal again from September 21.",
+    from: "2026-10-11",
+    until: "2026-10-12",
+    tone: "fall",
+    title: "Columbus Day week is sold out",
+    body: "The Columbus Day single day and the full week of October 12–16 are both full. Track-out camps are open again from the week of October 26.",
   },
 ];
 
