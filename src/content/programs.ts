@@ -84,6 +84,12 @@ export type ScheduleRow = {
    * heading is counting.
    */
   muted?: boolean;
+  /**
+   * Drops the booking link from this row. Set it alongside a `note` saying
+   * why: a row that reads "Sold out" while still inviting a click sends a
+   * family to a checkout the date has already been pulled from.
+   */
+  unavailable?: boolean;
 };
 
 export type ScheduleGroup = {
@@ -874,8 +880,8 @@ export const programs: Program[] = [
             subtitle: "October 7 to October 23, 2026",
             rows: [
               { label: "Oct 7 – Oct 9", value: "3 days" },
-              { label: "Oct 12 – Oct 16", value: "5 days" },
-              { label: "Oct 19 – Oct 23", value: "5 days" },
+              { label: "Oct 12 – Oct 16", value: "5 days", note: "Sold out", unavailable: true },
+              { label: "Oct 19 – Oct 23", value: "5 days", note: "Not available", unavailable: true },
             ],
           },
           {

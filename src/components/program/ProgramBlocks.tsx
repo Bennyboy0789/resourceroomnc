@@ -622,7 +622,7 @@ function ScheduleCard({
                   anchor around the pair would be invalid. `dt` takes flow
                   content, so the date itself becomes the link. */}
               <dt className="text-xs font-bold uppercase tracking-[0.06em] text-navy-500">
-                {bookHref ? (
+                {bookHref && !row.unavailable ? (
                   <ScheduleRowLink href={bookHref} label={row.label} action={bookAction} />
                 ) : (
                   row.label
