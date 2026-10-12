@@ -254,3 +254,83 @@ export function inBackToSchoolSeason(now = Date.now()) {
 export function isTermStarted(now = Date.now()) {
   return now >= day(backToSchool.termStarts);
 }
+
+/**
+ * The social strip near the foot of the home page.
+ *
+ * Deliberately hand-kept rather than pulled from Facebook. A live feed needs a
+ * Meta app and a token that breaks on a password change or an API version
+ * retirement, and when it breaks the section empties quietly. These are the
+ * same graphics, posted once here, with nothing to expire.
+ *
+ * What it does not do is imitate a platform: no like counts, no comment
+ * counts, no invented timestamps. Those would be engagement nobody actually
+ * gave. The account name, the graphic and the caption carry the look honestly.
+ *
+ * Each post links into the site rather than out to Facebook. There are no
+ * per-post URLs to send anyone to, and a parent who taps the homework post
+ * wants the homework page, not the top of a Facebook profile. The follow
+ * buttons under the strip are the way out to the accounts.
+ *
+ * Adding one: drop the image in public/images/social, add an entry with its
+ * pixel size (so the page does not jump as it loads), alt text that says what
+ * the graphic says, the caption as posted, and where it should lead.
+ *
+ * Captions are the posts as written, minus the location and web-address
+ * lines. Two posts arrived without a caption; theirs are lifted word for word
+ * from the graphic itself rather than written fresh.
+ */
+export const socialPosts: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+  link: { label: string; href: string };
+}[] = [
+  {
+    src: "/images/social/a-place-for-every-student.webp",
+    alt: "A Place for Every Student. Resource Room's programs: homeschool support, K-12 subject tutoring, a private high school for neurodiverse students, autism support, track-out camps and summer camps.",
+    width: 1080,
+    height: 1080,
+    caption:
+      "A complete learning center for every child, every step of the journey. From individualized tutoring to specialized programs for neurodiverse learners, we help students grow with confidence.",
+    link: { label: "See every program", href: "/programs" },
+  },
+  {
+    src: "/images/social/homework-help.webp",
+    alt: "What Homework Help Actually Looks Like. A session in four steps: check in, work together, reinforce, build skills. Especially helpful for overwhelmed students, students who rush, neurodiverse learners and students navigating online platforms.",
+    width: 1080,
+    height: 1350,
+    caption:
+      "Homework doesn’t have to turn into a nightly battle. At The Resource Room, our Homework Help sessions go beyond simply getting assignments done. We help students understand the material, organize what needs to be completed, manage their time, stay focused, and build the executive functioning skills that support long-term independence. Whether your child feels overwhelmed, rushes through assignments, struggles with attention, or needs help navigating online school platforms, we provide patient, personalized support that helps make schoolwork feel more manageable.",
+    link: { label: "Homework Help", href: "/programs/tutoring/homework-help" },
+  },
+  {
+    src: "/images/social/what-makes-pathways-different.webp",
+    alt: "What Makes Pathways Different: academics and development, built together. Small cohort model, licensed educators, social-emotional learning, project-based learning, executive functioning coaching and the Resource Room ecosystem.",
+    width: 1080,
+    height: 1350,
+    caption:
+      "Pathways Academy is more than a smaller high school—it is a different kind of school experience. We intentionally blend academics, executive functioning, social-emotional growth, and real-world learning throughout the entire day. With small cohorts, experienced educators, project-based learning, and access to the full Resource Room support system, students are supported not only as learners, but as individuals. At Pathways, students build the skills, confidence, independence, and resilience they need for school—and for what comes next.",
+    link: { label: "Pathways Academy", href: "/programs/pathways-academy" },
+  },
+  {
+    src: "/images/social/sat-second-test.webp",
+    alt: "The second test, September 2026. They took it again and all 8 went up again, four weeks after the August SAT. An average gain of 188 points by August plus 72 more on the September retest: 260 points in total from each student's starting score.",
+    width: 1080,
+    height: 1350,
+    caption:
+      "Our students who took the SAT twice, back to back in August and September, gained an average of 260 points from where they started. Eight students tested twice. All eight went up again on the second test. Across our whole summer group of 18 students: Every one improved. 12 finished at 1300 or higher. 3 finished at 1400 or higher. A 1300 beats 87 out of 100 test takers nationwide. You do not need a 1500 to stand out anymore. Our approach is simple. Test more than once, test back to back, and never stop the momentum.",
+    link: { label: "SAT Prep", href: "/programs/sat-act-prep/sat-prep" },
+  },
+  {
+    src: "/images/social/homeschool-co-op.webp",
+    alt: "Homeschool Co-op: real instruction, small groups, a place to belong. Educator-led, small groups with real relationships, academics with the right support, and a comfortable bridge between homeschooling alone and a larger traditional school.",
+    width: 1080,
+    height: 1396,
+    caption:
+      "Homeschooling gives your family flexibility, but that doesn’t mean you have to do it all alone. Our co-op gives students structure, community, and quality instruction in a setting that still feels personal and comfortable.",
+    link: { label: "Homeschool Co-Op", href: "/programs/homeschool-co-op" },
+  },
+];

@@ -9,6 +9,7 @@ import { Hero } from "@/components/home/Hero";
 import { LearningCenterPitch } from "@/components/home/LearningCenterPitch";
 import { PopularPrograms } from "@/components/home/PopularPrograms";
 import { ProgramGrid } from "@/components/home/ProgramGrid";
+import { SocialStrip } from "@/components/home/SocialStrip";
 import { QuickLinks } from "@/components/home/QuickLinks";
 import { StatsBar } from "@/components/home/StatsBar";
 import { Testimonials } from "@/components/home/Testimonials";
@@ -35,6 +36,8 @@ export default function HomePage() {
       <Counters />
       <Testimonials />
       <BlogTeaser />
+
+      <SocialStrip />
       <FinalCta />
     </>
   );
