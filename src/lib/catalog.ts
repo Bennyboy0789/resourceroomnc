@@ -1,6 +1,6 @@
 import "server-only";
 import { getStripe } from "@/lib/stripe";
-import { optionDate } from "@/lib/option-date";
+import { isPastOption, optionDate } from "@/lib/option-date";
 
 /**
  * Reads the enrollment catalog back out of Stripe.
@@ -194,6 +194,18 @@ export async function getCatalog(): Promise<CatalogProduct[]> {
           options[key.slice(OPTION_PREFIX.length)] = value;
         }
       }
+
+      /*
+       * A session whose date has gone by is dropped here, before anything is
+       * built from it, so it cannot be picked, priced or counted.
+       *
+       * Stripe has no idea a price is for a week in August: it stays active
+       * until someone archives it, and the picker was still offering camp
+       * weeks two months after they ran. Archiving them by hand is fine and
+       * changes nothing here; this is what covers the ones nobody got to.
+       * Pages rebuild hourly, so a day falls off the morning after it ends.
+       */
+      if (Object.values(options).some((value) => isPastOption(value))) continue;
 
       const list = byProduct.get(productId) ?? [];
       list.push({

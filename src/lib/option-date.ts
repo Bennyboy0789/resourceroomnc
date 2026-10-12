@@ -60,6 +60,54 @@ export function optionDate(label: string): number | null {
   return Date.UTC(Number(year[1]), month, Number(monthDay[2]));
 }
 
+const EVERY_MONTH_DAY = new RegExp(MONTH_DAY.source, "gi");
+/** The closing day of a range written under one month: the 14 in "August 10-14". */
+const CLOSING_DAY = /^\s*[-–]\s*(\d{1,2})\b/;
+
+/**
+ * The last calendar day an option covers, or null when it does not name one.
+ *
+ * `optionDate` reads where a week starts, which is what sorting wants. Knowing
+ * when one is over needs the other end: "Aug 31- Sept 04, 2026" finishes on
+ * the 4th, and "Summer August 10-14, 2026" on the 14th. A single day ends on
+ * the day it names.
+ *
+ * The year in a label is written once, after the end of the range, so it is
+ * the end date's year even when a week runs across New Year.
+ */
+export function optionEndDate(label: string): number | null {
+  const year = YEAR.exec(label);
+  const days = [...label.matchAll(EVERY_MONTH_DAY)];
+  const last = days.at(-1);
+  if (!year || !last) return null;
+
+  const month = MONTHS[last[1].toLowerCase()];
+  const day = Number(last[2]);
+  const closing = CLOSING_DAY.exec(label.slice(last.index + last[0].length));
+  if (!closing) return Date.UTC(Number(year[1]), month, day);
+
+  /* "June 28-02" closes in the following month. Date.UTC carries a thirteenth
+     month over into the next year by itself. */
+  const closingDay = Number(closing[1]);
+  return Date.UTC(Number(year[1]), closingDay < day ? month + 1 : month, closingDay);
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const EASTERN_OFFSET_MS = 5 * 60 * 60 * 1000;
+
+/**
+ * Whether an option names a date that is already over. Undated options never are.
+ *
+ * Over means the end of its last day in North Carolina. Dates are held as
+ * midnight UTC, and Eastern runs four or five hours behind that, so the later
+ * of the two is used and a camp day is never pulled while it is still that day
+ * in Holly Springs.
+ */
+export function isPastOption(label: string, now = Date.now()) {
+  const end = optionEndDate(label);
+  return end !== null && now >= end + DAY_MS + EASTERN_OFFSET_MS;
+}
+
 export type OptionMonth = {
   /** Sortable key, and the value the filter chips switch on. */
   key: string;

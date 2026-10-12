@@ -1598,55 +1598,10 @@ export const products: ProductPage[] = [
         bookLabel: "Book a camp week",
         groups: [
           {
-            title: "Track 4 · Window 1 of 4",
-            filter: "Track 4",
-            subtitle: "July 7 to July 29, 2026",
-            rows: [
-              { label: "Jul 7 – Jul 10", value: "4 days" },
-              { label: "Jul 13 – Jul 17", value: "5 days" },
-              { label: "Jul 20 – Jul 24", value: "5 days" },
-              { label: "Jul 27 – Jul 29", value: "3 days" },
-            ],
-          },
-          {
-            title: "Track 3 · Window 1 of 4",
-            filter: "Track 3",
-            subtitle: "July 30 to August 20, 2026",
-            rows: [
-              { label: "Jul 30 – Jul 31", value: "2 days" },
-              { label: "Aug 3 – Aug 7", value: "5 days" },
-              { label: "Aug 10 – Aug 14", value: "5 days" },
-              { label: "Aug 17 – Aug 20", value: "4 days" },
-            ],
-          },
-          {
-            title: "Track 2 · Window 1 of 4",
-            filter: "Track 2",
-            subtitle: "August 24 to September 11, 2026",
-            rows: [
-              { label: "Aug 24 – Aug 28", value: "5 days" },
-              { label: "Aug 31 – Sep 4", value: "5 days" },
-              { label: "Sep 8 – Sep 11", value: "4 days", note: "No camp this week" },
-            ],
-            note: "Closed Sep 7, Labor Day",
-          },
-          {
-            title: "Track 1 · Window 1 of 4",
-            filter: "Track 1",
-            subtitle: "September 14 to October 6, 2026",
-            rows: [
-              { label: "Sep 14 – Sep 18", value: "5 days" },
-              { label: "Sep 21 – Sep 25", value: "5 days" },
-              { label: "Sep 28 – Oct 2", value: "5 days" },
-              { label: "Oct 5 – Oct 6", value: "2 days" },
-            ],
-          },
-          {
             title: "Track 4 · Window 2 of 4",
             filter: "Track 4",
-            subtitle: "October 7 to October 23, 2026",
+            subtitle: "October 12 to October 23, 2026",
             rows: [
-              { label: "Oct 7 – Oct 9", value: "3 days" },
               { label: "Oct 12 – Oct 16", value: "5 days", note: "Sold out", unavailable: true },
               { label: "Oct 19 – Oct 23", value: "5 days", note: "Not available", unavailable: true },
             ],
@@ -1779,12 +1734,8 @@ export const products: ProductPage[] = [
         title: "When Wake County closes, we",
         accent: "open.",
         description:
-          "Teacher workdays, district holidays, and break weeks put all four tracks home on the same day, and most camps go dark right along with the schools. We don't. Twelve bonus camp days across the year, and they fill faster than anything else we run.",
+          "Teacher workdays, district holidays, and break weeks put all four tracks home on the same day, and most camps go dark right along with the schools. We don't. Eleven bonus camp days are still ahead this school year, and they fill faster than anything else we run.",
         items: [
-          {
-            date: "Friday, August 21, 2026",
-            note: "Teacher workday across the year-round calendar. Full camp day.",
-          },
           {
             date: "Tuesday, November 3, 2026",
             note: "Teacher workday and Election Day. Kids build and create while you vote.",
