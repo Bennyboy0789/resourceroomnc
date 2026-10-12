@@ -1572,7 +1572,7 @@ export const products: ProductPage[] = [
         title: "A camp week, start to",
         accent: "finish.",
         description:
-          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+          "Short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
         vertical: true,
         videos: campVideos,
       },
@@ -1923,7 +1923,7 @@ export const products: ProductPage[] = [
         title: "A camp week, start to",
         accent: "finish.",
         description:
-          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+          "Short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
         vertical: true,
         videos: campVideos,
       },

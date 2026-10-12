@@ -786,7 +786,17 @@ function Videos({
   vertical?: boolean;
 }) {
   return (
-    <ul className={cn("grid gap-6", videos.length > 1 && "sm:grid-cols-2")}>
+    <ul
+      className={cn(
+        "gap-6",
+        /* Shorts keep their own width and sit in a centered row: three across
+           on a desktop, two over one on a tablet, a stack on a phone. A grid
+           would leave the odd one out stranded in the left column. */
+        vertical
+          ? "flex flex-wrap justify-center"
+          : cn("grid", videos.length > 1 && "sm:grid-cols-2"),
+      )}
+    >
       {videos.map((video, index) => (
         <Reveal
           key={video.id}
@@ -794,7 +804,7 @@ function Videos({
           delay={stagger(index, 0.08)}
           /* Shorts are tall. Left full-width they tower over everything else
              on the page, so they are capped and centered in their column. */
-          className={vertical ? "mx-auto w-full max-w-[330px]" : "w-full"}
+          className={vertical ? "w-full max-w-[330px]" : "w-full"}
         >
           <div
             className={cn(

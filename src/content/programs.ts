@@ -543,6 +543,7 @@ export const campGalleryPhotos: GalleryPhoto[] = [
  * so what a screen reader announces matches what starts playing.
  */
 export const campVideos = [
+  { id: "2qtms4Bm_a0", title: "Photos from a Camp Week" },
   { id: "QpW6dnlvWuQ", title: "Resource Room STEM Camp 1" },
   { id: "p-bpj2tnqJE", title: "Resource Room STEM Camp 2" },
 ];
@@ -920,7 +921,7 @@ export const programs: Program[] = [
         title: "A camp week, start to",
         accent: "finish.",
         description:
-          "Two short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
+          "Short films from our own camp weeks — the experiments, the builds, and the mess that comes with both.",
         vertical: true,
         videos: campVideos,
       },
