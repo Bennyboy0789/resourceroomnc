@@ -554,7 +554,7 @@ export const campDayRows: ScheduleRow[] = [
 export const campDayGroup: ScheduleGroup = {
   title: "Sample schedule",
   subtitle:
-    "Schedule may change slightly based on each week's themes, activities, size of group, or weather conditions. Drop-off at 8:00 and pickup at 3:30 stay the same.",
+    "Schedule may change slightly based on each week's themes, activities, size of group, or weather conditions. Drop-off at 8:00 and pickup at 3:30 stay the same. Extended day is available for purchase until 4:30 p.m.",
   rows: campDayRows,
 };
 
