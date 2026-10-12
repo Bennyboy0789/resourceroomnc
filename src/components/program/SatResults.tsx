@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { Icon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
@@ -283,52 +282,6 @@ export function SatResults({ results }: { results: Results }) {
         </Reveal>
       </Section>
     </>
-  );
-}
-
-/**
- * The four headline figures and a way through to the charts, for a page that
- * should carry the proof without repeating a section that lives elsewhere.
- */
-export function SatResultsTeaser({
-  results,
-  href,
-}: {
-  results: Results;
-  href: string;
-}) {
-  return (
-    <section className="border-b border-navy-900/10 bg-white">
-      <Container className="py-12 sm:py-14">
-        <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-          <div>
-            <p className="eyebrow text-brand-500">{results.label}</p>
-            <h2 className="display mt-3 text-3xl text-navy-950 sm:text-4xl">
-              Every student <span className="text-brand-500">improved.</span>
-            </h2>
-          </div>
-          <Link
-            href={href}
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-brand-500 hover:text-brand-600"
-          >
-            See the full results
-            <Icon name="arrowRight" className="h-4 w-4" />
-          </Link>
-        </div>
-        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-4">
-          {headlineStats(results).map((stat) => (
-            <div key={stat.label} className="border-t-2 border-navy-950 pt-4">
-              <dt className="display text-3xl tabular-nums text-brand-500 sm:text-4xl">
-                {stat.value}
-              </dt>
-              <dd className="mt-2 text-sm font-medium leading-snug text-navy-600">
-                {stat.label}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </Container>
-    </section>
   );
 }
 

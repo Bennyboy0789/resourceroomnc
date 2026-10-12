@@ -55,10 +55,11 @@ export type ProductPage = {
   highlights?: { title: string; body: string }[];
   includes?: string[];
   /**
-   * The headline figures from a results section that lives on the program
-   * page, with a link through to it. Shown above the buy box.
+   * Measured results, shown under the hero and above the buy box. The same
+   * section the program page carries: this is the page people buy from, so
+   * it gets the whole case rather than a summary of it.
    */
-  resultsTeaser?: SatResults;
+  results?: SatResults;
   blocks?: ProgramBlock[];
   /**
    * What the buy box sells.
@@ -879,7 +880,7 @@ export const products: ProductPage[] = [
   },
   {
     slug: "sat-prep",
-    resultsTeaser: satResults2026,
+    results: satResults2026,
     programSlug: "sat-act-prep",
     catalogSlug: "sat-prep-in-north-carolina",
     name: "SAT Test Prep in Holly Springs, NC",
