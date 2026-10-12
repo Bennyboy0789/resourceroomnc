@@ -538,6 +538,29 @@ export const campDayRows: ScheduleRow[] = [
   },
 ];
 
+/*
+ * The camp day as it is shown on the page: a sample, and labelled as one.
+ *
+ * It used to be titled "The daily schedule" under copy that said "same rhythm
+ * every day, posted on the wall", and families read it exactly as written —
+ * as the timetable — then asked why science ran long or the outdoor block
+ * moved. The label and the caveat now sit above the times, where they are
+ * read first, rather than in a footnote under them.
+ *
+ * The one thing that does not flex is the ends of the day, so the caveat says
+ * so: otherwise "the schedule may change" invites the question of whether
+ * pickup might.
+ */
+export const campDayGroup: ScheduleGroup = {
+  title: "Sample schedule",
+  subtitle:
+    "Schedule may change slightly based on each week's themes, activities, size of group, or weather conditions. Drop-off at 8:00 and pickup at 3:30 stay the same.",
+  rows: campDayRows,
+};
+
+export const campDayDescription =
+  "A sample day, to show how camp runs. The shape holds from week to week: a soft start, hands-on blocks, lunch and time outside. What fills each block changes with the theme.";
+
 export const programs: Program[] = [
   {
     slug: "tutoring",
@@ -785,15 +808,9 @@ export const programs: Program[] = [
         eyebrow: "A day at camp",
         title: "A school day made of only the",
         accent: "good parts.",
-        description:
-          "Same rhythm every day, posted on the wall where kids can see it. Enough structure that nobody is guessing what comes next, enough variety that nobody gets bored.",
+        description: campDayDescription,
         timeline: true,
-        groups: [
-          {
-            title: "The daily schedule",
-            rows: campDayRows,
-          },
-        ],
+        groups: [campDayGroup],
       },
       /* Straight after the daily timetable: the schedule says what a day is
          made of, and this shows it. */

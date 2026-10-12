@@ -689,7 +689,15 @@ function ScheduleTimeline({
           )}
         >
           <h3 className="text-base font-bold tracking-tight text-navy-950">{group.title}</h3>
-          {group.subtitle ? <p className="mt-1 text-sm text-navy-500">{group.subtitle}</p> : null}
+          {/* Body ink, not the muted grey a subtitle usually gets. On a timeline
+              this line is where a caveat about the times goes, and it has to be
+              read before them — the camp day was taken as a fixed timetable
+              while it sat under a faint one. */}
+          {group.subtitle ? (
+            <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-navy-700">
+              {group.subtitle}
+            </p>
+          ) : null}
         </div>
 
         <dl className="px-6 py-7 sm:px-8">

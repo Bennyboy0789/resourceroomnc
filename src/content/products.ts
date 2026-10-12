@@ -1,4 +1,4 @@
-import { campDayRows, campGalleryPhotos, campNotices, campVideos } from "@/content/programs";
+import { campDayDescription, campDayGroup, campGalleryPhotos, campNotices, campVideos } from "@/content/programs";
 import type { SiteNotice } from "@/lib/notice-window";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
@@ -1550,15 +1550,9 @@ export const products: ProductPage[] = [
         eyebrow: "A day at camp",
         title: "A school day made of only the",
         accent: "good parts.",
-        description:
-          "Same rhythm every day, posted on the wall where kids can see it. Enough structure that nobody is guessing what comes next, enough variety that nobody gets bored.",
+        description: campDayDescription,
         timeline: true,
-        groups: [
-          {
-            title: "The daily schedule",
-            rows: campDayRows,
-          },
-        ],
+        groups: [campDayGroup],
       },
       /* Same pair, in the same place, as the camps program page: the daily
          timetable says what a day is made of, then the stills and the films
