@@ -359,10 +359,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -3,
   },
   {
+    src: "/images/gallery/cardboard-city.jpg",
+    alt: "A model city on a painted green baseboard with roads, built from painted cardboard boxes and LEGO, with campers standing around the table.",
+    caption: "Cardboard City",
+    rotate: 2,
+  },
+  {
     src: "/images/gallery/marble-painting.jpg",
     alt: "A tray holding a sheet of paper covered in criss-crossed paint trails made by rolling marbles.",
     caption: "Marble Splatter Art",
     rotate: 2,
+  },
+  {
+    src: "/images/gallery/spike-helicopter.jpg",
+    alt: "A LEGO SPIKE helicopter with green rotor blades on a yellow stand, next to the laptop used to program it.",
+    caption: "LEGO SPIKE Robotics",
+    rotate: -2,
   },
   {
     src: "/images/gallery/magnet-tiles.jpg",
@@ -371,10 +383,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -2,
   },
   {
+    src: "/images/gallery/glow-flasks.jpg",
+    alt: "Two flasks of liquid glowing bright green under blacklight.",
+    caption: "Glow Chemistry",
+    rotate: 1.5,
+  },
+  {
     src: "/images/gallery/spaghetti-tower.jpg",
     alt: "A free-standing tower frame built from dry spaghetti and marshmallows on a table.",
     caption: "Spaghetti Tower Challenge",
     rotate: 3,
+  },
+  {
+    src: "/images/gallery/lego-arena.jpg",
+    alt: "A walled LEGO arena with minifigures and animals inside, and a hand adding a brick, in front of a table covered in loose bricks.",
+    caption: "LEGO World Building",
+    rotate: -1.5,
   },
   {
     src: "/images/gallery/track-build.jpg",
@@ -383,10 +407,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -1.5,
   },
   {
+    src: "/images/gallery/blue-reaction.jpg",
+    alt: "A flask of deep blue liquid standing in a clear tray, with blue droplets splashed all around it.",
+    caption: "Reaction Lab",
+    rotate: 2.5,
+  },
+  {
     src: "/images/gallery/peg-mosaic.jpg",
     alt: "A camper pressing coloured pegs into a mosaic pegboard beside a tray of spare pegs.",
     caption: "Pixel Mosaic Design",
     rotate: 2.5,
+  },
+  {
+    src: "/images/gallery/recycled-build.jpg",
+    alt: "Campers' hands taping plastic bottles and cartons together into a build, with scissors and water jugs around them on the table.",
+    caption: "Recycled Engineering",
+    rotate: -2.5,
   },
   {
     src: "/images/gallery/glow-lab-mixing.jpg",
@@ -395,10 +431,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -2.5,
   },
   {
+    src: "/images/gallery/lego-coding.jpg",
+    alt: "A camper and an instructor, seen from behind, working at a laptop beside a LEGO build on a white baseplate.",
+    caption: "Coding a LEGO Build",
+    rotate: 1,
+  },
+  {
     src: "/images/gallery/glow-lab-bottles.jpg",
     alt: "Two glowing containers of neon liquid under blacklight, with glowing bottles in the background.",
     caption: "Blacklight Reactions",
     rotate: 1.5,
+  },
+  {
+    src: "/images/gallery/city-hotel.jpg",
+    alt: "A close view of the model city: a blue cardboard hotel, a LEGO boat and a LEGO truck on painted roads.",
+    caption: "Downtown Build",
+    rotate: -1,
   },
   /* Consent confirmed by Joe on Aug 9 2026 — see the block comment above. */
   {
@@ -408,10 +456,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -1.5,
   },
   {
+    src: "/images/gallery/cardboard-cutting.jpg",
+    alt: "Campers' hands brushing glue onto a cardboard triangle, with cut cardboard pieces, a brush and scissors on the table.",
+    caption: "Cardboard Workshop",
+    rotate: 3,
+  },
+  {
     src: "/images/gallery/marble-run.jpg",
     alt: "A camper building a marble run from cardboard tubes taped inside a large cardboard box.",
     caption: "Cardboard Marble Run",
     rotate: 2,
+  },
+  {
+    src: "/images/gallery/lego-crane.jpg",
+    alt: "A camper's hand holding up a LEGO crane arm over the open instruction booklet it was built from.",
+    caption: "LEGO Engineering",
+    rotate: -3,
   },
   {
     src: "/images/gallery/ph-lab.jpg",
@@ -420,10 +480,22 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -2,
   },
   {
+    src: "/images/gallery/marble-run-table.jpg",
+    alt: "Hands assembling a marble run from translucent tubes and a yellow funnel on a table.",
+    caption: "Marble Run Challenge",
+    rotate: 2,
+  },
+  {
     src: "/images/gallery/slime-stretch.jpg",
     alt: "A camper stretching a long rope of gray slime between both hands over a mixing bowl.",
     caption: "Slime Lab",
     rotate: 3,
+  },
+  {
+    src: "/images/gallery/city-skyline.jpg",
+    alt: "Painted cardboard towers and a tall LEGO tower in the model city, with a blue building lettered The Resource Room.",
+    caption: "City Skyline",
+    rotate: -2,
   },
   {
     src: "/images/gallery/lego-machines.jpg",
@@ -432,16 +504,34 @@ export const campGalleryPhotos: GalleryPhoto[] = [
     rotate: -2.5,
   },
   {
+    src: "/images/gallery/glow-stations.jpg",
+    alt: "A row of trays under blacklight, each holding a flask and a cup of glowing green liquid.",
+    caption: "Glow Lab Stations",
+    rotate: 1.5,
+  },
+  {
     src: "/images/gallery/watercolor.jpg",
     alt: "A camper painting watercolours into outlined shapes beside a well-used paint palette.",
     caption: "Watercolor Studio",
     rotate: 1.5,
   },
   {
+    src: "/images/gallery/cardboard-structure.jpg",
+    alt: "A cardboard structure of tubes and layered sheets being brushed with glue.",
+    caption: "Glue and Build",
+    rotate: -1.5,
+  },
+  {
     src: "/images/gallery/cardboard-creatures.jpg",
     alt: "A dog built from cardboard, buttons and string, with tube legs and yarn whiskers.",
     caption: "Cardboard Creatures",
     rotate: -1,
+  },
+  {
+    src: "/images/gallery/marble-run-floor.jpg",
+    alt: "A tall marble run of translucent tubes, a paddle wheel and a yellow funnel being built on the floor.",
+    caption: "Marble Run Engineering",
+    rotate: 2.5,
   },
 ];
 

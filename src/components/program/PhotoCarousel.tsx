@@ -7,6 +7,8 @@ import { cn } from "@/lib/cn";
 import type { GalleryPhoto } from "@/content/programs";
 
 const AUTOPLAY_MS = 4000;
+/** Most dots that still fit one row on a 375px phone beside the pause button. */
+const MAX_DOTS = 15;
 
 /**
  * Camp photos as polaroids tossed on a table.
@@ -76,7 +78,13 @@ export function PhotoCarousel({ photos }: { photos: GalleryPhoto[] }) {
           54px past the viewport on a phone. `clip` rather than `hidden` so
           the y axis stays visible — the pin overhangs the top of the main
           polaroid and would otherwise be sliced off. */}
-      <div className="relative h-[420px] overflow-x-clip sm:h-[460px]">
+      {/* The stage has to be taller than the polaroid, which is sized by width:
+          42% of a 76rem container is about 510px across and 550px tall, more
+          than the 460px that suits a tablet. Left at 460 it hung 45px out of
+          the stage and sat on top of the controls underneath. From `lg` the
+          height follows the same 42vw the polaroid does, and stops growing
+          where the container does. */}
+      <div className="relative h-[420px] overflow-x-clip sm:h-[460px] lg:h-[min(610px,calc(42vw+90px))]">
         {slots.map(({ photo, role }) => {
           const main = role === "main";
           const shift = role === "prev" ? "-92%" : role === "next" ? "92%" : "0%";
@@ -138,19 +146,33 @@ export function PhotoCarousel({ photos }: { photos: GalleryPhoto[] }) {
 
       {count > 1 ? (
         <div className="mt-6 flex items-center justify-center gap-2">
-          {photos.map((photo, i) => (
-            <button
-              key={photo.src}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Show photo ${i + 1} of ${count}: ${photo.caption}`}
-              aria-current={i === index}
-              className={cn(
-                "h-2.5 rounded-full transition-all duration-300",
-                i === index ? "w-7 bg-sun-500" : "w-2.5 bg-brand-500/30 hover:bg-brand-500/60",
-              )}
-            />
-          ))}
+          {/* A dot per photo stops working somewhere past fifteen: thirty of
+              them are wider than a phone, and nobody picks the nineteenth dot
+              on purpose. Past that the row becomes a plain position counter
+              and the arrows do the moving. Hidden from assistive tech because
+              the live region below already announces the same position. */}
+          {count > MAX_DOTS ? (
+            <p
+              aria-hidden="true"
+              className="min-w-16 text-center text-sm font-semibold tabular-nums text-navy-800"
+            >
+              {index + 1} <span className="text-navy-500">/ {count}</span>
+            </p>
+          ) : (
+            photos.map((photo, i) => (
+              <button
+                key={photo.src}
+                type="button"
+                onClick={() => go(i)}
+                aria-label={`Show photo ${i + 1} of ${count}: ${photo.caption}`}
+                aria-current={i === index}
+                className={cn(
+                  "h-2.5 rounded-full transition-all duration-300",
+                  i === index ? "w-7 bg-sun-500" : "w-2.5 bg-brand-500/30 hover:bg-brand-500/60",
+                )}
+              />
+            ))
+          )}
 
           {/* Hidden under reduced motion, where nothing is moving to stop. */}
           {reduced ? null : (
