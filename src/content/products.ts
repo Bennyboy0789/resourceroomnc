@@ -1,5 +1,6 @@
 import { campDayDescription, campDayGroup, campGalleryPhotos, campNotices, campVideos } from "@/content/programs";
 import type { SiteNotice } from "@/lib/notice-window";
+import { satResults2026, type SatResults } from "@/content/sat-results";
 import type { ProgramBlock, ProgramImage, ProgramStat } from "@/content/programs";
 import type { Review } from "@/content/testimonials";
 
@@ -53,6 +54,11 @@ export type ProductPage = {
   statsNote?: string;
   highlights?: { title: string; body: string }[];
   includes?: string[];
+  /**
+   * The headline figures from a results section that lives on the program
+   * page, with a link through to it. Shown above the buy box.
+   */
+  resultsTeaser?: SatResults;
   blocks?: ProgramBlock[];
   /**
    * What the buy box sells.
@@ -873,6 +879,7 @@ export const products: ProductPage[] = [
   },
   {
     slug: "sat-prep",
+    resultsTeaser: satResults2026,
     programSlug: "sat-act-prep",
     catalogSlug: "sat-prep-in-north-carolina",
     name: "SAT Test Prep in Holly Springs, NC",

@@ -7,6 +7,7 @@ import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Notice } from "@/components/ui/Notice";
 import { ProgramBlocks } from "@/components/program/ProgramBlocks";
+import { SatResultsTeaser } from "@/components/program/SatResults";
 import { VariantPicker } from "@/components/shop/VariantPicker";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -177,6 +178,13 @@ export default async function ProductPage({ params }: PageProps<"/programs/[slug
             ) : null}
           </Container>
         </section>
+      ) : null}
+
+      {product.resultsTeaser ? (
+        <SatResultsTeaser
+          results={product.resultsTeaser}
+          href={`/programs/${product.programSlug}#results`}
+        />
       ) : null}
 
       {/* ------------------------------------------------------------- buy */}

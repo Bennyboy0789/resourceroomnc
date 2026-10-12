@@ -1,5 +1,6 @@
 import type { IconName } from "@/components/icons";
 import type { SiteNotice } from "@/lib/notice-window";
+import { satResults2026, type SatResults } from "@/content/sat-results";
 
 /**
  * Program content, transcribed from resourceroomnc.com.
@@ -319,6 +320,12 @@ export type Program = {
   includesHeading?: { title: string; accent: string };
   /** "Who it's for" list. */
   audience: string[];
+  /**
+   * Measured results, shown straight under the hero and ahead of anything for
+   * sale. Proof first: a parent should see what the program did for the last
+   * group before being asked to choose a package.
+   */
+  results?: SatResults;
   /** Long-form sections below the fold. */
   blocks?: ProgramBlock[];
   /** Legal or policy fine print, set below everything else. */
@@ -1193,6 +1200,7 @@ export const programs: Program[] = [
   },
   {
     slug: "sat-act-prep",
+    results: satResults2026,
     name: "SAT & ACT Test Prep",
     shortName: "SAT / ACT Prep",
     category: "Test Prep Programs",

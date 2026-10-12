@@ -6,6 +6,7 @@ import { Icon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
 import { Notice } from "@/components/ui/Notice";
 import { ProgramBlocks } from "@/components/program/ProgramBlocks";
+import { SatResults } from "@/components/program/SatResults";
 import { EnrollmentSection } from "@/components/shop/EnrollmentSection";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -140,6 +141,8 @@ export default async function ProgramPage({ params }: PageProps<"/programs/[slug
           </Container>
         </section>
       ) : null}
+
+      {program.results ? <SatResults results={program.results} /> : null}
 
       {/* Products first, prose second — Joe asked on the Aug 3 2026 call for
           people to land on what they can actually book, with the written
